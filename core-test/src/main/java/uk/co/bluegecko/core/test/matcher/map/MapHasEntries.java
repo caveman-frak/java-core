@@ -49,11 +49,15 @@ public class MapHasEntries< K, V > extends TypeSafeMatcher< Map< K, V >>
 		matcher.describeTo( description );
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see org.hamcrest.TypeSafeMatcher#describeMismatchSafely(java.lang.Object, org.hamcrest.Description)
+	 */
 	@Override
 	public void describeMismatchSafely( final Map< K, V > map, final Description mismatchDescription )
 	{
 		mismatchDescription.appendText( "map was " ).appendValueList( "[", ", ", "]", map.entrySet() )
-				.appendText( " expected " ).appendDescriptionOf( matcher );
+		.appendText( " expected " ).appendDescriptionOf( matcher );
 	}
 
 	/*

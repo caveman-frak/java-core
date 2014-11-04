@@ -52,7 +52,6 @@ public abstract class AbstractValueMatcher< M, V > extends TypeSafeMatcher< M >
 	 *         <code>
 	 * return "an &lt;Object&gt; with &lt;Field&gt;";
 	 * </code
-	 *
 	 */
 	protected abstract String getDescription();
 
@@ -81,7 +80,8 @@ public abstract class AbstractValueMatcher< M, V > extends TypeSafeMatcher< M >
 	@Override
 	protected void describeMismatchSafely( final M model, final Description mismatchDescription )
 	{
-		mismatchDescription.appendText( "was \"" ).appendValue( getValue( model ) ).appendText( "\"" );
+		mismatchDescription.appendText( "was " ).appendValue( model ).appendText( " expected " )
+				.appendDescriptionOf( this );
 	}
 
 }

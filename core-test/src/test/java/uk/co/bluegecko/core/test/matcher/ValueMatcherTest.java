@@ -4,8 +4,13 @@
 package uk.co.bluegecko.core.test.matcher;
 
 
-import static org.junit.Assert.fail;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
+import org.hamcrest.StringDescription;
+import org.junit.Before;
 import org.junit.Test;
 
 
@@ -13,10 +18,36 @@ import org.junit.Test;
 public class ValueMatcherTest
 {
 
-	@Test
-	public final void test()
+	private Matcher< Long > matcher;
+
+	private Description description;
+
+	@Before
+	public final void setUp()
 	{
-		fail( "Not yet implemented" ); // TODO
+		matcher = ValueMatcher.value( "number", "intValue", 10, i -> i.intValue() );
+
+		description = new StringDescription();
+	}
+
+	@Test
+	public final void testSuccess()
+	{
+		final Long value = 10L;
+		assertThat( matcher.matches( value ), is( true ) );
+
+		matcher.describeMismatch( value, description );
+		assertThat( description.toString(), is( "was <10L> expected a number with intValue <10>" ) );
+	}
+
+	@Test
+	public final void testFailure()
+	{
+		final Long value = 11L;
+		assertThat( matcher.matches( value ), is( false ) );
+
+		matcher.describeMismatch( value, description );
+		assertThat( description.toString(), is( "was <11L> expected a number with intValue <10>" ) );
 	}
 
 }

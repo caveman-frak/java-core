@@ -12,7 +12,7 @@ import org.hamcrest.TypeSafeMatcher;
 
 
 /**
- * Check if the passed object has a field with of the correct value
+ * Check if the passed object matches the supplied test
  *
  * @param <V>
  *            the type of value to check
@@ -62,7 +62,8 @@ public class SimpleMatcher< V > extends TypeSafeMatcher< V >
 	@Override
 	protected void describeMismatchSafely( final V model, final Description mismatchDescription )
 	{
-		mismatchDescription.appendText( "was \"" ).appendValue( model ).appendText( "\"" );
+		mismatchDescription.appendText( "was " ).appendValue( model ).appendText( " expected " )
+		.appendText( description );
 	}
 
 	/**
@@ -74,7 +75,7 @@ public class SimpleMatcher< V > extends TypeSafeMatcher< V >
 	 *            description of the test
 	 * @return the SimpleMatcher
 	 */
-	public static final < V > Matcher< V > test( final Predicate< V > test, final String description )
+	public static final < V > Matcher< V > does( final Predicate< V > test, final String description )
 	{
 		return new SimpleMatcher<>( test, description );
 	}
@@ -86,9 +87,9 @@ public class SimpleMatcher< V > extends TypeSafeMatcher< V >
 	 *            the test to match
 	 * @return the SimpleMatcher
 	 */
-	public static final < V > Matcher< V > test( final Predicate< V > test )
+	public static final < V > Matcher< V > does( final Predicate< V > test )
 	{
-		return test( test, "test expression" );
+		return does( test, "test expression" );
 	}
 
 }

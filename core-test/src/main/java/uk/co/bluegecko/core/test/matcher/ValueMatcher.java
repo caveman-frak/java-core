@@ -45,7 +45,8 @@ public class ValueMatcher< M, V > extends AbstractValueMatcher< M, V >
 		this.function = function;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.test.matcher.AbstractValueMatcher#getDescription()
 	 */
 	@Override
@@ -54,7 +55,8 @@ public class ValueMatcher< M, V > extends AbstractValueMatcher< M, V >
 		return "a " + objectName + " with " + fieldName;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.test.matcher.AbstractValueMatcher#getValue(java.lang.Object)
 	 */
 	@Override
@@ -78,8 +80,8 @@ public class ValueMatcher< M, V > extends AbstractValueMatcher< M, V >
 	 */
 	public static < M, V > Matcher< M > value( final String objectName, final String fieldName, final V value,
 			final Function< M, V > function )
-			{
+	{
 		return new ValueMatcher<>( objectName, fieldName, value, function );
-			}
+	}
 
 }
