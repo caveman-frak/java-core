@@ -1,7 +1,7 @@
 /**
  * Copyright 2009, <a href="http://bluegecko.co.uk/core">Blue Gecko Limited</a>
  */
-package uk.co.bluegecko.core.service.common.localisation.resource;
+package uk.co.bluegecko.core.service.base.common.localisation.resource;
 
 
 import static org.hamcrest.Matchers.empty;
@@ -21,9 +21,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService;
+import uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService.Log;
 import uk.co.bluegecko.core.service.common.LocaleService;
 import uk.co.bluegecko.core.service.common.LocalisationService;
-import uk.co.bluegecko.core.service.common.localisation.resource.ResourceLocalisationService.Log;
 import uk.co.bluegecko.core.test.harness.TestHarness;
 
 import uk.org.lidalia.slf4jtest.TestLogger;
@@ -85,7 +86,7 @@ public class ResourceLocalisationServiceTest extends TestHarness
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.common.localisation.resource.ResourceLocalisationService#getMessage(java.lang.String, java.lang.String, java.lang.Object[])}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessage(java.lang.String, java.lang.String, java.lang.Object[])}
 	 * .
 	 */
 	@Test
@@ -96,7 +97,7 @@ public class ResourceLocalisationServiceTest extends TestHarness
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.common.localisation.resource.ResourceLocalisationService#getMessage(java.lang.String, java.lang.String, java.lang.Object[])}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessage(java.lang.String, java.lang.String, java.lang.Object[])}
 	 * .
 	 */
 	@Test
@@ -108,7 +109,7 @@ public class ResourceLocalisationServiceTest extends TestHarness
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.common.localisation.resource.ResourceLocalisationService#getMessage(java.lang.String, java.lang.String, java.lang.Object[])}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessage(java.lang.String, java.lang.String, java.lang.Object[])}
 	 * .
 	 */
 	@Test
@@ -123,7 +124,7 @@ public class ResourceLocalisationServiceTest extends TestHarness
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.common.localisation.resource.ResourceLocalisationService#getMessage(java.lang.String, java.lang.String, java.lang.Object[])}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessage(java.lang.String, java.lang.String, java.lang.Object[])}
 	 * .
 	 */
 	@Test
@@ -134,7 +135,7 @@ public class ResourceLocalisationServiceTest extends TestHarness
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.common.localisation.resource.ResourceLocalisationService#getMessage(java.lang.String, java.lang.String, java.lang.Object[])}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessage(java.lang.String, java.lang.String, java.lang.Object[])}
 	 * .
 	 */
 	@Test
@@ -145,7 +146,7 @@ public class ResourceLocalisationServiceTest extends TestHarness
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.common.localisation.resource.ResourceLocalisationService#getMessages(java.lang.String)}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessages(java.lang.String)}
 	 * .
 	 */
 	@Test
@@ -158,7 +159,7 @@ public class ResourceLocalisationServiceTest extends TestHarness
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.common.localisation.resource.ResourceLocalisationService#getMessages(java.lang.String)}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessages(java.lang.String)}
 	 * .
 	 */
 	@Test
@@ -172,7 +173,7 @@ public class ResourceLocalisationServiceTest extends TestHarness
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.common.localisation.resource.ResourceLocalisationService#getMessages(java.lang.String)}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessages(java.lang.String)}
 	 * .
 	 */
 	@Test
@@ -186,7 +187,7 @@ public class ResourceLocalisationServiceTest extends TestHarness
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.common.localisation.resource.ResourceLocalisationService#getMessages(java.lang.String)}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessages(java.lang.String)}
 	 * .
 	 */
 	@Test
@@ -200,7 +201,7 @@ public class ResourceLocalisationServiceTest extends TestHarness
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.common.localisation.resource.ResourceLocalisationService#getMessages(java.lang.String)}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessages(java.lang.String)}
 	 * .
 	 */
 	@Test
@@ -214,7 +215,7 @@ public class ResourceLocalisationServiceTest extends TestHarness
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.common.localisation.resource.ResourceLocalisationService#getMessages(java.lang.String)}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessages(java.lang.String)}
 	 * .
 	 */
 	@Test
@@ -228,7 +229,7 @@ public class ResourceLocalisationServiceTest extends TestHarness
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.common.localisation.resource.ResourceLocalisationService#getMessages(java.lang.String)}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessages(java.lang.String)}
 	 * .
 	 */
 	@Test

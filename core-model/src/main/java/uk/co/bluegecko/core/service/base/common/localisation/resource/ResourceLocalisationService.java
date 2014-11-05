@@ -1,7 +1,7 @@
 /**
  * Copyright 2009, <a href="http://bluegecko.co.uk/core">Blue Gecko Limited</a>
  */
-package uk.co.bluegecko.core.service.common.localisation.resource;
+package uk.co.bluegecko.core.service.base.common.localisation.resource;
 
 
 import java.text.MessageFormat;
@@ -23,7 +23,7 @@ import uk.co.bluegecko.core.service.common.LocalisationService;
 
 
 /**
- *
+ * {@link ResourceBundle} implementation of {@link LocalisationService}
  */
 @Service
 public class ResourceLocalisationService extends AbstractService implements LocalisationService
@@ -31,7 +31,7 @@ public class ResourceLocalisationService extends AbstractService implements Loca
 
 	@BaseName( "uk.co.bluegecko.core.service.common.localisation.resource.ResourceLocalisationService$Log" )
 	@LocaleData(
-		{ @Locale( "en" ) } )
+			{ @Locale( "en" ) } )
 	protected enum Log
 	{
 		MISSING_KEY, MISSING_BUNDLE
@@ -41,9 +41,10 @@ public class ResourceLocalisationService extends AbstractService implements Loca
 	private static final String MISSING_KEY_INDICATOR = "**";
 
 	/**
+	 * Default constructor, referencing the {@link LocaleService}
+	 *
 	 * @param localeService
 	 *            used to determine the current locale
-	 *
 	 */
 	@Autowired
 	public ResourceLocalisationService( final LocaleService localeService )
@@ -51,8 +52,10 @@ public class ResourceLocalisationService extends AbstractService implements Loca
 		super( localeService );
 	}
 
-	/* (non-Javadoc)
-	 * @see uk.co.bluegecko.core.service.LocalisationService#getMessage(java.lang.String, java.lang.String, java.lang.Object[])
+	/*
+	 * (non-Javadoc)
+	 * @see uk.co.bluegecko.core.service.LocalisationService#getMessage(java.lang.String, java.lang.String,
+	 * java.lang.Object[])
 	 */
 	@Override
 	public String getMessage( final String messageKey, final String bundleName, final Object... params )
@@ -78,7 +81,8 @@ public class ResourceLocalisationService extends AbstractService implements Loca
 		}
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.service.common.LocalisationService#getMessages(java.lang.String)
 	 */
 	@Override
@@ -103,8 +107,10 @@ public class ResourceLocalisationService extends AbstractService implements Loca
 	}
 
 	/**
+	 * Internal method for getting a {@link ResourceBundle} of the correct user locale
+	 *
 	 * @param bundleName
-	 * @return
+	 * @return the bundle for the user's locale
 	 */
 	private ResourceBundle getBundle( final String bundleName )
 	{

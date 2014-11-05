@@ -1,7 +1,7 @@
 /**
  * Copyright 2009, <a href="http://bluegecko.co.uk/core">Blue Gecko Limited</a>
  */
-package uk.co.bluegecko.core.service.common.locale;
+package uk.co.bluegecko.core.service.base.common.locale;
 
 
 import java.util.Locale;
@@ -12,21 +12,22 @@ import uk.co.bluegecko.core.service.common.LocaleService;
 
 
 /**
- *
+ * Simple implementation of {@link LocaleService} using {@link Locale#getDefault()}
  */
 @Service
 public class DefaultLocaleService implements LocaleService
 {
 
 	/**
-	 *
+	 * Default zero arg constructor
 	 */
 	public DefaultLocaleService()
 	{
 		super();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.service.LocaleService#getSystemLocale()
 	 */
 	@Override
@@ -35,7 +36,8 @@ public class DefaultLocaleService implements LocaleService
 		return Locale.getDefault();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.service.LocaleService#getUserLocale()
 	 */
 	@Override

@@ -1,7 +1,7 @@
 /**
  * Copyright 2009, <a href="http://bluegecko.co.uk/core">Blue Gecko Limited</a>
  */
-package uk.co.bluegecko.core.service.common.datetime;
+package uk.co.bluegecko.core.service.base.common.datetime;
 
 
 import java.time.LocalDate;
@@ -15,14 +15,14 @@ import uk.co.bluegecko.core.service.common.DateTimeService;
 
 
 /**
- *
+ * Simple implementation of {@link DateTimeService} using {@link LocalDateTime#now()}
  */
 @Service
 public class DefaultDateTimeService implements DateTimeService
 {
 
 	/**
-	 *
+	 * Default zero arg constructor
 	 */
 	public DefaultDateTimeService()
 	{
