@@ -28,7 +28,7 @@ public interface DateTimeService
 	 *
 	 * @return current local time
 	 */
-	public LocalTime getLocaleTime();
+	public LocalTime getLocalTime();
 
 	/**
 	 * Return the current local date

@@ -29,44 +29,44 @@ public class DefaultDateTimeService implements DateTimeService
 		super();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.service.DateTimeService#getLocalDateTime()
 	 */
 	@Override
 	public LocalDateTime getLocalDateTime()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return LocalDateTime.now();
 	}
 
-	/* (non-Javadoc)
-	 * @see uk.co.bluegecko.core.service.DateTimeService#getLocaleTime()
+	/*
+	 * (non-Javadoc)
+	 * @see uk.co.bluegecko.core.service.DateTimeService#getLocalTime()
 	 */
 	@Override
-	public LocalTime getLocaleTime()
+	public LocalTime getLocalTime()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return LocalTime.now();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.service.DateTimeService#getLocalDate()
 	 */
 	@Override
 	public LocalDate getLocalDate()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return LocalDate.now();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.service.DateTimeService#getTimeZone()
 	 */
 	@Override
 	public ZoneId getTimeZone()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		return ZoneId.systemDefault();
 	}
 
 }

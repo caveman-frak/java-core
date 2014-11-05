@@ -23,7 +23,7 @@ public class TestExceptionOne extends BaseException
 	 */
 	@BaseName( "uk.co.bluegecko.core.exceptions.TestExceptionOne$Message" )
 	@LocaleData(
-			{ @ch.qos.cal10n.Locale( "en" ) } )
+		{ @ch.qos.cal10n.Locale( "en" ) } )
 	@SuppressWarnings( "javadoc" )
 	public enum Message
 	{
@@ -39,7 +39,6 @@ public class TestExceptionOne extends BaseException
 	public TestExceptionOne( final Throwable cause, final Locale locale, final Message messageKey, final Object... args )
 	{
 		super( cause, locale, messageKey, args );
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -48,7 +47,6 @@ public class TestExceptionOne extends BaseException
 	public TestExceptionOne( final Throwable cause )
 	{
 		super( cause );
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -59,7 +57,6 @@ public class TestExceptionOne extends BaseException
 	public TestExceptionOne( final Locale locale, final Message messageKey, final Object... args )
 	{
 		super( locale, messageKey, args );
-		// TODO Auto-generated constructor stub
 	}
 
 }
