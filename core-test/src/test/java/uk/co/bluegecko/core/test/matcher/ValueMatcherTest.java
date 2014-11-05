@@ -37,7 +37,7 @@ public class ValueMatcherTest
 		assertThat( matcher.matches( value ), is( true ) );
 
 		matcher.describeMismatch( value, description );
-		assertThat( description.toString(), is( "was <10L> expected a number with intValue <10>" ) );
+		assertThat( description.toString(), is( "was a number with intValue <10> expected <10>" ) );
 	}
 
 	@Test
@@ -47,7 +47,7 @@ public class ValueMatcherTest
 		assertThat( matcher.matches( value ), is( false ) );
 
 		matcher.describeMismatch( value, description );
-		assertThat( description.toString(), is( "was <11L> expected a number with intValue <10>" ) );
+		assertThat( description.toString(), is( "was a number with intValue <11> expected <10>" ) );
 	}
 
 }
