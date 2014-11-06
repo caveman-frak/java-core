@@ -84,6 +84,10 @@ public interface Setting< E >
 	public Class< E > type();
 
 	/**
+	 * Create a new named settings constant.
+	 * 
+	 * @param <E>
+	 *            type of the setting value
 	 * @param name
 	 *            the lookup key of the setting
 	 * @param type
@@ -96,6 +100,10 @@ public interface Setting< E >
 	}
 
 	/**
+	 * Create a new named settings constant with a default value.
+	 * 
+	 * @param <E>
+	 *            type of the setting value
 	 * @param name
 	 *            the lookup key of the setting
 	 * @param type

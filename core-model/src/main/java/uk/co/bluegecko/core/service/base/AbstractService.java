@@ -28,6 +28,8 @@ public abstract class AbstractService implements Service
 	/**
 	 * Create an abstract service base with {@link LocLogger} and {@link LocaleService} support.
 	 *
+	 * @param applicationContext
+	 *            the application context to use
 	 * @param localeService
 	 *            the locale service to use
 	 */
@@ -70,6 +72,8 @@ public abstract class AbstractService implements Service
 	}
 
 	/**
+	 * Access method for the built in {@link ApplicationContext}
+	 * 
 	 * @return the applicationContext
 	 */
 	public ApplicationContext getApplicationContext()

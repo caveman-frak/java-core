@@ -9,30 +9,20 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
-import org.junit.Before;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import uk.co.bluegecko.core.test.harness.TestHarness;
 
 
-/**
- *
- */
+@SuppressWarnings( "javadoc" )
 public class RouterTest extends TestHarness
 {
 
 	private static final String TEST = "TEST";
 
+	@Autowired
 	private Router< RouteFoo > fooRouter;
-
-	/**
-	 * get a Router from the application context
-	 */
-	@Before
-	public final void setUp()
-	{
-		fooRouter = getApplicationContext().getBean( Router.class );
-	}
 
 	/**
 	 * Test bean autowiring

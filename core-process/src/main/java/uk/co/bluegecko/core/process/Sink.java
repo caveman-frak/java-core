@@ -15,8 +15,9 @@ public interface Sink< T >
 
 	/**
 	 * Push an object into the sink.
-	 * 
+	 *
 	 * @param in
+	 *            new object
 	 */
 	public void push( T in );
 

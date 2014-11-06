@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @param <T>
- *
+ *            type of object to pass
  */
 public class SimpleConnector< T > implements Connector< T >
 {
@@ -20,7 +20,7 @@ public class SimpleConnector< T > implements Connector< T >
 
 	/**
 	 * @param queue
-	 *
+	 *            queue to use for passing object
 	 */
 	public SimpleConnector( final Queue< T > queue )
 	{
@@ -30,7 +30,8 @@ public class SimpleConnector< T > implements Connector< T >
 		finished = new AtomicBoolean( false );
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.process.base.Connector#push(T)
 	 */
 	@Override
@@ -39,7 +40,8 @@ public class SimpleConnector< T > implements Connector< T >
 		queue.add( in );
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.process.base.Connector#finished()
 	 */
 	@Override
@@ -48,7 +50,8 @@ public class SimpleConnector< T > implements Connector< T >
 		finished.set( true );
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.process.base.Connector#next()
 	 */
 	@Override
@@ -57,7 +60,8 @@ public class SimpleConnector< T > implements Connector< T >
 		return queue.poll();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.process.base.Connector#isReady()
 	 */
 	@Override
@@ -66,7 +70,8 @@ public class SimpleConnector< T > implements Connector< T >
 		return !queue.isEmpty();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.process.base.Connector#isFinished()
 	 */
 	@Override
@@ -75,7 +80,8 @@ public class SimpleConnector< T > implements Connector< T >
 		return finished.get();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.process.base.Connector#reset()
 	 */
 	@Override

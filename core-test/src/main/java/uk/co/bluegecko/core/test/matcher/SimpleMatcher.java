@@ -28,6 +28,8 @@ public class SimpleMatcher< V > extends TypeSafeMatcher< V >
 	 *
 	 * @param test
 	 *            the test to apply to the value
+	 * @param description
+	 *            description of test
 	 */
 	protected SimpleMatcher( final Predicate< V > test, final String description )
 	{
@@ -63,7 +65,7 @@ public class SimpleMatcher< V > extends TypeSafeMatcher< V >
 	protected void describeMismatchSafely( final V model, final Description mismatchDescription )
 	{
 		mismatchDescription.appendText( "was " ).appendValue( model ).appendText( " expected " )
-				.appendText( description );
+		.appendText( description );
 	}
 
 	/**

@@ -36,6 +36,8 @@ public interface Extended< M extends Model >
 	/**
 	 * An extension of a specific class.
 	 *
+	 * @param <T>
+	 *            class of the extension to get
 	 * @param klass
 	 *            the class of extension to return
 	 * @return an extension of that class, if available, otherwise null

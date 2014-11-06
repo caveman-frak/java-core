@@ -11,6 +11,10 @@ public interface SettingsService
 {
 
 	/**
+	 * Return the setting value.
+	 * 
+	 * @param <E>
+	 *            type of setting value
 	 * @param setting
 	 *            to retrieve
 	 * @return the setting value
@@ -18,6 +22,10 @@ public interface SettingsService
 	public < E > E getSetting( Setting< E > setting );
 
 	/**
+	 * Return the setting value, or the fallback value if it does not exists.
+	 * 
+	 * @param <E>
+	 *            type of setting value
 	 * @param setting
 	 *            to retrieve
 	 * @param fallback
@@ -27,6 +35,8 @@ public interface SettingsService
 	public < E > E getSetting( Setting< E > setting, E fallback );
 
 	/**
+	 * Return if the setting exists.
+	 *
 	 * @param setting
 	 *            to check
 	 * @return if the setting exists

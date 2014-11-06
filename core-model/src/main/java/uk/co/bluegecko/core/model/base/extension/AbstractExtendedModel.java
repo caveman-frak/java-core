@@ -18,7 +18,6 @@ import uk.co.bluegecko.core.model.extension.Extension;
  *
  * @param <M>
  *            the model class
- *
  */
 @SuppressWarnings( "null" )
 public abstract class AbstractExtendedModel< M extends Model > implements Extended< M >, Model
@@ -30,7 +29,7 @@ public abstract class AbstractExtendedModel< M extends Model > implements Extend
 	 * Create an extended model, passing in the list of supported extensions.
 	 *
 	 * @param extensions
-	 *
+	 *            list of extensions to add to the model
 	 */
 	public AbstractExtendedModel( final List< Extension< M >> extensions )
 	{
@@ -47,7 +46,8 @@ public abstract class AbstractExtendedModel< M extends Model > implements Extend
 		this( new ArrayList<>() );
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.model.extension.Extended#setExtensions(java.util.List)
 	 */
 	@Override
@@ -57,7 +57,8 @@ public abstract class AbstractExtendedModel< M extends Model > implements Extend
 		this.extensions.addAll( extensions );
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.model.extension.Extended#getExtensions()
 	 */
 	@Override
@@ -66,7 +67,8 @@ public abstract class AbstractExtendedModel< M extends Model > implements Extend
 		return Collections.unmodifiableList( extensions );
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.model.extension.Extended#getExtensions(java.lang.Class)
 	 */
 	@SuppressWarnings( "unchecked" )
