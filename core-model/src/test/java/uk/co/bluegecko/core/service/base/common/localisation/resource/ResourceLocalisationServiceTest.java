@@ -21,7 +21,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService;
 import uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService.Log;
 import uk.co.bluegecko.core.service.common.LocaleService;
 import uk.co.bluegecko.core.service.common.LocalisationService;
@@ -72,7 +71,7 @@ public class ResourceLocalisationServiceTest extends TestHarness
 		localeService = mock( LocaleService.class );
 		when( localeService.getUserLocale() ).thenReturn( Locale.ROOT );
 		when( localeService.getSystemLocale() ).thenReturn( Locale.ENGLISH );
-		localisationService = new ResourceLocalisationService( localeService );
+		localisationService = new ResourceLocalisationService( getApplicationContext(), localeService );
 	}
 
 	/**

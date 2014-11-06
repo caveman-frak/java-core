@@ -11,6 +11,7 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import ch.qos.cal10n.BaseName;
@@ -42,14 +43,16 @@ public class ResourceLocalisationService extends AbstractService implements Loca
 
 	/**
 	 * Default constructor, referencing the {@link LocaleService}
-	 *
+	 * 
+	 * @param applicationContext
+	 *            used to set the application context
 	 * @param localeService
 	 *            used to determine the current locale
 	 */
 	@Autowired
-	public ResourceLocalisationService( final LocaleService localeService )
+	public ResourceLocalisationService( final ApplicationContext applicationContext, final LocaleService localeService )
 	{
-		super( localeService );
+		super( applicationContext, localeService );
 	}
 
 	/*

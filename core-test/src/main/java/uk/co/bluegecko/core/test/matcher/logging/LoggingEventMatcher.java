@@ -18,7 +18,6 @@ import uk.org.lidalia.slf4jtest.LoggingEvent;
 
 /**
  * Check if the passed log event matches the correct level, message and arguments.
- *
  */
 public class LoggingEventMatcher extends TypeSafeMatcher< LoggingEvent >
 {
@@ -32,11 +31,10 @@ public class LoggingEventMatcher extends TypeSafeMatcher< LoggingEvent >
 	 *
 	 * @param level
 	 *            the level to compare
-	 * @param message
+	 * @param messageKey
 	 *            the message to compare
 	 * @param args
 	 *            the arguments to compare
-	 *
 	 */
 	protected LoggingEventMatcher( final Level level, final Enum< ? > messageKey, final Object... args )
 	{
@@ -119,7 +117,6 @@ public class LoggingEventMatcher extends TypeSafeMatcher< LoggingEvent >
 	 *            the message to compare
 	 * @param args
 	 *            the arguments to compare
-	 *
 	 * @return the LoggingEventMatcher
 	 */
 	public static final Matcher< LoggingEvent > info( final Enum< ? > message, final Object... args )

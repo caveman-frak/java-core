@@ -29,10 +29,8 @@ public class MapHasEntries< K, V > extends TypeSafeMatcher< Map< K, V >>
 	/**
 	 * Construct a new matcher, checking for the supplied test.
 	 *
-	 * @param test
-	 *            the test to apply to the value
-	 * @param entries
-	 *            a list of entry matchers
+	 * @param matcher
+	 *            the embedded matcher
 	 */
 	protected MapHasEntries( final Matcher< Iterable< Entry< K, V >>> matcher )
 	{
@@ -57,7 +55,7 @@ public class MapHasEntries< K, V > extends TypeSafeMatcher< Map< K, V >>
 	public void describeMismatchSafely( final Map< K, V > map, final Description mismatchDescription )
 	{
 		mismatchDescription.appendText( "map was " ).appendValueList( "[", ", ", "]", map.entrySet() )
-		.appendText( " expected " ).appendDescriptionOf( matcher );
+				.appendText( " expected " ).appendDescriptionOf( matcher );
 	}
 
 	/*
@@ -76,9 +74,13 @@ public class MapHasEntries< K, V > extends TypeSafeMatcher< Map< K, V >>
 	 * matcher from the specified <code>itemMatchers</code>. Whilst matching, each traversal of
 	 * the examined {@link Map} will stop as soon as a matching item is found.
 	 *
+	 * @param <K>
+	 *            the type of the map key
+	 * @param <V>
+	 *            the type of map value
 	 * @param entryMatchers
 	 *            the matchers to apply to items provided by the examined entry set
-	 * @return the Matcher
+	 * @return the Map Matcher
 	 */
 	@SafeVarargs
 	public static final < K, V > Matcher< Map< K, V > > hasEntries( final Matcher< Entry< K, V >>... entryMatchers )

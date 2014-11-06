@@ -9,7 +9,7 @@ import java.util.Iterator;
 
 
 /**
- *
+ * Simple helper to pull values out of collections for testing.
  */
 public interface CollectionHelper
 {
@@ -17,6 +17,8 @@ public interface CollectionHelper
 	/**
 	 * Return the first item from a collection, or null if empty.
 	 *
+	 * @param <T>
+	 *            type of collection
 	 * @param collection
 	 *            the collections
 	 * @return return first item
@@ -30,6 +32,8 @@ public interface CollectionHelper
 	/**
 	 * Return the last item from a collection, or null if empty.
 	 *
+	 * @param <T>
+	 *            type of collection
 	 * @param collection
 	 *            the collections
 	 * @return return last item
@@ -49,6 +53,8 @@ public interface CollectionHelper
 	/**
 	 * Return the last item from a collection, or null if empty.
 	 *
+	 * @param <T>
+	 *            type of collection
 	 * @param collection
 	 *            the collections
 	 * @param count

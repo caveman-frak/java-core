@@ -29,10 +29,8 @@ public class MapContains< K, V > extends TypeSafeMatcher< Map< K, V >>
 	/**
 	 * Construct a new matcher, checking for the supplied test.
 	 *
-	 * @param test
-	 *            the test to apply to the value
-	 * @param entries
-	 *            a list of entry matchers
+	 * @param matcher
+	 *            the embedded matcher
 	 */
 	protected MapContains( final Matcher< Iterable< ? extends Entry< K, V >>> matcher )
 	{
@@ -57,7 +55,7 @@ public class MapContains< K, V > extends TypeSafeMatcher< Map< K, V >>
 	public void describeMismatchSafely( final Map< K, V > map, final Description mismatchDescription )
 	{
 		mismatchDescription.appendText( "map was " ).appendValueList( "[", ", ", "]", map.entrySet() )
-		.appendText( " expected " ).appendDescriptionOf( matcher );
+				.appendText( " expected " ).appendDescriptionOf( matcher );
 	}
 
 	/*
@@ -76,9 +74,13 @@ public class MapContains< K, V > extends TypeSafeMatcher< Map< K, V >>
 	 * the corresponding matcher in the specified matchers. For a positive match, the examined
 	 * entry set must be of the same length as the number of specified matchers.
 	 *
+	 * @param <K>
+	 *            the type of the map key
+	 * @param <V>
+	 *            the type of map value
 	 * @param entryMatchers
 	 *            the matchers to apply to items provided by the examined entry set
-	 * @return the Matcher
+	 * @return the Map Matcher
 	 */
 	@SafeVarargs
 	public static final < K, V > Matcher< Map< K, V > > contains( final Matcher< Entry< K, V >>... entryMatchers )
@@ -91,19 +93,23 @@ public class MapContains< K, V > extends TypeSafeMatcher< Map< K, V >>
 	 * the examined {@link Map} yields a series of {@link java.util.Map.Entry}s, each satisfying one matcher anywhere
 	 * in the specified matchers. For a positive match, the examined iterable must be of the same
 	 * length as the number of specified matchers.
-	 * <p/>
+	 * <p>
 	 * N.B. each of the specified matchers will only be used once during a given examination, so be careful when
 	 * specifying matchers that may be satisfied by more than one entry in an examined iterable.
 	 *
+	 * @param <K>
+	 *            the type of the map key
+	 * @param <V>
+	 *            the type of map value
 	 * @param entryMatchers
 	 *            the matchers to apply to items provided by the examined entry set
-	 * @return the Matcher
+	 * @return the Map Matcher
 	 */
 	@SafeVarargs
 	public static final < K, V > Matcher< Map< K, V > > containsInAnyOrder(
 			final Matcher< Entry< K, V >>... entryMatchers )
-	{
+			{
 		return new MapContains<>( Matchers.containsInAnyOrder( entryMatchers ) );
-	}
+			}
 
 }

@@ -63,12 +63,14 @@ public class SimpleMatcher< V > extends TypeSafeMatcher< V >
 	protected void describeMismatchSafely( final V model, final Description mismatchDescription )
 	{
 		mismatchDescription.appendText( "was " ).appendValue( model ).appendText( " expected " )
-		.appendText( description );
+				.appendText( description );
 	}
 
 	/**
 	 * Construct a new matcher, checking for the supplied test.
 	 *
+	 * @param <V>
+	 *            the type of value to check
 	 * @param test
 	 *            the test to match
 	 * @param description
@@ -83,6 +85,8 @@ public class SimpleMatcher< V > extends TypeSafeMatcher< V >
 	/**
 	 * Construct a new matcher, checking for the supplied test.
 	 *
+	 * @param <V>
+	 *            the type of value to check
 	 * @param test
 	 *            the test to match
 	 * @return the SimpleMatcher

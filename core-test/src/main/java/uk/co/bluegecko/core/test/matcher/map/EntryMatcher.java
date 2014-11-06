@@ -59,7 +59,7 @@ public class EntryMatcher< K, V > extends TypeSafeMatcher< Map.Entry< K, V > >
 	protected void describeMismatchSafely( final Map.Entry< K, V > entry, final Description mismatchDescription )
 	{
 		mismatchDescription.appendText( "was " ).appendValue( entry.getKey() ).appendText( "=" )
-				.appendValue( entry.getValue() ).appendText( " expected " ).appendDescriptionOf( this );
+		.appendValue( entry.getValue() ).appendText( " expected " ).appendDescriptionOf( this );
 	}
 
 	/*
@@ -75,6 +75,10 @@ public class EntryMatcher< K, V > extends TypeSafeMatcher< Map.Entry< K, V > >
 	/**
 	 * Construct a new matcher, checking for the supplied test.
 	 *
+	 * @param <K>
+	 *            the type of the map key
+	 * @param <V>
+	 *            the type of map value
 	 * @param keyMatcher
 	 *            the matcher to apply to the entry key
 	 * @param valueMatcher
@@ -83,13 +87,17 @@ public class EntryMatcher< K, V > extends TypeSafeMatcher< Map.Entry< K, V > >
 	 */
 	public static final < K, V > Matcher< Map.Entry< K, V > > entry( final Matcher< K > keyMatcher,
 			final Matcher< V > valueMatcher )
-			{
+	{
 		return new EntryMatcher<>( keyMatcher, valueMatcher );
-			}
+	}
 
 	/**
 	 * Construct a new matcher, checking for the supplied test.
 	 *
+	 * @param <K>
+	 *            the type of the map key
+	 * @param <V>
+	 *            the type of map value
 	 * @param key
 	 *            the expected value of the entry key
 	 * @param value
@@ -97,8 +105,8 @@ public class EntryMatcher< K, V > extends TypeSafeMatcher< Map.Entry< K, V > >
 	 * @return a new {@link EntryMatcher}
 	 */
 	public static final < K, V > Matcher< Map.Entry< K, V > > entry( final K key, final V value )
-			{
+	{
 		return new EntryMatcher<>( equalTo( key ), equalTo( value ) );
-			}
+	}
 
 }

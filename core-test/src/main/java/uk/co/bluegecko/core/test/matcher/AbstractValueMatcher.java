@@ -48,10 +48,10 @@ public abstract class AbstractValueMatcher< M, V > extends TypeSafeMatcher< M >
 	/**
 	 * Return a description for the match being performed
 	 *
-	 * @return the description in the form <br/>
-	 *         <code>
-	 * return "an &lt;Object&gt; with &lt;Field&gt;";
-	 * </code
+	 * @return the description in the form
+	 *         <p>
+	 *         <code> return "an &lt;Object&gt; with &lt;Field&gt;";
+	 * </code>
 	 */
 	protected abstract String getDescription();
 
@@ -69,7 +69,8 @@ public abstract class AbstractValueMatcher< M, V > extends TypeSafeMatcher< M >
 	 * Get the value for the field of the passed object
 	 *
 	 * @param obj
-	 * @return
+	 *            the object to query for the field
+	 * @return the value of the field
 	 */
 	protected abstract V getValue( M obj );
 
@@ -81,7 +82,7 @@ public abstract class AbstractValueMatcher< M, V > extends TypeSafeMatcher< M >
 	protected void describeMismatchSafely( final M model, final Description mismatchDescription )
 	{
 		mismatchDescription.appendText( "was " ).appendText( getDescription() ).appendText( " " )
-				.appendValue( getValue( model ) ).appendText( " expected " ).appendValue( value );
+		.appendValue( getValue( model ) ).appendText( " expected " ).appendValue( value );
 	}
 
 }

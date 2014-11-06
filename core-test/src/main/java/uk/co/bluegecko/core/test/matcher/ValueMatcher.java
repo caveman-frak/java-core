@@ -68,6 +68,10 @@ public class ValueMatcher< M, V > extends AbstractValueMatcher< M, V >
 	/**
 	 * Create a new ValueMatcher with the following parameters.
 	 *
+	 * @param <M>
+	 *            the type of object to check
+	 * @param <V>
+	 *            the type of value to check
 	 * @param objectName
 	 *            the name of the object
 	 * @param fieldName
@@ -80,8 +84,8 @@ public class ValueMatcher< M, V > extends AbstractValueMatcher< M, V >
 	 */
 	public static < M, V > Matcher< M > value( final String objectName, final String fieldName, final V value,
 			final Function< M, V > function )
-	{
+			{
 		return new ValueMatcher<>( objectName, fieldName, value, function );
-	}
+			}
 
 }

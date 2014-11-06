@@ -4,8 +4,10 @@
 package uk.co.bluegecko.core.service.base;
 
 
+import org.slf4j.Logger;
 import org.slf4j.cal10n.LocLogger;
 import org.slf4j.cal10n.LocLoggerFactory;
+import org.springframework.context.ApplicationContext;
 
 import ch.qos.cal10n.MessageConveyor;
 
@@ -14,11 +16,12 @@ import uk.co.bluegecko.core.service.common.LocaleService;
 
 
 /**
- *
+ * Abstract implementation of {@link Service} with support for {@link Logger} and {@link ApplicationContext}
  */
-public class AbstractService implements Service
+public abstract class AbstractService implements Service
 {
 
+	private final ApplicationContext applicationContext;
 	private final LocaleService localeService;
 	private final LocLogger logger;
 
@@ -28,8 +31,9 @@ public class AbstractService implements Service
 	 * @param localeService
 	 *            the locale service to use
 	 */
-	protected AbstractService( final LocaleService localeService )
+	protected AbstractService( final ApplicationContext applicationContext, final LocaleService localeService )
 	{
+		this.applicationContext = applicationContext;
 		this.localeService = localeService;
 		logger = new LocLoggerFactory( new MessageConveyor( localeService.getSystemLocale() ) )
 				.getLocLogger( getLoggerName() );
@@ -63,6 +67,14 @@ public class AbstractService implements Service
 	protected LocaleService getLocaleService()
 	{
 		return localeService;
+	}
+
+	/**
+	 * @return the applicationContext
+	 */
+	public ApplicationContext getApplicationContext()
+	{
+		return applicationContext;
 	}
 
 }
