@@ -14,9 +14,12 @@ public interface Setting< E >
 {
 
 	/**
+	 * Implementation of a {@link Setting}
+	 *
 	 * @param <E>
+	 *            type of value to represent
 	 */
-	class SettingBase< E > implements Setting< E >
+	public class SettingBase< E > implements Setting< E >
 	{
 
 		private final String name;
@@ -38,6 +41,31 @@ public interface Setting< E >
 		public Class< E > type()
 		{
 			return type;
+		}
+	}
+
+	/**
+	 * Implementation of a {@link Setting}
+	 *
+	 * @param <E>
+	 *            type of value to represent
+	 */
+	public class SettingDefaultBase< E > extends SettingBase< E > implements Setting< E >, Defaulted< E >
+	{
+
+		private final E value;
+
+		protected SettingDefaultBase( final String name, final Class< E > type, final E value )
+		{
+			super( name, type );
+
+			this.value = value;
+		}
+
+		@Override
+		public E defaultValue()
+		{
+			return value;
 		}
 	}
 
@@ -65,6 +93,20 @@ public interface Setting< E >
 	public static < E > Setting< E > setting( final String name, final Class< E > type )
 	{
 		return new SettingBase<>( name, type );
+	}
+
+	/**
+	 * @param name
+	 *            the lookup key of the setting
+	 * @param type
+	 *            type of the value for the setting
+	 * @param value
+	 *            default value of the setting
+	 * @return a new setting with a default value
+	 */
+	public static < E > Setting< E > setting( final String name, final Class< E > type, final E value )
+	{
+		return new SettingDefaultBase<>( name, type, value );
 	}
 
 }

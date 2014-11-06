@@ -10,6 +10,7 @@ import org.springframework.core.env.PropertySource;
 import org.springframework.stereotype.Service;
 
 import uk.co.bluegecko.core.service.common.settings.Setting;
+import uk.co.bluegecko.core.service.common.settings.Defaulted;
 import uk.co.bluegecko.core.service.common.settings.SettingsService;
 
 
@@ -40,10 +41,15 @@ public class SpringSettingsService implements SettingsService
 	 * uk.co.bluegecko.core.service.common.settings.SettingsService#getSetting(uk.co.bluegecko.core.service.common.settings
 	 * .Setting)
 	 */
+	@SuppressWarnings( "unchecked" )
 	@Override
 	public < E > E getSetting( final Setting< E > setting )
 	{
-		return environment.getProperty( setting.name(), setting.type() );
+		final E value = environment.getProperty( setting.name(), setting.type() );
+		if ( value == null && setting instanceof Defaulted )
+			return ( ( Defaulted< E > ) setting ).defaultValue();
+		else
+			return value;
 	}
 
 	/*
@@ -70,11 +76,4 @@ public class SpringSettingsService implements SettingsService
 		return environment.containsProperty( setting.name() );
 	}
 
-// @SuppressWarnings( "unchecked" )
-// private < E > Class< E > getType( final Setting< E > setting )
-// {
-// final Type genericType = setting.getClass().getGenericInterfaces()[0];
-// final Type[] typeArguments = ( ( ParameterizedType ) genericType ).getActualTypeArguments();
-// return ( Class< E > ) typeArguments[0];
-// }
 }

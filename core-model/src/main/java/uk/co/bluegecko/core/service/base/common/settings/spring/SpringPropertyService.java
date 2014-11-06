@@ -9,6 +9,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.env.PropertySource;
 import org.springframework.stereotype.Service;
 
+import uk.co.bluegecko.core.service.common.settings.Defaulted;
 import uk.co.bluegecko.core.service.common.settings.PropertyService;
 
 
@@ -37,10 +38,15 @@ public class SpringPropertyService implements PropertyService
 	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.service.common.settings.PropertyService#getProperty(java.lang.Enum)
 	 */
+	@SuppressWarnings( "unchecked" )
 	@Override
 	public String getProperty( final Enum< ? > property )
 	{
-		return environment.getProperty( property.name() );
+		final String value = environment.getProperty( property.name() );
+		if ( value == null && property instanceof Defaulted )
+			return ( ( Defaulted< String > ) property ).defaultValue();
+		else
+			return value;
 	}
 
 	/*

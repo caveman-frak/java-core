@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 import uk.co.bluegecko.core.service.common.settings.Setting;
-import uk.co.bluegecko.core.service.common.settings.SettingDefault;
 import uk.co.bluegecko.core.service.common.settings.SettingsService;
 import uk.co.bluegecko.core.test.harness.TestHarness;
 
@@ -25,7 +24,7 @@ public class SpringSettingsServiceTest extends TestHarness
 {
 
 	private static final Setting< Long > FOO = Setting.setting( "foo", Long.class );
-	private static final Setting< String > BAR = SettingDefault.setting( "bar", String.class, "Bar!" );
+	private static final Setting< String > BAR = Setting.setting( "bar", String.class, "Bar!" );
 
 	@Autowired
 	private SettingsService settingsService;
@@ -51,7 +50,7 @@ public class SpringSettingsServiceTest extends TestHarness
 	@Test
 	public final void testBarValue()
 	{
-		assertThat( settingsService.getSetting( BAR ), is( ( String ) null ) );
+		assertThat( settingsService.getSetting( BAR ), is( "Bar!" ) );
 	}
 
 	@Test

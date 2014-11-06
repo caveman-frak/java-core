@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
+import uk.co.bluegecko.core.service.common.settings.Defaulted;
 import uk.co.bluegecko.core.service.common.settings.PropertyService;
 import uk.co.bluegecko.core.test.harness.TestHarness;
 
@@ -25,6 +26,24 @@ public class SpringPropertyServiceTest extends TestHarness
 	private enum TestSetting
 	{
 		FOO, BAR
+	}
+
+	private enum TestDefaultSetting implements Defaulted< String >
+	{
+		FOO( "Foo" ), BAR( "Bar" );
+
+		private final String defaultValue;
+
+		private TestDefaultSetting( final String defaultValue )
+		{
+			this.defaultValue = defaultValue;
+		}
+
+		@Override
+		public String defaultValue()
+		{
+			return defaultValue;
+		}
 	}
 
 	@Autowired
@@ -58,6 +77,18 @@ public class SpringPropertyServiceTest extends TestHarness
 	public final void testBarDefault()
 	{
 		assertThat( propertyService.getProperty( TestSetting.BAR, "GoodBye" ), is( "GoodBye" ) );
+	}
+
+	@Test
+	public final void testFooValueDefaulted()
+	{
+		assertThat( propertyService.getProperty( TestSetting.FOO ), is( "Hello Foo" ) );
+	}
+
+	@Test
+	public final void testBarValueDefaulted()
+	{
+		assertThat( propertyService.getProperty( TestDefaultSetting.BAR ), is( "Bar" ) );
 	}
 
 }
