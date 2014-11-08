@@ -10,10 +10,7 @@ import java.util.Arrays;
 public final class WordBuilder
 {
 
-	/**
-	 * @throws IllegalAccessException
-	 */
-	public WordBuilder() throws IllegalAccessException
+	private WordBuilder() throws IllegalAccessException
 	{
 		throw new IllegalAccessException( "static-class" );
 	}
