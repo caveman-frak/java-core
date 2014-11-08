@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
-import uk.co.bluegecko.core.service.common.settings.Setting;
+import uk.co.bluegecko.core.model.TypedKey;
 import uk.co.bluegecko.core.service.common.settings.SettingsService;
 import uk.co.bluegecko.core.test.harness.TestHarness;
 
@@ -23,8 +23,8 @@ import uk.co.bluegecko.core.test.harness.TestHarness;
 public class SpringSettingsServiceTest extends TestHarness
 {
 
-	private static final Setting< Long > FOO = Setting.setting( "foo", Long.class );
-	private static final Setting< String > BAR = Setting.setting( "bar", String.class, "Bar!" );
+	private static final TypedKey< Long > FOO = TypedKey.key( "foo", Long.class );
+	private static final TypedKey< String > BAR = TypedKey.key( "bar", String.class, "Bar!" );
 
 	@Autowired
 	private SettingsService settingsService;

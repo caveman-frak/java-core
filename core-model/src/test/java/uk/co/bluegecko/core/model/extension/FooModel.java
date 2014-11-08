@@ -22,12 +22,13 @@ import uk.co.bluegecko.core.model.base.extension.AbstractExtendedModel;
 public class FooModel extends AbstractExtendedModel< FooModel >
 {
 
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Create a new foo model.
 	 *
 	 * @param extensions
 	 *            list of supported extensions
-	 *
 	 */
 	@Autowired
 	public FooModel( final List< Extension< FooModel >> extensions )

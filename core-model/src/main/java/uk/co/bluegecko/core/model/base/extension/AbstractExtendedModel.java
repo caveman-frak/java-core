@@ -23,6 +23,7 @@ import uk.co.bluegecko.core.model.extension.Extension;
 public abstract class AbstractExtendedModel< M extends Model > implements Extended< M >, Model
 {
 
+	private static final long serialVersionUID = -1264009544621267181L;
 	private final List< Extension< M >> extensions;
 
 	/**

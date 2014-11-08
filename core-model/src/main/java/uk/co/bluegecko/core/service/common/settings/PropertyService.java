@@ -4,6 +4,9 @@
 package uk.co.bluegecko.core.service.common.settings;
 
 
+import uk.co.bluegecko.core.model.Key;
+
+
 /**
  * Service to manage retrieving property values
  */
@@ -11,26 +14,32 @@ public interface PropertyService
 {
 
 	/**
-	 * @param property
+	 * @param <T>
+	 *            key must be an {@link Enum} extending {@link Key}
+	 * @param key
 	 *            to retrieve
 	 * @return the property value
 	 */
-	public String getProperty( Enum< ? > property );
+	public < T extends Enum< ? > & Key > String getProperty( T key );
 
 	/**
-	 * @param property
+	 * @param <T>
+	 *            key must be an {@link Enum} extending {@link Key}
+	 * @param key
 	 *            to retrieve
 	 * @param fallback
 	 *            value to use if no entry exists
 	 * @return the property value
 	 */
-	public String getProperty( Enum< ? > property, String fallback );
+	public < T extends Enum< ? > & Key > String getProperty( T key, String fallback );
 
 	/**
-	 * @param property
+	 * @param <T>
+	 *            key must be an {@link Enum} extending {@link Key}
+	 * @param key
 	 *            to check
 	 * @return if the property exists
 	 */
-	public boolean hasProperty( Enum< ? > property );
+	public < T extends Enum< ? > & Key > boolean hasProperty( T key );
 
 }

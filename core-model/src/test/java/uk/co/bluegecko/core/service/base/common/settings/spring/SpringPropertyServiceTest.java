@@ -12,7 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
-import uk.co.bluegecko.core.service.common.settings.Defaulted;
+import uk.co.bluegecko.core.model.Defaulted;
+import uk.co.bluegecko.core.model.Key;
 import uk.co.bluegecko.core.service.common.settings.PropertyService;
 import uk.co.bluegecko.core.test.harness.TestHarness;
 
@@ -23,12 +24,12 @@ import uk.co.bluegecko.core.test.harness.TestHarness;
 public class SpringPropertyServiceTest extends TestHarness
 {
 
-	private enum TestSetting
+	private enum TestSetting implements Key
 	{
 		FOO, BAR
 	}
 
-	private enum TestDefaultSetting implements Defaulted< String >
+	private enum TestDefaultSetting implements Key, Defaulted< String >
 	{
 		FOO( "Foo" ), BAR( "Bar" );
 

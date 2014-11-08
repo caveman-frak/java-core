@@ -9,8 +9,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.env.PropertySource;
 import org.springframework.stereotype.Service;
 
-import uk.co.bluegecko.core.service.common.settings.Setting;
-import uk.co.bluegecko.core.service.common.settings.Defaulted;
+import uk.co.bluegecko.core.model.Defaulted;
+import uk.co.bluegecko.core.model.TypedKey;
 import uk.co.bluegecko.core.service.common.settings.SettingsService;
 
 
@@ -43,11 +43,11 @@ public class SpringSettingsService implements SettingsService
 	 */
 	@SuppressWarnings( "unchecked" )
 	@Override
-	public < E > E getSetting( final Setting< E > setting )
+	public < E > E getSetting( final TypedKey< E > setting )
 	{
 		final E value = environment.getProperty( setting.name(), setting.type() );
 		if ( value == null && setting instanceof Defaulted )
-			return ( ( Defaulted< E > ) setting ).defaultValue();
+			return ( (uk.co.bluegecko.core.model.Defaulted< E > ) setting ).defaultValue();
 		else
 			return value;
 	}
@@ -59,7 +59,7 @@ public class SpringSettingsService implements SettingsService
 	 * .Setting, java.lang.Object)
 	 */
 	@Override
-	public < E > E getSetting( final Setting< E > setting, final E fallback )
+	public < E > E getSetting( final TypedKey< E > setting, final E fallback )
 	{
 		return environment.getProperty( setting.name(), setting.type(), fallback );
 	}
@@ -71,7 +71,7 @@ public class SpringSettingsService implements SettingsService
 	 * .Setting)
 	 */
 	@Override
-	public boolean hasSetting( final Setting< ? > setting )
+	public boolean hasSetting( final TypedKey< ? > setting )
 	{
 		return environment.containsProperty( setting.name() );
 	}

@@ -4,20 +4,24 @@
 package uk.co.bluegecko.core.config;
 
 
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableLoadTimeWeaving;
 
 
 /**
- * Base Configuration class
+ * Core Configuration class
  */
 @Configuration
-public class ConfigurationBase
+@EnableCaching
+@EnableLoadTimeWeaving
+public class CoreConfiguration
 {
 
 	/**
 	 * Default constructor
 	 */
-	public ConfigurationBase()
+	public CoreConfiguration()
 	{
 		super();
 	}

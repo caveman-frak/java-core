@@ -9,7 +9,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.env.PropertySource;
 import org.springframework.stereotype.Service;
 
-import uk.co.bluegecko.core.service.common.settings.Defaulted;
+import uk.co.bluegecko.core.model.Defaulted;
+import uk.co.bluegecko.core.model.Key;
 import uk.co.bluegecko.core.service.common.settings.PropertyService;
 
 
@@ -40,11 +41,11 @@ public class SpringPropertyService implements PropertyService
 	 */
 	@SuppressWarnings( "unchecked" )
 	@Override
-	public String getProperty( final Enum< ? > property )
+	public < T extends Enum< ? > & Key > String getProperty( final T key )
 	{
-		final String value = environment.getProperty( property.name() );
-		if ( value == null && property instanceof Defaulted )
-			return ( ( Defaulted< String > ) property ).defaultValue();
+		final String value = environment.getProperty( key.name() );
+		if ( value == null && key instanceof Defaulted )
+			return ( ( uk.co.bluegecko.core.model.Defaulted< String > ) key ).defaultValue();
 		else
 			return value;
 	}
@@ -54,9 +55,9 @@ public class SpringPropertyService implements PropertyService
 	 * @see uk.co.bluegecko.core.service.common.settings.PropertyService#getProperty(java.lang.Enum, java.lang.Object)
 	 */
 	@Override
-	public String getProperty( final Enum< ? > property, final String fallback )
+	public < T extends Enum< ? > & Key > String getProperty( final T key, final String fallback )
 	{
-		return hasProperty( property ) ? getProperty( property ) : fallback;
+		return hasProperty( key ) ? getProperty( key ) : fallback;
 	}
 
 	/*
@@ -64,9 +65,9 @@ public class SpringPropertyService implements PropertyService
 	 * @see uk.co.bluegecko.core.service.common.settings.PropertyService#hasProperty(java.lang.Enum)
 	 */
 	@Override
-	public boolean hasProperty( final Enum< ? > property )
+	public < T extends Enum< ? > & Key > boolean hasProperty( final T key )
 	{
-		return environment.containsProperty( property.name() );
+		return environment.containsProperty( key.name() );
 	}
 
 }

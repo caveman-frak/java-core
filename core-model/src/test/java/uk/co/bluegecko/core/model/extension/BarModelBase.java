@@ -22,9 +22,10 @@ import uk.co.bluegecko.core.model.base.extension.AbstractExtendedModel;
 public class BarModelBase extends AbstractExtendedModel< BarModel > implements BarModel
 {
 
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Create a new bar model.
-	 *
 	 */
 	public BarModelBase()
 	{
@@ -42,7 +43,8 @@ public class BarModelBase extends AbstractExtendedModel< BarModel > implements B
 		super.setExtensions( extensions );
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.model.extension.BarModel#bar()
 	 */
 	@Override

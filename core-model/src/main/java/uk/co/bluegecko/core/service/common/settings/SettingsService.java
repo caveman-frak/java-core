@@ -3,6 +3,8 @@
  */
 package uk.co.bluegecko.core.service.common.settings;
 
+import uk.co.bluegecko.core.model.TypedKey;
+
 
 /**
  * Service to manage retrieving setting values
@@ -19,7 +21,7 @@ public interface SettingsService
 	 *            to retrieve
 	 * @return the setting value
 	 */
-	public < E > E getSetting( Setting< E > setting );
+	public < E > E getSetting( TypedKey< E > setting );
 
 	/**
 	 * Return the setting value, or the fallback value if it does not exists.
@@ -32,7 +34,7 @@ public interface SettingsService
 	 *            value to use if no entry exists
 	 * @return the setting value
 	 */
-	public < E > E getSetting( Setting< E > setting, E fallback );
+	public < E > E getSetting( TypedKey< E > setting, E fallback );
 
 	/**
 	 * Return if the setting exists.
@@ -41,6 +43,6 @@ public interface SettingsService
 	 *            to check
 	 * @return if the setting exists
 	 */
-	public boolean hasSetting( Setting< ? > setting );
+	public boolean hasSetting( TypedKey< ? > setting );
 
 }

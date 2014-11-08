@@ -4,10 +4,13 @@
 package uk.co.bluegecko.core.model;
 
 
+import java.io.Serializable;
+
+
 /**
  * A simple model.
  */
-public interface Model
+public interface Model extends Serializable
 {
 
 	// marker interface
