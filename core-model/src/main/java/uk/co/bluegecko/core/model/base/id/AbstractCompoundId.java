@@ -17,7 +17,7 @@ import uk.co.bluegecko.core.model.id.CompoundId;
  * @param <S>
  *            type of secondary identifier
  */
-public abstract class AbstractComplexId< P extends Comparable< P >, S extends Comparable< S >> implements
+public abstract class AbstractCompoundId< P extends Comparable< P >, S extends Comparable< S >> implements
 		CompoundId< P, S >
 {
 
@@ -26,7 +26,7 @@ public abstract class AbstractComplexId< P extends Comparable< P >, S extends Co
 	private final P primary;
 	private final S secondary;
 
-	protected AbstractComplexId( final P primary, final S secondary )
+	protected AbstractCompoundId( final P primary, final S secondary )
 	{
 		this.primary = primary;
 		this.secondary = secondary;
@@ -80,10 +80,10 @@ public abstract class AbstractComplexId< P extends Comparable< P >, S extends Co
 	@Override
 	public final boolean equals( final Object obj )
 	{
-		final EqualsBuilder< AbstractComplexId< ?, ? > > builder = new EqualsBuilder<>( this, obj );
+		final EqualsBuilder< AbstractCompoundId< ?, ? > > builder = new EqualsBuilder<>( this, obj );
 		if ( builder.isResolved() )
 			return builder.isSame();
-		final AbstractComplexId< ?, ? > that = builder.getRhs();
+		final AbstractCompoundId< ?, ? > that = builder.getRhs();
 		builder.append( getPrimary(), that.getPrimary() );
 		builder.append( getSecondary(), that.getSecondary() );
 		return builder.isEquals();

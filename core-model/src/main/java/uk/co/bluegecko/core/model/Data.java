@@ -4,15 +4,13 @@
 package uk.co.bluegecko.core.model;
 
 
-
-
 /**
  * An extension of model that understands identity.
  *
  * @param <K>
  *            the type of id
  */
-public interface Data< K extends Comparable< K >> extends Model
+public interface Data< K extends Comparable< K >> extends Model, Comparable< Data< K >>
 {
 
 	/**
