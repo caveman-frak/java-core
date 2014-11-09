@@ -10,6 +10,7 @@
 		<module>core-test</module>
 		<module>core-model</module>
 		<module>core-process</module>
+		<module>core-security</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
