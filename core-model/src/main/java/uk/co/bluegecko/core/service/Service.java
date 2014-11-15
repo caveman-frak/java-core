@@ -4,10 +4,20 @@
 package uk.co.bluegecko.core.service;
 
 
+import org.springframework.context.ApplicationContext;
+
+
 /**
  * Marker interface for services.
  */
 public interface Service
 {
-	// marker interface
+
+	/**
+	 * Access method for the built in {@link ApplicationContext}
+	 *
+	 * @return the applicationContext
+	 */
+	public ApplicationContext getApplicationContext();
+
 }

@@ -4,6 +4,8 @@
 package uk.co.bluegecko.core.service.base;
 
 
+import java.util.Locale;
+
 import org.slf4j.Logger;
 import org.slf4j.cal10n.LocLogger;
 import org.slf4j.cal10n.LocLoggerFactory;
@@ -37,18 +39,41 @@ public abstract class AbstractService implements Service
 	{
 		this.applicationContext = applicationContext;
 		this.localeService = localeService;
-		logger = new LocLoggerFactory( new MessageConveyor( localeService.getSystemLocale() ) )
-				.getLocLogger( getLoggerName() );
+		logger = buildLocLogger( localeService.getSystemLocale(), getLoggerName() );
 	}
 
 	/**
-	 * Return the name to use for the logger, defaults to class name, override to change.
+	 * Create a new localised logger o
+	 *
+	 * @param locale
+	 *            locale to use when localising log message
+	 * @param logName
+	 *            name of the logger
+	 * @return
+	 */
+	private LocLogger buildLocLogger( final Locale locale, final String logName )
+	{
+		return new LocLoggerFactory( new MessageConveyor( locale ) ).getLocLogger( logName );
+	}
+
+	/**
+	 * Return the name to use for the logger using the class name.
+	 *
+	 * @return the name of the logger
+	 */
+	protected String getLoggerName( final Class< ? > klass )
+	{
+		return klass.getName();
+	}
+
+	/**
+	 * Return the name to use for the service logger, defaults to class name, override to change.
 	 *
 	 * @return the name of the logger
 	 */
 	protected String getLoggerName()
 	{
-		return getClass().getName();
+		return getLoggerName( getClass() );
 	}
 
 	/**
@@ -71,11 +96,11 @@ public abstract class AbstractService implements Service
 		return localeService;
 	}
 
-	/**
-	 * Access method for the built in {@link ApplicationContext}
-	 * 
-	 * @return the applicationContext
+	/*
+	 * (non-Javadoc)
+	 * @see uk.co.bluegecko.core.service.Service#getApplicationContext()
 	 */
+	@Override
 	public ApplicationContext getApplicationContext()
 	{
 		return applicationContext;
