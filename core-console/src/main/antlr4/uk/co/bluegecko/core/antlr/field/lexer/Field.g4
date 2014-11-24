@@ -1,13 +1,5 @@
 grammar Field;
 
-@lexer::header { 
-package uk.co.bluegecko.core.antlr.field.lexer;
-}
- 
-@parser::header {
-package uk.co.bluegecko.core.antlr.field.lexer;
-}
-
 field:
 	name=Name NL
 	(points NL)+
