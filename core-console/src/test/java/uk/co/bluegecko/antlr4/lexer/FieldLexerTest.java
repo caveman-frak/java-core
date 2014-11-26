@@ -22,7 +22,8 @@ public class FieldLexerTest
 	@Test
 	public void testExampleField() throws Exception
 	{
-		final FieldLexer lexer = new FieldLexer( new ANTLRInputStream( getClass().getResourceAsStream( "/example.field" ) ) );
+		final FieldLexer lexer = new FieldLexer( new ANTLRInputStream( getClass().getResourceAsStream(
+				"/antlr4/game/example.field" ) ) );
 		final FieldParser parser = new FieldParser( new CommonTokenStream( lexer ) );
 		parser.addErrorListener( new BaseErrorListener()
 		{
