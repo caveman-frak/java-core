@@ -62,6 +62,11 @@
 							<goal>shade</goal>
 						</goals>
 						<configuration>
+							<artifactSet>
+								<excludes>
+									<exclude>org.hamcrest:hamcrest-core</exclude>
+								</excludes>
+							</artifactSet>
 							<transformers>
 								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<mainClass>uk.co.bluegecko.antlr4.game.Application</mainClass>
