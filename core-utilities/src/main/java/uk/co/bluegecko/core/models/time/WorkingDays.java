@@ -5,7 +5,6 @@ package uk.co.bluegecko.core.models.time;
 
 
 import java.time.DayOfWeek;
-import java.time.temporal.ChronoField;
 import java.time.temporal.TemporalAccessor;
 import java.time.temporal.TemporalQuery;
 import java.util.EnumSet;
@@ -13,7 +12,7 @@ import java.util.Set;
 
 
 /**
- * Query if a date represents a working day.
+ * Determine if a date represents a working day.
  */
 public class WorkingDays implements TemporalQuery< Boolean >
 {
@@ -40,18 +39,29 @@ public class WorkingDays implements TemporalQuery< Boolean >
 	@Override
 	public Boolean queryFrom( final TemporalAccessor temporal )
 	{
-		return workingDays.contains( temporal.get( ChronoField.DAY_OF_WEEK ) );
+		return workingDays.contains( DayOfWeek.from( temporal ) );
 	}
 
 	/**
-	 * Construct a new working day set of monday to friday.
+	 * Construct a new working day set as used in the Western world, of monday to friday.
 	 *
 	 * @return working day set of monday to friday
 	 */
-	public static WorkingDays mondayToFriday()
+	public static WorkingDays western()
 	{
 		return new WorkingDays( EnumSet.of( DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,
 				DayOfWeek.THURSDAY, DayOfWeek.FRIDAY ) );
+	}
+
+	/**
+	 * Construct a new working day set as used in the Middle Eastern world, of sunday to thursday.
+	 *
+	 * @return working day set of sunday to thursday
+	 */
+	public static WorkingDays middleEastern()
+	{
+		return new WorkingDays( EnumSet.of( DayOfWeek.SUNDAY, DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,
+				DayOfWeek.THURSDAY ) );
 	}
 
 }

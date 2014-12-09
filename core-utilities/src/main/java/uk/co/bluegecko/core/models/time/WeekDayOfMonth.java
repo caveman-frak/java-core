@@ -16,7 +16,8 @@ import java.time.temporal.TemporalQuery;
 
 
 /**
- * Determine the day of the month (e.g. 2nd Tue of March).
+ * Determine the particular weekday of the month (e.g. 2nd Tue of March). Negative count starts with last weekday and
+ * moves backwards.
  */
 public class WeekDayOfMonth implements TemporalQuery< Boolean >, TemporalAdjuster
 {
@@ -68,8 +69,47 @@ public class WeekDayOfMonth implements TemporalQuery< Boolean >, TemporalAdjuste
 		final int day = temporal.get( ChronoField.DAY_OF_MONTH );
 		final int weekDay = temporal.get( ChronoField.DAY_OF_WEEK );
 
-		return month == this.month.getValue() && weekDay == this.weekDay.getValue() && day >= 7 * ( count - 1 )
-				&& day < 7 * count;
+		return month == this.month.getValue() && weekDay == this.weekDay.getValue() && day == calculateDay( temporal );
+	}
+
+	/**
+	 * @return
+	 */
+	private int calculateDay( final TemporalAccessor temporal )
+	{
+		final Temporal date = calculateDate( temporal );
+		return date.get( ChronoField.DAY_OF_MONTH );
+	}
+
+	/**
+	 * @return
+	 */
+	private Temporal calculateDate( final TemporalAccessor temporal )
+	{
+		LocalDate date = LocalDate.of( temporal.get( ChronoField.YEAR ), month, 1 );
+		if ( count > 0 )
+		{
+			date = date.with( TemporalAdjusters.firstDayOfMonth() );
+			final int adjustment = weekDay.getValue() - date.getDayOfWeek().getValue();
+			date = date.plusDays( adjustment < 0 ? 7 + adjustment : adjustment );
+			if ( count > 1 )
+			{
+				date = date.plusWeeks( count - 1 );
+			}
+			return date;
+		}
+		else if ( count < 0 )
+		{
+			date = date.with( TemporalAdjusters.lastDayOfMonth() );
+			final int adjustment = date.getDayOfWeek().getValue() - weekDay.getValue();
+			date = date.minusDays( adjustment < 0 ? 7 + adjustment : adjustment );
+			if ( count < -1 )
+			{
+				date = date.minusWeeks( Math.abs( count - 1 ) );
+			}
+			return date;
+		}
+		return null;
 	}
 
 	/*
@@ -79,30 +119,7 @@ public class WeekDayOfMonth implements TemporalQuery< Boolean >, TemporalAdjuste
 	@Override
 	public Temporal adjustInto( final Temporal temporal )
 	{
-
-		if ( count > 0 )
-		{
-			LocalDate date = LocalDate.from( temporal.with( TemporalAdjusters.firstDayOfMonth() ) );
-			final int adjustment = weekDay.getValue() - date.getDayOfWeek().getValue();
-			date = date.plusDays( adjustment < 0 ? 7 - adjustment : adjustment );
-			if ( count > 1 )
-			{
-				date = date.plusWeeks( count - 1 );
-			}
-			return date;
-		}
-		else if ( count < 0 )
-		{
-			LocalDate date = LocalDate.from( temporal.with( TemporalAdjusters.lastDayOfMonth() ) );
-			final int adjustment = weekDay.getValue() - date.getDayOfWeek().getValue();
-			date = date.minusDays( adjustment < 0 ? 7 - adjustment : adjustment );
-			if ( count < -1 )
-			{
-				date = date.minusWeeks( Math.abs( count - 1 ) );
-			}
-			return date;
-		}
-		return null;
+		return calculateDate( temporal );
 	}
 
 }

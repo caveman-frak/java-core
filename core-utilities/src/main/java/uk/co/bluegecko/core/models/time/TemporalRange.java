@@ -4,19 +4,20 @@
 package uk.co.bluegecko.core.models.time;
 
 
-import java.time.Instant;
+import java.time.chrono.ChronoLocalDate;
 import java.time.temporal.TemporalAccessor;
 import java.time.temporal.TemporalQuery;
 
 
 /**
- * Determines if a date is included between the start and end date.
+ * Determines if a date is included between the start and end points.
  */
 public class TemporalRange implements TemporalQuery< Boolean >
 {
 
-	private final Instant start;
-	private final Instant end;
+	private final ChronoLocalDate start;
+	private final ChronoLocalDate end;
+	private final boolean inclusiveStart;
 	private final boolean inclusiveEnd;
 
 	/**
@@ -36,8 +37,9 @@ public class TemporalRange implements TemporalQuery< Boolean >
 	{
 		super();
 
-		this.start = Instant.from( start );
-		this.end = Instant.from( end );
+		this.start = start != null ? ChronoLocalDate.from( start ) : null;
+		this.inclusiveStart = inclusiveStart;
+		this.end = end != null ? ChronoLocalDate.from( end ) : null;
 		this.inclusiveEnd = inclusiveEnd;
 	}
 
@@ -63,8 +65,8 @@ public class TemporalRange implements TemporalQuery< Boolean >
 	{
 		if ( start == null )
 			return true;
-		final Instant instant = Instant.from( temporal );
-		return inclusiveEnd ? !start.isAfter( instant ) : start.isBefore( instant );
+		final ChronoLocalDate instant = ChronoLocalDate.from( temporal );
+		return inclusiveStart ? !start.isAfter( instant ) : start.isBefore( instant );
 	}
 
 	/**
@@ -79,7 +81,7 @@ public class TemporalRange implements TemporalQuery< Boolean >
 	{
 		if ( end == null )
 			return true;
-		final Instant instant = Instant.from( temporal );
+		final ChronoLocalDate instant = ChronoLocalDate.from( temporal );
 		return inclusiveEnd ? !end.isBefore( instant ) : end.isAfter( instant );
 	}
 

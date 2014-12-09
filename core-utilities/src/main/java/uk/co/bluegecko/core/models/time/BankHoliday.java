@@ -9,36 +9,41 @@ import java.time.temporal.TemporalAdjuster;
 
 
 /**
- *
+ * Adjusts a date to fall on the next working day.
  */
 public class BankHoliday implements TemporalAdjuster
 {
 
 	private final WorkingDayAdjuster workingDays;
-	private final TemporalAdjuster adjuster;
+	private final TemporalAdjuster holiday;
 
 	/**
+	 * Construct a new BankHoliday instance.
+	 *
 	 * @param workingDays
-	 * @param adjuster
+	 *            working day adjuster
+	 * @param holiday
+	 *            holiday adjuster
 	 */
-	public BankHoliday( final WorkingDayAdjuster workingDays, final TemporalAdjuster adjuster )
+	public BankHoliday( final WorkingDayAdjuster workingDays, final TemporalAdjuster holiday )
 	{
 		super();
 
 		this.workingDays = workingDays;
-		this.adjuster = adjuster;
+		this.holiday = holiday;
 	}
 
 	/**
+	 * Construct a new BankHoliday instance.
+	 *
 	 * @param workingDays
-	 * @param adjuster
+	 *            working day set
+	 * @param holiday
+	 *            holiday adjuster
 	 */
-	public BankHoliday( final WorkingDays workingDays, final TemporalAdjuster adjuster )
+	public BankHoliday( final WorkingDays workingDays, final TemporalAdjuster holiday )
 	{
-		super();
-
-		this.workingDays = WorkingDayAdjuster.next( workingDays );
-		this.adjuster = adjuster;
+		this( WorkingDayAdjuster.following( workingDays ), holiday );
 	}
 
 	/*
@@ -48,7 +53,7 @@ public class BankHoliday implements TemporalAdjuster
 	@Override
 	public Temporal adjustInto( final Temporal temporal )
 	{
-		return workingDays.adjustInto( adjuster.adjustInto( temporal ) );
+		return holiday.adjustInto( temporal ).with( workingDays );
 	}
 
 }

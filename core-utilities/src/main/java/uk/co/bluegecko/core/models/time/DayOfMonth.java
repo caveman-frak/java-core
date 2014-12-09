@@ -7,6 +7,7 @@ package uk.co.bluegecko.core.models.time;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.MonthDay;
+import java.time.Year;
 import java.time.temporal.ChronoField;
 import java.time.temporal.Temporal;
 import java.time.temporal.TemporalAccessor;
@@ -24,7 +25,7 @@ public class DayOfMonth implements TemporalQuery< Boolean >, TemporalAdjuster
 
 	/**
 	 * Construct a day of the month.
-	 * 
+	 *
 	 * @param monthDay
 	 *            the month and day to use
 	 */
@@ -37,7 +38,7 @@ public class DayOfMonth implements TemporalQuery< Boolean >, TemporalAdjuster
 
 	/**
 	 * Construct a day of the month.
-	 * 
+	 *
 	 * @param month
 	 *            the month to use
 	 * @param day
@@ -68,7 +69,9 @@ public class DayOfMonth implements TemporalQuery< Boolean >, TemporalAdjuster
 	@Override
 	public Temporal adjustInto( final Temporal temporal )
 	{
-		return LocalDate.of( temporal.get( ChronoField.YEAR ), monthDay.getMonth(), monthDay.getDayOfMonth() );
+		final int year = temporal.get( ChronoField.YEAR );
+		final int daysInMonth = monthDay.getMonth().length( Year.isLeap( year ) );
+		return LocalDate.of( year, monthDay.getMonth(), Math.min( monthDay.getDayOfMonth(), daysInMonth ) );
 	}
 
 }
