@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bookmarks>
+   <site url="http://download.eclipse.org/releases/luna/" selected="true" name="Eclipse Luna repository"/>
+   <site url="http://download.eclipse.org/m2e-wtp/releases/juno/" selected="true" name="m2e-wtp Juno Release repository"/>
+   <site url="http://rgladwell.github.io/m2e-android/updates/" selected="true" name="Maven Integration for Android Development Tools Dependency Sites"/>
+   <site url="http://archive.eclipse.org/mylyn/drops/3.8.0/v20120612-0600/" selected="true" name="Mylyn for Eclipse 3.6, 3.7 and 3.8"/>
+   <site url="http://dist.springsource.com/release/TOOLS/market-place/e3.6/" selected="true" name="SpringSource Marketplace Site for Eclipse 3.6"/>
+   <site url="http://dist.springsource.com/release/TOOLS/composite/e3.6/" selected="true" name="SpringSource Composite Site for Eclipse 3.6"/>
+   <site url="http://dist.springsource.com/release/TOOLS/market-place/e3.7/" selected="true" name="SpringSource Marketplace Site for Eclipse 3.7"/>
+   <site url="http://dist.springsource.com/release/TOOLS/composite/e3.7/" selected="true" name="SpringSource Composite Site for Eclipse 3.7"/>
+   <site url="http://dist.springsource.com/release/TOOLS/update/e3.6/" selected="true" name="SpringSource Update Site for Eclipse 3.6"/>
+   <site url="http://dist.springsource.com/release/TOOLS/update/e3.7/" selected="true" name="SpringSource Update Site for Eclipse 3.7"/>
+   <site url="http://dist.springsource.com/release/TOOLS/update/e4.2/" selected="true" name="SpringSource Update Site for Eclipse 4.2"/>
+   <site url="http://dist.springsource.com/release/TOOLS/update/e4.3/" selected="true" name="SpringSource Update Site for Eclipse 4.3"/>
+   <site url="http://download.springsource.com/release/TOOLS/update/e4.3/" selected="true" name="SpringSource Update Site for Eclipse 4.3"/>
+   <site url="http://dist.springsource.com/release/TOOLS/update/e4.4/" selected="true" name="SpringSource Update Site for Eclipse 4.4"/>
+   <site url="http://download.springsource.com/release/TOOLS/update/e4.4/" selected="true" name="SpringSource Update Site for Eclipse 4.4"/>
+   <site url="http://download.eclipse.org/eclipse/updates/4.4/" selected="true" name="The Eclipse Project repository"/>
+   <site url="http://market.eclipsesource.com/yoxos/mpc/latestrepo/org.eclipse.egit.feature.group/4.4.0.v20140606-1215/" selected="true" name="Yoxos Custom Repository"/>
+   <site url="http://market.eclipsesource.com/yoxos/mpc/latestrepo/org.eclipse.jdt.feature.group/4.4.0.v20140606-1215/" selected="true" name="Yoxos Custom Repository"/>
+   <site url="http://download.eclipse.org/modeling/emf/cdo/updates/releases/" selected="true" name="The Eclipse CDO repository"/>
+</bookmarks>
