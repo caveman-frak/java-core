@@ -47,9 +47,14 @@ public class SpringSettingsService implements SettingsService
 	{
 		final E value = environment.getProperty( setting.name(), setting.type() );
 		if ( value == null && setting instanceof Defaulted )
-			return ( (uk.co.bluegecko.core.model.Defaulted< E > ) setting ).defaultValue();
+		{
+			final Defaulted< E > defaultedSetting = ( Defaulted< E > ) setting;
+			return defaultedSetting.defaultValue();
+		}
 		else
+		{
 			return value;
+		}
 	}
 
 	/*
@@ -61,7 +66,9 @@ public class SpringSettingsService implements SettingsService
 	@Override
 	public < E > E getSetting( final TypedKey< E > setting, final E fallback )
 	{
-		return environment.getProperty( setting.name(), setting.type(), fallback );
+		String name = setting.name();
+		Class< E > type = setting.type();
+		return environment.getProperty( name, type, fallback );
 	}
 
 	/*
@@ -73,7 +80,8 @@ public class SpringSettingsService implements SettingsService
 	@Override
 	public boolean hasSetting( final TypedKey< ? > setting )
 	{
-		return environment.containsProperty( setting.name() );
+		String name = setting.name();
+		return environment.containsProperty( name );
 	}
 
 }

@@ -19,7 +19,6 @@ import uk.co.bluegecko.core.model.extension.Extension;
  * @param <M>
  *            the model class
  */
-@SuppressWarnings( "null" )
 public abstract class AbstractExtendedModel< M extends Model > implements Extended< M >, Model
 {
 
@@ -78,8 +77,7 @@ public abstract class AbstractExtendedModel< M extends Model > implements Extend
 	{
 		for ( final Extension< M > extension : extensions )
 		{
-			if ( klass.isInstance( extension ) )
-				return ( T ) extension;
+			if ( klass.isInstance( extension ) ) { return ( T ) extension; }
 		}
 		return null;
 	}

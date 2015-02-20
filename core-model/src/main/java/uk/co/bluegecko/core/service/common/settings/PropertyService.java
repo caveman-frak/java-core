@@ -20,7 +20,7 @@ public interface PropertyService
 	 *            to retrieve
 	 * @return the property value
 	 */
-	public < T extends Enum< ? > & Key > String getProperty( T key );
+	public < T extends Enum< ? > > String getProperty( T key );
 
 	/**
 	 * @param <T>
@@ -31,7 +31,7 @@ public interface PropertyService
 	 *            value to use if no entry exists
 	 * @return the property value
 	 */
-	public < T extends Enum< ? > & Key > String getProperty( T key, String fallback );
+	public < T extends Enum< ? > > String getProperty( T key, String fallback );
 
 	/**
 	 * @param <T>
@@ -40,6 +40,6 @@ public interface PropertyService
 	 *            to check
 	 * @return if the property exists
 	 */
-	public < T extends Enum< ? > & Key > boolean hasProperty( T key );
+	public < T extends Enum< ? > > boolean hasProperty( T key );
 
 }

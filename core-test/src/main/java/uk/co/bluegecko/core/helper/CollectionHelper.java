@@ -23,7 +23,6 @@ public interface CollectionHelper
 	 *            the collections
 	 * @return return first item
 	 */
-	@SuppressWarnings( "null" )
 	public static < T > T first( final Collection< T > collection )
 	{
 		return collection.isEmpty() ? null : collection.iterator().next();
@@ -38,7 +37,6 @@ public interface CollectionHelper
 	 *            the collections
 	 * @return return last item
 	 */
-	@SuppressWarnings( "null" )
 	public static < T > T last( final Collection< T > collection )
 	{
 		T item = null;
@@ -61,7 +59,6 @@ public interface CollectionHelper
 	 *            the number of the item to return
 	 * @return return the numbered item
 	 */
-	@SuppressWarnings( "null" )
 	public static < T > T item( final Collection< T > collection, final int count )
 	{
 		T item = null;

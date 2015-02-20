@@ -5,11 +5,8 @@ package uk.co.bluegecko.core.service.router;
 
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Proxy;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -17,6 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import uk.co.bluegecko.core.service.base.common.Invoker;
 
 
 /**
@@ -26,7 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  *            type of class
  *
  */
-public abstract class Router< T > implements InvocationHandler
+public abstract class Router< T > extends Invoker< T >
 {
 
 	private final Map< String, T > routings;
@@ -121,19 +120,6 @@ public abstract class Router< T > implements InvocationHandler
 	protected Collection< T > collection()
 	{
 		return Collections.unmodifiableCollection( routings.values() );
-	}
-
-	/**
-	 * @return proxy for T
-	 */
-	@SuppressWarnings( "unchecked" )
-	public T proxy()
-	{
-		final Class< T > type = ( Class< T > ) ( ( ParameterizedType ) getClass().getGenericSuperclass() )
-				.getActualTypeArguments()[0];
-
-		return ( T ) Proxy.newProxyInstance( type.getClassLoader(), new Class< ? >[]
-			{ type }, this );
 	}
 
 }

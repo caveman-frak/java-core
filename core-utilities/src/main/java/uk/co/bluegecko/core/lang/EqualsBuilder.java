@@ -311,8 +311,7 @@ public class EqualsBuilder< T > extends org.apache.commons.lang3.builder.EqualsB
 	/**
 	 * @return the right hand argument, cast as left hand if appropriate.
 	 */
-	@SuppressWarnings(
-		{ "unchecked", "null" } )
+	@SuppressWarnings( "unchecked" )
 	public T getRhs()
 	{
 		return resolved && isEquals() ? ( T ) rhs : null;

@@ -4,16 +4,15 @@
 package uk.co.bluegecko.core.service.provider;
 
 
-import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Proxy;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+import uk.co.bluegecko.core.service.base.common.Invoker;
 
 
 /**
@@ -23,7 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  *            type of class
  *
  */
-public abstract class Provider< T > implements InvocationHandler
+public abstract class Provider< T > extends Invoker< T >
 {
 
 	private final List< T > implementations;
@@ -62,8 +61,7 @@ public abstract class Provider< T > implements InvocationHandler
 			}
 			catch ( final InvocationTargetException ex )
 			{
-				if ( !( ex.getCause() instanceof NotProvidedException ) )
-					throw new IllegalStateException( ex );
+				if ( !( ex.getCause() instanceof NotProvidedException ) ) { throw new IllegalStateException( ex ); }
 			}
 			catch ( IllegalAccessException | IllegalArgumentException ex )
 			{
@@ -76,19 +74,6 @@ public abstract class Provider< T > implements InvocationHandler
 	protected Collection< T > collection()
 	{
 		return Collections.unmodifiableList( implementations );
-	}
-
-	/**
-	 * @return proxy for T
-	 */
-	@SuppressWarnings( "unchecked" )
-	public T proxy()
-	{
-		final Class< T > type = ( Class< T > ) ( ( ParameterizedType ) getClass().getGenericSuperclass() )
-				.getActualTypeArguments()[0];
-
-		return ( T ) Proxy.newProxyInstance( type.getClassLoader(), new Class< ? >[]
-				{ type }, this );
 	}
 
 }
