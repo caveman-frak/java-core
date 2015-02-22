@@ -5,6 +5,12 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
 
+/**
+ * Base class for proxies of generic type T.
+ *
+ * @param <T>
+ *            type being proxied
+ */
 public abstract class Invoker< T > extends Typed< T > implements InvocationHandler
 {
 
@@ -17,7 +23,7 @@ public abstract class Invoker< T > extends Typed< T > implements InvocationHandl
 		final Class< T > type = ( Class< T > ) getType( 0 );
 
 		final Class< ? >[] interfaces = new Class< ? >[]
-			{ type };
+				{ type };
 		return ( T ) Proxy.newProxyInstance( type.getClassLoader(), interfaces, this );
 	}
 
