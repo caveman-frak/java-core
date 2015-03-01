@@ -9,6 +9,10 @@
 	<artifactId>core-test</artifactId>
 	<dependencies>
 		<dependency>
+			<groupId>uk.co.bluegecko</groupId>
+			<artifactId>core-utilities</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 		</dependency>

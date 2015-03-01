@@ -17,7 +17,7 @@ import org.hamcrest.StringDescription;
 import org.junit.Before;
 import org.junit.Test;
 
-import uk.co.bluegecko.core.helper.CollectionHelper;
+import uk.co.bluegecko.core.helper.Utility;
 
 
 @SuppressWarnings( "javadoc" )
@@ -40,7 +40,7 @@ public class EntryMatcherTest
 	public final void testSuccessWithValues()
 	{
 		final Matcher< Map.Entry< Long, String > > matcher = EntryMatcher.entry( 1L, "One" );
-		final Map.Entry< Long, String > entry = CollectionHelper.first( map.entrySet() );
+		final Map.Entry< Long, String > entry = Utility.first( map.entrySet() );
 		assertThat( matcher.matches( entry ), is( true ) );
 
 		matcher.describeMismatch( entry, description );
@@ -51,7 +51,7 @@ public class EntryMatcherTest
 	public final void testFailureWithFirstValue()
 	{
 		final Matcher< Map.Entry< Long, String > > matcher = EntryMatcher.entry( 2L, "One" );
-		final Map.Entry< Long, String > entry = CollectionHelper.first( map.entrySet() );
+		final Map.Entry< Long, String > entry = Utility.first( map.entrySet() );
 		assertThat( matcher.matches( entry ), is( false ) );
 
 		matcher.describeMismatch( entry, description );
@@ -62,7 +62,7 @@ public class EntryMatcherTest
 	public final void testFailureWithSecondValue()
 	{
 		final Matcher< Map.Entry< Long, String > > matcher = EntryMatcher.entry( 1L, "Two" );
-		final Map.Entry< Long, String > entry = CollectionHelper.first( map.entrySet() );
+		final Map.Entry< Long, String > entry = Utility.first( map.entrySet() );
 		assertThat( matcher.matches( entry ), is( false ) );
 
 		matcher.describeMismatch( entry, description );
@@ -73,7 +73,7 @@ public class EntryMatcherTest
 	public final void testFailureWithBothValues()
 	{
 		final Matcher< Map.Entry< Long, String > > matcher = EntryMatcher.entry( 2L, "Two" );
-		final Map.Entry< Long, String > entry = CollectionHelper.first( map.entrySet() );
+		final Map.Entry< Long, String > entry = Utility.first( map.entrySet() );
 		assertThat( matcher.matches( entry ), is( false ) );
 
 		matcher.describeMismatch( entry, description );
@@ -84,7 +84,7 @@ public class EntryMatcherTest
 	public final void testSuccessWithMatchers()
 	{
 		final Matcher< Map.Entry< Long, String > > matcher = EntryMatcher.entry( lessThan( 2L ), startsWith( "O" ) );
-		final Map.Entry< Long, String > entry = CollectionHelper.first( map.entrySet() );
+		final Map.Entry< Long, String > entry = Utility.first( map.entrySet() );
 		assertThat( matcher.matches( entry ), is( true ) );
 
 		matcher.describeMismatch( entry, description );
@@ -96,7 +96,7 @@ public class EntryMatcherTest
 	public final void testFailureWithFirstMatcher()
 	{
 		final Matcher< Map.Entry< Long, String > > matcher = EntryMatcher.entry( lessThan( 1L ), startsWith( "O" ) );
-		final Map.Entry< Long, String > entry = CollectionHelper.first( map.entrySet() );
+		final Map.Entry< Long, String > entry = Utility.first( map.entrySet() );
 		assertThat( matcher.matches( entry ), is( false ) );
 
 		matcher.describeMismatch( entry, description );
@@ -108,7 +108,7 @@ public class EntryMatcherTest
 	public final void testFailureWithSecondMatcher()
 	{
 		final Matcher< Map.Entry< Long, String > > matcher = EntryMatcher.entry( lessThan( 2L ), startsWith( "T" ) );
-		final Map.Entry< Long, String > entry = CollectionHelper.first( map.entrySet() );
+		final Map.Entry< Long, String > entry = Utility.first( map.entrySet() );
 		assertThat( matcher.matches( entry ), is( false ) );
 
 		matcher.describeMismatch( entry, description );
@@ -120,7 +120,7 @@ public class EntryMatcherTest
 	public final void testFailureWithBothMatchers()
 	{
 		final Matcher< Map.Entry< Long, String > > matcher = EntryMatcher.entry( lessThan( 1L ), startsWith( "T" ) );
-		final Map.Entry< Long, String > entry = CollectionHelper.first( map.entrySet() );
+		final Map.Entry< Long, String > entry = Utility.first( map.entrySet() );
 		assertThat( matcher.matches( entry ), is( false ) );
 
 		matcher.describeMismatch( entry, description );

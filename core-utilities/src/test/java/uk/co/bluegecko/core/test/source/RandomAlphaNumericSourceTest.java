@@ -4,8 +4,8 @@
 package uk.co.bluegecko.core.test.source;
 
 
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import static uk.co.bluegecko.core.test.matcher.SimpleMatcher.does;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -36,7 +36,7 @@ public class RandomAlphaNumericSourceTest
 	{
 		for ( int i = 0; i < 1000; i++ )
 		{
-			assertThat( source.next(), does( ch -> Character.isLetterOrDigit( ch ), "letter or digit" ) );
+			assertThat( Character.isLetterOrDigit( source.next() ), is( true ) );
 		}
 	}
 }

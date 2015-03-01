@@ -16,6 +16,37 @@ public class RandomAlphaNumericSource implements Source< Character >
 	private static final char[] CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvxyz0123456789".toCharArray();
 
 	private final Random random = new Random();
+	private final char[] chars;
+
+	/**
+	 * Create a source using the supplied characters.
+	 *
+	 * @param chars
+	 *            characters to returns
+	 */
+	public RandomAlphaNumericSource( final char[] chars )
+	{
+		this.chars = chars;
+	}
+
+	/**
+	 * Create a source using the supplied characters.
+	 *
+	 * @param string
+	 *            characters to returns
+	 */
+	public RandomAlphaNumericSource( final String string )
+	{
+		chars = string.toCharArray();
+	}
+
+	/**
+	 * Create a source using the predefined characters.
+	 */
+	public RandomAlphaNumericSource()
+	{
+		this( CHARS );
+	}
 
 	/* (non-Javadoc)
 	 * @see uk.co.bluegecko.core.test.source.Source#next()
@@ -23,7 +54,7 @@ public class RandomAlphaNumericSource implements Source< Character >
 	@Override
 	public Character next()
 	{
-		return CHARS[random.nextInt( CHARS.length )];
+		return chars[random.nextInt( chars.length )];
 	}
 
 	/* (non-Javadoc)

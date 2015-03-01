@@ -11,7 +11,7 @@ import java.util.Iterator;
 /**
  * Simple helper to pull values out of collections for testing.
  */
-public interface CollectionHelper
+public interface Utility
 {
 
 	/**

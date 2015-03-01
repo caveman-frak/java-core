@@ -6,9 +6,9 @@ package uk.co.bluegecko.core.helper;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import static uk.co.bluegecko.core.helper.CollectionHelper.first;
-import static uk.co.bluegecko.core.helper.CollectionHelper.item;
-import static uk.co.bluegecko.core.helper.CollectionHelper.last;
+import static uk.co.bluegecko.core.helper.Utility.first;
+import static uk.co.bluegecko.core.helper.Utility.item;
+import static uk.co.bluegecko.core.helper.Utility.last;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +18,7 @@ import org.junit.Test;
 
 
 @SuppressWarnings( "javadoc" )
-public class CollectionHelperTest
+public class UtilityTest
 {
 
 	private List< Integer > list;
