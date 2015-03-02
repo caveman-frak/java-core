@@ -25,7 +25,6 @@ import uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLo
 import uk.co.bluegecko.core.service.common.LocaleService;
 import uk.co.bluegecko.core.service.common.LocalisationService;
 import uk.co.bluegecko.core.test.harness.TestHarness;
-
 import uk.org.lidalia.slf4jtest.TestLogger;
 import uk.org.lidalia.slf4jtest.TestLoggerFactory;
 

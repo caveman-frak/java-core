@@ -11,9 +11,9 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 
-import ch.qos.cal10n.MessageParameterObj;
 import uk.org.lidalia.slf4jext.Level;
 import uk.org.lidalia.slf4jtest.LoggingEvent;
+import ch.qos.cal10n.MessageParameterObj;
 
 
 /**
@@ -111,6 +111,34 @@ public class LoggingEventMatcher extends TypeSafeMatcher< LoggingEvent >
 	}
 
 	/**
+	 * Construct a new trace logging matcher.
+	 *
+	 * @param message
+	 *            the message to compare
+	 * @param args
+	 *            the arguments to compare
+	 * @return the LoggingEventMatcher
+	 */
+	public static final Matcher< LoggingEvent > trace( final Enum< ? > message, final Object... args )
+	{
+		return new LoggingEventMatcher( Level.TRACE, message, args );
+	}
+
+	/**
+	 * Construct a new debug logging matcher.
+	 *
+	 * @param message
+	 *            the message to compare
+	 * @param args
+	 *            the arguments to compare
+	 * @return the LoggingEventMatcher
+	 */
+	public static final Matcher< LoggingEvent > debug( final Enum< ? > message, final Object... args )
+	{
+		return new LoggingEventMatcher( Level.DEBUG, message, args );
+	}
+
+	/**
 	 * Construct a new info logging matcher.
 	 *
 	 * @param message
@@ -122,6 +150,34 @@ public class LoggingEventMatcher extends TypeSafeMatcher< LoggingEvent >
 	public static final Matcher< LoggingEvent > info( final Enum< ? > message, final Object... args )
 	{
 		return new LoggingEventMatcher( Level.INFO, message, args );
+	}
+
+	/**
+	 * Construct a new info logging matcher.
+	 *
+	 * @param message
+	 *            the message to compare
+	 * @param args
+	 *            the arguments to compare
+	 * @return the LoggingEventMatcher
+	 */
+	public static final Matcher< LoggingEvent > warn( final Enum< ? > message, final Object... args )
+	{
+		return new LoggingEventMatcher( Level.WARN, message, args );
+	}
+
+	/**
+	 * Construct a new info logging matcher.
+	 *
+	 * @param message
+	 *            the message to compare
+	 * @param args
+	 *            the arguments to compare
+	 * @return the LoggingEventMatcher
+	 */
+	public static final Matcher< LoggingEvent > error( final Enum< ? > message, final Object... args )
+	{
+		return new LoggingEventMatcher( Level.ERROR, message, args );
 	}
 
 }

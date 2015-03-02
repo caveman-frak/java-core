@@ -11,10 +11,9 @@ import org.slf4j.cal10n.LocLogger;
 import org.slf4j.cal10n.LocLoggerFactory;
 import org.springframework.context.ApplicationContext;
 
-import ch.qos.cal10n.MessageConveyor;
-
 import uk.co.bluegecko.core.service.Service;
 import uk.co.bluegecko.core.service.common.LocaleService;
+import ch.qos.cal10n.MessageConveyor;
 
 
 /**
@@ -43,7 +42,7 @@ public abstract class AbstractService implements Service
 	}
 
 	/**
-	 * Create a new localised logger o
+	 * Create a new localised logger
 	 *
 	 * @param locale
 	 *            locale to use when localising log message

@@ -33,7 +33,7 @@ public class DefaultLocaleService implements LocaleService
 	@Override
 	public Locale getSystemLocale()
 	{
-		return Locale.getDefault();
+		return Locale.ENGLISH;
 	}
 
 	/*
