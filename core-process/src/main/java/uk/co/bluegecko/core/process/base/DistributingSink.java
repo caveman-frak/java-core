@@ -1,10 +1,10 @@
 package uk.co.bluegecko.core.process.base;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import uk.co.bluegecko.core.process.Sink;
 
@@ -18,7 +18,7 @@ import uk.co.bluegecko.core.process.Sink;
 public class DistributingSink< T > implements Sink< T >
 {
 
-	private final Set< Sink< T >> collection;
+	private final List< Sink< T >> collection;
 
 	/**
 	 * Create a collection of sinks to distribute to.
@@ -28,7 +28,7 @@ public class DistributingSink< T > implements Sink< T >
 	 */
 	public DistributingSink( final Collection< Sink< T >> collection )
 	{
-		this.collection = new HashSet<>( collection );
+		this.collection = new ArrayList<>( collection );
 	}
 
 	/**
