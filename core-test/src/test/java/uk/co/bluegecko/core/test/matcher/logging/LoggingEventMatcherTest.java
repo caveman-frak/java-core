@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.junit.Assert.assertThat;
 import static uk.co.bluegecko.core.test.matcher.logging.LoggingEventMatcher.info;
 import static uk.co.bluegecko.core.test.matcher.logging.LoggingEventMatcher.warn;
+import static uk.co.bluegecko.core.test.matcher.logging.LoggingMessageMatcher.message;
 
 import java.util.Locale;
 
@@ -26,7 +27,7 @@ public class LoggingEventMatcherTest
 
 	@BaseName( "uk.co.bluegecko.core.test.matcher.logging.LoggingEventMatcherTest$Log" )
 	@LocaleData(
-		{ @ch.qos.cal10n.Locale( "en" ) } )
+			{ @ch.qos.cal10n.Locale( "en" ) } )
 	public enum Log
 	{
 		TEST1, TEST2
@@ -49,6 +50,7 @@ public class LoggingEventMatcherTest
 		logger.info( Log.TEST1, 1, "One" );
 
 		assertThat( testLogger.getLoggingEvents(), hasItem( info( Log.TEST1, 1, "One" ) ) );
+		assertThat( testLogger.getLoggingEvents(), hasItem( message( "Message with params #1 1 and #2 \"One\"" ) ) );
 	}
 
 	@Test
@@ -59,6 +61,7 @@ public class LoggingEventMatcherTest
 		logger.warn( Log.TEST2 );
 
 		assertThat( testLogger.getLoggingEvents(), hasItem( warn( Log.TEST2 ) ) );
+		assertThat( testLogger.getLoggingEvents(), hasItem( message( "Message with no params" ) ) );
 	}
 
 }
