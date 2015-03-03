@@ -17,7 +17,7 @@ import uk.co.bluegecko.core.builder.Builder;
  * @param <T>
  *            the type to be built
  * @param <B>
- *            the builder class
+ *            the builder class (reference to self)
  */
 public abstract class MappedBuilder< T, B extends Builder< T, B >> implements Builder< T, B >
 {
@@ -40,6 +40,7 @@ public abstract class MappedBuilder< T, B extends Builder< T, B >> implements Bu
 	 * Copy constructor, used by {@link MappedBuilder#copy()} method
 	 *
 	 * @param builder
+	 *            the builder to copy
 	 */
 	protected MappedBuilder( final MappedBuilder< T, B > builder )
 	{

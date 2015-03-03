@@ -68,6 +68,7 @@ public final class AsString
 	 * Turn a map entry into a readable key : value pair.
 	 *
 	 * @param entry
+	 *            map entry to print out
 	 * @return readable string
 	 */
 	public static String asString( final Entry< ?, ? > entry )

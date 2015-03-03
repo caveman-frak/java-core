@@ -17,6 +17,12 @@ import uk.co.bluegecko.core.service.common.LocaleService;
 public class BulkConnector< T > extends SimpleConnector< T >
 {
 
+	/**
+	 * @param queue
+	 *            queue to use for passing objects
+	 * @param localeService
+	 *            used to determine locale for exceptions and logs
+	 */
 	protected BulkConnector( final Queue< T > queue, final LocaleService localeService )
 	{
 		super( queue, localeService );
@@ -35,6 +41,8 @@ public class BulkConnector< T > extends SimpleConnector< T >
 	/**
 	 * SimpleConnector using {@link ConcurrentLinkedQueue}.
 	 *
+	 * @param <T>
+	 *            type of object to pass
 	 * @param localeService
 	 *            locale to use for logging and exception reporting
 	 * @return a new simple connector using a concurrent queue

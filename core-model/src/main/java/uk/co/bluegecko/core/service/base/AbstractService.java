@@ -58,6 +58,8 @@ public abstract class AbstractService implements Service
 	/**
 	 * Return the name to use for the logger using the class name.
 	 *
+	 * @param klass
+	 *            use the class name as the logger name
 	 * @return the name of the logger
 	 */
 	protected String getLoggerName( final Class< ? > klass )

@@ -30,6 +30,8 @@ public class SimpleConnector< T > implements Connector< T >
 	/**
 	 * @param queue
 	 *            queue to use for passing objects
+	 * @param localeService
+	 *            used to determine locale for exceptions and logs
 	 */
 	protected SimpleConnector( final Queue< T > queue, final LocaleService localeService )
 	{
@@ -110,7 +112,9 @@ public class SimpleConnector< T > implements Connector< T >
 
 	/**
 	 * SimpleConnector using {@link ConcurrentLinkedQueue}.
-	 * 
+	 *
+	 * @param <T>
+	 *            type of object to pass
 	 * @param localeService
 	 *            locale to use for logging and exception reporting
 	 *
@@ -124,6 +128,8 @@ public class SimpleConnector< T > implements Connector< T >
 	/**
 	 * SimpleConnector using {@link ArrayBlockingQueue}.
 	 *
+	 * @param <T>
+	 *            type of object to pass
 	 * @param capacity
 	 *            bounded capacity of the underlying queue
 	 * @param localeService
@@ -139,6 +145,8 @@ public class SimpleConnector< T > implements Connector< T >
 	/**
 	 * SimpleConnector using {@link LinkedBlockingQueue}.
 	 *
+	 * @param <T>
+	 *            type of object to pass
 	 * @param localeService
 	 *            locale to use for logging and exception reporting
 	 *
