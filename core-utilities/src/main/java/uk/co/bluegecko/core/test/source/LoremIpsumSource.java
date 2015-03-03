@@ -3,6 +3,7 @@
  */
 package uk.co.bluegecko.core.test.source;
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,20 +14,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+
 /**
  * Generate characters using the text from Lorem Ipsum
  *
  * @see <a href="http://www.lipsum.com/">www.lipsum.com</a>
  */
-public class LoremIpsumSource implements Source<Character>
+public class LoremIpsumSource implements Source< Character >
 {
 
-	private static final Predicate<Character> paragraphBoundary = (final Character ch) -> ch == '\r'
-			|| ch == '\n';
-	private static final Predicate<Character> sentenceBoundary = (final Character ch) -> paragraphBoundary
-			.test(ch) || ch == '.' || ch == '!' || ch == '?';
-	private static final Predicate<Character> wordBoundary = (final Character ch) -> Character
-			.isWhitespace(ch);
+	private static final Predicate< Character > paragraphBoundary = ( final Character ch ) -> ch == '\r' || ch == '\n';
+	private static final Predicate< Character > sentenceBoundary = ( final Character ch ) -> paragraphBoundary
+			.test( ch ) || ch == '.' || ch == '!' || ch == '?';
+	private static final Predicate< Character > wordBoundary = ( final Character ch ) -> Character.isWhitespace( ch );
 
 	private final URL resource;
 	private Reader text;
@@ -39,7 +39,7 @@ public class LoremIpsumSource implements Source<Character>
 	 *
 	 * @see <a href="http://www.lipsum.com/">www.lipsum.com</a>
 	 */
-	public LoremIpsumSource(final URL url)
+	public LoremIpsumSource( final URL url )
 	{
 		super();
 
@@ -55,9 +55,9 @@ public class LoremIpsumSource implements Source<Character>
 	 *
 	 * @see <a href="http://www.lipsum.com/">www.lipsum.com</a>
 	 */
-	public LoremIpsumSource(final String fileName)
+	public LoremIpsumSource( final String fileName )
 	{
-		this(LoremIpsumSource.class.getResource(fileName));
+		this( LoremIpsumSource.class.getResource( fileName ) );
 	}
 
 	/**
@@ -67,7 +67,7 @@ public class LoremIpsumSource implements Source<Character>
 	 */
 	public LoremIpsumSource()
 	{
-		this("lorem-ipsum.txt");
+		this( "lorem-ipsum.txt" );
 	}
 
 	/*
@@ -82,15 +82,15 @@ public class LoremIpsumSource implements Source<Character>
 		try
 		{
 			read = text.read();
-			if (read == -1)
+			if ( read == -1 )
 			{
 				reset();
 			}
-			return (char) read;
+			return ( char ) read;
 		}
-		catch (final IOException ex)
+		catch ( final IOException ex )
 		{
-			throw new IllegalStateException(ex);
+			throw new IllegalStateException( ex );
 		}
 	}
 
@@ -105,11 +105,11 @@ public class LoremIpsumSource implements Source<Character>
 		try
 		{
 			final InputStream stream = resource.openStream();
-			text = new BufferedReader(new InputStreamReader(stream));
+			text = new BufferedReader( new InputStreamReader( stream ) );
 		}
-		catch (final IOException ex)
+		catch ( final IOException ex )
 		{
-			throw new IllegalStateException(ex);
+			throw new IllegalStateException( ex );
 		}
 	}
 
@@ -120,9 +120,9 @@ public class LoremIpsumSource implements Source<Character>
 	 *            the number of words
 	 * @return the text
 	 */
-	public String words(final int count)
+	public String words( final int count )
 	{
-		return read(count, wordBoundary);
+		return read( count, wordBoundary );
 	}
 
 	/**
@@ -132,9 +132,9 @@ public class LoremIpsumSource implements Source<Character>
 	 *            the number of sentences
 	 * @return the text
 	 */
-	public String sentences(final int count)
+	public String sentences( final int count )
 	{
-		return read(count, sentenceBoundary);
+		return read( count, sentenceBoundary );
 	}
 
 	/**
@@ -144,9 +144,9 @@ public class LoremIpsumSource implements Source<Character>
 	 *            the number of paragraphs
 	 * @return the text
 	 */
-	public String paragraphs(final int count)
+	public String paragraphs( final int count )
 	{
-		return read(count, paragraphBoundary);
+		return read( count, paragraphBoundary );
 	}
 
 	/**
@@ -156,52 +156,51 @@ public class LoremIpsumSource implements Source<Character>
 	 *            number of words per item
 	 * @return list of words
 	 */
-	public List<String> list(final int count, final int words)
+	public List< String > list( final int count, final int words )
 	{
-		final List<String> list = new ArrayList<>();
-		for (int i = 0; i < count; i++)
+		final List< String > list = new ArrayList<>();
+		for ( int i = 0; i < count; i++ )
 		{
-			list.add(words(words));
-			paragraphs(1);
+			list.add( words( words ) );
+			paragraphs( 1 );
 		}
 		return list;
 	}
 
-	protected String read(final int count, final Predicate<Character> delimitTest)
+	protected String read( final int count, final Predicate< Character > delimitTest )
 	{
 		final StringBuilder buffer = new StringBuilder();
 		int i = 0;
-		while (i < count)
+		while ( i < count )
 		{
 			final char ch = next();
-			if (delimitTest.test(ch))
+			if ( delimitTest.test( ch ) )
 			{
 				i++;
 
-				discardTrailingDelimiters(delimitTest);
+				discardTrailingDelimiters( delimitTest );
 			}
-			buffer.append(ch);
+			buffer.append( ch );
 		}
-		buffer.deleteCharAt(buffer.length() - 1);
+		buffer.deleteCharAt( buffer.length() - 1 );
 		return buffer.toString();
 	}
 
-	private void discardTrailingDelimiters(final Predicate<Character> delimitTest)
+	private void discardTrailingDelimiters( final Predicate< Character > delimitTest )
 	{
-		while (true)
+		while ( true )
 		{
 			try
 			{
-				text.mark(1);
-				if (!delimitTest.test(next()))
+				text.mark( 1 );
+				if ( !delimitTest.test( next() ) )
 				{
 					text.reset();
 					break;
 				}
 			}
-			catch (final IOException ex)
-			{
-			}
+			catch ( final IOException ex )
+			{}
 		}
 	}
 

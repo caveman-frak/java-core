@@ -3,6 +3,7 @@
  */
 package uk.co.bluegecko.core.test.source;
 
+
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsString;
@@ -15,6 +16,7 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
+
 
 /**
  * Test for {@link uk.co.bluegecko.core.test.source.LoremIpsumSource}
@@ -39,7 +41,7 @@ public class LoremIpsumSourceTest
 	@Test
 	public final void testCtor()
 	{
-		assertThat(source, is(not(nullValue())));
+		assertThat( source, is( not( nullValue() ) ) );
 	}
 
 	/**
@@ -48,12 +50,12 @@ public class LoremIpsumSourceTest
 	@Test
 	public final void testNext()
 	{
-		assertThat(source.next(), is('L'));
-		assertThat(source.next(), is('o'));
-		assertThat(source.next(), is('r'));
-		assertThat(source.next(), is('e'));
-		assertThat(source.next(), is('m'));
-		assertThat(source.next(), is(' '));
+		assertThat( source.next(), is( 'L' ) );
+		assertThat( source.next(), is( 'o' ) );
+		assertThat( source.next(), is( 'r' ) );
+		assertThat( source.next(), is( 'e' ) );
+		assertThat( source.next(), is( 'm' ) );
+		assertThat( source.next(), is( ' ' ) );
 	}
 
 	/**
@@ -62,9 +64,9 @@ public class LoremIpsumSourceTest
 	@Test
 	public final void testReset()
 	{
-		assertThat(source.next(), is('L'));
+		assertThat( source.next(), is( 'L' ) );
 		source.reset();
-		assertThat(source.next(), is('L'));
+		assertThat( source.next(), is( 'L' ) );
 	}
 
 	/**
@@ -73,7 +75,7 @@ public class LoremIpsumSourceTest
 	@Test
 	public final void testWords()
 	{
-		assertThat(source.words(2), is("Lorem ipsum"));
+		assertThat( source.words( 2 ), is( "Lorem ipsum" ) );
 	}
 
 	/**
@@ -82,8 +84,8 @@ public class LoremIpsumSourceTest
 	@Test
 	public final void testSentences()
 	{
-		assertThat(source.sentences(2),
-			allOf(startsWith("Lorem ipsum"), containsString(" elit. Nulla "), endsWith("lacinia")));
+		assertThat( source.sentences( 2 ),
+				allOf( startsWith( "Lorem ipsum" ), containsString( " elit. Nulla " ), endsWith( "lacinia" ) ) );
 	}
 
 	/**
@@ -93,19 +95,19 @@ public class LoremIpsumSourceTest
 	public final void testParagraphs()
 	{
 		assertThat(
-			source.paragraphs(2),
-			allOf(startsWith("Lorem ipsum"), containsString("eget eros."),
-				containsString("Donec "), endsWith(" erat volutpat.")));
+				source.paragraphs( 2 ),
+				allOf( startsWith( "Lorem ipsum" ), containsString( "eget eros." ), containsString( "Donec " ),
+						endsWith( " erat volutpat." ) ) );
 	}
 
 	/**
 	 * Test method for {@link uk.co.bluegecko.core.test.source.LoremIpsumSource#list(int, int)}.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings( "unchecked" )
 	@Test
 	public final void testList()
 	{
-		assertThat(source.list(2, 3), contains(is("Lorem ipsum dolor"), is("Donec sit amet")));
+		assertThat( source.list( 2, 3 ), contains( is( "Lorem ipsum dolor" ), is( "Donec sit amet" ) ) );
 	}
 
 	/**
@@ -114,22 +116,22 @@ public class LoremIpsumSourceTest
 	@Test
 	public final void testParagraphsFromList()
 	{
-		source = new LoremIpsumSource("lorem-list.txt");
+		source = new LoremIpsumSource( "lorem-list.txt" );
 		assertThat(
-			source.paragraphs(2),
-			allOf(startsWith("Lorem ipsum"), containsString(" adipiscing elit."),
-				containsString("In eleifend "), endsWith(" hendrerit tempus.")));
+				source.paragraphs( 2 ),
+				allOf( startsWith( "Lorem ipsum" ), containsString( " adipiscing elit." ),
+						containsString( "In eleifend " ), endsWith( " hendrerit tempus." ) ) );
 	}
 
 	/**
 	 * Test method for {@link uk.co.bluegecko.core.test.source.LoremIpsumSource#list(int, int)}.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings( "unchecked" )
 	@Test
 	public final void testListFromList()
 	{
-		source = new LoremIpsumSource("lorem-list.txt");
-		assertThat(source.list(2, 3), contains(is("Lorem ipsum dolor"), is("In eleifend sapien")));
+		source = new LoremIpsumSource( "lorem-list.txt" );
+		assertThat( source.list( 2, 3 ), contains( is( "Lorem ipsum dolor" ), is( "In eleifend sapien" ) ) );
 	}
 
 }

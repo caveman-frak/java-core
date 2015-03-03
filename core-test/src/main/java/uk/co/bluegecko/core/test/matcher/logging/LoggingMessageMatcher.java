@@ -20,14 +20,10 @@ public class LoggingMessageMatcher extends TypeSafeMatcher< LoggingEvent >
 	private final String message;
 
 	/**
-	 * Construct a new matcher, checking for the correct level, message and arguments.
+	 * Construct a new matcher, checking for the localised message.
 	 *
-	 * @param level
-	 *            the level to compare
-	 * @param messageKey
+	 * @param message
 	 *            the message to compare
-	 * @param args
-	 *            the arguments to compare
 	 */
 	protected LoggingMessageMatcher( final String message )
 	{
@@ -36,6 +32,7 @@ public class LoggingMessageMatcher extends TypeSafeMatcher< LoggingEvent >
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see org.hamcrest.SelfDescribing#describeTo(org.hamcrest.Description)
 	 */
 	@Override
@@ -46,6 +43,7 @@ public class LoggingMessageMatcher extends TypeSafeMatcher< LoggingEvent >
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see org.hamcrest.TypeSafeMatcher#matchesSafely(java.lang.Object)
 	 */
 	@Override
@@ -56,6 +54,7 @@ public class LoggingMessageMatcher extends TypeSafeMatcher< LoggingEvent >
 
 	/*
 	 * (non-Javadoc)
+	 *
 	 * @see org.hamcrest.TypeSafeMatcher#describeMismatchSafely(java.lang.Object, org.hamcrest.Description)
 	 */
 	@Override
