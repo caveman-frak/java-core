@@ -5,6 +5,28 @@
 	<artifactId>core-manage</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+	<name>Java Core</name>
+	<description>Core Java library for Blue Gecko projects</description>
+	<url>http://www.bluegecko.co.uk/java-core</url>
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<name>Caveman Frak</name>
+			<email>caveman-frak@bluegecko.co.uk</email>
+			<organization>Blue Gecko Limited</organization>
+			<organizationUrl>http://www.bluegecko.co.uk</organizationUrl>
+		</developer>
+	</developers>
+	<scm>
+		<connection>scm:git:git@github.com:caveman-frak/java-core.git</connection>
+		<developerConnection>scm:git:git@github.com:caveman-frak/java-core.git</developerConnection>
+		<url>git@github.com:caveman-frak/java-core.git</url>
+	</scm>
 	<modules>
 		<module>core-utilities</module>
 		<module>core-test</module>
@@ -15,6 +37,7 @@
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- properties for versions of dependencies and plug-ins-->
 		<spring.platform.version>1.0.2.RELEASE</spring.platform.version>
 		<slf4j.version>1.7.7</slf4j.version>
 		<log4j.version>2.1</log4j.version>
@@ -22,6 +45,7 @@
 		<compiler-plugin.version>3.1</compiler-plugin.version>
 		<source-plugin.version>2.0.4</source-plugin.version>
 		<javadoc-plugin.version>2.3</javadoc-plugin.version>
+		<shade-plugin.version>2.3</shade-plugin.version>
 	</properties>
 	<build>
 		<resources>
@@ -39,7 +63,7 @@
 					<source>1.8</source>
 					<target>1.8</target>
 					<compilerArguments>
-						<Xlint/>
+						<Xlint />
 					</compilerArguments>
 				</configuration>
 			</plugin>
