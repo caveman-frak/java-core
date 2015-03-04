@@ -3,6 +3,7 @@
  */
 package uk.co.bluegecko.core.model.id;
 
+
 import java.io.Serializable;
 
 

@@ -3,8 +3,10 @@
  */
 package uk.co.bluegecko.core.security.exception;
 
+
 import ch.qos.cal10n.BaseName;
 import ch.qos.cal10n.LocaleData;
+
 
 /**
  * Enumeration for possible security exception messages.

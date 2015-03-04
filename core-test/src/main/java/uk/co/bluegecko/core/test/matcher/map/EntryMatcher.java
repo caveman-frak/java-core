@@ -59,7 +59,7 @@ public class EntryMatcher< K, V > extends TypeSafeMatcher< Map.Entry< K, V > >
 	protected void describeMismatchSafely( final Map.Entry< K, V > entry, final Description mismatchDescription )
 	{
 		mismatchDescription.appendText( "was " ).appendValue( entry.getKey() ).appendText( "=" )
-		.appendValue( entry.getValue() ).appendText( " expected " ).appendDescriptionOf( this );
+				.appendValue( entry.getValue() ).appendText( " expected " ).appendDescriptionOf( this );
 	}
 
 	/*

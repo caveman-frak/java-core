@@ -82,7 +82,7 @@ public abstract class AbstractValueMatcher< M, V > extends TypeSafeMatcher< M >
 	protected void describeMismatchSafely( final M model, final Description mismatchDescription )
 	{
 		mismatchDescription.appendText( "was " ).appendText( getDescription() ).appendText( " " )
-		.appendValue( getValue( model ) ).appendText( " expected " ).appendValue( value );
+				.appendValue( getValue( model ) ).appendText( " expected " ).appendValue( value );
 	}
 
 }

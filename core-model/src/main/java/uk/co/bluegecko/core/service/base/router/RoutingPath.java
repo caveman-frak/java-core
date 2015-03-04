@@ -16,7 +16,7 @@ import java.lang.annotation.Target;
  * Mark a method parameter as providing the routing information for a method
  */
 @Target(
-		{ ElementType.PARAMETER, ElementType.TYPE } )
+	{ ElementType.PARAMETER, ElementType.TYPE } )
 @Retention( RetentionPolicy.RUNTIME )
 @Inherited
 @Documented

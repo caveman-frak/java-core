@@ -3,6 +3,7 @@
  */
 package uk.co.bluegecko.core.service.common.settings;
 
+
 import uk.co.bluegecko.core.model.TypedKey;
 
 

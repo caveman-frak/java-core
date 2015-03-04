@@ -108,8 +108,8 @@ public class MapContains< K, V > extends TypeSafeMatcher< Map< K, V >>
 	@SafeVarargs
 	public static final < K, V > Matcher< Map< K, V > > containsInAnyOrder(
 			final Matcher< Entry< K, V >>... entryMatchers )
-			{
+	{
 		return new MapContains<>( Matchers.containsInAnyOrder( entryMatchers ) );
-			}
+	}
 
 }

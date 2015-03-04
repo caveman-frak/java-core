@@ -84,8 +84,8 @@ public class ValueMatcher< M, V > extends AbstractValueMatcher< M, V >
 	 */
 	public static < M, V > Matcher< M > value( final String objectName, final String fieldName, final V value,
 			final Function< M, V > function )
-			{
+	{
 		return new ValueMatcher<>( objectName, fieldName, value, function );
-			}
+	}
 
 }

@@ -65,7 +65,7 @@ public class SimpleMatcher< V > extends TypeSafeMatcher< V >
 	protected void describeMismatchSafely( final V model, final Description mismatchDescription )
 	{
 		mismatchDescription.appendText( "was " ).appendValue( model ).appendText( " expected " )
-		.appendText( description );
+				.appendText( description );
 	}
 
 	/**

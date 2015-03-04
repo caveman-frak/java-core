@@ -3,6 +3,7 @@
  */
 package uk.co.bluegecko.core.model.base.id;
 
+
 import uk.co.bluegecko.core.model.id.SimpleId;
 
 

@@ -3,6 +3,7 @@
  */
 package uk.co.bluegecko.core.service.base.router;
 
+
 import uk.co.bluegecko.core.service.base.router.RoutingPath;
 
 

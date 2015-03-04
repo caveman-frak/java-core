@@ -53,7 +53,7 @@ public class ProviderTest extends TestHarness
 	public final void testInvokeChars()
 	{
 		assertThat( fooProvider.proxy().chars( TEST ), is( new char[]
-				{ 'T', 'E', 'S', 'T' } ) );
+			{ 'T', 'E', 'S', 'T' } ) );
 	}
 
 	/**

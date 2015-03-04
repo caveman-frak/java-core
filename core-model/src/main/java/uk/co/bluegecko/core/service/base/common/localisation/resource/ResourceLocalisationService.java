@@ -32,7 +32,7 @@ public class ResourceLocalisationService extends AbstractService implements Loca
 
 	@BaseName( "uk.co.bluegecko.core.service.common.localisation.resource.ResourceLocalisationService$Log" )
 	@LocaleData(
-			{ @Locale( "en" ) } )
+		{ @Locale( "en" ) } )
 	protected enum Log
 	{
 		MISSING_KEY, MISSING_BUNDLE
