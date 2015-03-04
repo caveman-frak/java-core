@@ -1,5 +1,5 @@
 /**
- * Copyright 2009, <a href="http://bluegecko.co.uk/core">Blue Gecko Limited</a>
+ * Copyright 2015, <a href="http://bluegecko.co.uk/java-core">Blue Gecko Limited</a>
  */
 /**
  * 

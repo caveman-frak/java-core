@@ -7,6 +7,9 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>core-console</artifactId>
+	<properties>
+		<antlr.version>4.3</antlr.version>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>uk.co.bluegecko</groupId>
@@ -83,12 +86,12 @@
 				<plugin>
 					<groupId>org.antlr</groupId>
 					<artifactId>antlr4-maven-plugin</artifactId>
-					<version>4.3</version>
+					<version>${antlr.version}</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-shade-plugin</artifactId>
-					<version>2.3</version>
+					<version>${shade-plugin.version}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -103,7 +106,7 @@
 			<dependency>
 				<groupId>org.antlr</groupId>
 				<artifactId>antlr4-runtime</artifactId>
-				<version>4.3</version>
+				<version>${antlr.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.antlr</groupId>
@@ -113,7 +116,7 @@
 			<dependency>
 				<groupId>com.googlecode.lanterna</groupId>
 				<artifactId>lanterna</artifactId>
-				<version>3.0.0-alpha4</version>
+				<version>3.0.0-alpha6</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
