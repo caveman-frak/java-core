@@ -2,6 +2,7 @@ package uk.co.bluegecko.core.test.matcher.logging;
 
 
 import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.hasItems;
 import static org.junit.Assert.assertThat;
 import static uk.co.bluegecko.core.test.matcher.logging.LoggingEventMatcher.info;
 import static uk.co.bluegecko.core.test.matcher.logging.LoggingEventMatcher.warn;
@@ -22,31 +23,33 @@ import ch.qos.cal10n.MessageConveyor;
 
 
 @SuppressWarnings( "javadoc" )
-public class LoggingEventMatcherTest
+public class LoggingMatcherTest
 {
 
-	@BaseName( "uk.co.bluegecko.core.test.matcher.logging.LoggingEventMatcherTest$Log" )
+	@BaseName( "uk.co.bluegecko.core.test.matcher.logging.LoggingMatcherTest$Log" )
 	@LocaleData(
-			{ @ch.qos.cal10n.Locale( "en" ) } )
+		{ @ch.qos.cal10n.Locale( "en" ) } )
 	public enum Log
 	{
 		TEST1, TEST2
 	}
+
 	private LocLogger logger;
+	private TestLogger testLogger;
 
 	@Before
 	public final void setUp()
 	{
 		final MessageConveyor messageConveyor = new MessageConveyor( Locale.ENGLISH );
 		final LocLoggerFactory loggerFactory = new LocLoggerFactory( messageConveyor );
-		logger = loggerFactory.getLocLogger( LoggingEventMatcherTest.class );
+		logger = loggerFactory.getLocLogger( LoggingMatcherTest.class );
+
+		testLogger = TestLoggerFactory.getTestLogger( LoggingMatcherTest.class );
 	}
 
 	@Test
 	public void testLogInfoWithParams()
 	{
-		final TestLogger testLogger = TestLoggerFactory.getTestLogger( LoggingEventMatcherTest.class );
-
 		logger.info( Log.TEST1, 1, "One" );
 
 		assertThat( testLogger.getLoggingEvents(), hasItem( info( Log.TEST1, 1, "One" ) ) );
@@ -56,12 +59,20 @@ public class LoggingEventMatcherTest
 	@Test
 	public void testLogWarnWithoutParams()
 	{
-		final TestLogger testLogger = TestLoggerFactory.getTestLogger( LoggingEventMatcherTest.class );
-
 		logger.warn( Log.TEST2 );
 
 		assertThat( testLogger.getLoggingEvents(), hasItem( warn( Log.TEST2 ) ) );
 		assertThat( testLogger.getLoggingEvents(), hasItem( message( "Message with no params" ) ) );
+	}
+
+	@SuppressWarnings( "unchecked" )
+	@Test
+	public void testLogMultipleMessages()
+	{
+		logger.info( Log.TEST1, 1, "One" );
+		logger.warn( Log.TEST2 );
+
+		assertThat( testLogger.getLoggingEvents(), hasItems( info( Log.TEST1, 1, "One" ), warn( Log.TEST2 ) ) );
 	}
 
 }
