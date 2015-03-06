@@ -27,6 +27,23 @@
 		<developerConnection>scm:git:git@github.com:caveman-frak/java-core.git</developerConnection>
 		<url>git@github.com:caveman-frak/java-core.git</url>
 	</scm>
+	<distributionManagement>
+		<repository>
+			<id>internal.repo</id>
+			<name>Temporary Staging Repository</name>
+			<url>file://${project.build.directory}/mvn-repo</url>
+		</repository>
+	</distributionManagement>
+	<repositories>
+		<repository>
+			<id>java-core-mvn-repo</id>
+			<url>https://raw.github.com/caveman-frak/java-core/mvn-repo/</url>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
 	<modules>
 		<module>core-utilities</module>
 		<module>core-test</module>
@@ -37,8 +54,9 @@
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- properties for versions of dependencies and plug-ins-->
-		<spring.platform.version>1.0.2.RELEASE</spring.platform.version>
+		<github.global.server>github</github.global.server>
+		<!-- properties for versions of dependencies and plug-ins -->
+		<spring.platform.version>1.1.1.RELEASE</spring.platform.version>
 		<slf4j.version>1.7.7</slf4j.version>
 		<log4j.version>2.1</log4j.version>
 		<liquibase.version>3.2.2</liquibase.version>
@@ -46,6 +64,8 @@
 		<source-plugin.version>2.0.4</source-plugin.version>
 		<javadoc-plugin.version>2.3</javadoc-plugin.version>
 		<shade-plugin.version>2.3</shade-plugin.version>
+		<deploy-plugin.version>2.8.2</deploy-plugin.version>
+		<site-plugin.version>0.11</site-plugin.version>
 	</properties>
 	<build>
 		<resources>
@@ -90,6 +110,44 @@
 						<goals>
 							<goal>jar</goal>
 						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>${deploy-plugin.version}</version>
+				<configuration>
+					<altDeploymentRepository>
+						internal.repo::default::file://${project.build.directory}/mvn-repo
+					</altDeploymentRepository>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.github.github</groupId>
+				<artifactId>site-maven-plugin</artifactId>
+				<version>${site-plugin.version}</version>
+				<configuration>
+					<message>Maven artifacts for ${project.version}</message>
+					<noJekyll>true</noJekyll>
+					<includes>
+						<include>**/*</include>
+					</includes>
+					<repositoryName>java-core</repositoryName>
+					<repositoryOwner>caveman-frak</repositoryOwner>
+					<server>github</server>
+					<dryRun>false</dryRun>
+				</configuration>
+				<executions>
+					<execution>
+						<id>deploy</id>
+						<configuration>
+							<outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+							<branch>refs/heads/mvn-repo</branch>
+						</configuration>
+						<goals>
+							<goal>site</goal>
+						</goals>
+						<phase>deploy</phase>
 					</execution>
 				</executions>
 			</plugin>
