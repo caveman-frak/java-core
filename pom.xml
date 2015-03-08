@@ -110,10 +110,19 @@
 			<plugin>
 				<groupId>com.github.github</groupId>
 				<artifactId>site-maven-plugin</artifactId>
-				<inherited>false</inherited>
-				<configuration>
-					<merge>false</merge>
-				</configuration>
+				<executions>
+					<execution>
+						<id>deploy</id>
+						<configuration>
+							<merge>false</merge>
+						</configuration>
+						<inherited>false</inherited>
+						<goals>
+							<goal>site</goal>
+						</goals>
+						<phase>deploy</phase>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 		<pluginManagement>
@@ -175,6 +184,9 @@
 						<includes>
 							<include>**/*</include>
 						</includes>
+						<excludes>
+							<exclude>.DS_Store</exclude>
+						</excludes>
 						<repositoryName>java-core</repositoryName>
 						<repositoryOwner>caveman-frak</repositoryOwner>
 						<server>github</server>
