@@ -26,7 +26,8 @@ public class LoremIpsumSource implements Source< Character >
 	private static final Predicate< Character > paragraphBoundary = ( final Character ch ) -> ch == '\r' || ch == '\n';
 	private static final Predicate< Character > sentenceBoundary = ( final Character ch ) -> paragraphBoundary
 			.test( ch ) || ch == '.' || ch == '!' || ch == '?';
-	private static final Predicate< Character > wordBoundary = ( final Character ch ) -> Character.isWhitespace( ch );
+	private static final Predicate< Character > wordBoundary = ( final Character ch ) -> ch == '\0'
+			|| Character.isWhitespace( ch );
 
 	private final URL resource;
 	private Reader text;
@@ -85,6 +86,7 @@ public class LoremIpsumSource implements Source< Character >
 			if ( read == -1 )
 			{
 				reset();
+				return '\0';
 			}
 			return ( char ) read;
 		}

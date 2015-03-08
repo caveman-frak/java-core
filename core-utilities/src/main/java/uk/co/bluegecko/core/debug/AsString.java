@@ -18,9 +18,7 @@ public final class AsString
 {
 
 	private AsString()
-	{
-		throw new IllegalStateException( "static-class" );
-	}
+	{}
 
 	/**
 	 * Turn an object into a readable string.

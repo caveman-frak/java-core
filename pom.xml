@@ -223,6 +223,8 @@
 						<targetTests>
 							<param>uk.co.bluegecko.core*</param>
 						</targetTests>
+						<failWhenNoMutations>false</failWhenNoMutations>
+						<timestampedReports>false</timestampedReports>
 					</configuration>
 				</plugin>
 			</plugins>
