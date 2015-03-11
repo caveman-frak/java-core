@@ -7,6 +7,8 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>core-utilities</artifactId>
+	<name>Core Utilities</name>
+	<description>Core Utilities</description>
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.commons</groupId>

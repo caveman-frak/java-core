@@ -7,6 +7,8 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>core-process</artifactId>
+	<name>Core Process</name>
+	<description>Core Processs</description>
 	<dependencies>
 		<dependency>
 			<groupId>uk.co.bluegecko</groupId>

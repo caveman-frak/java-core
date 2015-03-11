@@ -6,6 +6,8 @@
 		<artifactId>core-build</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+	<name>Core Security</name>
+	<description>Core Security</description>
 	<artifactId>core-security</artifactId>
 	<dependencies>
 		<dependency>

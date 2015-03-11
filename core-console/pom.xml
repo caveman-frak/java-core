@@ -7,6 +7,8 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>core-console</artifactId>
+	<name>Core Console</name>
+	<description>Core Console</description>
 	<properties>
 		<antlr.version>4.3</antlr.version>
 	</properties>

@@ -6,8 +6,9 @@
 		<artifactId>core-build</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	
 	<artifactId>core-model</artifactId>
+	<name>Core Model</name>
+	<description>Core Model</description>
 	<dependencies>
 		<dependency>
 			<groupId>uk.co.bluegecko</groupId>
