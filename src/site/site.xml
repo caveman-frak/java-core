@@ -1,0 +1,27 @@
+<project name="Business Service Layer - Core">
+	<skin>
+		<groupId>uk.co.bluegecko</groupId>
+		<artifactId>bluegecko-site-skin</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</skin>
+	<bannerLeft>
+		<src>images/BlueGecko.solid.web.logo.png</src>
+	</bannerLeft>
+	<bannerRight>
+		<src>images/BlueGecko.solid.web.logo.png</src>
+	</bannerRight>
+	<publishDate position="right"/>
+	<version position="right"/>
+	<body>
+		<menu name="Project Documentation">
+			<item name="Javadoc" href="apidocs/index.html"/>
+			<item name="Continuous integration" href="integration.html"/>
+			<item name="Sonar" href="http://psm-centos015.us-bottomline.root.bottomline.com/sonar"/>
+			<item name="Confluence" href="https://confluence.us-bottomline.root.bottomline.com/display/DEA/Business+Services"/>
+			<item name="Source" href="source-repository.html"/>
+			<item name="Source cross-reference" href="xref/index.html"/>
+		</menu>
+		<menu ref="modules"/>
+		<footer>Copyright (c) 2015 Blue Gecko Limited. All rights reserved.</footer>
+	</body>
+</project>
