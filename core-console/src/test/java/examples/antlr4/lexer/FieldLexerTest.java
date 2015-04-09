@@ -1,7 +1,7 @@
 /**
  * Copyright 2015, <a href="http://bluegecko.co.uk/java-core">Blue Gecko Limited</a>
  */
-package uk.co.bluegecko.antlr4.lexer;
+package examples.antlr4.lexer;
 
 
 import org.antlr.v4.runtime.ANTLRInputStream;
@@ -11,8 +11,8 @@ import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 import org.junit.Test;
 
-import uk.co.bluegecko.core.antlr.field.lexer.FieldLexer;
-import uk.co.bluegecko.core.antlr.field.lexer.FieldParser;
+import examples.antlr.field.lexer.FieldLexer;
+import examples.antlr.field.lexer.FieldParser;
 
 
 @SuppressWarnings( "javadoc" )

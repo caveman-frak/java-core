@@ -9,7 +9,7 @@ package uk.co.bluegecko.core.exceptions;
  *
  * Usually used for unexpected errors.
  */
-public interface TransientError
+public interface RecoverableError
 {
 
 	/**

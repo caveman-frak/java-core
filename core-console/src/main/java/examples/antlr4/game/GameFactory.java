@@ -1,7 +1,7 @@
 /**
  * Copyright 2015, <a href="http://bluegecko.co.uk/java-core">Blue Gecko Limited</a>
  */
-package uk.co.bluegecko.antlr4.game;
+package examples.antlr4.game;
 
 
 import java.io.IOException;
@@ -16,9 +16,9 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
 
-import uk.co.bluegecko.core.antlr.field.lexer.FieldBaseListener;
-import uk.co.bluegecko.core.antlr.field.lexer.FieldLexer;
-import uk.co.bluegecko.core.antlr.field.lexer.FieldParser;
+import examples.antlr.field.lexer.FieldBaseListener;
+import examples.antlr.field.lexer.FieldLexer;
+import examples.antlr.field.lexer.FieldParser;
 
 
 @SuppressWarnings( "javadoc" )

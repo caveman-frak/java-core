@@ -1,7 +1,7 @@
 /**
  * Copyright 2015, <a href="http://bluegecko.co.uk/java-core">Blue Gecko Limited</a>
  */
-package uk.co.bluegecko.antlr4.game;
+package examples.antlr4.game;
 
 
 @SuppressWarnings( "javadoc" )

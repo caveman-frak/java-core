@@ -4,4 +4,4 @@
 /**
  * 
  */
-package uk.co.bluegecko.antlr4.game;
+package examples.antlr4.game;
