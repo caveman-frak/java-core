@@ -2,7 +2,7 @@ package uk.co.bluegecko.core.encoding;
 
 
 /**
- * {@link <a href="http://en.wikipedia.org/wiki/Ascii85">ASCII85</a>} (Base-85) encoding using the PDF Specification.
+ * <a href="http://en.wikipedia.org/wiki/Ascii85">ASCII85</a> (Base-85) encoding using the PDF Specification.
  *
  * Ensures the encoded string can be used in source code and XML files.
  *
@@ -24,7 +24,7 @@ public class Ascii85 implements Encoder
 	 * @see uk.co.bluegecko.core.encoding.Encoder#encode(int[])
 	 */
 	@Override
-	public char[] encode( int[] data )
+	public char[] encode( final int[] data )
 	{
 		final int size = data.length;
 		int steps = size / ENCODING_STEPS;
@@ -64,7 +64,7 @@ public class Ascii85 implements Encoder
 	 * @see uk.co.bluegecko.core.encoding.Encoder#decode(char[])
 	 */
 	@Override
-	public int[] decode( char[] data )
+	public int[] decode( final char[] data )
 	{
 		final int size = data.length;
 		int steps = size / DECODING_STEPS;
