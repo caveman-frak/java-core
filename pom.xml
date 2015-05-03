@@ -101,6 +101,7 @@
 		<pittest-plugin.version>1.1.4</pittest-plugin.version>
 	</properties>
 	<build>
+		<defaultGoal>clean install</defaultGoal>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -197,7 +198,7 @@
 					<artifactId>site-maven-plugin</artifactId>
 					<version>${github-site-plugin.version}</version>
 					<configuration>
-						<message>Maven artifacts for ${project.version}</message>
+						<message>Maven artifacts for ${project.finalName}</message>
 						<noJekyll>true</noJekyll>
 						<includes>
 							<include>**/*</include>
@@ -244,6 +245,11 @@
 						<failWhenNoMutations>false</failWhenNoMutations>
 						<timestampedReports>false</timestampedReports>
 					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.jacoco</groupId>
+					<artifactId>jacoco-maven-plugin</artifactId>
+					<version>0.7.5-SNAPSHOT</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -349,9 +355,9 @@
 	</dependencyManagement>
 	<reporting>
 		<outputDirectory>${basedir}/target/site</outputDirectory>
-		<!-- 
-		<excludeDefaults>true</excludeDefaults>
-		 -->
+		<!--
+			<excludeDefaults>true</excludeDefaults>
+		-->
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -379,23 +385,11 @@
 					<linkJavadoc>true</linkJavadoc>
 				</configuration>
 			</plugin>
-			<!-- 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
 				<version>2.7</version>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>index</report>
-							<report>dependencies</report>
-							<report>scm</report>
-							<report>cim</report>
-						</reports>
-					</reportSet>
-				</reportSets>
 			</plugin>
-			-->
 		</plugins>
 	</reporting>
 </project>

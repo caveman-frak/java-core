@@ -7,6 +7,8 @@ package uk.co.bluegecko.core.config;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableLoadTimeWeaving;
+import org.springframework.context.annotation.EnableLoadTimeWeaving.AspectJWeaving;
+import org.springframework.context.annotation.aspectj.EnableSpringConfigured;
 
 
 /**
@@ -14,7 +16,8 @@ import org.springframework.context.annotation.EnableLoadTimeWeaving;
  */
 @Configuration
 @EnableCaching
-@EnableLoadTimeWeaving
+@EnableLoadTimeWeaving( aspectjWeaving = AspectJWeaving.ENABLED )
+@EnableSpringConfigured
 public class CoreConfiguration
 {
 

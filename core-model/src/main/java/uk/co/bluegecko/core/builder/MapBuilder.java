@@ -185,4 +185,20 @@ public final class MapBuilder< K, V > implements Builder< Map< K, V >, MapBuilde
 		return new MapBuilder<>( map );
 	}
 
+	/**
+	 * Create a new {@link Map}.
+	 *
+	 * @param keys
+	 *            the sequence of keys
+	 * @param values
+	 *            the sequence of values
+	 *
+	 * @return a new map
+	 */
+	@SuppressWarnings( "unchecked" )
+	public static < K, V > Map< K, V > map( final K[] keys, final V[] values )
+	{
+		return ( Map< K, V > ) map().with( keys, values ).build();
+	}
+
 }

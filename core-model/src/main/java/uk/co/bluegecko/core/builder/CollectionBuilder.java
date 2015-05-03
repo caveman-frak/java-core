@@ -178,6 +178,21 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 	}
 
 	/**
+	 * Create a new {@link List}.
+	 *
+	 * @param values
+	 *            the values for the list
+	 *
+	 * @return a new list
+	 */
+	@SuppressWarnings( "unchecked" )
+	@SafeVarargs
+	public static < T > List< T > list( final T... values )
+	{
+		return ( List< T > ) list().with( values ).build();
+	}
+
+	/**
 	 * Create a new collection builder using {@link Set}.
 	 *
 	 * @return a new collection builder
@@ -185,6 +200,21 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 	public static < T > CollectionBuilder< Set< T >, T > set()
 	{
 		return collection( new HashSet<>() );
+	}
+
+	/**
+	 * Create a new {@link Set}.
+	 *
+	 * @param values
+	 *            the values for the set
+	 *
+	 * @return a new set
+	 */
+	@SuppressWarnings( "unchecked" )
+	@SafeVarargs
+	public static < T > Set< T > set( final T... values )
+	{
+		return ( Set< T > ) set().with( values ).build();
 	}
 
 	/**
