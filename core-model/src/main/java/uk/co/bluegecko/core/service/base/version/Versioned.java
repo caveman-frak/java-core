@@ -25,6 +25,7 @@ public class Versioned< T >
 	 * Construct a new
 	 *
 	 * @param collection
+	 *            collection of versioned type T
 	 */
 	public Versioned( final Collection< T > collection )
 	{
@@ -63,7 +64,7 @@ public class Versioned< T >
 
 	/**
 	 * Return the latest version of the contained type.
-	 * 
+	 *
 	 * @return the contained type
 	 */
 	public T get()
@@ -73,7 +74,7 @@ public class Versioned< T >
 
 	/**
 	 * Return the latest version of the contained type, after the passed version.
-	 * 
+	 *
 	 * @param version
 	 *            the minimum version
 	 * @return the contained type
@@ -85,7 +86,7 @@ public class Versioned< T >
 
 	/**
 	 * Return the latest version of the contained type, between the bounded versions.
-	 * 
+	 *
 	 * @param lower
 	 *            the lower version
 	 * @param upper

@@ -49,6 +49,8 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 	/**
 	 * Build a new collection using the passed instance.
 	 *
+	 * @param <C1>
+	 *            new collection type
 	 * @param collection
 	 *            to populate
 	 * @return the populated collection
@@ -83,6 +85,8 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 	/**
 	 * Copy the collection builder, using a new internal collection.
 	 *
+	 * @param <C1>
+	 *            new collection type
 	 * @param collection
 	 *            the internal collection
 	 * @return the new collection builder
@@ -157,6 +161,10 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 	/**
 	 * Create a new collection builder using the passed collection instance.
 	 *
+	 * @param <C>
+	 *            collection type
+	 * @param <T>
+	 *            collection entity type
 	 * @param collection
 	 *            the collection to use internally
 	 *
@@ -170,6 +178,8 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 	/**
 	 * Create a new collection builder using {@link List}.
 	 *
+	 * @param <T>
+	 *            collection entity type
 	 * @return a new collection builder
 	 */
 	public static < T > CollectionBuilder< List< T >, T > list()
@@ -180,6 +190,8 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 	/**
 	 * Create a new {@link List}.
 	 *
+	 * @param <T>
+	 *            collection entity type
 	 * @param values
 	 *            the values for the list
 	 *
@@ -195,6 +207,8 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 	/**
 	 * Create a new collection builder using {@link Set}.
 	 *
+	 * @param <T>
+	 *            collection entity type
 	 * @return a new collection builder
 	 */
 	public static < T > CollectionBuilder< Set< T >, T > set()
@@ -205,6 +219,8 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 	/**
 	 * Create a new {@link Set}.
 	 *
+	 * @param <T>
+	 *            collection entity type
 	 * @param values
 	 *            the values for the set
 	 *
@@ -220,6 +236,8 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 	/**
 	 * Create a new collection builder using {@link SortedSet}.
 	 *
+	 * @param <T>
+	 *            collection entity type
 	 * @return a new collection builder
 	 */
 	public static < T > CollectionBuilder< SortedSet< T >, T > sortedSet()
@@ -230,6 +248,8 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 	/**
 	 * Create a new collection builder using {@link Queue}.
 	 *
+	 * @param <T>
+	 *            collection entity type
 	 * @return a new collection builder
 	 */
 	public static < T > CollectionBuilder< Queue< T >, T > queue()
@@ -240,6 +260,8 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 	/**
 	 * Create a new collection builder using {@link Deque}.
 	 *
+	 * @param <T>
+	 *            collection entity type
 	 * @return a new collection builder
 	 */
 	public static < T > CollectionBuilder< Deque< T >, T > deque()

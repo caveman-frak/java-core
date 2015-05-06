@@ -138,7 +138,6 @@ public class MessagesTest extends TestHarness
 	{
 		messages.addMessages( Severity.ERROR, KEY_1, MESSAGE_1, MESSAGE_2 );
 		assertThat( messages.toString(), is( "MessagesBase[\n\tERROR\tfoo1 : bar1; bar2\n]" ) );
-		System.out.println( messages );
 	}
 
 	@Test
@@ -147,7 +146,6 @@ public class MessagesTest extends TestHarness
 		messages.addMessages( Severity.ERROR, KEY_1, MESSAGE_1 );
 		messages.addMessages( Severity.ERROR, KEY_2, MESSAGE_2 );
 		assertThat( messages.toString(), is( "MessagesBase[\n\tERROR\n\t\tfoo1 : bar1\n\t\tfoo2 : bar2\n]" ) );
-		System.out.println( messages );
 	}
 
 	@Test
@@ -156,7 +154,6 @@ public class MessagesTest extends TestHarness
 		messages.addMessages( Severity.ERROR, KEY_1, MESSAGE_1 );
 		messages.addMessages( Severity.WARN, KEY_2, MESSAGE_2 );
 		assertThat( messages.toString(), is( "MessagesBase[\n\tWARN\tfoo2 : bar2\n\tERROR\tfoo1 : bar1\n]" ) );
-		System.out.println( messages );
 	}
 
 }

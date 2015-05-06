@@ -165,6 +165,10 @@ public final class MapBuilder< K, V > implements Builder< Map< K, V >, MapBuilde
 	/**
 	 * Create a new map builder using the default map class.
 	 *
+	 * @param <K>
+	 *            type of map key
+	 * @param <V>
+	 *            type of map value
 	 * @return a new map builder
 	 */
 	public static < K, V > MapBuilder< K, V > map()
@@ -175,6 +179,10 @@ public final class MapBuilder< K, V > implements Builder< Map< K, V >, MapBuilde
 	/**
 	 * Create a new map builder using the passed map instance.
 	 *
+	 * @param <K>
+	 *            type of map key
+	 * @param <V>
+	 *            type of map value
 	 * @param map
 	 *            the map to use internally
 	 *
@@ -188,6 +196,10 @@ public final class MapBuilder< K, V > implements Builder< Map< K, V >, MapBuilde
 	/**
 	 * Create a new {@link Map}.
 	 *
+	 * @param <K>
+	 *            type of map key
+	 * @param <V>
+	 *            type of map value
 	 * @param keys
 	 *            the sequence of keys
 	 * @param values
