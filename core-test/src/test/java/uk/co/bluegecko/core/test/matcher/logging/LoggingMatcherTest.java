@@ -8,6 +8,7 @@ import static uk.co.bluegecko.core.test.matcher.logging.LoggingEventMatcher.info
 import static uk.co.bluegecko.core.test.matcher.logging.LoggingEventMatcher.warn;
 import static uk.co.bluegecko.core.test.matcher.logging.LoggingMessageMatcher.message;
 
+import java.util.List;
 import java.util.Locale;
 
 import org.junit.Before;
@@ -15,6 +16,7 @@ import org.junit.Test;
 import org.slf4j.cal10n.LocLogger;
 import org.slf4j.cal10n.LocLoggerFactory;
 
+import uk.org.lidalia.slf4jtest.LoggingEvent;
 import uk.org.lidalia.slf4jtest.TestLogger;
 import uk.org.lidalia.slf4jtest.TestLoggerFactory;
 import ch.qos.cal10n.BaseName;
@@ -52,8 +54,9 @@ public class LoggingMatcherTest
 	{
 		logger.info( Log.TEST1, 1, "One" );
 
-		assertThat( testLogger.getLoggingEvents(), hasItem( info( Log.TEST1, 1, "One" ) ) );
-		assertThat( testLogger.getLoggingEvents(), hasItem( message( "Message with params #1 1 and #2 \"One\"" ) ) );
+		final List< LoggingEvent > loggingEvents = testLogger.getLoggingEvents();
+		assertThat( loggingEvents, hasItem( info( Log.TEST1, 1, "One" ) ) );
+		assertThat( loggingEvents, hasItem( message( "Message with params #1 1 and #2 \"One\"" ) ) );
 	}
 
 	@Test
@@ -61,8 +64,9 @@ public class LoggingMatcherTest
 	{
 		logger.warn( Log.TEST2 );
 
-		assertThat( testLogger.getLoggingEvents(), hasItem( warn( Log.TEST2 ) ) );
-		assertThat( testLogger.getLoggingEvents(), hasItem( message( "Message with no params" ) ) );
+		final List< LoggingEvent > loggingEvents = testLogger.getLoggingEvents();
+		assertThat( loggingEvents, hasItem( warn( Log.TEST2 ) ) );
+		assertThat( loggingEvents, hasItem( message( "Message with no params" ) ) );
 	}
 
 	@SuppressWarnings( "unchecked" )

@@ -9,6 +9,13 @@
 	<artifactId>core-test</artifactId>
 	<name>Core Tests</name>
 	<description>Core Testa</description>
+	<properties>
+		<!-- properties for versions of dependencies and plug-ins -->
+		<dbunit.version>2.5.1</dbunit.version>
+		<unitils-dbunit.version>3.4.2</unitils-dbunit.version>
+		<p6spy.version>2.1.4</p6spy.version>
+		<slf4j-test.version>1.1.0</slf4j-test.version>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>uk.co.bluegecko</groupId>
@@ -31,6 +38,16 @@
 			<artifactId>dbunit</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.unitils</groupId>
+			<artifactId>unitils-dbunit</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-nop</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 		</dependency>
@@ -48,22 +65,22 @@
 			<dependency>
 				<groupId>org.dbunit</groupId>
 				<artifactId>dbunit</artifactId>
-				<version>2.5.0</version>
+				<version>${dbunit.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.unitils</groupId>
 				<artifactId>unitils-dbunit</artifactId>
-				<version>3.4.2</version>
+				<version>${unitils-dbunit.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>p6spy</groupId>
 				<artifactId>p6spy</artifactId>
-				<version>2.1.2</version>
+				<version>${p6spy.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>uk.org.lidalia</groupId>
 				<artifactId>slf4j-test</artifactId>
-				<version>1.1.0</version>
+				<version>${slf4j-test.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

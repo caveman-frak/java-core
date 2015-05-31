@@ -10,7 +10,10 @@
 	<name>Core Console</name>
 	<description>Core Console</description>
 	<properties>
-		<antlr.version>4.3</antlr.version>
+		<antlr.version>4.5</antlr.version>
+		<antlr-st4.version>4.0.8</antlr-st4.version>
+		<lanterna.version>3.0.0-alpha6</lanterna.version>
+		<jewelcli.version>0.8.9</jewelcli.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -37,6 +40,12 @@
 		<dependency>
 			<groupId>com.googlecode.lanterna</groupId>
 			<artifactId>lanterna</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
 		</dependency>
 	</dependencies>
 	<build>
@@ -103,7 +112,7 @@
 			<dependency>
 				<groupId>com.lexicalscope.jewelcli</groupId>
 				<artifactId>jewelcli</artifactId>
-				<version>0.8.9</version>
+				<version>${jewelcli.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.antlr</groupId>
@@ -113,12 +122,12 @@
 			<dependency>
 				<groupId>org.antlr</groupId>
 				<artifactId>ST4</artifactId>
-				<version>4.0.8</version>
+				<version>${antlr-st4.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.googlecode.lanterna</groupId>
 				<artifactId>lanterna</artifactId>
-				<version>3.0.0-alpha6</version>
+				<version>${lanterna.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
