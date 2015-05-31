@@ -8,6 +8,8 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.stereotype.Component;
 
+import uk.co.bluegecko.core.server.model.Health;
+
 
 @SuppressWarnings( "javadoc" )
 @Component

@@ -15,6 +15,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestTemplate;
 
 import uk.co.bluegecko.core.server.Server;
+import uk.co.bluegecko.core.server.model.Health;
 
 
 @SuppressWarnings( "javadoc" )
