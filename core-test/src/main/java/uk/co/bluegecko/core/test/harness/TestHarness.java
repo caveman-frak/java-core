@@ -32,8 +32,7 @@ import ch.qos.cal10n.verifier.MessageKeyVerifier;
 @RunWith( SpringJUnit4ClassRunner.class )
 @TestExecutionListeners( listeners =
 	{ DependencyInjectionTestExecutionListener.class } )
-@ContextConfiguration( locations =
-	{ "classpath:test-context.xml" } )
+@ContextConfiguration( "classpath:test-context.xml" )
 public class TestHarness implements ApplicationContextAware
 {
 

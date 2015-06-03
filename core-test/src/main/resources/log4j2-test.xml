@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="0">
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout>
+				<Pattern>%highlight{%d{HH:mm:ss} [%t] %-5level %logger{.} %class{1} %line %method - %msg}%n %throwable{full}</Pattern>
+			</PatternLayout>
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Logger name="uk.co.bluegecko" level="TRACE" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
+		<Logger name="org.springframework" level="INFO" additivity="false" >
+			<AppenderRef ref="Console" />
+		</Logger>
+		<Logger name="org.dbunit" level="INFO" additivity="false" >
+			<AppenderRef ref="Console" />
+		</Logger>
+		<Root level="WARN">
+			<AppenderRef ref="Console" />
+		</Root>
+	</Loggers>
+</Configuration>

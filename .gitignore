@@ -16,3 +16,4 @@ dependency-reduced-pom.xml
 .DS_Store
 *.log
 vagrant/software/*.tar
+logs

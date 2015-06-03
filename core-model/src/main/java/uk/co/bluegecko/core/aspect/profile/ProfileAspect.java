@@ -19,15 +19,11 @@ import ch.qos.cal10n.MessageConveyor;
 
 /**
  * Time and log method invocation details.
- *
  */
-@Component
 @Aspect
+@Component
 public class ProfileAspect
 {
-
-	private final LocLogger logger = new LocLoggerFactory( new MessageConveyor( Locale.ENGLISH ) )
-			.getLocLogger( "MethodTimer" );
 
 	/** Log messages. */
 	@BaseName( "uk.co.bluegecko.core.aspect.profile.ProfileAspect$Log" )
@@ -39,6 +35,16 @@ public class ProfileAspect
 		TIMER
 	}
 
+	private final LocLogger logger;
+
+	/**
+	 * Default constructor.
+	 */
+	public ProfileAspect()
+	{
+		logger = new LocLoggerFactory( new MessageConveyor( Locale.ENGLISH ) ).getLocLogger( "MethodTimer" );
+	}
+
 	/**
 	 * Wrap a method and log invocation time.
 	 *
@@ -48,7 +54,7 @@ public class ProfileAspect
 	 * @throws Throwable
 	 *             in case of invocation failures
 	 */
-	@Around( "profilePointCut()" )
+	@Around( "profiledMethods()" )
 	public Object profile( final ProceedingJoinPoint pjp ) throws Throwable
 	{
 		// start stopwatch
@@ -78,10 +84,9 @@ public class ProfileAspect
 	}
 
 	/**
-	 * Place holder for point cut.
+	 * Point-cut to apply to methods annotated with @Profiled.
 	 */
 	@Pointcut( "@annotation(uk.co.bluegecko.core.aspect.profile.Profiled)" )
-	public void profilePointCut()
+	public void profiledMethods()
 	{}
-
 }

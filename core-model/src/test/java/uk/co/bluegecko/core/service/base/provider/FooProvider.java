@@ -9,8 +9,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import uk.co.bluegecko.core.service.base.provider.Provider;
-
 
 /**
  *
@@ -23,7 +21,7 @@ public class FooProvider extends Provider< ProviderFoo >
 	 * @param implementations
 	 *            list of providers
 	 */
-	@Autowired( required = false )
+	@Autowired
 	public FooProvider( final List< ProviderFoo > implementations )
 	{
 		super( implementations );

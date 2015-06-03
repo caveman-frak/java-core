@@ -23,7 +23,7 @@ public class FooRouter extends Router< RouteFoo >
 	 * @param implementations
 	 *            list of providers
 	 */
-	@Autowired( required = false )
+	@Autowired
 	public FooRouter( final List< RouteFoo > implementations )
 	{
 		super( implementations );
