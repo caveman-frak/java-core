@@ -42,7 +42,7 @@ public class ProfileAspect
 	 */
 	public ProfileAspect()
 	{
-		logger = new LocLoggerFactory( new MessageConveyor( Locale.ENGLISH ) ).getLocLogger( "MethodTimer" );
+		logger = new LocLoggerFactory( new MessageConveyor( Locale.ENGLISH ) ).getLocLogger( ProfileAspect.class );
 	}
 
 	/**
@@ -58,7 +58,7 @@ public class ProfileAspect
 	public Object profile( final ProceedingJoinPoint pjp ) throws Throwable
 	{
 		// start stopwatch
-		final boolean logEnabled = logger.isInfoEnabled();
+		final boolean logEnabled = logger.isDebugEnabled();
 		final StopWatch stopWatch = logEnabled ? new StopWatch( pjp.getTarget().getClass().getSimpleName() ) : null;
 
 		try
@@ -78,7 +78,7 @@ public class ProfileAspect
 				stopWatch.stop();
 
 				final long time = stopWatch.getLastTaskTimeMillis();
-				logger.info( Log.TIMER, pjp.getTarget().getClass().getSimpleName(), pjp.getSignature().getName(), time );
+				logger.debug( Log.TIMER, pjp.getTarget().getClass().getSimpleName(), pjp.getSignature().getName(), time );
 			}
 		}
 	}

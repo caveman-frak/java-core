@@ -14,13 +14,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestTemplate;
 
-import uk.co.bluegecko.core.server.Server;
+import uk.co.bluegecko.core.Application;
 import uk.co.bluegecko.core.server.model.Health;
 
 
 @SuppressWarnings( "javadoc" )
 @RunWith( SpringJUnit4ClassRunner.class )
-@SpringApplicationConfiguration( classes = Server.class )
+@SpringApplicationConfiguration( classes = Application.class )
 @WebAppConfiguration
 @IntegrationTest( "server.port=9000" )
 public class HealthResourceIntegrationTest

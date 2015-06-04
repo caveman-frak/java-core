@@ -30,6 +30,9 @@
 		<Logger name="uk.co.bluegecko" level="INFO" additivity="true">
 			<AppenderRef ref="Console" />
 		</Logger>
+		<Logger name="uk.co.bluegecko.core.aspect.profile" level="DEBUG" additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
 		<Root level="warn">
 			<AppenderRef ref="Failover" />
 		</Root>

@@ -7,7 +7,7 @@
 	</weaver>
 
 	<aspects>
-		<!-- only weave classes in our application-specific packages -->
+		<!-- only include aspects from our application-specific packages -->
 		<include within="uk.co.bluegecko.core.profile..*" />
 	</aspects>
 

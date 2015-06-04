@@ -1,4 +1,4 @@
-package uk.co.bluegecko.core.server;
+package uk.co.bluegecko.core;
 
 
 import org.springframework.boot.SpringApplication;
@@ -7,11 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SuppressWarnings( "javadoc" )
 @SpringBootApplication
-public class Server
+public class Application
 {
 
 	public static void main( final String[] args ) throws Exception
 	{
-		SpringApplication.run( Server.class, args );
+		SpringApplication.run( Application.class, args );
 	}
 }

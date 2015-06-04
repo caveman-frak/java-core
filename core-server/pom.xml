@@ -10,7 +10,7 @@
 	<name>Core Server</name>
 	<description>Core Server</description>
 	<properties>
-		<main-class>uk.co.bluegecko.core.server.Server</main-class>
+		<main-class>uk.co.bluegecko.core.Application</main-class>
 	</properties>
 	<dependencies>
 		<dependency>

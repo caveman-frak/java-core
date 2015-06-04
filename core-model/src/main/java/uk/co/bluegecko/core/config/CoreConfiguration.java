@@ -18,7 +18,6 @@ import org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver
  * Core Configuration class
  */
 @Configuration
-// @EnableCaching
 @EnableLoadTimeWeaving( aspectjWeaving = AspectJWeaving.ENABLED )
 @EnableSpringConfigured
 @EnableAspectJAutoProxy
@@ -36,7 +35,7 @@ public class CoreConfiguration
 
 	/**
 	 * Define the load time weaver to use for ApsectJ
-	 * 
+	 *
 	 * @return the LTW
 	 * @throws Throwable
 	 *             if the LTW can not be found or instantiated

@@ -32,7 +32,7 @@ public class ProfileAspectTest extends TestHarness
 	@Before
 	public void setUp()
 	{
-		testLogger = TestLoggerFactory.getTestLogger( "MethodTimer" );
+		testLogger = TestLoggerFactory.getTestLogger( ProfileAspect.class );
 	}
 
 	@Test

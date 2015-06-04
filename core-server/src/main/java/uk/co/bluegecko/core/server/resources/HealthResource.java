@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import uk.co.bluegecko.core.aspect.profile.Profiled;
 import uk.co.bluegecko.core.server.model.Health;
 import uk.co.bluegecko.core.server.service.HealthService;
 
@@ -33,6 +34,7 @@ public class HealthResource
 		this.healthService = healthService;
 	}
 
+	@Profiled
 	@GET
 	@Produces(
 		{ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML } )
