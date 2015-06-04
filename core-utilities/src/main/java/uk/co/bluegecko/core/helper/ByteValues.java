@@ -5,18 +5,18 @@ import java.text.NumberFormat;
 
 
 /**
- * Utility class for scaling large numbers.
+ * Utility class for scaling large byte values.
  */
-public final class SignificantNumbers
+public final class ByteValues
 {
 
 	/**
 	 * Byte multipliers
 	 */
-	public static final String[] SUFFIX =
+	public static final String[] BYTE_SUFFIX =
 		{ "B", "KB", "MB", "TB", "PB" };
 
-	private SignificantNumbers()
+	private ByteValues()
 	{}
 
 	/**

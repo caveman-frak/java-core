@@ -1,8 +1,8 @@
 package uk.co.bluegecko.core.server.model;
 
 
-import static uk.co.bluegecko.core.helper.SignificantNumbers.SUFFIX;
-import static uk.co.bluegecko.core.helper.SignificantNumbers.scale;
+import static uk.co.bluegecko.core.helper.ByteValues.BYTE_SUFFIX;
+import static uk.co.bluegecko.core.helper.ByteValues.scale;
 
 import java.lang.management.MemoryUsage;
 
@@ -34,7 +34,7 @@ public final class Memory
 
 	private String asText( final long amount )
 	{
-		return scale( amount, SUFFIX );
+		return scale( amount, BYTE_SUFFIX );
 	}
 
 	public String getInitial()
