@@ -3,7 +3,7 @@
 	<Appenders>
 		<Console name="Console" target="SYSTEM_OUT">
 			<PatternLayout>
-				<Pattern>%highlight{%d{HH:mm:ss} [%t] %-5level (%X{UUID}) %logger{.} - %msg}%n</Pattern>
+				<Pattern>%highlight{%d{HH:mm:ss} [%t] %-5level (%X{X-Trace}) %logger{.} - %msg}%n</Pattern>
 			</PatternLayout>
 		</Console>
 		<RollingFile name="RollingFile" 
