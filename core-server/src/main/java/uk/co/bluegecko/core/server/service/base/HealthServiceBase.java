@@ -5,6 +5,8 @@ import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
 import java.lang.management.OperatingSystemMXBean;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
@@ -12,20 +14,24 @@ import uk.co.bluegecko.core.aspect.profile.Profiled;
 import uk.co.bluegecko.core.server.model.Health;
 import uk.co.bluegecko.core.server.model.Memory;
 import uk.co.bluegecko.core.server.service.HealthService;
+import uk.co.bluegecko.core.service.base.AbstractService;
+import uk.co.bluegecko.core.service.common.LocaleService;
 
 
 @SuppressWarnings( "javadoc" )
 @Service
 @Lazy
-public class HealthServiceBase implements HealthService
+public class HealthServiceBase extends AbstractService implements HealthService
 {
 
 	private final OperatingSystemMXBean operatingSystemMXBean;
-
 	private final MemoryMXBean memoryMXBean;
 
-	public HealthServiceBase()
+	@Autowired
+	public HealthServiceBase( final ApplicationContext applicatioContext, final LocaleService localeService )
 	{
+		super( applicatioContext, localeService );
+
 		operatingSystemMXBean = ManagementFactory.getOperatingSystemMXBean();
 		memoryMXBean = ManagementFactory.getMemoryMXBean();
 	}

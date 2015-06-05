@@ -8,7 +8,7 @@ import uk.co.bluegecko.core.server.model.Health;
 
 @SuppressWarnings( "javadoc" )
 @Service
-public interface HealthService
+public interface HealthService extends uk.co.bluegecko.core.service.Service
 {
 
 	public Health getSystemHealth();

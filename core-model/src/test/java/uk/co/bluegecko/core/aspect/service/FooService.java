@@ -1,4 +1,4 @@
-package uk.co.bluegecko.core.aspect.profile;
+package uk.co.bluegecko.core.aspect.service;
 
 
 import org.springframework.stereotype.Component;
@@ -7,12 +7,11 @@ import uk.co.bluegecko.core.aspect.Foo;
 
 
 @SuppressWarnings( "javadoc" )
-@Component( "profile" )
-public class FooBase implements Foo
+@Component( "in-service" )
+public class FooService implements Foo
 {
 
 	@Override
-	@Profiled
 	public void bar( final boolean tantrum )
 	{
 		if ( tantrum ) { throw new IllegalStateException(); }

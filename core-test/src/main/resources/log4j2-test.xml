@@ -8,7 +8,7 @@
 		</Console>
 	</Appenders>
 	<Loggers>
-		<Logger name="uk.co.bluegecko" level="TRACE" additivity="false">
+		<Logger name="uk.co.bluegecko" level="ALL" additivity="false">
 			<AppenderRef ref="Console" />
 		</Logger>
 		<Logger name="org.springframework" level="INFO" additivity="false" >

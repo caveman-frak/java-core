@@ -56,8 +56,16 @@
 						<id>default-cli</id>
 						<configuration>
 							<jvmArguments>
-								-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005
+								-Xdebug
+								-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005
 							</jvmArguments>
+							<dependencies>
+								<dependency>
+									<groupId>org.springframework</groupId>
+									<artifactId>springloaded</artifactId>
+									<version>${springloaded-plugin.version}</version>
+								</dependency>
+							</dependencies>
 						</configuration>
 					</execution>
 				</executions>
