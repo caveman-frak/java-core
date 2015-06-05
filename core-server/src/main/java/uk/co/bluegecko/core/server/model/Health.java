@@ -1,7 +1,11 @@
 package uk.co.bluegecko.core.server.model;
 
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+
 @SuppressWarnings( "javadoc" )
+@XmlRootElement( name = "Health" )
 public class Health
 {
 
