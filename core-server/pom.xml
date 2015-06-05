@@ -51,6 +51,16 @@
 					<mainClass>${main-class}</mainClass>
 					<layout>ZIP</layout>
 				</configuration>
+				<executions>
+					<execution>
+						<id>default-cli</id>
+						<configuration>
+							<jvmArguments>
+								-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005
+							</jvmArguments>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
