@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import uk.co.bluegecko.core.aspect.profile.Profiled;
 import uk.co.bluegecko.core.server.model.Health;
-import uk.co.bluegecko.core.server.model.Memory;
 import uk.co.bluegecko.core.server.service.HealthService;
 import uk.co.bluegecko.core.service.base.AbstractService;
 import uk.co.bluegecko.core.service.common.LocaleService;
@@ -42,8 +41,8 @@ public class HealthServiceBase extends AbstractService implements HealthService
 	{
 		final Health health = new Health( "Jersey: Up and Running!" );
 		health.setOperatingSystem( getOperatingSystemDetails() );
-		health.setHeapMemory( new Memory( memoryMXBean.getHeapMemoryUsage() ) );
-		health.setNonHeapMemory( new Memory( memoryMXBean.getNonHeapMemoryUsage() ) );
+		health.setHeapMemory( memoryMXBean.getHeapMemoryUsage() );
+		health.setNonHeapMemory( memoryMXBean.getNonHeapMemoryUsage() );
 		return health;
 	}
 

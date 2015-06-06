@@ -1,11 +1,16 @@
 package uk.co.bluegecko.core.server.model;
 
 
+import java.lang.management.MemoryUsage;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
 @SuppressWarnings( "javadoc" )
-@XmlRootElement( name = "Health" )
+@XmlRootElement
+@XmlAccessorType( XmlAccessType.FIELD )
 public class Health
 {
 
@@ -46,9 +51,9 @@ public class Health
 		return heap;
 	}
 
-	public void setHeapMemory( final Memory heap )
+	public void setHeapMemory( final MemoryUsage heap )
 	{
-		this.heap = heap;
+		this.heap = new Memory( heap );
 	}
 
 	public Memory getNonHeapMemory()
@@ -56,9 +61,9 @@ public class Health
 		return nonHeap;
 	}
 
-	public void setNonHeapMemory( final Memory nonHeap )
+	public void setNonHeapMemory( final MemoryUsage nonHeap )
 	{
-		this.nonHeap = nonHeap;
+		this.nonHeap = new Memory( nonHeap );
 	}
 
 }

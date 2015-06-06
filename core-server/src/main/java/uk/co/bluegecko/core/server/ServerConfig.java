@@ -1,6 +1,7 @@
 package uk.co.bluegecko.core.server;
 
 
+import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,6 +18,7 @@ public class ServerConfig extends ResourceConfig
 	{
 		register( HealthResource.class );
 		register( TrackerTokenFilter.class );
+		register( JacksonFeature.class );
 	}
 
 }

@@ -6,21 +6,27 @@ import static uk.co.bluegecko.core.helper.ByteValues.scale;
 
 import java.lang.management.MemoryUsage;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+
 
 @SuppressWarnings( "javadoc" )
+@XmlRootElement
+@XmlAccessorType( XmlAccessType.FIELD )
 public final class Memory
 {
 
 	private final String initial;
 	private final String used;
-	private final String commited;
+	private final String committed;
 	private final String maximum;
 
 	public Memory( final MemoryUsage usage )
 	{
 		initial = asText( usage.getInit() );
 		used = asText( usage.getUsed() );
-		commited = asText( usage.getCommitted() );
+		committed = asText( usage.getCommitted() );
 		maximum = asText( usage.getMax() );
 	}
 
@@ -28,7 +34,7 @@ public final class Memory
 	{
 		initial = "";
 		used = "";
-		commited = "";
+		committed = "";
 		maximum = "";
 	}
 
@@ -47,9 +53,9 @@ public final class Memory
 		return used;
 	}
 
-	public String getCommited()
+	public String getCommitted()
 	{
-		return commited;
+		return committed;
 	}
 
 	public String getMaximum()
