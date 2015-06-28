@@ -15,9 +15,11 @@ public class Health
 {
 
 	private String status;
+	private String architecture;
 	private String operatingSystem;
 	private Memory heap;
 	private Memory nonHeap;
+	private String systemLoadAverage;
 
 	public Health()
 	{
@@ -34,6 +36,16 @@ public class Health
 	public String getStatus()
 	{
 		return status;
+	}
+
+	public String getArchitecture()
+	{
+		return architecture;
+	}
+
+	public void setArchitecture( final String architecture )
+	{
+		this.architecture = architecture;
 	}
 
 	public String getOperatingSystem()
@@ -64,6 +76,16 @@ public class Health
 	public void setNonHeapMemory( final MemoryUsage nonHeap )
 	{
 		this.nonHeap = new Memory( nonHeap );
+	}
+
+	public String getSystemLoadAverage()
+	{
+		return systemLoadAverage;
+	}
+
+	public void setSystemLoadAverage( final String systemLoadAverage )
+	{
+		this.systemLoadAverage = systemLoadAverage;
 	}
 
 }

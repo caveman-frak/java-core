@@ -4,6 +4,7 @@ package uk.co.bluegecko.core.server.service.base;
 import java.lang.management.ManagementFactory;
 import java.lang.management.MemoryMXBean;
 import java.lang.management.OperatingSystemMXBean;
+import java.text.NumberFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -40,16 +41,28 @@ public class HealthServiceBase extends AbstractService implements HealthService
 	public Health getSystemHealth()
 	{
 		final Health health = new Health( "Jersey: Up and Running!" );
+		health.setArchitecture( getArchitectureDetails() );
 		health.setOperatingSystem( getOperatingSystemDetails() );
 		health.setHeapMemory( memoryMXBean.getHeapMemoryUsage() );
 		health.setNonHeapMemory( memoryMXBean.getNonHeapMemoryUsage() );
+		health.setSystemLoadAverage( getSystemLoadAverage() );
 		return health;
 	}
 
-	protected String getOperatingSystemDetails()
+	private String getSystemLoadAverage()
 	{
-		return operatingSystemMXBean.getArch() + " / " + operatingSystemMXBean.getName() + " / "
-				+ operatingSystemMXBean.getVersion();
+		return NumberFormat.getPercentInstance().format(
+				operatingSystemMXBean.getSystemLoadAverage() / 100 );
+	}
+
+	private String getArchitectureDetails()
+	{
+		return operatingSystemMXBean.getArch() + ", " + operatingSystemMXBean.getAvailableProcessors() + " cores";
+	}
+
+	private String getOperatingSystemDetails()
+	{
+		return operatingSystemMXBean.getName() + " v" + operatingSystemMXBean.getVersion();
 	}
 
 	@Override

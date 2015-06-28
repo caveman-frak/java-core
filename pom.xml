@@ -105,6 +105,7 @@
 		<!-- properties for versions of dependencies and plug-ins -->
 		<spring.platform.version>2.0.0.BUILD-SNAPSHOT</spring.platform.version>
 		<slf4j.version>1.7.12</slf4j.version>
+		<swagger.version>1.5.0</swagger.version>
 		<compiler-plugin.version>3.1</compiler-plugin.version>
 		<source-plugin.version>2.0.4</source-plugin.version>
 		<javadoc-plugin.version>2.3</javadoc-plugin.version>
@@ -122,7 +123,7 @@
 		<spring-boot.debug-port>5005</spring-boot.debug-port>
 		<spring-boot.jvm-debug-args>-Xdebug
 			-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=${spring-boot.debug-port}</spring-boot.jvm-debug-args>
-		<spring-boot.jvm-jrebel-arg>-javaagent:${jrebel-jar.location}
+		<spring-boot.jvm-jrebel-arg>-agentpath:${jrebel-agent.location}
 			-Drebel.remoting_plugin=true</spring-boot.jvm-jrebel-arg>
 		<spring-boot.jvm-args>${spring-boot.jvm-debug-args}</spring-boot.jvm-args>
 	</properties>
@@ -383,6 +384,11 @@
 				<artifactId>slf4j-ext</artifactId>
 				<version>${slf4j.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>io.swagger</groupId>
+				<artifactId>swagger-jersey2-jaxrs</artifactId>
+				<version>${swagger.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<reporting>
@@ -429,13 +435,31 @@
 			<id>jrebel</id>
 			<activation>
 				<file>
-					<exists>${jrebel-jar.location}</exists>
+					<exists>${jrebel-agent.location}</exists>
 				</file>
 			</activation>
 			<properties>
 				<spring-boot.jvm-args>${spring-boot.jvm-debug-args}
 					${spring-boot.jvm-jrebel-arg}</spring-boot.jvm-args>
 			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.zeroturnaround</groupId>
+						<artifactId>jrebel-maven-plugin</artifactId>
+						<version>1.1.5</version>
+						<executions>
+							<execution>
+								<id>generate-rebel-xml</id>
+								<phase>process-resources</phase>
+								<goals>
+									<goal>generate</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
 		</profile>
 	</profiles>
 </project>

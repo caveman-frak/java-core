@@ -20,7 +20,7 @@ import uk.co.bluegecko.core.server.service.HealthService;
 @SuppressWarnings( "javadoc" )
 @Service
 @Path( "/health" )
-public class HealthResource
+public class HealthResource implements SwaggerHealthResource
 {
 
 	private final Logger logger;
@@ -34,6 +34,7 @@ public class HealthResource
 		this.healthService = healthService;
 	}
 
+	@Override
 	@Profiled
 	@GET
 	@Produces(
@@ -45,6 +46,7 @@ public class HealthResource
 		return healthService.getSystemHealth();
 	}
 
+	@Override
 	@POST
 	@Path( "gc" )
 	public void garbageCollect()
