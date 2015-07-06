@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SuppressWarnings( "javadoc" )
 @SpringBootApplication
+// @EnableWebMvc
 public class Application
 {
 
@@ -14,4 +15,5 @@ public class Application
 	{
 		SpringApplication.run( Application.class, args );
 	}
+
 }

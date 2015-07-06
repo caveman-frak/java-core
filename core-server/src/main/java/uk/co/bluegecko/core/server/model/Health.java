@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @SuppressWarnings( "javadoc" )
 @XmlRootElement
 @XmlAccessorType( XmlAccessType.FIELD )
-public class Health
+public class Health implements SwaggerHealth
 {
 
 	private String status;
@@ -33,56 +33,67 @@ public class Health
 		this.status = status;
 	}
 
+	@Override
 	public String getStatus()
 	{
 		return status;
 	}
 
+	@Override
 	public String getArchitecture()
 	{
 		return architecture;
 	}
 
+	@Override
 	public void setArchitecture( final String architecture )
 	{
 		this.architecture = architecture;
 	}
 
+	@Override
 	public String getOperatingSystem()
 	{
 		return operatingSystem;
 	}
 
+	@Override
 	public void setOperatingSystem( final String operatingSystem )
 	{
 		this.operatingSystem = operatingSystem;
 	}
 
-	public Memory getHeapMemory()
+	@Override
+	public SwaggerMemory getHeapMemory()
 	{
 		return heap;
 	}
 
+	@Override
 	public void setHeapMemory( final MemoryUsage heap )
 	{
 		this.heap = new Memory( heap );
 	}
 
-	public Memory getNonHeapMemory()
+	@Override
+	public SwaggerMemory getNonHeapMemory()
 	{
 		return nonHeap;
 	}
 
+	@Override
 	public void setNonHeapMemory( final MemoryUsage nonHeap )
 	{
 		this.nonHeap = new Memory( nonHeap );
 	}
 
+	@Override
 	public String getSystemLoadAverage()
 	{
 		return systemLoadAverage;
 	}
 
+	@Override
 	public void setSystemLoadAverage( final String systemLoadAverage )
 	{
 		this.systemLoadAverage = systemLoadAverage;

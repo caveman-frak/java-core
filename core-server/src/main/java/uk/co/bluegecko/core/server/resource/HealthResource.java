@@ -1,4 +1,4 @@
-package uk.co.bluegecko.core.server.resources;
+package uk.co.bluegecko.core.server.resource;
 
 
 import javax.ws.rs.GET;

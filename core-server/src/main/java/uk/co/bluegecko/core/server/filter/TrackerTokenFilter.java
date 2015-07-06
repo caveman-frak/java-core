@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Base64;
 
+import javax.servlet.annotation.WebFilter;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
+import javax.ws.rs.ext.Provider;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;
@@ -18,6 +20,8 @@ import org.slf4j.MDC;
  * Add a tracker token into the logging context for incoming requests
  *
  */
+@Provider
+@WebFilter
 public class TrackerTokenFilter implements ContainerRequestFilter, ContainerResponseFilter
 {
 

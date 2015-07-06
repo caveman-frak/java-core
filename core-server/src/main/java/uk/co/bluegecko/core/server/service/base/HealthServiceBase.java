@@ -51,8 +51,7 @@ public class HealthServiceBase extends AbstractService implements HealthService
 
 	private String getSystemLoadAverage()
 	{
-		return NumberFormat.getPercentInstance().format(
-				operatingSystemMXBean.getSystemLoadAverage() / 100 );
+		return NumberFormat.getPercentInstance().format( operatingSystemMXBean.getSystemLoadAverage() / 100 );
 	}
 
 	private String getArchitectureDetails()

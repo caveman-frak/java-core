@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @SuppressWarnings( "javadoc" )
 @XmlRootElement
 @XmlAccessorType( XmlAccessType.FIELD )
-public final class Memory
+public final class Memory implements SwaggerMemory
 {
 
 	private final String initial;
@@ -43,21 +43,25 @@ public final class Memory
 		return scale( amount, BYTE_SUFFIX );
 	}
 
+	@Override
 	public String getInitial()
 	{
 		return initial;
 	}
 
+	@Override
 	public String getUsed()
 	{
 		return used;
 	}
 
+	@Override
 	public String getCommitted()
 	{
 		return committed;
 	}
 
+	@Override
 	public String getMaximum()
 	{
 		return maximum;

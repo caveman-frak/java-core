@@ -1,4 +1,4 @@
-package uk.co.bluegecko.core.server.resources;
+package uk.co.bluegecko.core.server.resource;
 
 
 import io.swagger.annotations.Api;
@@ -22,4 +22,5 @@ public interface SwaggerHealthResource
 
 	@ApiOperation( value = "Trigger garbage collection" )
 	public void garbageCollect();
+
 }
