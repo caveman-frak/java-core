@@ -5,7 +5,7 @@ package uk.co.bluegecko.core.server;
 public interface ServerConstants
 {
 
-	public static String PATH = "/api";
+	public static String PATH = "";
 
 	public static int PORT = 8080;
 
