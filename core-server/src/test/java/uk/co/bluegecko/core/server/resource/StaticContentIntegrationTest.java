@@ -1,6 +1,7 @@
 package uk.co.bluegecko.core.server.resource;
 
 
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.startsWith;
@@ -60,7 +61,7 @@ public class StaticContentIntegrationTest
 
 		final String entity = response.readEntity( String.class );
 
-		System.out.println( entity );
+		assertThat( entity, containsString( "<h1>Index Page</h1>" ) );
 	}
 
 }
