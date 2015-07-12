@@ -3,22 +3,21 @@
 	<Appenders>
 		<Console name="Console" target="SYSTEM_OUT">
 			<PatternLayout>
-				<Pattern>%highlight{%d{HH:mm:ss} [%t] %-5level (%X{X-Trace}) %logger{.} - %msg}%n</Pattern>
+				<Pattern>%highlight{%d{HH:mm:ss} [%t] %-5level (%X{X-Trace}) %logger{2.} - %msg %n%rEx{short}}</Pattern>
 			</PatternLayout>
 		</Console>
 		<RollingFile name="RollingFile" 
 				fileName="logs/application.log"
-				filePattern="logs/application-%d{MM-dd-yyyy}-%i.log.gz"
+				filePattern="logs/application-%i.log.gz"
 				ignoreExceptions="false">
 			<PatternLayout>
-				<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+				<Pattern>%d{dd MMM HH:mm:ss} [%t] %-5level (%X{X-Trace}) %logger{4.} - %msg %n%rEx{full}</Pattern>
 			</PatternLayout>
 			<Policies>
 				<OnStartupTriggeringPolicy />
-				<TimeBasedTriggeringPolicy />
 				<SizeBasedTriggeringPolicy size="10 MB" />
 			</Policies>
-			<DefaultRolloverStrategy max="7"/>
+			<DefaultRolloverStrategy max="5"/>
 		</RollingFile>
 		<Failover name="Failover" primary="RollingFile">
 			<Failovers>

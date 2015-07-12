@@ -28,12 +28,12 @@ public interface SwaggerHealthResource
 	@GET
 	@Produces(
 		{ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML } )
-	@Path( "" )
+	@Path( "/" )
 	public Health health();
 
 	@ApiOperation( value = "Trigger garbage collection" )
 	@POST
-	@Path( "gc" )
+	@Path( "/gc" )
 	public void garbageCollect();
 
 }

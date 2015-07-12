@@ -3,7 +3,7 @@
 	<Appenders>
 		<Console name="Console" target="SYSTEM_OUT">
 			<PatternLayout>
-				<Pattern>%highlight{%d{HH:mm:ss} [%t] %-5level %logger{.} %class{1} %line %method - %msg}%n %throwable{full}</Pattern>
+				<Pattern>%highlight{%sn / %r - %d{HH:mm:ss} [%t] %-5level %logger{4.} %class{2.} %line %method - %msg}%n%rEx{full}</Pattern>
 			</PatternLayout>
 		</Console>
 	</Appenders>

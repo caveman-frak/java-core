@@ -11,6 +11,7 @@ import javax.ws.rs.ApplicationPath;
 
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.jersey.servlet.ServletProperties;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -27,12 +28,13 @@ public class ServerConfig extends ResourceConfig implements EnvironmentAware
 	public ServerConfig()
 	{
 		register( JacksonFeature.class );
+		property( ServletProperties.FILTER_FORWARD_ON_404, true );
 
 		// register packages
 		packages( "uk.co.bluegecko.core.server" );
 	}
 
-	protected BeanConfig swaggerConfig( final Environment environment )
+	protected void swaggerConfig( final Environment environment )
 	{
 		final BeanConfig beanConfig = new BeanConfig();
 		beanConfig.setTitle( environment.getProperty( "swagger.title", "Example Server" ) );
@@ -51,8 +53,6 @@ public class ServerConfig extends ResourceConfig implements EnvironmentAware
 
 		register( ApiListingResource.class );
 		register( SwaggerSerializers.class );
-
-		return beanConfig;
 	}
 
 	@Override
@@ -61,6 +61,6 @@ public class ServerConfig extends ResourceConfig implements EnvironmentAware
 		setApplicationName( environment.getProperty( "swagger.id", "example-server" ) );
 
 		// setup swagger
-		registerInstances( swaggerConfig( environment ) );
+		swaggerConfig( environment );
 	}
 }
