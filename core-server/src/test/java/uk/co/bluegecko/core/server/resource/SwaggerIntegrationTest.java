@@ -66,8 +66,8 @@ public class SwaggerIntegrationTest
 		final Swagger20Parser parser = new Swagger20Parser();
 		final Swagger swagger = parser.parse( entity );
 		assertThat( swagger.getSwagger(), is( "2.0" ) );
-		assertThat( swagger.getPaths(), hasKey( "" ) );
-		assertThat( swagger.getPaths(), hasKey( "/gc" ) );
+		assertThat( swagger.getPaths(), hasKey( "/health" ) );
+		assertThat( swagger.getPaths(), hasKey( "/health/gc" ) );
 	}
 
 }
