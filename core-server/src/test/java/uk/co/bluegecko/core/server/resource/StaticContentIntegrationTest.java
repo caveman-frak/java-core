@@ -3,7 +3,6 @@ package uk.co.bluegecko.core.server.resource;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import static uk.co.bluegecko.core.server.ServerConstants.PATH;
 import static uk.co.bluegecko.core.server.TestServerConstants.PORT;
 
 import java.net.URL;
@@ -43,7 +42,7 @@ public class StaticContentIntegrationTest
 		try (WebClient webClient = MockMvcWebClientBuilder.webAppContextSetup( context ).contextPath( "" )
 				.createWebClient())
 		{
-			final HtmlPage page = webClient.getPage( new URL( "http", "localhost", PORT, PATH + "/index.html" ) );
+			final HtmlPage page = webClient.getPage( new URL( "http", "localhost", PORT, "/index.html" ) );
 
 			assertThat( page.getTitleText(), is( "Index Page" ) );
 			assertThat( page.getElementById( "title" ).getTextContent(), is( "Index Page" ) );
@@ -58,7 +57,7 @@ public class StaticContentIntegrationTest
 		try (WebClient webClient = MockMvcWebClientBuilder.webAppContextSetup( context ).contextPath( "" )
 				.createWebClient())
 		{
-			final HtmlPage page = webClient.getPage( new URL( "http", "localhost", PORT, PATH + "/test.html" ) );
+			final HtmlPage page = webClient.getPage( new URL( "http", "localhost", PORT, "/test.html" ) );
 
 			assertThat( page.getTitleText(), is( "Test Page" ) );
 			assertThat(

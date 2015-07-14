@@ -6,6 +6,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static uk.co.bluegecko.core.server.ServerConstants.PATH;
 import static uk.co.bluegecko.core.server.TestServerConstants.PORT;
+import static uk.co.bluegecko.core.server.resource.WebResourceConstants.HEALTH;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -41,14 +42,14 @@ import uk.co.bluegecko.core.server.model.Health;
 public class HealthResourceIntegrationTest
 {
 
-	private final RestTemplate restTemplate = new TestRestTemplate();
+	private final RestTemplate restTemplate = new TestRestTemplate( "test", "test123" );
 
 	private URI serverUrl;
 
 	@Before
 	public void setUp() throws MalformedURLException, URISyntaxException
 	{
-		serverUrl = new URL( "http", "localhost", PORT, PATH + "/health" ).toURI();
+		serverUrl = new URL( "http", "localhost", PORT, PATH + HEALTH ).toURI();
 	}
 
 	@Test

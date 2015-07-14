@@ -7,6 +7,7 @@ import static org.hamcrest.Matchers.startsWith;
 import static org.junit.Assert.assertThat;
 import static uk.co.bluegecko.core.server.ServerConstants.PATH;
 import static uk.co.bluegecko.core.server.TestServerConstants.PORT;
+import static uk.co.bluegecko.core.server.resource.WebResourceConstants.HEALTH;
 import io.swagger.models.Swagger;
 import io.swagger.parser.Swagger20Parser;
 
@@ -66,8 +67,8 @@ public class SwaggerIntegrationTest
 		final Swagger20Parser parser = new Swagger20Parser();
 		final Swagger swagger = parser.parse( entity );
 		assertThat( swagger.getSwagger(), is( "2.0" ) );
-		assertThat( swagger.getPaths(), hasKey( "/health" ) );
-		assertThat( swagger.getPaths(), hasKey( "/health/gc" ) );
+		assertThat( swagger.getPaths(), hasKey( HEALTH ) );
+		assertThat( swagger.getPaths(), hasKey( HEALTH + "/gc" ) );
 	}
 
 }

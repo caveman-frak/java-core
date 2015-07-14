@@ -1,6 +1,7 @@
 package uk.co.bluegecko.core.server.resource;
 
 
+import static uk.co.bluegecko.core.server.resource.WebResourceConstants.HEALTH;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -20,7 +21,7 @@ import uk.co.bluegecko.core.server.service.HealthService;
 
 @SuppressWarnings( "javadoc" )
 @Api( tags = "health" )
-@Path( "/health" )
+@Path( HEALTH )
 public class SwaggerHealthResource extends HealthResource
 {
 

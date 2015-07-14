@@ -111,12 +111,14 @@
 		<github.global.server>github</github.global.server>
 		<site.url.root>scm:git:git@github.com:caveman-frak/java-core.git/gh_pages</site.url.root>
 		<!-- properties for versions of dependencies -->
-		<spring.platform.version>2.0.0.BUILD-SNAPSHOT</spring.platform.version>
+		<spring.version>2.0.0.BUILD-SNAPSHOT</spring.version>
+		<jersey.version>2.19</jersey.version>
 		<slf4j.version>1.7.12</slf4j.version>
 		<swagger.version>1.5.0</swagger.version>
 		<swagger-parser.version>1.0.8</swagger-parser.version>
-		<swagger-ui.version>2.1.0</swagger-ui.version>
 		<spring-htmlunit.version>1.0.0.RC1</spring-htmlunit.version>
+		<!-- properties for versions of web jars -->
+		<swagger-ui.version>2.1.0</swagger-ui.version>
 		<!-- properties for versions of plug-ins -->
 		<compiler-plugin.version>3.1</compiler-plugin.version>
 		<source-plugin.version>2.0.4</source-plugin.version>
@@ -351,7 +353,14 @@
 			<dependency>
 				<groupId>io.spring.platform</groupId>
 				<artifactId>platform-bom</artifactId>
-				<version>${spring.platform.version}</version>
+				<version>${spring.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish.jersey</groupId>
+				<artifactId>jersey-bom</artifactId>
+				<version>${jersey.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
