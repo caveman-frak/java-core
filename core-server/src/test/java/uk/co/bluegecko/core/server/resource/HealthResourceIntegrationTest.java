@@ -4,9 +4,10 @@ package uk.co.bluegecko.core.server.resource;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import static uk.co.bluegecko.core.server.ServerConstants.PATH;
+import static uk.co.bluegecko.core.server.ServerConstants.BASE_PATH;
 import static uk.co.bluegecko.core.server.TestServerConstants.PORT;
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.HEALTH;
+import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Health.INFO;
+import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Health.PATH;
 
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -49,11 +50,11 @@ public class HealthResourceIntegrationTest
 	@Before
 	public void setUp() throws MalformedURLException, URISyntaxException
 	{
-		serverUrl = new URL( "http", "localhost", PORT, PATH + HEALTH ).toURI();
+		serverUrl = new URL( "http", "localhost", PORT, BASE_PATH + PATH + INFO ).toURI();
 	}
 
 	@Test
-	public void healthAsJson() throws RestClientException
+	public void fetchHealthAsJson() throws RestClientException
 	{
 		restTemplate.setInterceptors( Arrays
 				.asList( new AcceptHeaderHttpRequestInterceptor( MediaType.APPLICATION_JSON ) ) );
@@ -66,7 +67,7 @@ public class HealthResourceIntegrationTest
 	}
 
 	@Test
-	public void healthAsXml()
+	public void fetchHealthAsXml()
 	{
 		restTemplate.setInterceptors( Arrays
 				.asList( new AcceptHeaderHttpRequestInterceptor( MediaType.APPLICATION_XML ) ) );

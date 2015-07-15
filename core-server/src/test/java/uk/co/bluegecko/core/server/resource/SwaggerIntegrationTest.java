@@ -5,9 +5,10 @@ import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.startsWith;
 import static org.junit.Assert.assertThat;
-import static uk.co.bluegecko.core.server.ServerConstants.PATH;
+import static uk.co.bluegecko.core.server.ServerConstants.BASE_PATH;
 import static uk.co.bluegecko.core.server.TestServerConstants.PORT;
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.HEALTH;
+import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Health.GC;
+import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Health.PATH;
 import io.swagger.models.Swagger;
 import io.swagger.parser.Swagger20Parser;
 
@@ -48,11 +49,11 @@ public class SwaggerIntegrationTest
 	@Before
 	public void setUp() throws MalformedURLException, URISyntaxException
 	{
-		target = ClientBuilder.newClient().target( new URL( "http", "localhost", PORT, PATH ).toURI() );
+		target = ClientBuilder.newClient().target( new URL( "http", "localhost", PORT, BASE_PATH ).toURI() );
 	}
 
 	@Test
-	public void swaggerAsJson() throws IOException
+	public void fetchSwaggerAsJson() throws IOException
 	{
 		final Invocation.Builder builder = target.path( "swagger.json" ).request( MediaType.APPLICATION_JSON_TYPE );
 		final Response response = builder.get();
@@ -67,8 +68,8 @@ public class SwaggerIntegrationTest
 		final Swagger20Parser parser = new Swagger20Parser();
 		final Swagger swagger = parser.parse( entity );
 		assertThat( swagger.getSwagger(), is( "2.0" ) );
-		assertThat( swagger.getPaths(), hasKey( HEALTH ) );
-		assertThat( swagger.getPaths(), hasKey( HEALTH + "/gc" ) );
+		assertThat( swagger.getPaths(), hasKey( PATH ) );
+		assertThat( swagger.getPaths(), hasKey( PATH + GC ) );
 	}
 
 }

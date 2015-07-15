@@ -1,7 +1,7 @@
 package uk.co.bluegecko.core;
 
 
-import static uk.co.bluegecko.core.server.ServerConstants.PATH;
+import static uk.co.bluegecko.core.server.ServerConstants.BASE_PATH;
 
 import org.glassfish.jersey.servlet.ServletContainer;
 import org.glassfish.jersey.servlet.ServletProperties;
@@ -34,7 +34,7 @@ public class Application extends SpringBootServletInitializer
 	@Bean
 	public ServletRegistrationBean jerseyServlet()
 	{
-		final ServletRegistrationBean registration = new ServletRegistrationBean( new ServletContainer(), PATH + "/*" );
+		final ServletRegistrationBean registration = new ServletRegistrationBean( new ServletContainer(), BASE_PATH + "/*" );
 		registration.addInitParameter( ServletProperties.JAXRS_APPLICATION_CLASS, ServerConfig.class.getName() );
 		return registration;
 	}

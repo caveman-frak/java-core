@@ -4,6 +4,7 @@
 package uk.co.bluegecko.core.service.common;
 
 
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -17,23 +18,28 @@ public interface LocalisationService
 	/**
 	 * Return a localised message using resource bundle and message formatters
 	 *
-	 * @param messageKey
-	 *            the message key
+	 * @param locale
+	 *            the locale for the bundle
 	 * @param bundleName
 	 *            the resource bundle name
+	 * @param messageKey
+	 *            the message key
 	 * @param params
 	 *            any message arguments
 	 * @return the localised message
 	 */
-	public String getMessage( String messageKey, String bundleName, Object... params );
+	public String getMessage( Locale locale, String bundleName, String messageKey, Object... params );
 
 	/**
 	 * Return a map of all localised message key, value pairs for a given bundle.
 	 *
+	 * @param locale
+	 *            the locale for the message
 	 * @param bundleName
 	 *            the bundle containing the messages
+	 *
 	 * @return a map of localised message key, value pairs
 	 */
-	public Map< String, Object > getMessages( String bundleName );
+	public Map< String, Object > getMessages( Locale locale, String bundleName );
 
 }

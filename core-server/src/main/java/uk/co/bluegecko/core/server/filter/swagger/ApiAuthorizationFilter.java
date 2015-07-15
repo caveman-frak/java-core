@@ -29,7 +29,8 @@ import org.slf4j.LoggerFactory;
  * how API authorization filter works.
  *
  */
-@SuppressWarnings( "javadoc" )
+@SuppressWarnings(
+	{ "javadoc", "deprecation" } )
 public class ApiAuthorizationFilter implements SwaggerSpecFilter
 {
 

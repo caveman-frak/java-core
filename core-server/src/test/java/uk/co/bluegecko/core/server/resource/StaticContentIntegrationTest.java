@@ -37,7 +37,7 @@ public class StaticContentIntegrationTest
 	private WebApplicationContext context;
 
 	@Test
-	public void indexPageAsHtml() throws Exception
+	public void fetchIndexPageAsHtml() throws Exception
 	{
 		try (WebClient webClient = MockMvcWebClientBuilder.webAppContextSetup( context ).contextPath( "" )
 				.createWebClient())
@@ -52,7 +52,7 @@ public class StaticContentIntegrationTest
 	}
 
 	@Test
-	public void testPageAsHtml() throws Exception
+	public void fetchTestPageAsHtml() throws Exception
 	{
 		try (WebClient webClient = MockMvcWebClientBuilder.webAppContextSetup( context ).contextPath( "" )
 				.createWebClient())

@@ -1,13 +1,13 @@
 package uk.co.bluegecko.core.server.resource;
 
 
+import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import uk.co.bluegecko.core.aspect.profile.Profiled;
-import uk.co.bluegecko.core.server.model.Health;
 import uk.co.bluegecko.core.server.service.HealthService;
 
 
@@ -26,11 +26,11 @@ public abstract class HealthResource
 	}
 
 	@Profiled
-	public Health health()
+	public Response health()
 	{
 		logger.info( "getting health..." );
 
-		return healthService.getSystemHealth();
+		return Response.ok( healthService.getSystemHealth() ).build();
 	}
 
 	public void garbageCollect()

@@ -21,7 +21,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService.Log;
+import uk.co.bluegecko.core.service.base.common.localisation.resource.BaseLocalisationService.Log;
 import uk.co.bluegecko.core.service.common.LocaleService;
 import uk.co.bluegecko.core.service.common.LocalisationService;
 import uk.co.bluegecko.core.test.harness.TestHarness;
@@ -84,30 +84,30 @@ public class ResourceLocalisationServiceTest extends TestHarness
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessage(java.lang.String, java.lang.String, java.lang.Object[])}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessage(Locale, java.lang.String, java.lang.String, java.lang.Object[])}
 	 * .
 	 */
 	@Test
 	public final void testGetMessageExists()
 	{
-		assertThat( localisationService.getMessage( "exists", BUNDLE_NAME ), is( "exists" ) );
+		assertThat( localisationService.getMessage( null, BUNDLE_NAME, "exists" ), is( "exists" ) );
 	}
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessage(java.lang.String, java.lang.String, java.lang.Object[])}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessage(Locale, java.lang.String, java.lang.String, java.lang.Object[])}
 	 * .
 	 */
 	@Test
 	public final void testGetMessageNotExists()
 	{
 
-		assertThat( localisationService.getMessage( "not-exists", BUNDLE_NAME ), is( "**not-exists**" ) );
+		assertThat( localisationService.getMessage( null, BUNDLE_NAME, "not-exists" ), is( "**not-exists**" ) );
 	}
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessage(java.lang.String, java.lang.String, java.lang.Object[])}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessage(Locale, java.lang.String, java.lang.String, java.lang.Object[])}
 	 * .
 	 */
 	@Test
@@ -115,125 +115,126 @@ public class ResourceLocalisationServiceTest extends TestHarness
 	{
 		final TestLogger testLogger = TestLoggerFactory.getTestLogger( ResourceLocalisationService.class );
 
-		assertThat( localisationService.getMessage( "not-exists", BUNDLE_NAME ), is( "**not-exists**" ) );
+		assertThat( localisationService.getMessage( null, BUNDLE_NAME, "not-exists" ), is( "**not-exists**" ) );
 
-		assertThat( testLogger.getLoggingEvents(), hasItem( info( Log.MISSING_KEY, BUNDLE_NAME, "not-exists" ) ) );
+		assertThat( testLogger.getLoggingEvents(),
+				hasItem( info( Log.MISSING_KEY, Locale.ROOT, BUNDLE_NAME, "not-exists" ) ) );
 	}
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessage(java.lang.String, java.lang.String, java.lang.Object[])}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessage(Locale, java.lang.String, java.lang.String, java.lang.Object[])}
 	 * .
 	 */
 	@Test
 	public final void testGetMessageFormat()
 	{
-		assertThat( localisationService.getMessage( "hello", BUNDLE_NAME, "World" ), is( "Hello World!" ) );
+		assertThat( localisationService.getMessage( null, BUNDLE_NAME, "hello", "World" ), is( "Hello World!" ) );
 	}
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessage(java.lang.String, java.lang.String, java.lang.Object[])}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessage(Locale, java.lang.String, java.lang.String, java.lang.Object[])}
 	 * .
 	 */
 	@Test
 	public final void testGetMessageMissingBundle()
 	{
-		assertThat( localisationService.getMessage( "exists", MISSING_BUNDLE_NAME ), is( "--exists--" ) );
+		assertThat( localisationService.getMessage( null, MISSING_BUNDLE_NAME, "exists" ), is( "--exists--" ) );
 	}
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessages(java.lang.String)}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessages(Locale, java.lang.String)}
 	 * .
 	 */
 	@Test
 	public final void testGetMessages()
 	{
-		final Map< String, Object > messages = localisationService.getMessages( BUNDLE_NAME );
+		final Map< String, Object > messages = localisationService.getMessages( null, BUNDLE_NAME );
 		assertThat( messages, hasEntry( "exists", "exists" ) );
 		assertThat( messages, hasEntry( "colour", "colour" ) );
 	}
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessages(java.lang.String)}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessages(Locale, java.lang.String)}
 	 * .
 	 */
 	@Test
 	public final void testGetMessages_en()
 	{
 		when( localeService.getUserLocale() ).thenReturn( Locale.ENGLISH );
-		final Map< String, Object > messages = localisationService.getMessages( BUNDLE_NAME );
+		final Map< String, Object > messages = localisationService.getMessages( null, BUNDLE_NAME );
 		assertThat( messages, hasEntry( "exists", "Exists" ) );
 		assertThat( messages, hasEntry( "colour", "Colour" ) );
 	}
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessages(java.lang.String)}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessages(Locale, java.lang.String)}
 	 * .
 	 */
 	@Test
 	public final void testGetMessages_en_GB()
 	{
 		when( localeService.getUserLocale() ).thenReturn( Locale.UK );
-		final Map< String, Object > messages = localisationService.getMessages( BUNDLE_NAME );
+		final Map< String, Object > messages = localisationService.getMessages( null, BUNDLE_NAME );
 		assertThat( messages, hasEntry( "exists", "Exists" ) );
 		assertThat( messages, hasEntry( "colour", "Colour" ) );
 	}
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessages(java.lang.String)}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessages(Locale, java.lang.String)}
 	 * .
 	 */
 	@Test
 	public final void testGetMessages_en_US()
 	{
 		when( localeService.getUserLocale() ).thenReturn( Locale.US );
-		final Map< String, Object > messages = localisationService.getMessages( BUNDLE_NAME );
+		final Map< String, Object > messages = localisationService.getMessages( null, BUNDLE_NAME );
 		assertThat( messages, hasEntry( "exists", "Exists" ) );
 		assertThat( messages, hasEntry( "colour", "Color" ) );
 	}
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessages(java.lang.String)}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessages(Locale, java.lang.String)}
 	 * .
 	 */
 	@Test
 	public final void testGetMessages_fr()
 	{
 		when( localeService.getUserLocale() ).thenReturn( Locale.FRENCH );
-		final Map< String, Object > messages = localisationService.getMessages( BUNDLE_NAME );
+		final Map< String, Object > messages = localisationService.getMessages( null, BUNDLE_NAME );
 		assertThat( messages, hasEntry( "exists", "Existe" ) );
 		assertThat( messages, hasEntry( "colour", "Couleur" ) );
 	}
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessages(java.lang.String)}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessages(Locale, java.lang.String)}
 	 * .
 	 */
 	@Test
 	public final void testGetMessages_zh()
 	{
 		when( localeService.getUserLocale() ).thenReturn( Locale.CHINESE );
-		final Map< String, Object > messages = localisationService.getMessages( BUNDLE_NAME );
+		final Map< String, Object > messages = localisationService.getMessages( null, BUNDLE_NAME );
 		assertThat( messages, hasEntry( "exists", "exists" ) );
 		assertThat( messages, hasEntry( "colour", "colour" ) );
 	}
 
 	/**
 	 * Test method for
-	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessages(java.lang.String)}
+	 * {@link uk.co.bluegecko.core.service.base.common.localisation.resource.ResourceLocalisationService#getMessages(Locale, java.lang.String)}
 	 * .
 	 */
 	@Test
 	public final void testGetMessagesMissingBundle()
 	{
-		assertThat( localisationService.getMessages( MISSING_BUNDLE_NAME ).keySet(), is( empty() ) );
+		assertThat( localisationService.getMessages( null, MISSING_BUNDLE_NAME ).keySet(), is( empty() ) );
 	}
 
 }

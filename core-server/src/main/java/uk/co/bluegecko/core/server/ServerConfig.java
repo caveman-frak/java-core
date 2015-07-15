@@ -1,7 +1,7 @@
 package uk.co.bluegecko.core.server;
 
 
-import static uk.co.bluegecko.core.server.ServerConstants.PATH;
+import static uk.co.bluegecko.core.server.ServerConstants.BASE_PATH;
 import static uk.co.bluegecko.core.server.ServerConstants.PORT;
 import io.swagger.jaxrs.config.BeanConfig;
 import io.swagger.jaxrs.listing.ApiListingResource;
@@ -18,7 +18,7 @@ import org.springframework.core.env.Environment;
 
 @SuppressWarnings( "javadoc" )
 @Configuration
-@ApplicationPath( PATH )
+@ApplicationPath( BASE_PATH )
 @PropertySource( name = "applicationProperties", value = "application.properties", ignoreResourceNotFound = true )
 public class ServerConfig extends ResourceConfig implements EnvironmentAware
 {
@@ -48,7 +48,7 @@ public class ServerConfig extends ResourceConfig implements EnvironmentAware
 		beanConfig.setLicense( "Apache 2.0" );
 		beanConfig.setLicenseUrl( "http://www.apache.org/licenses/LICENSE-2.0.html" );
 		beanConfig.setHost( "red-dragon.local:" + PORT );
-		beanConfig.setBasePath( PATH );
+		beanConfig.setBasePath( BASE_PATH );
 		beanConfig.setVersion( environment.getProperty( "info.build.version", "0.0.0" ) );
 		beanConfig.setSchemes( new String[]
 			{ "http" } );
