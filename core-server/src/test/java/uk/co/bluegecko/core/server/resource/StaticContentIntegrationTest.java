@@ -3,7 +3,7 @@ package uk.co.bluegecko.core.server.resource;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import static uk.co.bluegecko.core.server.TestServerConstants.PORT;
+import static uk.co.bluegecko.core.server.config.TestServerConstants.PORT;
 
 import java.net.URL;
 

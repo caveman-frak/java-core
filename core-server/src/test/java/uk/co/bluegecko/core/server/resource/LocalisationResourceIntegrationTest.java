@@ -6,8 +6,10 @@ import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.startsWith;
 import static org.junit.Assert.assertThat;
-import static uk.co.bluegecko.core.server.ServerConstants.BASE_PATH;
-import static uk.co.bluegecko.core.server.TestServerConstants.PORT;
+import static uk.co.bluegecko.core.server.config.ServerConstants.BASE_PATH;
+import static uk.co.bluegecko.core.server.config.ServerConstants.TEST_PASSWORD;
+import static uk.co.bluegecko.core.server.config.ServerConstants.TEST_USER;
+import static uk.co.bluegecko.core.server.config.TestServerConstants.PORT;
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.BUNDLE;
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.BUNDLE_NAME;
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.LOCALE;
@@ -56,7 +58,8 @@ public class LocalisationResourceIntegrationTest
 	@Before
 	public void setUp() throws MalformedURLException, URISyntaxException
 	{
-		final HttpAuthenticationFeature authenticationFeature = HttpAuthenticationFeature.basic( "test", "test123" );
+		final HttpAuthenticationFeature authenticationFeature = HttpAuthenticationFeature.basic( TEST_USER,
+				TEST_PASSWORD );
 		final Configuration configuration = new ClientConfig().register( authenticationFeature );
 		target = ClientBuilder.newClient( configuration ).target(
 				new URL( "http", "localhost", PORT, BASE_PATH ).toURI() );

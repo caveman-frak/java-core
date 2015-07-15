@@ -1,6 +1,11 @@
 package uk.co.bluegecko.core.server.config;
 
 
+import static uk.co.bluegecko.core.server.config.ServerConstants.BASE_PATH;
+import static uk.co.bluegecko.core.server.config.ServerConstants.TEST_PASSWORD;
+import static uk.co.bluegecko.core.server.config.ServerConstants.TEST_REALM;
+import static uk.co.bluegecko.core.server.config.ServerConstants.TEST_USER;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -8,6 +13,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+import uk.co.bluegecko.core.server.config.ServerConstants.Roles;
 
 
 @SuppressWarnings( "javadoc" )
@@ -20,14 +27,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	@Override
 	protected void configure( final HttpSecurity http ) throws Exception
 	{
-		http.authorizeRequests().antMatchers( "/", "/api/swagger.json" ).permitAll().antMatchers( "/api/**" )
-				.hasRole( "USER" ).anyRequest().authenticated();
-		http.httpBasic().realmName( "My API" );
+		http.authorizeRequests().antMatchers( "/", BASE_PATH + "/swagger.json" ).permitAll()
+				.antMatchers( BASE_PATH + "/**" ).hasRole( "USER" ).anyRequest().authenticated();
+		http.httpBasic().realmName( TEST_REALM );
 	}
 
 	@Override
 	protected void configure( final AuthenticationManagerBuilder authenticationManagerBuilder ) throws Exception
 	{
-		authenticationManagerBuilder.inMemoryAuthentication().withUser( "test" ).password( "test123" ).roles( "USER" );
+		authenticationManagerBuilder.inMemoryAuthentication().withUser( TEST_USER ).password( TEST_PASSWORD )
+				.roles( Roles.USER );
 	}
 }

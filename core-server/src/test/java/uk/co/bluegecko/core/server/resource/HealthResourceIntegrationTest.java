@@ -4,8 +4,10 @@ package uk.co.bluegecko.core.server.resource;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import static uk.co.bluegecko.core.server.ServerConstants.BASE_PATH;
-import static uk.co.bluegecko.core.server.TestServerConstants.PORT;
+import static uk.co.bluegecko.core.server.config.ServerConstants.BASE_PATH;
+import static uk.co.bluegecko.core.server.config.ServerConstants.TEST_PASSWORD;
+import static uk.co.bluegecko.core.server.config.ServerConstants.TEST_USER;
+import static uk.co.bluegecko.core.server.config.TestServerConstants.PORT;
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Health.INFO;
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Health.PATH;
 
@@ -43,7 +45,7 @@ import uk.co.bluegecko.core.server.model.base.BaseHealth;
 public class HealthResourceIntegrationTest
 {
 
-	private final RestTemplate restTemplate = new TestRestTemplate( "test", "test123" );
+	private final RestTemplate restTemplate = new TestRestTemplate( TEST_USER, TEST_PASSWORD );
 
 	private URI serverUrl;
 

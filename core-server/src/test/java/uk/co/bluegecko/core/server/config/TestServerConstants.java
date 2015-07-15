@@ -1,4 +1,6 @@
-package uk.co.bluegecko.core.server;
+package uk.co.bluegecko.core.server.config;
+
+import uk.co.bluegecko.core.server.config.ServerConstants;
 
 
 @SuppressWarnings( "javadoc" )

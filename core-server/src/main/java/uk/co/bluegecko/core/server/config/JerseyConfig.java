@@ -1,8 +1,8 @@
 package uk.co.bluegecko.core.server.config;
 
 
-import static uk.co.bluegecko.core.server.ServerConstants.BASE_PATH;
-import static uk.co.bluegecko.core.server.ServerConstants.PORT;
+import static uk.co.bluegecko.core.server.config.ServerConstants.BASE_PATH;
+import static uk.co.bluegecko.core.server.config.ServerConstants.PORT;
 import io.swagger.jaxrs.config.BeanConfig;
 import io.swagger.jaxrs.listing.ApiListingResource;
 import io.swagger.jaxrs.listing.SwaggerSerializers;
