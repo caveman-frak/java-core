@@ -2,7 +2,7 @@ package uk.co.bluegecko.core.server.resource;
 
 
 @SuppressWarnings( "javadoc" )
-public interface WebResourceConstants
+public interface ResourceConstants
 {
 
 	public static final String ROOT = "/";

@@ -1,4 +1,4 @@
-package uk.co.bluegecko.core.server.web;
+package uk.co.bluegecko.core.server.config;
 
 
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 @EnableWebSecurity
 @Order( Ordered.LOWEST_PRECEDENCE - 6 )
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter
+public class SecurityConfig extends WebSecurityConfigurerAdapter
 {
 
 	@Override

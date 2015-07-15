@@ -17,7 +17,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.htmlunit.MockMvcWebClientBuilder;
 import org.springframework.web.context.WebApplicationContext;
 
-import uk.co.bluegecko.core.Application;
+import uk.co.bluegecko.core.ApplicationConfig;
 
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.DomText;
@@ -27,7 +27,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlParagraph;
 
 @SuppressWarnings( "javadoc" )
 @RunWith( SpringJUnit4ClassRunner.class )
-@SpringApplicationConfiguration( classes = Application.class )
+@SpringApplicationConfiguration( classes = ApplicationConfig.class )
 @WebAppConfiguration
 @IntegrationTest( "server.port=" + PORT )
 public class StaticContentIntegrationTest

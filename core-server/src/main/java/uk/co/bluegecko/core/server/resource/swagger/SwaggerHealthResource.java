@@ -1,15 +1,16 @@
 package uk.co.bluegecko.core.server.resource.swagger;
 
 
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Health.GC;
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Health.INFO;
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Health.PATH;
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Health.TAG;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Health.GC;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Health.INFO;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Health.PATH;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Health.TAG;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
+import javax.inject.Singleton;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -19,12 +20,13 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import uk.co.bluegecko.core.server.model.Health;
+import uk.co.bluegecko.core.server.model.base.BaseHealth;
 import uk.co.bluegecko.core.server.resource.HealthResource;
 import uk.co.bluegecko.core.server.service.HealthService;
 
 
 @SuppressWarnings( "javadoc" )
+@Singleton
 @Api( tags = TAG )
 @Path( PATH )
 public class SwaggerHealthResource extends HealthResource
@@ -39,9 +41,9 @@ public class SwaggerHealthResource extends HealthResource
 	@Override
 	@ApiOperation( nickname = "health", value = "Retreive system health information", tags = TAG,
 			notes = "Returns information on architecture, operating system, and memory / processor usage",
-			response = Health.class )
+			response = BaseHealth.class )
 	@ApiResponses(
-		{ @ApiResponse( code = 200, message = "System Health", response = Health.class ),
+		{ @ApiResponse( code = 200, message = "System Health", response = BaseHealth.class ),
 				@ApiResponse( code = 500, message = "Internal Error" ) } )
 	@GET
 	@Produces(

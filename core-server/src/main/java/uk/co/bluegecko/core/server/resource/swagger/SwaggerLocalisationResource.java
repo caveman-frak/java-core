@@ -1,14 +1,14 @@
 package uk.co.bluegecko.core.server.resource.swagger;
 
 
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Location.BUNDLE;
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Location.BUNDLE_NAME;
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Location.LOCALE;
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Location.MESSAGE;
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Location.MESSAGE_KEY;
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Location.PARAMETERS;
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Location.PATH;
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Location.TAG;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.BUNDLE;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.BUNDLE_NAME;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.LOCALE;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.MESSAGE;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.MESSAGE_KEY;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.PARAMETERS;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.PATH;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.TAG;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.inject.Singleton;
 import javax.ws.rs.GET;
 import javax.ws.rs.MatrixParam;
 import javax.ws.rs.Path;
@@ -36,6 +37,7 @@ import uk.co.bluegecko.core.service.common.LocalisationService;
 
 
 @SuppressWarnings( "javadoc" )
+@Singleton
 @Api( tags = TAG )
 @Path( PATH )
 public class SwaggerLocalisationResource extends LocalisationResource
@@ -52,6 +54,7 @@ public class SwaggerLocalisationResource extends LocalisationResource
 			notes = "Retrieve a localised message bundle", response = Map.class )
 	@ApiResponses(
 		{ @ApiResponse( code = 200, message = "Localised Message Bundle", response = Map.class ),
+				@ApiResponse( code = 204, message = "Missing Bundle" ),
 				@ApiResponse( code = 500, message = "Internal Error" ) } )
 	@GET
 	@Produces(
@@ -71,7 +74,7 @@ public class SwaggerLocalisationResource extends LocalisationResource
 				@ApiResponse( code = 500, message = "Internal Error" ) } )
 	@GET
 	@Produces(
-		{ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.TEXT_PLAIN } )
+		{ MediaType.TEXT_PLAIN } )
 	@Path( MESSAGE )
 	public Response message( @Context final HttpHeaders headers, @QueryParam( LOCALE ) final Locale locale,
 			@PathParam( BUNDLE_NAME ) final String bundleName, @PathParam( MESSAGE_KEY ) final String messageKey,

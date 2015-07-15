@@ -7,8 +7,8 @@ import static org.hamcrest.Matchers.startsWith;
 import static org.junit.Assert.assertThat;
 import static uk.co.bluegecko.core.server.ServerConstants.BASE_PATH;
 import static uk.co.bluegecko.core.server.TestServerConstants.PORT;
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Health.GC;
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Health.PATH;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Health.GC;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Health.PATH;
 import io.swagger.models.Swagger;
 import io.swagger.parser.Swagger20Parser;
 
@@ -33,12 +33,12 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import uk.co.bluegecko.core.Application;
+import uk.co.bluegecko.core.ApplicationConfig;
 
 
 @SuppressWarnings( "javadoc" )
 @RunWith( SpringJUnit4ClassRunner.class )
-@SpringApplicationConfiguration( classes = Application.class )
+@SpringApplicationConfiguration( classes = ApplicationConfig.class )
 @WebAppConfiguration
 @IntegrationTest( "server.port=" + PORT )
 public class SwaggerIntegrationTest

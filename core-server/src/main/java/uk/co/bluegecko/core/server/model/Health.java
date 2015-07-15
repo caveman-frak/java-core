@@ -3,100 +3,31 @@ package uk.co.bluegecko.core.server.model;
 
 import java.lang.management.MemoryUsage;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-
 
 @SuppressWarnings( "javadoc" )
-@XmlRootElement
-@XmlAccessorType( XmlAccessType.FIELD )
-public class Health implements SwaggerHealth
+public interface Health
 {
 
-	private String status;
-	private String architecture;
-	private String operatingSystem;
-	private Memory heap;
-	private Memory nonHeap;
-	private String systemLoadAverage;
+	public void setSystemLoadAverage( final String systemLoadAverage );
 
-	public Health()
-	{
-		super();
-	}
+	public String getSystemLoadAverage();
 
-	public Health( final String status )
-	{
-		this();
+	public void setNonHeapMemory( final MemoryUsage nonHeap );
 
-		this.status = status;
-	}
+	public Memory getNonHeapMemory();
 
-	@Override
-	public String getStatus()
-	{
-		return status;
-	}
+	public void setHeapMemory( final MemoryUsage heap );
 
-	@Override
-	public String getArchitecture()
-	{
-		return architecture;
-	}
+	public Memory getHeapMemory();
 
-	@Override
-	public void setArchitecture( final String architecture )
-	{
-		this.architecture = architecture;
-	}
+	public void setOperatingSystem( final String operatingSystem );
 
-	@Override
-	public String getOperatingSystem()
-	{
-		return operatingSystem;
-	}
+	public String getOperatingSystem();
 
-	@Override
-	public void setOperatingSystem( final String operatingSystem )
-	{
-		this.operatingSystem = operatingSystem;
-	}
+	public void setArchitecture( final String architecture );
 
-	@Override
-	public SwaggerMemory getHeapMemory()
-	{
-		return heap;
-	}
+	public String getArchitecture();
 
-	@Override
-	public void setHeapMemory( final MemoryUsage heap )
-	{
-		this.heap = new Memory( heap );
-	}
-
-	@Override
-	public SwaggerMemory getNonHeapMemory()
-	{
-		return nonHeap;
-	}
-
-	@Override
-	public void setNonHeapMemory( final MemoryUsage nonHeap )
-	{
-		this.nonHeap = new Memory( nonHeap );
-	}
-
-	@Override
-	public String getSystemLoadAverage()
-	{
-		return systemLoadAverage;
-	}
-
-	@Override
-	public void setSystemLoadAverage( final String systemLoadAverage )
-	{
-		this.systemLoadAverage = systemLoadAverage;
-	}
+	public String getStatus();
 
 }

@@ -1,4 +1,4 @@
-package uk.co.bluegecko.core.server;
+package uk.co.bluegecko.core.server.config;
 
 
 import static uk.co.bluegecko.core.server.ServerConstants.BASE_PATH;
@@ -20,10 +20,10 @@ import org.springframework.core.env.Environment;
 @Configuration
 @ApplicationPath( BASE_PATH )
 @PropertySource( name = "applicationProperties", value = "application.properties", ignoreResourceNotFound = true )
-public class ServerConfig extends ResourceConfig implements EnvironmentAware
+public class JerseyConfig extends ResourceConfig implements EnvironmentAware
 {
 
-	public ServerConfig()
+	public JerseyConfig()
 	{
 		// register packages
 		packages( "uk.co.bluegecko.core.server" );

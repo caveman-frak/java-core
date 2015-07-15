@@ -1,7 +1,6 @@
 package uk.co.bluegecko.core.server.resource;
 
 
-import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.hasEntry;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.is;
@@ -9,20 +8,19 @@ import static org.hamcrest.Matchers.startsWith;
 import static org.junit.Assert.assertThat;
 import static uk.co.bluegecko.core.server.ServerConstants.BASE_PATH;
 import static uk.co.bluegecko.core.server.TestServerConstants.PORT;
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Location.BUNDLE;
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Location.BUNDLE_NAME;
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Location.LOCALE;
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Location.MESSAGE;
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Location.MESSAGE_KEY;
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Location.PARAMETERS;
-import static uk.co.bluegecko.core.server.resource.WebResourceConstants.Location.PATH;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.BUNDLE;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.BUNDLE_NAME;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.LOCALE;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.MESSAGE;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.MESSAGE_KEY;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.PARAMETERS;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.PATH;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -42,12 +40,12 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import uk.co.bluegecko.core.Application;
+import uk.co.bluegecko.core.ApplicationConfig;
 
 
 @SuppressWarnings( "javadoc" )
 @RunWith( SpringJUnit4ClassRunner.class )
-@SpringApplicationConfiguration( classes = Application.class )
+@SpringApplicationConfiguration( classes = ApplicationConfig.class )
 @WebAppConfiguration
 @IntegrationTest( "server.port=" + PORT )
 public class LocalisationResourceIntegrationTest
@@ -96,8 +94,7 @@ public class LocalisationResourceIntegrationTest
 		final Response response = target.path( PATH + BUNDLE ).resolveTemplate( BUNDLE_NAME, "XXXX" )
 				.request( MediaType.APPLICATION_JSON_TYPE ).get();
 
-		assertThat( response.getStatus(), is( Status.OK.getStatusCode() ) );
-		assertThat( ( Set< ? > ) response.readEntity( Map.class ).keySet(), empty() );
+		assertThat( response.getStatus(), is( Status.NO_CONTENT.getStatusCode() ) );
 	}
 
 	@Test

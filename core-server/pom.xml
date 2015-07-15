@@ -10,7 +10,7 @@
 	<name>Core Server</name>
 	<description>Core Server</description>
 	<properties>
-		<spring-boot.main-class>uk.co.bluegecko.core.Application</spring-boot.main-class>
+		<spring-boot.main-class>uk.co.bluegecko.core.ApplicationConfig</spring-boot.main-class>
 	</properties>
 	<dependencies>
 		<!-- Project Dependencies -->
