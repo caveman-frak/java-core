@@ -46,9 +46,9 @@ public class SwaggerHealthResource extends HealthResource
 		{ @ApiResponse( code = 200, message = "System Health", response = BaseHealth.class ),
 				@ApiResponse( code = 500, message = "Internal Error" ) } )
 	@GET
+	@Path( INFO )
 	@Produces(
 		{ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML } )
-	@Path( INFO )
 	public Response health()
 	{
 		return super.health();

@@ -117,6 +117,7 @@
 		<swagger.version>1.5.0</swagger.version>
 		<swagger-parser.version>1.0.8</swagger-parser.version>
 		<spring-htmlunit.version>1.0.0.RC1</spring-htmlunit.version>
+		<bouncy-castle.version>1.52</bouncy-castle.version>
 		<!-- properties for versions of web jars -->
 		<swagger-ui.version>2.1.0</swagger-ui.version>
 		<!-- properties for versions of plug-ins -->
@@ -341,6 +342,27 @@
 							</goals>
 						</execution>
 					</executions>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>pl.project13.maven</groupId>
+					<artifactId>git-commit-id-plugin</artifactId>
+					<version>2.1.11</version>
+					<executions>
+						<execution>
+							<goals>
+								<goal>revision</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<verbose>false</verbose>
+						<dateFormat>dd MMM yyyy HH:mm</dateFormat>
+						<generateGitPropertiesFile>true</generateGitPropertiesFile>
+						<generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
+					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -421,6 +443,11 @@
 				<groupId>org.springframework.test.htmlunit</groupId>
 				<artifactId>spring-test-htmlunit</artifactId>
 				<version>${spring-htmlunit.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.bouncycastle</groupId>
+				<artifactId>bcprov-jdk15on</artifactId>
+				<version>${bouncy-castle.version}</version>
 			</dependency>
 			<!-- Web Jars -->
 			<dependency>

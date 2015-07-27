@@ -12,8 +12,8 @@ public interface ResourceConstants
 
 		public static final String TAG = "health";
 
-		public static final String PATH = "/health-info";
-		public static final String INFO = ROOT;
+		public static final String PATH = "/health";
+		public static final String INFO = "/info";
 		public static final String GC = "/gc";
 
 	}

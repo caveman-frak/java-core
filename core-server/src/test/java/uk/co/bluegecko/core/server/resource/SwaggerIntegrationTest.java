@@ -8,6 +8,7 @@ import static org.junit.Assert.assertThat;
 import static uk.co.bluegecko.core.server.config.ServerConstants.BASE_PATH;
 import static uk.co.bluegecko.core.server.config.TestServerConstants.PORT;
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Health.GC;
+import static uk.co.bluegecko.core.server.resource.ResourceConstants.Health.INFO;
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Health.PATH;
 import io.swagger.models.Swagger;
 import io.swagger.parser.Swagger20Parser;
@@ -68,7 +69,7 @@ public class SwaggerIntegrationTest
 		final Swagger20Parser parser = new Swagger20Parser();
 		final Swagger swagger = parser.parse( entity );
 		assertThat( swagger.getSwagger(), is( "2.0" ) );
-		assertThat( swagger.getPaths(), hasKey( PATH ) );
+		assertThat( swagger.getPaths(), hasKey( PATH + INFO ) );
 		assertThat( swagger.getPaths(), hasKey( PATH + GC ) );
 	}
 

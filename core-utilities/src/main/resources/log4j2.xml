@@ -26,10 +26,14 @@
 		</Failover>
 	</Appenders>
 	<Loggers>
+		<Logger name="org.springframework" level="INFO" additivity="true">
+			<AppenderRef ref="Console" />
+		</Logger>
 		<Logger name="uk.co.bluegecko" level="INFO" additivity="true">
 			<AppenderRef ref="Console" />
 		</Logger>
 		<Logger name="uk.co.bluegecko.core.aspect" level="DEBUG" additivity="false">
+			<AppenderRef ref="Failover" />
 			<AppenderRef ref="Console" />
 		</Logger>
 		<Root level="warn">

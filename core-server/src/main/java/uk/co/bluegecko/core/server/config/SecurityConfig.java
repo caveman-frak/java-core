@@ -27,8 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	@Override
 	protected void configure( final HttpSecurity http ) throws Exception
 	{
-		http.authorizeRequests().antMatchers( "/", BASE_PATH + "/swagger.json" ).permitAll()
-				.antMatchers( BASE_PATH + "/**" ).hasRole( "USER" ).anyRequest().authenticated();
+		http.authorizeRequests().antMatchers( "/**", BASE_PATH + "/swagger.json" ).permitAll()
+				.antMatchers( BASE_PATH + "/**" ).hasRole( Roles.USER ).anyRequest().authenticated();
 		http.httpBasic().realmName( TEST_REALM );
 	}
 
@@ -36,6 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	protected void configure( final AuthenticationManagerBuilder authenticationManagerBuilder ) throws Exception
 	{
 		authenticationManagerBuilder.inMemoryAuthentication().withUser( TEST_USER ).password( TEST_PASSWORD )
-				.roles( Roles.USER );
+				.roles( Roles.USER ).and().withUser( "admin" ).password( "admin123" ).roles( Roles.USER, Roles.ADMIN )
+				.and().withUser( "root" ).password( "root123" ).roles( Roles.USER, Roles.ADMIN, Roles.SUPERUSER );
 	}
 }
