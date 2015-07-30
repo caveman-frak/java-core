@@ -39,8 +39,7 @@ public class StaticContentIntegrationTest
 	@Test
 	public void fetchIndexPageAsHtml() throws Exception
 	{
-		try (WebClient webClient = MockMvcWebClientBuilder.webAppContextSetup( context ).contextPath( "" )
-				.createWebClient())
+		try (WebClient webClient = MockMvcWebClientBuilder.webAppContextSetup( context ).contextPath( "" ).build())
 		{
 			final HtmlPage page = webClient.getPage( new URL( "http", "localhost", PORT, "/index.html" ) );
 
@@ -54,8 +53,7 @@ public class StaticContentIntegrationTest
 	@Test
 	public void fetchTestPageAsHtml() throws Exception
 	{
-		try (WebClient webClient = MockMvcWebClientBuilder.webAppContextSetup( context ).contextPath( "" )
-				.createWebClient())
+		try (WebClient webClient = MockMvcWebClientBuilder.webAppContextSetup( context ).contextPath( "" ).build())
 		{
 			final HtmlPage page = webClient.getPage( new URL( "http", "localhost", PORT, "/test.html" ) );
 

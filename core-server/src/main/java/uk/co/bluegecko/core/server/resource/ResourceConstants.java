@@ -25,7 +25,7 @@ public interface ResourceConstants
 		public static final String LOCALE = "locale";
 		public static final String MESSAGE_KEY = "messageKey";
 		public static final String BUNDLE_NAME = "bundleName";
-		public static final String PARAMETERS = "p";
+		public static final String PARAMETERS = "params";
 
 		public static final String PATH = "/i18n";
 		public static final String BUNDLE = "/{" + BUNDLE_NAME + "}";

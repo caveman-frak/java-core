@@ -20,7 +20,6 @@ import java.util.Map;
 
 import javax.inject.Singleton;
 import javax.ws.rs.GET;
-import javax.ws.rs.MatrixParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -78,7 +77,7 @@ public class SwaggerLocalisationResource extends LocalisationResource
 	@Path( MESSAGE )
 	public Response message( @Context final HttpHeaders headers, @QueryParam( LOCALE ) final Locale locale,
 			@PathParam( BUNDLE_NAME ) final String bundleName, @PathParam( MESSAGE_KEY ) final String messageKey,
-			@MatrixParam( PARAMETERS ) final List< String > parameters )
+			@QueryParam( PARAMETERS ) final List< String > parameters )
 	{
 		return super.message( headers, locale, bundleName, messageKey, parameters );
 	}

@@ -9,6 +9,7 @@ import io.swagger.jaxrs.listing.SwaggerSerializers;
 
 import javax.ws.rs.ApplicationPath;
 
+import org.glassfish.jersey.linking.DeclarativeLinkingFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +28,7 @@ public class JerseyConfig extends ResourceConfig implements EnvironmentAware
 	{
 		// register packages
 		packages( "uk.co.bluegecko.core.server" );
+		register( DeclarativeLinkingFeature.class );
 	}
 
 	@Override

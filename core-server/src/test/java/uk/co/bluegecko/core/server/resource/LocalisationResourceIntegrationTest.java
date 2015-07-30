@@ -139,11 +139,11 @@ public class LocalisationResourceIntegrationTest
 	public void fetchMessageWithParams()
 	{
 		final Response response = target.path( PATH + MESSAGE ).resolveTemplate( BUNDLE_NAME, "i18n.test" )
-				.resolveTemplate( MESSAGE_KEY, "greeting" ).matrixParam( PARAMETERS, "Bob" )
+				.resolveTemplate( MESSAGE_KEY, "greeting" ).queryParam( PARAMETERS, "Bob", "Tom" )
 				.request( MediaType.TEXT_PLAIN ).get();
 
 		assertThat( response.getStatus(), is( Status.OK.getStatusCode() ) );
-		assertThat( response.readEntity( String.class ), is( "Hello Bob!" ) );
+		assertThat( response.readEntity( String.class ), is( "Hello Bob and Tom!" ) );
 	}
 
 }
