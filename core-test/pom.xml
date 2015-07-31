@@ -15,6 +15,7 @@
 		<unitils-dbunit.version>3.4.2</unitils-dbunit.version>
 		<p6spy.version>2.1.4</p6spy.version>
 		<slf4j-test.version>1.1.0</slf4j-test.version>
+		<cucumber.version>1.2.2</cucumber.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -59,6 +60,18 @@
 			<groupId>uk.org.lidalia</groupId>
 			<artifactId>slf4j-test</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-java8</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-spring</artifactId>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -81,6 +94,21 @@
 				<groupId>uk.org.lidalia</groupId>
 				<artifactId>slf4j-test</artifactId>
 				<version>${slf4j-test.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>info.cukes</groupId>
+				<artifactId>cucumber-java8</artifactId>
+				<version>${cucumber.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>info.cukes</groupId>
+				<artifactId>cucumber-junit</artifactId>
+				<version>${cucumber.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>info.cukes</groupId>
+				<artifactId>cucumber-spring</artifactId>
+				<version>${cucumber.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

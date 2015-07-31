@@ -3,21 +3,13 @@ package uk.co.bluegecko.core.server.resource;
 
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import static uk.co.bluegecko.core.server.config.TestServerConstants.PORT;
 
 import java.net.URL;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.htmlunit.MockMvcWebClientBuilder;
-import org.springframework.web.context.WebApplicationContext;
 
-import uk.co.bluegecko.core.ApplicationConfig;
+import uk.co.bluegecko.core.server.test.AbstractWebTest;
 
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.DomText;
@@ -26,22 +18,15 @@ import com.gargoylesoftware.htmlunit.html.HtmlParagraph;
 
 
 @SuppressWarnings( "javadoc" )
-@RunWith( SpringJUnit4ClassRunner.class )
-@SpringApplicationConfiguration( classes = ApplicationConfig.class )
-@WebAppConfiguration
-@IntegrationTest( "server.port=" + PORT )
-public class StaticContentIntegrationTest
+public class StaticContentTest extends AbstractWebTest
 {
-
-	@Autowired
-	private WebApplicationContext context;
 
 	@Test
 	public void fetchIndexPageAsHtml() throws Exception
 	{
-		try (WebClient webClient = MockMvcWebClientBuilder.webAppContextSetup( context ).contextPath( "" ).build())
+		try (WebClient webClient = MockMvcWebClientBuilder.webAppContextSetup( getContext() ).contextPath( "" ).build())
 		{
-			final HtmlPage page = webClient.getPage( new URL( "http", "localhost", PORT, "/index.html" ) );
+			final HtmlPage page = webClient.getPage( new URL( "http", "localhost", getHttpPort(), "/index.html" ) );
 
 			assertThat( page.getTitleText(), is( "Index Page" ) );
 			assertThat( page.getElementById( "title" ).getTextContent(), is( "Index Page" ) );
@@ -53,9 +38,9 @@ public class StaticContentIntegrationTest
 	@Test
 	public void fetchTestPageAsHtml() throws Exception
 	{
-		try (WebClient webClient = MockMvcWebClientBuilder.webAppContextSetup( context ).contextPath( "" ).build())
+		try (WebClient webClient = MockMvcWebClientBuilder.webAppContextSetup( getContext() ).contextPath( "" ).build())
 		{
-			final HtmlPage page = webClient.getPage( new URL( "http", "localhost", PORT, "/test.html" ) );
+			final HtmlPage page = webClient.getPage( new URL( "http", "localhost", getHttpPort(), "/test.html" ) );
 
 			assertThat( page.getTitleText(), is( "Test Page" ) );
 			assertThat(

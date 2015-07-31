@@ -6,7 +6,6 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.startsWith;
 import static org.junit.Assert.assertThat;
 import static uk.co.bluegecko.core.server.config.ServerConstants.BASE_PATH;
-import static uk.co.bluegecko.core.server.config.TestServerConstants.PORT;
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Health.GC;
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Health.INFO;
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Health.PATH;
@@ -28,21 +27,12 @@ import javax.ws.rs.core.Response.Status;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 
-import uk.co.bluegecko.core.ApplicationConfig;
+import uk.co.bluegecko.core.server.test.AbstractWebTest;
 
 
 @SuppressWarnings( "javadoc" )
-@RunWith( SpringJUnit4ClassRunner.class )
-@SpringApplicationConfiguration( classes = ApplicationConfig.class )
-@WebAppConfiguration
-@IntegrationTest( "server.port=" + PORT )
-public class SwaggerIntegrationTest
+public class SwaggerTest extends AbstractWebTest
 {
 
 	private WebTarget target;
@@ -50,7 +40,7 @@ public class SwaggerIntegrationTest
 	@Before
 	public void setUp() throws MalformedURLException, URISyntaxException
 	{
-		target = ClientBuilder.newClient().target( new URL( "http", "localhost", PORT, BASE_PATH ).toURI() );
+		target = ClientBuilder.newClient().target( new URL( "http", "localhost", getHttpPort(), BASE_PATH ).toURI() );
 	}
 
 	@Test

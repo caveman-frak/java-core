@@ -7,7 +7,6 @@ import static org.junit.Assert.assertThat;
 import static uk.co.bluegecko.core.server.config.ServerConstants.BASE_PATH;
 import static uk.co.bluegecko.core.server.config.ServerConstants.TEST_PASSWORD;
 import static uk.co.bluegecko.core.server.config.ServerConstants.TEST_USER;
-import static uk.co.bluegecko.core.server.config.TestServerConstants.PORT;
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Health.INFO;
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Health.PATH;
 
@@ -21,28 +20,19 @@ import javax.ws.rs.core.HttpHeaders;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import uk.co.bluegecko.core.ApplicationConfig;
 import uk.co.bluegecko.core.server.interceptor.AcceptHeaderHttpRequestInterceptor;
 import uk.co.bluegecko.core.server.model.base.BaseHealth;
+import uk.co.bluegecko.core.server.test.AbstractWebTest;
 
 
 @SuppressWarnings( "javadoc" )
-@RunWith( SpringJUnit4ClassRunner.class )
-@SpringApplicationConfiguration( classes = ApplicationConfig.class )
-@WebAppConfiguration
-@IntegrationTest( "server.port=" + PORT )
-public class HealthResourceIntegrationTest
+public class HealthResourceTest extends AbstractWebTest
 {
 
 	private final RestTemplate restTemplate = new TestRestTemplate( TEST_USER, TEST_PASSWORD );
@@ -52,7 +42,7 @@ public class HealthResourceIntegrationTest
 	@Before
 	public void setUp() throws MalformedURLException, URISyntaxException
 	{
-		serverUrl = new URL( "http", "localhost", PORT, BASE_PATH + PATH + INFO ).toURI();
+		serverUrl = new URL( "http", "localhost", getHttpPort(), BASE_PATH + PATH + INFO ).toURI();
 	}
 
 	@Test

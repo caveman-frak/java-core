@@ -9,7 +9,6 @@ import static org.junit.Assert.assertThat;
 import static uk.co.bluegecko.core.server.config.ServerConstants.BASE_PATH;
 import static uk.co.bluegecko.core.server.config.ServerConstants.TEST_PASSWORD;
 import static uk.co.bluegecko.core.server.config.ServerConstants.TEST_USER;
-import static uk.co.bluegecko.core.server.config.TestServerConstants.PORT;
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.BUNDLE;
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.BUNDLE_NAME;
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.LOCALE;
@@ -36,21 +35,12 @@ import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.IntegrationTest;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 
-import uk.co.bluegecko.core.ApplicationConfig;
+import uk.co.bluegecko.core.server.test.AbstractWebTest;
 
 
 @SuppressWarnings( "javadoc" )
-@RunWith( SpringJUnit4ClassRunner.class )
-@SpringApplicationConfiguration( classes = ApplicationConfig.class )
-@WebAppConfiguration
-@IntegrationTest( "server.port=" + PORT )
-public class LocalisationResourceIntegrationTest
+public class LocalisationResourceTest extends AbstractWebTest
 {
 
 	private WebTarget target;
@@ -62,7 +52,7 @@ public class LocalisationResourceIntegrationTest
 				TEST_PASSWORD );
 		final Configuration configuration = new ClientConfig().register( authenticationFeature );
 		target = ClientBuilder.newClient( configuration ).target(
-				new URL( "http", "localhost", PORT, BASE_PATH ).toURI() );
+				new URL( "http", "localhost", getHttpPort(), BASE_PATH ).toURI() );
 	}
 
 	@SuppressWarnings( "unchecked" )
