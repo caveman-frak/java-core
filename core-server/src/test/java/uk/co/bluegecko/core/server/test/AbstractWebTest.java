@@ -16,8 +16,8 @@ import uk.co.bluegecko.core.ApplicationConfig;
 @RunWith( SpringJUnit4ClassRunner.class )
 @SpringApplicationConfiguration( classes = ApplicationConfig.class )
 @WebIntegrationTest( randomPort = true, value =
-	{ "server.port=0", "management.port=0", "shell.ssh.port=0" } )
-public abstract class AbstractWebTest
+	{ "server.port=0", "management.port=0", "shell.ssh.port=0", "shell.telnet.port=0" } )
+public abstract class AbstractWebTest implements ServerPorts
 {
 
 	@Autowired
@@ -27,20 +27,38 @@ public abstract class AbstractWebTest
 	private int httpPort;
 	@Value( "${local.management.port}" )
 	private int jmxPort;
+	// @Value( "${local.crash.ssh.port}" )
+	private int sshPort;
+	// @Value( "${local.crash.telnet.port}" )
+	private int telnetPort;
 
 	protected WebApplicationContext getContext()
 	{
 		return context;
 	}
 
-	protected int getHttpPort()
+	@Override
+	public int getHttpPort()
 	{
 		return httpPort;
 	}
 
-	protected int getJmxPort()
+	@Override
+	public int getJmxPort()
 	{
 		return jmxPort;
+	}
+
+	@Override
+	public int getSshPort()
+	{
+		return sshPort;
+	}
+
+	@Override
+	public int getTelnetPort()
+	{
+		return telnetPort;
 	}
 
 }

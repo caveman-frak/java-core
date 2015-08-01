@@ -17,11 +17,12 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+
+import uk.co.bluegecko.core.test.cucumber.Cucumber;
 
 
 @SuppressWarnings( "javadoc" )
-@Component
+@Cucumber
 @Scope( "cucumber-glue" )
 public class LocalisationWebClient extends WebClient
 {

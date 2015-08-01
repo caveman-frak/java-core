@@ -15,43 +15,45 @@ import javax.ws.rs.core.Configuration;
 
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
-import org.junit.Before;
 
 
 @SuppressWarnings( "javadoc" )
-public class AbstractIntegrationTest
+public abstract class AbstractIntegrationTest implements ServerPorts
 {
 
-	private WebTarget target;
-
-	protected int getHttpPort()
+	@Override
+	public int getHttpPort()
 	{
 		return Integer.valueOf( System.getProperty( "test.http.port" ) );
 	}
 
-	protected int getJmxPort()
+	@Override
+	public int getJmxPort()
 	{
 		return Integer.valueOf( System.getProperty( "test.jmx.port" ) );
 	}
 
-	protected int getSshPort()
+	@Override
+	public int getSshPort()
 	{
 		return Integer.valueOf( System.getProperty( "test.ssh.port" ) );
 	}
 
-	protected WebTarget getTarget()
+	@Override
+	public int getTelnetPort()
 	{
-		return target;
+		return Integer.valueOf( System.getProperty( "test.telnet.port" ) );
 	}
 
-	@Before
-	public void setUp() throws MalformedURLException, URISyntaxException
+	protected WebTarget getTarget() throws URISyntaxException, MalformedURLException
 	{
 		final HttpAuthenticationFeature authenticationFeature = HttpAuthenticationFeature.basic( TEST_USER,
 				TEST_PASSWORD );
 		final Configuration configuration = new ClientConfig().register( authenticationFeature );
-		target = ClientBuilder.newClient( configuration ).target(
+
+		final WebTarget target = ClientBuilder.newClient( configuration ).target(
 				new URL( "http", "localhost", getHttpPort(), BASE_PATH ).toURI() );
+		return target;
 	}
 
 }

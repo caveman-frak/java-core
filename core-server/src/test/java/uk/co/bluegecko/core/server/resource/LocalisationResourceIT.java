@@ -10,6 +10,8 @@ import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.BU
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.BUNDLE_NAME;
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.PATH;
 
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.util.Map;
 
 import javax.ws.rs.core.HttpHeaders;
@@ -28,7 +30,7 @@ public class LocalisationResourceIT extends AbstractIntegrationTest
 
 	@SuppressWarnings( "unchecked" )
 	@Test
-	public void fetchBundle()
+	public void fetchBundle() throws MalformedURLException, URISyntaxException
 	{
 		final Response response = getTarget().path( PATH + BUNDLE ).resolveTemplate( BUNDLE_NAME, "i18n.common" )
 				.request( MediaType.APPLICATION_JSON_TYPE ).get();

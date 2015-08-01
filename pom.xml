@@ -342,12 +342,23 @@
 								<goal>integration-test</goal>
 							</goals>
 						</execution>
+						<execution>
+							<id>default-verify</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>verify</goal>
+							</goals>
+						</execution>
 					</executions>
 					<configuration>
 						<systemPropertyVariables>
+							<!-- store ports for use in tests -->
 							<test.http.port>${http.port}</test.http.port>
 							<test.jmx.port>${jmx.port}</test.jmx.port>
 							<test.ssh.port>${ssh.port}</test.ssh.port>
+							<test.telnet.port>${telent.port}</test.telnet.port>
+							<!-- activate cucumber profile -->
+							<spring.profiles.active>cucumber</spring.profiles.active>
 						</systemPropertyVariables>
 						<failIfNoTests>true</failIfNoTests>
 					</configuration>
@@ -368,6 +379,7 @@
 									<portName>http.port</portName>
 									<portName>jmx.port</portName>
 									<portName>ssh.port</portName>
+									<portName>telnet.port</portName>
 								</portNames>
 							</configuration>
 						</execution>
@@ -397,6 +409,7 @@
 									<argument>--server.port=${http.port}</argument>
 									<argument>--management.port=${jmx.port}</argument>
 									<argument>--shell.ssh.port=${ssh.port}</argument>
+									<argument>--shell.telnet.port=${telnet.port}</argument>
 								</arguments>
 							</configuration>
 						</execution>

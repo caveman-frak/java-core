@@ -6,24 +6,27 @@ import static org.junit.Assert.assertThat;
 
 import java.util.Locale;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import uk.co.bluegecko.core.server.cucumber.hooks.LocalisationWebClient;
+import uk.co.bluegecko.core.test.cucumber.Cucumber;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 
 @SuppressWarnings( "javadoc" )
+@Cucumber
 public class LocalisationStepDefinitions
 {
 
-	private final LocalisationWebClient webClient;
+	@Autowired
+	private LocalisationWebClient webClient;
 	private Locale locale;
 	private String key;
 
 	public LocalisationStepDefinitions()
-	{
-		webClient = new LocalisationWebClient();
-	}
+	{}
 
 	@Given( "^Localised colours have been defined for \"(.*?)\"$" )
 	public void localisedColoursHaveBeenDefinedFor( final String locale ) throws Throwable
