@@ -9,8 +9,4 @@ public interface ServerPorts
 
 	public int getJmxPort();
 
-	public int getSshPort();
-
-	public int getTelnetPort();
-
 }

@@ -27,8 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	@Override
 	protected void configure( final HttpSecurity http ) throws Exception
 	{
-		http.authorizeRequests().antMatchers( "/*.*", BASE_PATH + "/swagger.json" ).permitAll()
-				.antMatchers( BASE_PATH + "/**" ).hasRole( Roles.USER ).anyRequest().authenticated();
+		http.authorizeRequests().antMatchers( "/*.*", "/images/**", "/css/**", "/js/**", BASE_PATH + "/swagger.json" )
+				.permitAll().antMatchers( BASE_PATH + "/**" ).hasRole( Roles.USER ).anyRequest().authenticated();
 		http.httpBasic().realmName( TEST_REALM );
 	}
 

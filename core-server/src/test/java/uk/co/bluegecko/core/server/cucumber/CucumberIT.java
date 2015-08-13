@@ -15,6 +15,4 @@ import cucumber.api.junit.Cucumber;
 	{ "pretty", "html:target/cucumber" }, snippets = SnippetType.CAMELCASE, glue =
 	{ "uk.co.bluegecko.core.server.cucumber.steps", "uk.co.bluegecko.core.server.cucumber.hooks" }, strict = true )
 public class CucumberIT extends AbstractIntegrationTest
-{
-
-}
+{}

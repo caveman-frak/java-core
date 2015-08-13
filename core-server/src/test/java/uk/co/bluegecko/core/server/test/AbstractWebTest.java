@@ -25,12 +25,8 @@ public abstract class AbstractWebTest implements ServerPorts
 
 	@Value( "${local.server.port}" )
 	private int httpPort;
-	@Value( "${local.management.port}" )
+	@Value( "${local.management.port:-1}" )
 	private int jmxPort;
-	// @Value( "${local.crash.ssh.port}" )
-	private int sshPort;
-	// @Value( "${local.crash.telnet.port}" )
-	private int telnetPort;
 
 	protected WebApplicationContext getContext()
 	{
@@ -47,18 +43,6 @@ public abstract class AbstractWebTest implements ServerPorts
 	public int getJmxPort()
 	{
 		return jmxPort;
-	}
-
-	@Override
-	public int getSshPort()
-	{
-		return sshPort;
-	}
-
-	@Override
-	public int getTelnetPort()
-	{
-		return telnetPort;
 	}
 
 }

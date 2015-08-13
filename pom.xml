@@ -355,8 +355,6 @@
 							<!-- store ports for use in tests -->
 							<test.http.port>${http.port}</test.http.port>
 							<test.jmx.port>${jmx.port}</test.jmx.port>
-							<test.ssh.port>${ssh.port}</test.ssh.port>
-							<test.telnet.port>${telent.port}</test.telnet.port>
 							<!-- activate cucumber profile -->
 							<spring.profiles.active>cucumber</spring.profiles.active>
 						</systemPropertyVariables>

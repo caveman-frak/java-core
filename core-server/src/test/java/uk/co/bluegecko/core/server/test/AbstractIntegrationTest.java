@@ -30,19 +30,7 @@ public abstract class AbstractIntegrationTest implements ServerPorts
 	@Override
 	public int getJmxPort()
 	{
-		return Integer.valueOf( System.getProperty( "test.jmx.port" ) );
-	}
-
-	@Override
-	public int getSshPort()
-	{
-		return Integer.valueOf( System.getProperty( "test.ssh.port" ) );
-	}
-
-	@Override
-	public int getTelnetPort()
-	{
-		return Integer.valueOf( System.getProperty( "test.telnet.port" ) );
+		return Integer.valueOf( System.getProperty( "test.jmx.port", "-1" ) );
 	}
 
 	protected WebTarget getTarget() throws URISyntaxException, MalformedURLException
