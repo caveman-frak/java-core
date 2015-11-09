@@ -58,7 +58,6 @@ public final class MapBuilder< K, V > implements Builder< Map< K, V >, MapBuilde
 	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.builder.Builder#copy()
 	 */
-	@SuppressWarnings( "unchecked" )
 	@Override
 	public MapBuilder< K, V > copy()
 	{

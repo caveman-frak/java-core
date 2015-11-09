@@ -46,14 +46,8 @@ public abstract class LocalisationResource
 
 		final List< Locale > acceptableLanguages = headers.getAcceptableLanguages();
 		final Locale firstLocale = acceptableLanguages.get( 0 );
-		if ( !firstLocale.getLanguage().equals( "*" ) )
-		{
-			return firstLocale;
-		}
-		else
-		{
-			return null;
-		}
+		if ( !firstLocale.getLanguage().equals( "*" ) ) { return firstLocale; }
+		return null;
 	}
 
 }

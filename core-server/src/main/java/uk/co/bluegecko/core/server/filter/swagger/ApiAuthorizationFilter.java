@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
  *
  */
 @SuppressWarnings(
-	{ "javadoc", "deprecation" } )
+		{ "javadoc", "deprecation" } )
 public class ApiAuthorizationFilter implements SwaggerSpecFilter
 {
 
@@ -76,13 +76,7 @@ public class ApiAuthorizationFilter implements SwaggerSpecFilter
 				keyValue = headers.get( "api_key" ).get( 0 );
 			}
 		}
-		if ( "special-key".equals( keyValue ) )
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+		if ( "special-key".equals( keyValue ) ) { return true; }
+		return false;
 	}
 }

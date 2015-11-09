@@ -48,10 +48,7 @@ public class SpringPropertyService implements PropertyService
 			final Defaulted< String > defaultedKey = ( Defaulted< String > ) key;
 			return defaultedKey.defaultValue();
 		}
-		else
-		{
-			return value;
-		}
+		return value;
 	}
 
 	/*

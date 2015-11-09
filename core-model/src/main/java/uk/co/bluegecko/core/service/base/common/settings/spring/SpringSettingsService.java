@@ -51,10 +51,7 @@ public class SpringSettingsService implements SettingsService
 			final Defaulted< E > defaultedSetting = ( Defaulted< E > ) setting;
 			return defaultedSetting.defaultValue();
 		}
-		else
-		{
-			return value;
-		}
+		return value;
 	}
 
 	/*
@@ -66,8 +63,8 @@ public class SpringSettingsService implements SettingsService
 	@Override
 	public < E > E getSetting( final TypedKey< E > setting, final E fallback )
 	{
-		String name = setting.name();
-		Class< E > type = setting.type();
+		final String name = setting.name();
+		final Class< E > type = setting.type();
 		return environment.getProperty( name, type, fallback );
 	}
 
@@ -80,7 +77,7 @@ public class SpringSettingsService implements SettingsService
 	@Override
 	public boolean hasSetting( final TypedKey< ? > setting )
 	{
-		String name = setting.name();
+		final String name = setting.name();
 		return environment.containsProperty( name );
 	}
 

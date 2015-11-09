@@ -25,7 +25,6 @@ public class DistributingSinkTest
 	private Sink< String > sink;
 	private Sink< String > sinkFoo, sinkBar;
 
-	@SuppressWarnings( "unchecked" )
 	@Before
 	public final void setUp()
 	{

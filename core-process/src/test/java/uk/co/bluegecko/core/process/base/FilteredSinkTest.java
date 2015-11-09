@@ -26,7 +26,6 @@ public class FilteredSinkTest
 	private Sink< String > sinkFoo;
 	private Sink< String > sink;
 
-	@SuppressWarnings( "unchecked" )
 	@Before
 	public final void setUp()
 	{
