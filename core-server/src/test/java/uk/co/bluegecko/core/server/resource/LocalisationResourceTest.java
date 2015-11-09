@@ -55,6 +55,7 @@ public class LocalisationResourceTest extends AbstractWebTest
 				new URL( "http", "localhost", getHttpPort(), BASE_PATH ).toURI() );
 	}
 
+	@SuppressWarnings( "unchecked" )
 	@Test
 	public void fetchBundle()
 	{
@@ -69,6 +70,7 @@ public class LocalisationResourceTest extends AbstractWebTest
 		assertThat( ( Map< String, String > ) response.readEntity( Map.class ), hasEntry( "blue", "Blue" ) );
 	}
 
+	@SuppressWarnings( "unchecked" )
 	@Test
 	public void fetchBundleForQueryFR()
 	{
