@@ -8,6 +8,7 @@
 	<name>Java Core</name>
 	<description>Core Java library for Blue Gecko projects</description>
 	<url>https://github.com/caveman-frak/java-core/</url>
+	<inceptionYear>1999</inceptionYear>
 	<licenses>
 		<license>
 			<name>The Apache License, Version 2.0</name>
@@ -33,24 +34,64 @@
 		<connection>scm:git:git@github.com:caveman-frak/java-core.git</connection>
 		<developerConnection>scm:git:git@github.com:caveman-frak/java-core.git</developerConnection>
 		<url>https://github.com/caveman-frak/java-core/</url>
+		<tag>HEAD</tag>
 	</scm>
+	<issueManagement>
+		<url>https://github.com/caveman-frak/java-core/issues</url>
+		<system>GitHub Issues</system>
+	</issueManagement>
+	<ciManagement>
+		<system>Travis</system>
+		<url>https://travis-ci.org/caveman-frak/java-core</url>
+		<notifiers>
+			<notifier>
+				<address>caveman-frak@bluegecko.co.uk</address>
+				<type>mail</type>
+				<sendOnError>true</sendOnError>
+				<sendOnFailure>true</sendOnFailure>
+			</notifier>
+		</notifiers>
+	</ciManagement>
 	<distributionManagement>
 		<repository>
-			<id>internal.repo</id>
-			<name>Temporary Staging Repository</name>
-			<url>file://${project.build.directory}/mvn-repo</url>
-			<uniqueVersion>false</uniqueVersion>
+			<id>bintray-repo</id>
+			<name>Bin Tray Repository</name>
+			<url>https://api.bintray.com/maven/caveman-frak/maven-repo/java-core/</url>
+			<layout>default</layout>
 		</repository>
+		<snapshotRepository>
+			<id>oss-jfrog-artifactory</id>
+			<name>OSS JFrog Artifactory</name>
+			<url>https://oss.jfrog.org/artifactory/oss-snapshot-local</url>
+			<uniqueVersion>true</uniqueVersion>
+			<layout>default</layout>
+		</snapshotRepository>
 		<site>
 			<id>${project.artifactId}-site</id>
+			<name>GitHub Pages</name>
 			<url>${site.url.root}</url>
 		</site>
 	</distributionManagement>
 	<repositories>
 		<repository>
-			<id>java-core-mvn-repo</id>
-			<name>Java Core on GitHub</name>
-			<url>https://raw.github.com/caveman-frak/java-core/mvn-repo/</url>
+			<id>bintray-repo</id>
+			<name>Bin Tray Repository</name>
+			<url>https://api.bintray.com/maven/caveman-frak/maven-repo/java-core/</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>daily</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>oss-jfrog-artifactory-public</id>
+			<name>OSS JFrog Artifactory Public</name>
+			<url>https://oss.jfrog.org/artifactory/libs-snapshot</url>
+			<layout>default</layout>
 			<releases>
 				<enabled>false</enabled>
 			</releases>
@@ -63,7 +104,7 @@
 		<repository>
 			<id>spring-snapshots</id>
 			<name>Spring Snapshots</name>
-			<url>http://repo.spring.io/libs-snapshot</url>
+			<url>http://repo.spring.io/snapshot</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
@@ -95,15 +136,6 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-	<issueManagement>
-		<url>https://github.com/caveman-frak/java-core/issues</url>
-		<system>GitHub Issues</system>
-	</issueManagement>
-	<ciManagement>
-		<system>Travis</system>
-		<url>https://travis-ci.org/caveman-frak/java-core</url>
-		<notifiers />
-	</ciManagement>
 	<prerequisites>
 		<maven>3.2</maven>
 	</prerequisites>
@@ -127,7 +159,6 @@
 		<slf4j.version>1.7.12</slf4j.version>
 		<swagger.version>1.5.0</swagger.version>
 		<swagger-parser.version>1.0.8</swagger-parser.version>
-		<spring-htmlunit.version>1.0.0.RC1</spring-htmlunit.version>
 		<bouncy-castle.version>1.52</bouncy-castle.version>
 		<javax-el.version>2.2.5</javax-el.version>
 		<!-- properties for versions of web jars -->
@@ -159,7 +190,6 @@
 		<spring-boot.jvm-args>${spring-boot.jvm-debug-args}</spring-boot.jvm-args>
 	</properties>
 	<build>
-		<defaultGoal>clean install</defaultGoal>
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -176,22 +206,12 @@
 				<artifactId>maven-javadoc-plugin</artifactId>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
+				<groupId>org.jfrog.buildinfo</groupId>
+				<artifactId>artifactory-maven-plugin</artifactId>
 			</plugin>
-			<plugin>
-				<groupId>com.github.github</groupId>
-				<artifactId>site-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>default-deploy</id>
-						<configuration>
-							<merge>false</merge>
-						</configuration>
-						<inherited>false</inherited>
-					</execution>
-				</executions>
-			</plugin>
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-site-plugin</artifactId> 
+				</plugin> <plugin> <groupId>com.github.github</groupId> <artifactId>site-maven-plugin</artifactId> 
+				</plugin> -->
 		</plugins>
 		<pluginManagement>
 			<plugins>
@@ -236,11 +256,6 @@
 				<plugin>
 					<artifactId>maven-deploy-plugin</artifactId>
 					<version>${deploy-plugin.version}</version>
-					<configuration>
-						<altDeploymentRepository>
-							internal.repo::default::file://${project.build.directory}/mvn-repo
-						</altDeploymentRepository>
-					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -267,6 +282,46 @@
 							<exclude>**/.DS_Store</exclude>
 						</excludes>
 					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.jfrog.buildinfo</groupId>
+					<artifactId>artifactory-maven-plugin</artifactId>
+					<version>2.4.0</version>
+					<inherited>false</inherited>
+					<executions>
+						<execution>
+							<id>build-info</id>
+							<goals>
+								<goal>publish</goal>
+							</goals>
+							<configuration>
+								<artifactory>
+									<includeEnvVars>false</includeEnvVars>
+								</artifactory>
+								<deployProperties>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}</artifactId>
+									<version>${project.version}</version>
+								</deployProperties>
+								<buildInfo>
+									<buildUrl>${project.ciManagement.url}</buildUrl>
+								</buildInfo>
+								<publisher>
+									<contextUrl>https://oss.jfrog.org/artifactory</contextUrl>
+									<username>caveman-frak</username>
+									<!-- <password>{DESede}AP32kvBzesCv4tAiE1VUcYpB64Y1yCwmbh4gooQ65DnGhx2rE5GZMXYVrjpR1EDbN6tA9G2</password> -->
+									<password>cdbee0a5a759be85f055fcc0823bc71bbbdeca2f</password>
+									<repoKey>oss-release-local</repoKey>
+									<snapshotRepoKey>oss-snapshot-local</snapshotRepoKey>
+									<publishArtifacts>true</publishArtifacts>
+									<publishBuildInfo>true</publishBuildInfo>
+								</publisher>
+								<licenses>
+									<autoDiscover>true</autoDiscover>
+								</licenses>
+							</configuration>
+						</execution>
+					</executions>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -299,14 +354,10 @@
 					<executions>
 						<execution>
 							<id>default-deploy</id>
-							<configuration>
-								<outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
-								<branch>refs/heads/mvn-repo</branch>
-							</configuration>
 							<goals>
 								<goal>site</goal>
 							</goals>
-							<phase>deploy</phase>
+							<phase>site-deploy</phase>
 						</execution>
 					</executions>
 				</plugin>
@@ -513,11 +564,6 @@
 				<version>${swagger-parser.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.springframework.test.htmlunit</groupId>
-				<artifactId>spring-test-htmlunit</artifactId>
-				<version>${spring-htmlunit.version}</version>
-			</dependency>
-			<dependency>
 				<groupId>org.glassfish.web</groupId>
 				<artifactId>javax.el</artifactId>
 				<version>${javax-el.version}</version>
@@ -537,9 +583,7 @@
 	</dependencyManagement>
 	<reporting>
 		<outputDirectory>${basedir}/target/site</outputDirectory>
-		<!--
-			<excludeDefaults>true</excludeDefaults>
-		-->
+		<!-- <excludeDefaults>true</excludeDefaults> -->
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
