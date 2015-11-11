@@ -56,7 +56,10 @@ public class Versioned< T >
 		for ( final T object : collection )
 		{
 			final VersionInfo versionInfo = object.getClass().getAnnotation( VersionInfo.class );
-			if ( versionInfo == null ) { throw new IllegalArgumentException( "class must be versioned" ); }
+			if ( versionInfo == null )
+			{
+				throw new IllegalArgumentException( "class must be versioned" );
+			}
 
 			map.put( new FullVersion( versionInfo ), object );
 		}
@@ -95,9 +98,15 @@ public class Versioned< T >
 	 */
 	public T get( final Version lower, final Version upper )
 	{
-		if ( map.containsKey( upper ) ) { return map.get( upper ); }
+		if ( map.containsKey( upper ) )
+		{
+			return map.get( upper );
+		}
 		final SortedMap< Version, T > head = map.subMap( lower, upper );
-		if ( head.isEmpty() ) { return null; }
+		if ( head.isEmpty() )
+		{
+			return null;
+		}
 		return head.get( head.lastKey() );
 	}
 

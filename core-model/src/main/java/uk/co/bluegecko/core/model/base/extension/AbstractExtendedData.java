@@ -86,7 +86,10 @@ public abstract class AbstractExtendedData< K extends Comparable< K >, M extends
 	{
 		for ( final Extension< M > extension : extensions )
 		{
-			if ( klass.isInstance( extension ) ) { return ( T ) extension; }
+			if ( klass.isInstance( extension ) )
+			{
+				return ( T ) extension;
+			}
 		}
 		return null;
 	}

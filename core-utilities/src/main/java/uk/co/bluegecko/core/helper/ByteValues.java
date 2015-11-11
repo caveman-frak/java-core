@@ -29,7 +29,10 @@ public final class ByteValues
 	 */
 	public static String scale( final long amount, final String... suffix )
 	{
-		if ( amount < 0 ) { return "Unknown"; }
+		if ( amount < 0 )
+		{
+			return "Unknown";
+		}
 		long l = amount;
 		int index = 0;
 		while ( l > 1023 && index++ < suffix.length )

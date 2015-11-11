@@ -42,11 +42,17 @@ public abstract class LocalisationResource
 
 	protected Locale getLocale( final HttpHeaders headers, final Locale locale )
 	{
-		if ( locale != null ) { return locale; }
+		if ( locale != null )
+		{
+			return locale;
+		}
 
 		final List< Locale > acceptableLanguages = headers.getAcceptableLanguages();
 		final Locale firstLocale = acceptableLanguages.get( 0 );
-		if ( !firstLocale.getLanguage().equals( "*" ) ) { return firstLocale; }
+		if ( !firstLocale.getLanguage().equals( "*" ) )
+		{
+			return firstLocale;
+		}
 		return null;
 	}
 

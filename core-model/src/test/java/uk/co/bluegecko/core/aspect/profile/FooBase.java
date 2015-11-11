@@ -15,7 +15,10 @@ public class FooBase implements Foo
 	@Profiled
 	public void bar( final boolean tantrum )
 	{
-		if ( tantrum ) { throw new IllegalStateException(); }
+		if ( tantrum )
+		{
+			throw new IllegalStateException();
+		}
 	}
 
 }

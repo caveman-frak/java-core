@@ -74,7 +74,10 @@ public class MessagesBase implements Messages
 		if ( hasMessages( severity ) )
 		{
 			final Map< String, Set< String >> map = messages.get( severity );
-			if ( map != null ) { return Collections.unmodifiableSet( map.keySet() ); }
+			if ( map != null )
+			{
+				return Collections.unmodifiableSet( map.keySet() );
+			}
 		}
 		return Collections.emptySet();
 	}
@@ -89,7 +92,10 @@ public class MessagesBase implements Messages
 		if ( hasMessages( severity, key ) )
 		{
 			final Set< String > set = messages.get( severity ).get( key );
-			if ( set != null ) { return Collections.unmodifiableSet( set ); }
+			if ( set != null )
+			{
+				return Collections.unmodifiableSet( set );
+			}
 		}
 		return Collections.emptySet();
 	}

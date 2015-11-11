@@ -7,7 +7,10 @@ public final class Foo
 
 	public Foo( final boolean trigger )
 	{
-		if ( trigger ) { throw new IllegalStateException( "constructor" ); }
+		if ( trigger )
+		{
+			throw new IllegalStateException( "constructor" );
+		}
 	}
 
 	public Foo()
@@ -17,7 +20,10 @@ public final class Foo
 
 	public boolean foo( final boolean trigger )
 	{
-		if ( trigger ) { throw new IllegalStateException( "foo" ); }
+		if ( trigger )
+		{
+			throw new IllegalStateException( "foo" );
+		}
 		return trigger;
 	}
 

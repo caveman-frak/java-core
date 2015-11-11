@@ -77,7 +77,10 @@ public abstract class AbstractExtendedModel< M extends Model > implements Extend
 	{
 		for ( final Extension< M > extension : extensions )
 		{
-			if ( klass.isInstance( extension ) ) { return ( T ) extension; }
+			if ( klass.isInstance( extension ) )
+			{
+				return ( T ) extension;
+			}
 		}
 		return null;
 	}

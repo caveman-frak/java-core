@@ -126,8 +126,10 @@ public final class MapBuilder< K, V > implements Builder< Map< K, V >, MapBuilde
 	 */
 	public MapBuilder< K, V > with( final K[] keys, final V[] values )
 	{
-		if ( keys.length != values.length ) { throw new IllegalArgumentException(
-				"must have same number of keys and values" ); }
+		if ( keys.length != values.length )
+		{
+			throw new IllegalArgumentException( "must have same number of keys and values" );
+		}
 
 		for ( int i = 0; i < keys.length; i++ )
 		{
@@ -148,8 +150,10 @@ public final class MapBuilder< K, V > implements Builder< Map< K, V >, MapBuilde
 	 */
 	public MapBuilder< K, V > with( final Collection< K > keys, final Collection< V > values )
 	{
-		if ( keys.size() != values.size() ) { throw new IllegalArgumentException(
-				"must have same number of keys and values" ); }
+		if ( keys.size() != values.size() )
+		{
+			throw new IllegalArgumentException( "must have same number of keys and values" );
+		}
 
 		final Iterator< K > keyIterator = keys.iterator();
 		final Iterator< V > valueIterator = values.iterator();

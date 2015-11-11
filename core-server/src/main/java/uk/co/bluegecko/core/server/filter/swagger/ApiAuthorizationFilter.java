@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
  *
  */
 @SuppressWarnings(
-		{ "javadoc", "deprecation" } )
+	{ "javadoc", "deprecation" } )
 public class ApiAuthorizationFilter implements SwaggerSpecFilter
 {
 
@@ -41,8 +41,10 @@ public class ApiAuthorizationFilter implements SwaggerSpecFilter
 			final Map< String, List< String >> params, final Map< String, String > cookies,
 			final Map< String, List< String >> headers )
 	{
-		if ( !api.getMethod().equals( "get" ) || api.getPath().startsWith( "/store" ) ) { return checkKey( params,
-				headers ); }
+		if ( !api.getMethod().equals( "get" ) || api.getPath().startsWith( "/store" ) )
+		{
+			return checkKey( params, headers );
+		}
 		return true;
 	}
 
@@ -76,7 +78,10 @@ public class ApiAuthorizationFilter implements SwaggerSpecFilter
 				keyValue = headers.get( "api_key" ).get( 0 );
 			}
 		}
-		if ( "special-key".equals( keyValue ) ) { return true; }
+		if ( "special-key".equals( keyValue ) )
+		{
+			return true;
+		}
 		return false;
 	}
 }

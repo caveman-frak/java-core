@@ -48,8 +48,7 @@ public class MapBuilderTest
 			{ "10", "11", "12", "13" } );
 		final Map< Number, String > map = builder.build();
 		assertThat( map, hasMapSize( 4 ) );
-		assertThat( map,
-				contains( entry( 10, "10" ), entry( 11, "11" ), entry( 12, "12" ), entry( 13, "13" ) ) );
+		assertThat( map, contains( entry( 10, "10" ), entry( 11, "11" ), entry( 12, "12" ), entry( 13, "13" ) ) );
 	}
 
 	@Test
@@ -74,8 +73,7 @@ public class MapBuilderTest
 		builder.with( Arrays.asList( 10, 11, 12, 13 ), Arrays.asList( "10", "11", "12", "13" ) );
 		final Map< Number, String > map = builder.build();
 		assertThat( map, hasMapSize( 4 ) );
-		assertThat( map,
-				contains( entry( 10, "10" ), entry( 11, "11" ), entry( 12, "12" ), entry( 13, "13" ) ) );
+		assertThat( map, contains( entry( 10, "10" ), entry( 11, "11" ), entry( 12, "12" ), entry( 13, "13" ) ) );
 	}
 
 	@Test
@@ -105,8 +103,7 @@ public class MapBuilderTest
 		assertThat( builder.build(), is( not( sameInstance( map ) ) ) );
 		assertThat( map, is( instanceOf( TreeMap.class ) ) );
 		assertThat( map, hasMapSize( 4 ) );
-		assertThat( map,
-				contains( entry( 10, "10" ), entry( 11, "11" ), entry( 12, "12" ), entry( 13, "13" ) ) );
+		assertThat( map, contains( entry( 10, "10" ), entry( 11, "11" ), entry( 12, "12" ), entry( 13, "13" ) ) );
 	}
 
 	@Test
@@ -124,8 +121,7 @@ public class MapBuilderTest
 		assertThat( map, is( sameInstance( map ) ) );
 		assertThat( map, is( instanceOf( TreeMap.class ) ) );
 		assertThat( map, hasMapSize( 4 ) );
-		assertThat( map,
-				contains( entry( 10, "10" ), entry( 11, "11" ), entry( 12, "12" ), entry( 13, "13" ) ) );
+		assertThat( map, contains( entry( 10, "10" ), entry( 11, "11" ), entry( 12, "12" ), entry( 13, "13" ) ) );
 	}
 
 	@Test
@@ -150,8 +146,7 @@ public class MapBuilderTest
 		final Map< Number, String > map = builder.build( new TreeMap<>() );
 		assertThat( map, is( instanceOf( TreeMap.class ) ) );
 		assertThat( map, hasMapSize( 4 ) );
-		assertThat( map,
-				contains( entry( 10, "10" ), entry( 11, "11" ), entry( 12, "12" ), entry( 13, "13" ) ) );
+		assertThat( map, contains( entry( 10, "10" ), entry( 11, "11" ), entry( 12, "12" ), entry( 13, "13" ) ) );
 	}
 
 }

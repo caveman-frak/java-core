@@ -14,7 +14,10 @@ public class FooService implements Foo
 	@Override
 	public void bar( final boolean tantrum )
 	{
-		if ( tantrum ) { throw new IllegalStateException(); }
+		if ( tantrum )
+		{
+			throw new IllegalStateException();
+		}
 	}
 
 }

@@ -131,8 +131,14 @@ public abstract class VersionBase implements Version
 	 */
 	public static final Version fromString( final String version )
 	{
-		if ( version.equalsIgnoreCase( "FIRST" ) ) { return FullVersion.FIRST; }
-		if ( version.equalsIgnoreCase( "LATEST" ) || version.isEmpty() ) { return PartialVersion.LATEST; }
+		if ( version.equalsIgnoreCase( "FIRST" ) )
+		{
+			return FullVersion.FIRST;
+		}
+		if ( version.equalsIgnoreCase( "LATEST" ) || version.isEmpty() )
+		{
+			return PartialVersion.LATEST;
+		}
 		final String[] parts = version.split( "\\." );
 		if ( parts.length == 1 )
 		{

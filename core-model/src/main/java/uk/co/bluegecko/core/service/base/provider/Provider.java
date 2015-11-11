@@ -61,7 +61,10 @@ public abstract class Provider< T > extends Invoker< T >
 			}
 			catch ( final InvocationTargetException ex )
 			{
-				if ( !( ex.getCause() instanceof NotProvidedException ) ) { throw new IllegalStateException( ex ); }
+				if ( !( ex.getCause() instanceof NotProvidedException ) )
+				{
+					throw new IllegalStateException( ex );
+				}
 			}
 			catch ( IllegalAccessException | IllegalArgumentException ex )
 			{
