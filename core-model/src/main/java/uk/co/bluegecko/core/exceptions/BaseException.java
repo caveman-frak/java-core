@@ -12,7 +12,7 @@ import ch.qos.cal10n.MessageConveyor;
 /**
  * Exception that uses Enums to created localised message details.
  */
-public abstract class BaseException extends Exception
+public abstract class BaseException extends Exception implements ExceptionLocale
 {
 
 	private static final long serialVersionUID = -2796448640823556346L;
