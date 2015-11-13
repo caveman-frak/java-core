@@ -147,6 +147,7 @@
 		<module>core-security</module>
 		<module>core-console</module>
 		<module>core-server</module>
+		<module>core-examples</module>
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

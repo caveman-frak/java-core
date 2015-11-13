@@ -17,6 +17,7 @@
 		<dependency>
 			<groupId>uk.co.bluegecko</groupId>
 			<artifactId>core-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.ehcache</groupId>

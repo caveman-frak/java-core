@@ -8,7 +8,7 @@
 		</Console>
 		<RollingFile name="RollingFile" 
 				fileName="logs/application.log"
-				filePattern="logs/application-%i.log.gz"
+				filePattern="logs/application-%i.log.gz" 
 				ignoreExceptions="false">
 			<PatternLayout>
 				<Pattern>%d{dd MMM HH:mm:ss} [%t] %-5level (%X{X-Trace}) %logger{4.} - %msg %n%rEx{full}</Pattern>
@@ -17,13 +17,18 @@
 				<OnStartupTriggeringPolicy />
 				<SizeBasedTriggeringPolicy size="10 MB" />
 			</Policies>
-			<DefaultRolloverStrategy max="5"/>
+			<DefaultRolloverStrategy max="5" />
 		</RollingFile>
 		<Failover name="Failover" primary="RollingFile">
 			<Failovers>
-				<AppenderRef ref="Console"/>
+				<AppenderRef ref="Console" />
 			</Failovers>
 		</Failover>
+		<Syslog name="PaperTrail" 
+			host="logs3.papertrailapp.com" port="17764"
+			protocol="UDP" includeMDC="false"
+			facility="USER" format="BSD" messageId="BlueGecko" id="BlueGecko"
+			appName="java-server" />
 	</Appenders>
 	<Loggers>
 		<Logger name="org.springframework" level="INFO" additivity="true">
@@ -31,6 +36,7 @@
 		</Logger>
 		<Logger name="uk.co.bluegecko" level="INFO" additivity="true">
 			<AppenderRef ref="Console" />
+			<AppenderRef ref="PaperTrail" />
 		</Logger>
 		<Logger name="uk.co.bluegecko.core.aspect" level="DEBUG" additivity="false">
 			<AppenderRef ref="Failover" />
@@ -38,6 +44,7 @@
 		</Logger>
 		<Root level="warn">
 			<AppenderRef ref="Failover" />
+			<AppenderRef ref="PaperTrail" />
 		</Root>
 	</Loggers>
 </Configuration>
