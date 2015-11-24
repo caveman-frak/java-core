@@ -52,6 +52,7 @@ public abstract class BaseLocalisationService extends AbstractService implements
 	 * @param locale
 	 *            the default locale
 	 * @param bundleName
+	 *            the localisation bundle
 	 * @return the bundle for the user's locale
 	 */
 	protected ResourceBundle getBundle( final Locale locale, final String bundleName )

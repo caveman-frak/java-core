@@ -20,11 +20,13 @@ public final class ByteValues
 	{}
 
 	/**
-	 * Convert long to a string, of just the significant portion, including a scalar
+	 * Convert long to a string, of just the significant portion, including a scalar.
+	 * The suffixes are in the form of quantity multipliers, e.g. B, KB, MB, TB, PB.
 	 *
 	 * @param amount
 	 *            amount to scale
 	 * @param suffix
+	 *            array of quantity multipliers
 	 * @return scaled amount as string
 	 */
 	public static String scale( final long amount, final String... suffix )

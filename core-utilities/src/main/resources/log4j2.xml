@@ -3,7 +3,7 @@
 	<Appenders>
 		<Console name="Console" target="SYSTEM_OUT">
 			<PatternLayout>
-				<Pattern>%highlight{%d{HH:mm:ss} [%t] %-5level (%X{X-Trace}) %logger{2.} - %msg %n%rEx{short}}</Pattern>
+				<Pattern>%highlight{%d{HH:mm:ss} [%t] %-5level (%X{X-Trace}-%X{X-UserName}) %logger{2.} - %msg %n%rEx{short}}</Pattern>
 			</PatternLayout>
 		</Console>
 		<RollingFile name="RollingFile" 
@@ -11,7 +11,7 @@
 				filePattern="logs/application-%i.log.gz" 
 				ignoreExceptions="false">
 			<PatternLayout>
-				<Pattern>%d{dd MMM HH:mm:ss} [%t] %-5level (%X{X-Trace}) %logger{4.} - %msg %n%rEx{full}</Pattern>
+				<Pattern>%d{dd MMM HH:mm:ss} [%t] %-5level (%X{X-Trace}-%X{X-UserName}) %logger{4.} - %msg %n%rEx{full}</Pattern>
 			</PatternLayout>
 			<Policies>
 				<OnStartupTriggeringPolicy />
@@ -19,16 +19,16 @@
 			</Policies>
 			<DefaultRolloverStrategy max="5" />
 		</RollingFile>
+		<Syslog name="PaperTrail" 
+			host="logs3.papertrailapp.com" port="17764" protocol="UDP" 
+			includeMDC="false" mdcPrefix="mdc:" mdcId="mdc"
+			facility="USER" format="RFC5424" 
+			messageId="development" id="BlueGecko" appName="java-server" />
 		<Failover name="Failover" primary="RollingFile">
 			<Failovers>
 				<AppenderRef ref="Console" />
 			</Failovers>
 		</Failover>
-		<Syslog name="PaperTrail" 
-			host="logs3.papertrailapp.com" port="17764"
-			protocol="UDP" includeMDC="false"
-			facility="USER" format="BSD" messageId="BlueGecko" id="BlueGecko"
-			appName="java-server" />
 	</Appenders>
 	<Loggers>
 		<Logger name="org.springframework" level="INFO" additivity="true">
@@ -42,7 +42,7 @@
 			<AppenderRef ref="Failover" />
 			<AppenderRef ref="Console" />
 		</Logger>
-		<Root level="warn">
+		<Root level="WARN">
 			<AppenderRef ref="Failover" />
 			<AppenderRef ref="PaperTrail" />
 		</Root>

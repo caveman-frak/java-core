@@ -36,6 +36,12 @@
 		<dependency>
 			<groupId>org.antlr</groupId>
 			<artifactId>ST4</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>antlr-runtime</artifactId>
+					<groupId>org.antlr</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.lanterna</groupId>
@@ -87,6 +93,7 @@
 							<artifactSet>
 								<excludes>
 									<exclude>org.hamcrest:hamcrest-core</exclude>
+									<exclude>org.abego.treelayout:org.abego.treelayout.core</exclude>
 								</excludes>
 							</artifactSet>
 							<transformers>
@@ -94,7 +101,6 @@
 									<mainClass>uk.co.bluegecko.antlr4.game.Application</mainClass>
 								</transformer>
 							</transformers>
-							<shadedArtifactAttached>true</shadedArtifactAttached>
 						</configuration>
 					</execution>
 				</executions>
@@ -106,11 +112,6 @@
 					<groupId>org.antlr</groupId>
 					<artifactId>antlr4-maven-plugin</artifactId>
 					<version>${antlr.version}</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-shade-plugin</artifactId>
-					<version>${shade-plugin.version}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>

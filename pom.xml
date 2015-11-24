@@ -73,6 +73,7 @@
 		</site>
 	</distributionManagement>
 	<repositories>
+<!-- 	
 		<repository>
 			<id>bintray-repo</id>
 			<name>Bin Tray Repository</name>
@@ -87,6 +88,7 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
+ -->		
 		<repository>
 			<id>oss-jfrog-artifactory-public</id>
 			<name>OSS JFrog Artifactory Public</name>
@@ -156,21 +158,21 @@
 		<site.url.root>scm:git:git@github.com:caveman-frak/java-core.git/gh_pages</site.url.root>
 		<!-- properties for versions of dependencies -->
 		<spring.version>2.0.0.BUILD-SNAPSHOT</spring.version>
-		<jersey.version>2.19</jersey.version>
-		<slf4j.version>1.7.12</slf4j.version>
-		<swagger.version>1.5.0</swagger.version>
-		<swagger-parser.version>1.0.8</swagger-parser.version>
+		<jersey.version>2.22.1</jersey.version>
+		<slf4j.version>1.7.13</slf4j.version>
+		<swagger.version>1.5.4</swagger.version>
+		<swagger-parser.version>1.0.13</swagger-parser.version>
 		<bouncy-castle.version>1.52</bouncy-castle.version>
-		<javax-el.version>2.2.5</javax-el.version>
+		<javax-el.version>2.2.6</javax-el.version>
 		<!-- properties for versions of web jars -->
-		<swagger-ui.version>2.1.0</swagger-ui.version>
+		<swagger-ui.version>2.1.3</swagger-ui.version>
 		<!-- properties for versions of plug-ins -->
 		<compiler-plugin.version>3.1</compiler-plugin.version>
 		<source-plugin.version>2.0.4</source-plugin.version>
 		<javadoc-plugin.version>2.3</javadoc-plugin.version>
 		<shade-plugin.version>2.3</shade-plugin.version>
 		<deploy-plugin.version>2.8.2</deploy-plugin.version>
-		<release-plugin.version>2.5.1</release-plugin.version>
+		<release-plugin.version>2.5.3</release-plugin.version>
 		<jar-plugin.version>2.6</jar-plugin.version>
 		<site-plugin.version>3.4</site-plugin.version>
 		<github-site-plugin.version>0.11</github-site-plugin.version>
@@ -179,7 +181,17 @@
 		<failsafe-plugin.version>2.18.1</failsafe-plugin.version>
 		<build-helper-plugin.version>1.9.1</build-helper-plugin.version>
 		<spring-boot-plugin.version>1.3.0.BUILD-SNAPSHOT</spring-boot-plugin.version>
-		<springloaded-plugin.version>1.2.0.RELEASE</springloaded-plugin.version>
+		<springloaded-plugin.version>1.2.4.RELEASE</springloaded-plugin.version>
+		<git-commit-id-plugin.version>2.1.11</git-commit-id-plugin.version>
+		<jarsigner-plugin.version>1.4</jarsigner-plugin.version>
+		<!-- keystore properties and defaults -->
+		<keystore.location>${project.basedir}/src/main/keystore</keystore.location>
+		<jarsigner.keystore>${keystore.location}/keystore.jks</jarsigner.keystore>
+		<jarsigner.truststore>${keystore.location}/truststore.jks</jarsigner.truststore>
+		<jarsigner.alias>development</jarsigner.alias>
+		<jarsigner.storepass>password</jarsigner.storepass>
+		<jarsigner.trustpass>password</jarsigner.trustpass>
+		<jarsigner.keypass>password</jarsigner.keypass>
 		<!-- property defaults for running and debugging -->
 		<jrebel-agent.cmd-args></jrebel-agent.cmd-args>
 		<spring-boot.debug-port>5005</spring-boot.debug-port>
@@ -210,9 +222,20 @@
 				<groupId>org.jfrog.buildinfo</groupId>
 				<artifactId>artifactory-maven-plugin</artifactId>
 			</plugin>
-			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-site-plugin</artifactId> 
-				</plugin> <plugin> <groupId>com.github.github</groupId> <artifactId>site-maven-plugin</artifactId> 
-				</plugin> -->
+			<!-- 
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.github.github</groupId>
+				<artifactId>site-maven-plugin</artifactId>
+			</plugin>
+			 -->
+			 <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jarsigner-plugin</artifactId>
+			</plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>
@@ -262,6 +285,9 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-release-plugin</artifactId>
 					<version>${release-plugin.version}</version>
+					<configuration>
+						<autoVersionSubmodules>true</autoVersionSubmodules>
+					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -474,7 +500,7 @@
 				<plugin>
 					<groupId>pl.project13.maven</groupId>
 					<artifactId>git-commit-id-plugin</artifactId>
-					<version>2.1.11</version>
+					<version>${git-commit-id-plugin.version}</version>
 					<executions>
 						<execution>
 							<goals>
@@ -487,6 +513,55 @@
 						<dateFormat>dd MMM yyyy HH:mm</dateFormat>
 						<generateGitPropertiesFile>true</generateGitPropertiesFile>
 						<generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jarsigner-plugin</artifactId>
+					<version>${jarsigner-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>sign</id>
+							<goals>
+								<goal>sign</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>verify</id>
+							<goals>
+								<goal>verify</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<keystore>${jarsigner.keystore}</keystore>
+						<alias>${jarsigner.alias}</alias>
+						<storepass>${jarsigner.storepass}</storepass>
+						<keypass>${jarsigner.keypass}</keypass>
+						<certs>true</certs>
+						<removeExistingSignatures>true</removeExistingSignatures>
+						<verbose>false</verbose>
+						<excludeClassifiers>
+							<exclude>exec</exclude>
+						</excludeClassifiers>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-shade-plugin</artifactId>
+					<version>${shade-plugin.version}</version>
+					<configuration>
+						<shadedArtifactAttached>true</shadedArtifactAttached>
+						<filters>
+							<filter>
+								<artifact>*:*</artifact>
+								<excludes>
+									<exclude>META-INF/*.SF</exclude>
+									<exclude>META-INF/*.DSA</exclude>
+									<exclude>META-INF/*.RSA</exclude>
+								</excludes>
+							</filter>
+						</filters>
 					</configuration>
 				</plugin>
 			</plugins>

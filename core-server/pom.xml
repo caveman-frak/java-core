@@ -24,6 +24,10 @@
 		</dependency>
 		<dependency>
 			<groupId>uk.co.bluegecko</groupId>
+			<artifactId>core-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>uk.co.bluegecko</groupId>
 			<artifactId>core-test</artifactId>
 			<scope>test</scope>
 		</dependency>
@@ -37,10 +41,6 @@
 					<artifactId>logback-classic</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -83,7 +83,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.test-framework.providers</groupId>
-			<artifactId>jersey-test-framework-provider-inmemory</artifactId>
+			<artifactId>jersey-test-framework-provider-grizzly2</artifactId>
 			<scope>test</scope>
 		</dependency>
 		<dependency>

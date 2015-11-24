@@ -23,7 +23,9 @@ public class SimpleTriangulatedExchangeRate implements TriangulatedExchangeRate
 
 	/**
 	 * @param currencyExchangeRate
+	 *            the provider for exchange rates
 	 * @param reciprocalExchangeRate
+	 *            the calculator for reciprocal rates
 	 */
 	public SimpleTriangulatedExchangeRate( final CurrencyExchangeRate currencyExchangeRate,
 			final ReciprocalExchangeRate reciprocalExchangeRate )

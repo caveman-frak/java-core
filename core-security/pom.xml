@@ -27,5 +27,21 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.security</groupId>
+			<artifactId>oauth2-client</artifactId>
+		</dependency>
 	</dependencies>
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/keystore</directory>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
+	</build>
 </project>
