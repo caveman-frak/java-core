@@ -39,7 +39,7 @@
 				<filtering>true</filtering>
 			</resource>
 			<resource>
-				<directory>src/main/keystore</directory>
+				<directory>${keystore.location}</directory>
 				<filtering>false</filtering>
 			</resource>
 		</resources>

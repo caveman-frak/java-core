@@ -185,9 +185,10 @@
 		<git-commit-id-plugin.version>2.1.11</git-commit-id-plugin.version>
 		<jarsigner-plugin.version>1.4</jarsigner-plugin.version>
 		<!-- keystore properties and defaults -->
-		<keystore.location>${project.basedir}/src/main/keystore</keystore.location>
-		<jarsigner.keystore>${keystore.location}/keystore.jks</jarsigner.keystore>
-		<jarsigner.truststore>${keystore.location}/truststore.jks</jarsigner.truststore>
+		<keystore.location>src/keystore</keystore.location>
+		<keystore.directory>${project.basedir}/${keystore.location}</keystore.directory>
+		<jarsigner.keystore>${keystore.directory}/keystore.jks</jarsigner.keystore>
+		<jarsigner.truststore>${keystore.directory}/truststore.jks</jarsigner.truststore>
 		<jarsigner.alias>development</jarsigner.alias>
 		<jarsigner.storepass>password</jarsigner.storepass>
 		<jarsigner.trustpass>password</jarsigner.trustpass>
