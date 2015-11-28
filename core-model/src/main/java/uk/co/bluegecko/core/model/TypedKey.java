@@ -4,51 +4,48 @@
 package uk.co.bluegecko.core.model;
 
 
+import uk.co.bluegecko.core.model.Key.AbstractKeyBase;
+
+
 /**
  * A typed lookup key for a setting.
  *
  * @param <E>
  *            type of setting value
  */
-public interface TypedKey< E > extends Key, Typed< E >
+public class TypedKey< E > extends AbstractKeyBase< TypedKey< E >> implements Typed< E >
 {
 
-	/**
-	 * Implementation of a {@link TypedKey}
-	 *
-	 * @param <E>
-	 *            type of value to represent
-	 */
-	public class TypedKeyBase< E > extends KeyBase implements TypedKey< E >
+	private static final long serialVersionUID = -3592813756644358325L;
+
+	private final Class< E > type;
+
+	protected TypedKey( final String name, final Class< E > type )
 	{
+		super( name );
+		this.type = type;
+	}
 
-		private final Class< E > type;
-
-		protected TypedKeyBase( final String name, final Class< E > type )
-		{
-			super( name );
-			this.type = type;
-		}
-
-		@Override
-		public Class< E > type()
-		{
-			return type;
-		}
+	@Override
+	public Class< E > type()
+	{
+		return type;
 	}
 
 	/**
-	 * Implementation of a {@link TypedKey}
+	 * Implementation of a {@link TypedKey} with default value.
 	 *
 	 * @param <E>
 	 *            type of value to represent
 	 */
-	public class KeyDefaultBase< E > extends TypedKeyBase< E > implements TypedKey< E >, Defaulted< E >
+	public static final class DefaultedKey< E > extends TypedKey< E > implements Defaulted< E >
 	{
+
+		private static final long serialVersionUID = -601508442702542478L;
 
 		private final E value;
 
-		protected KeyDefaultBase( final String name, final Class< E > type, final E value )
+		protected DefaultedKey( final String name, final Class< E > type, final E value )
 		{
 			super( name, type );
 
@@ -75,7 +72,7 @@ public interface TypedKey< E > extends Key, Typed< E >
 	 */
 	public static < E > TypedKey< E > key( final String name, final Class< E > type )
 	{
-		return new TypedKeyBase<>( name, type );
+		return new TypedKey<>( name, type );
 	}
 
 	/**
@@ -93,7 +90,7 @@ public interface TypedKey< E > extends Key, Typed< E >
 	 */
 	public static < E > TypedKey< E > key( final String name, final Class< E > type, final E value )
 	{
-		return new KeyDefaultBase<>( name, type, value );
+		return new DefaultedKey<>( name, type, value );
 	}
 
 }

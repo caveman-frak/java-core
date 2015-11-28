@@ -24,18 +24,18 @@ import uk.co.bluegecko.core.test.harness.TestHarness;
 public class SpringPropertyServiceTest extends TestHarness
 {
 
-	private enum TestSetting implements Key
+	private enum TestSetting implements Key< TestSetting >
 	{
 		FOO, BAR
 	}
 
-	private enum TestDefaultSetting implements Key, Defaulted< String >
+	private enum TestDefaultedSetting implements Key< TestDefaultedSetting >, Defaulted< String >
 	{
 		FOO( "Foo" ), BAR( "Bar" );
 
 		private final String defaultValue;
 
-		private TestDefaultSetting( final String defaultValue )
+		private TestDefaultedSetting( final String defaultValue )
 		{
 			this.defaultValue = defaultValue;
 		}
@@ -89,7 +89,7 @@ public class SpringPropertyServiceTest extends TestHarness
 	@Test
 	public final void testBarValueDefaulted()
 	{
-		assertThat( propertyService.getProperty( TestDefaultSetting.BAR ), is( "Bar" ) );
+		assertThat( propertyService.getProperty( TestDefaultedSetting.BAR ), is( "Bar" ) );
 	}
 
 }

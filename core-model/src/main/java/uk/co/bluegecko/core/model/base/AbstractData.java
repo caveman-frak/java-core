@@ -4,6 +4,8 @@
 package uk.co.bluegecko.core.model.base;
 
 
+import java.io.Serializable;
+
 import uk.co.bluegecko.core.lang.EqualsBuilder;
 import uk.co.bluegecko.core.model.Data;
 
@@ -16,7 +18,7 @@ import uk.co.bluegecko.core.model.Data;
  * @param <K>
  *            type of id
  */
-public class AbstractData< K extends Comparable< K >> implements Data< K >
+public class AbstractData< K extends Serializable & Comparable< K >> implements Data< K >
 {
 
 	private static final long serialVersionUID = 2192649767237869981L;
@@ -41,7 +43,7 @@ public class AbstractData< K extends Comparable< K >> implements Data< K >
 	 * @see uk.co.bluegecko.core.model.Data#getId()
 	 */
 	@Override
-	public final K getId()
+	public final K getKey()
 	{
 		return id;
 	}
@@ -53,7 +55,7 @@ public class AbstractData< K extends Comparable< K >> implements Data< K >
 	@Override
 	public final int compareTo( final Data< K > that )
 	{
-		return getId().compareTo( that.getId() );
+		return getKey().compareTo( that.getKey() );
 	}
 
 	/*
@@ -63,7 +65,7 @@ public class AbstractData< K extends Comparable< K >> implements Data< K >
 	@Override
 	public final int hashCode()
 	{
-		return getId().hashCode();
+		return getKey().hashCode();
 	}
 
 	/*
@@ -75,8 +77,10 @@ public class AbstractData< K extends Comparable< K >> implements Data< K >
 	{
 		final EqualsBuilder< Data< ? > > builder = new EqualsBuilder<>( this, obj );
 		if ( builder.isResolved() )
+		{
 			return builder.isSame();
-		return getId().equals( builder.getRhs().getId() );
+		}
+		return getKey().equals( builder.getRhs().getKey() );
 	}
 
 }

@@ -4,6 +4,7 @@
 package uk.co.bluegecko.core.model.base.extension;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -22,8 +23,8 @@ import uk.co.bluegecko.core.model.extension.Extension;
  * @param <M>
  *            the model class
  */
-public abstract class AbstractExtendedData< K extends Comparable< K >, M extends Model > extends AbstractData< K >
-		implements Extended< M >, Model
+public abstract class AbstractExtendedData< K extends Serializable & Comparable< K >, M extends Model > extends
+		AbstractData< K > implements Extended< M >, Model
 {
 
 	private static final long serialVersionUID = -1264009544621267181L;

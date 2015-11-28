@@ -4,20 +4,14 @@
 package uk.co.bluegecko.core.model;
 
 
+import java.io.Serializable;
+
+
 /**
  * An extension of model that understands identity.
  *
  * @param <K>
  *            the type of id
  */
-public interface Data< K extends Comparable< K >> extends Model, Comparable< Data< K >>
-{
-
-	/**
-	 * Return the id for the data entry.
-	 *
-	 * @return the id
-	 */
-	public K getId();
-
-}
+public interface Data< K extends Serializable & Comparable< K >> extends Model, Keyed< K >, Comparable< Data< K >>
+{}

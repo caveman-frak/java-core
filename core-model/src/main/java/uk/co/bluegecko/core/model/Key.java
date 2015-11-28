@@ -4,10 +4,21 @@
 package uk.co.bluegecko.core.model;
 
 
+import java.io.Serializable;
+
+import uk.co.bluegecko.core.lang.CompareToBuilder;
+import uk.co.bluegecko.core.lang.EqualsBuilder;
+import uk.co.bluegecko.core.lang.HashCodeBuilder;
+import uk.co.bluegecko.core.lang.ToStringBuilder;
+
+
 /**
  * A lookup key for a setting.
+ *
+ * @param <K>
+ *            reference to self for comparable
  */
-public interface Key
+public interface Key< K extends Key< K >> extends Serializable, Comparable< K >
 {
 
 	/**
@@ -18,14 +29,19 @@ public interface Key
 	public String name();
 
 	/**
-	 * Implementation of a {@link Key}
+	 * Abstract implementation of a {@link Key}
+	 *
+	 * @param <K>
+	 *            reference to self for comparable
 	 */
-	public class KeyBase implements Key
+	public abstract class AbstractKeyBase< K extends AbstractKeyBase< K >> implements Key< K >
 	{
+
+		private static final long serialVersionUID = -6992563050425551428L;
 
 		private final String name;
 
-		protected KeyBase( final String name )
+		protected AbstractKeyBase( final String name )
 		{
 			this.name = name;
 		}
@@ -35,6 +51,52 @@ public interface Key
 		{
 			return name;
 		}
+
+		@Override
+		public int compareTo( final K other )
+		{
+			return new CompareToBuilder().append( name(), other.name() ).toComparison();
+		}
+
+		@Override
+		public int hashCode()
+		{
+			return new HashCodeBuilder().append( name() ).toHashCode();
+		}
+
+		@Override
+		public boolean equals( final Object other )
+		{
+			final EqualsBuilder< Key< ? > > equalsBuilder = new EqualsBuilder<>( this, other );
+			if ( equalsBuilder.isResolved() )
+			{
+				return equalsBuilder.isSame();
+			}
+			final Key< ? > that = ( Key< ? > ) other;
+			return equalsBuilder.append( name(), that.name() ).isEquals();
+		}
+
+		@Override
+		public String toString()
+		{
+			return new ToStringBuilder( this ).append( name() ).toString();
+		}
+
+	}
+
+	/**
+	 * Implementation of a {@link Key}
+	 */
+	public class KeyBase extends AbstractKeyBase< KeyBase >
+	{
+
+		private static final long serialVersionUID = -7498047143922932282L;
+
+		protected KeyBase( final String name )
+		{
+			super( name );
+		}
+
 	}
 
 	/**
@@ -44,7 +106,7 @@ public interface Key
 	 *            the lookup key of the setting
 	 * @return a new key
 	 */
-	public static Key key( final String name )
+	public static Key< KeyBase > key( final String name )
 	{
 		return new KeyBase( name );
 	}
