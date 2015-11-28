@@ -6,13 +6,7 @@
 		<artifactId>core-examples</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>example-jpa</artifactId>
-	<name>Example JPA</name>
-	<description>Example - JPA</description>
-	<dependencies>
-		<dependency>
-			<groupId>uk.co.bluegecko</groupId>
-			<artifactId>example-models</artifactId>
-		</dependency>
-	</dependencies>
+	<artifactId>example-models</artifactId>
+	<name>Example Models</name>
+	<description>Example - Models</description>
 </project>

@@ -1,0 +1,48 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>uk.co.bluegecko</groupId>
+		<artifactId>core-examples</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>example-clojure</artifactId>
+	<name>Example Clojure</name>
+	<description>Example - Clojure</description>
+	<properties>
+		<clojure-plugin.version>1.7.1</clojure-plugin.version>
+		<clojure-library.version>1.8.0-RC2</clojure-library.version>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.theoryinpractise</groupId>
+				<artifactId>clojure-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>com.theoryinpractise</groupId>
+					<artifactId>clojure-maven-plugin</artifactId>
+					<version>${clojure-plugin.version}</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>org.clojure</groupId>
+			<artifactId>clojure</artifactId>
+		</dependency>
+	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.clojure</groupId>
+				<artifactId>clojure</artifactId>
+				<version>${clojure-library.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>

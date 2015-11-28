@@ -11,7 +11,11 @@
 	<name>Core Examples</name>
 	<description>Core Examples</description>
 	<modules>
+		<module>example-models</module>
 		<module>example-jpa</module>
+		<module>example-groovy</module>
+		<module>example-clojure</module>
+		<module>example-scala</module>
 	</modules>
 	<dependencies>
 		<dependency>
@@ -24,4 +28,13 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>uk.co.bluegecko</groupId>
+				<artifactId>example-models</artifactId>
+				<version>${project.parent.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>
