@@ -11,7 +11,9 @@ import uk.co.bluegecko.core.service.base.AbstractService;
 import uk.co.bluegecko.core.service.common.LocaleService;
 import uk.co.bluegecko.core.service.common.LocalisationService;
 import ch.qos.cal10n.BaseName;
+import ch.qos.cal10n.IMessageConveyor;
 import ch.qos.cal10n.LocaleData;
+import ch.qos.cal10n.MessageConveyor;
 
 
 /**
@@ -91,6 +93,17 @@ public abstract class BaseLocalisationService extends AbstractService implements
 	public Locale getSystemLocale()
 	{
 		return getLocaleService().getSystemLocale();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see uk.co.bluegecko.core.service.common.LocalisationService#getMessage(java.util.Locale, java.lang.Enum, java.lang.Object[])
+	 */
+	@Override
+	public String getMessage( final Locale locale, final Enum< ? > value, final Object... params )
+	{
+		final IMessageConveyor mc = new MessageConveyor( locale );
+		return mc.getMessage( value, params );
 	}
 
 }

@@ -36,4 +36,14 @@ public interface Builder< T, B extends Builder< T, B > >
 	 */
 	public B reset();
 
+	/**
+	 * Initialise the fields on the builder using the passed example.
+	 * 
+	 * @param other
+	 *            the example to use for initialisation
+	 *
+	 * @return the builder
+	 */
+	public B from( final T other );
+
 }

@@ -82,6 +82,19 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see uk.co.bluegecko.core.builder.Builder#from(java.lang.Object)
+	 */
+	@Override
+	public CollectionBuilder< C, T > from( final C example )
+	{
+		collection.clear();
+		collection.addAll( example );
+
+		return this;
+	}
+
 	/**
 	 * Copy the collection builder, using a new internal collection.
 	 *

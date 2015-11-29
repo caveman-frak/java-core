@@ -9,12 +9,10 @@ import uk.co.bluegecko.core.model.Named;
 public interface Person extends Data< Long >, Named
 {
 
+	public Title getTitle();
+
 	public String getFirstName();
 
-	public void setFirstName( final String firstName );
-
 	public String getLastName();
-
-	public void setLastName( final String firstName );
 
 }

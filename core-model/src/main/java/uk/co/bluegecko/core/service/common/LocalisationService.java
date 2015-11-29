@@ -28,7 +28,8 @@ public interface LocalisationService
 	 *            any message arguments
 	 * @return the localised message
 	 */
-	public String getMessage( Locale locale, String bundleName, String messageKey, Object... params );
+	public String getMessage( final Locale locale, final String bundleName, final String messageKey,
+			final Object... params );
 
 	/**
 	 * Return a map of all localised message key, value pairs for a given bundle.
@@ -40,6 +41,19 @@ public interface LocalisationService
 	 *
 	 * @return a map of localised message key, value pairs
 	 */
-	public Map< String, Object > getMessages( Locale locale, String bundleName );
+	public Map< String, Object > getMessages( final Locale locale, final String bundleName );
+
+	/**
+	 * Return a localised message using the enum.
+	 * 
+	 * @param locale
+	 *            the locale for the bundle
+	 * @param value
+	 *            the enum to localise
+	 * @param params
+	 *            any message arguments
+	 * @return the localised message
+	 */
+	public String getMessage( final Locale locale, final Enum< ? > value, final Object... params );
 
 }

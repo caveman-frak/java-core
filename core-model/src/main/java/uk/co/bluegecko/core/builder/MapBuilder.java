@@ -74,6 +74,19 @@ public final class MapBuilder< K, V > implements Builder< Map< K, V >, MapBuilde
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see uk.co.bluegecko.core.builder.Builder#from(java.lang.Object)
+	 */
+	@Override
+	public MapBuilder< K, V > from( final Map< K, V > other )
+	{
+		map.clear();
+		map.putAll( this.map );
+
+		return this;
+	}
+
 	/**
 	 * Copy the map builder, using a new internal map.
 	 *
