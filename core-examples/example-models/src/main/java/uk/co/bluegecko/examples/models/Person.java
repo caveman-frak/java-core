@@ -1,6 +1,8 @@
 package uk.co.bluegecko.examples.models;
 
 
+import java.time.temporal.TemporalAccessor;
+
 import uk.co.bluegecko.core.model.Data;
 import uk.co.bluegecko.core.model.Named;
 
@@ -14,5 +16,7 @@ public interface Person extends Data< Long >, Named
 	public String getFirstName();
 
 	public String getLastName();
+
+	public TemporalAccessor getDateOfBirth();
 
 }

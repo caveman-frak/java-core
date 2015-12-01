@@ -25,7 +25,6 @@ import org.junit.Test;
 public class CollectionBuilderTest
 {
 
-	@SuppressWarnings( "unchecked" )
 	@Test
 	public void testList()
 	{
@@ -38,7 +37,6 @@ public class CollectionBuilderTest
 		assertThat( list, contains( 10, 10L, 10.01F, 10.01D ) );
 	}
 
-	@SuppressWarnings( "unchecked" )
 	@Test
 	public void testWithArray()
 	{
@@ -52,7 +50,6 @@ public class CollectionBuilderTest
 		assertThat( list, contains( 10, 10L, 10.01F, 10.01D ) );
 	}
 
-	@SuppressWarnings( "unchecked" )
 	@Test
 	public void testWithList()
 	{
@@ -65,7 +62,6 @@ public class CollectionBuilderTest
 		assertThat( list, contains( 10, 10L, 10.01F, 10.01D ) );
 	}
 
-	@SuppressWarnings( "unchecked" )
 	@Test
 	public void testSet()
 	{
@@ -90,7 +86,6 @@ public class CollectionBuilderTest
 		assertThat( list, contains( 10, 11, 12, 13 ) );
 	}
 
-	@SuppressWarnings( "unchecked" )
 	@Test
 	public void testQueue()
 	{
@@ -103,7 +98,6 @@ public class CollectionBuilderTest
 		assertThat( list, contains( 10, 10L, 10.01F, 10.01D ) );
 	}
 
-	@SuppressWarnings( "unchecked" )
 	@Test
 	public void testDeque()
 	{
@@ -116,11 +110,10 @@ public class CollectionBuilderTest
 		assertThat( list, contains( 10, 10L, 10.01F, 10.01D ) );
 	}
 
-	@SuppressWarnings( "unchecked" )
 	@Test
 	public void testCopy()
 	{
-		final List< Number > collection = new LinkedList<>();
+		final List< Number > collection = new LinkedList< >();
 		final CollectionBuilder< List< Number >, Number > builder = CollectionBuilder.collection( collection );
 
 		builder.with( 10 ).with( 10L );
@@ -135,7 +128,6 @@ public class CollectionBuilderTest
 		assertThat( list, contains( 10, 10L, 10.01F, 10.01D ) );
 	}
 
-	@SuppressWarnings( "unchecked" )
 	@Test
 	public void testCopyWith()
 	{
@@ -143,7 +135,7 @@ public class CollectionBuilderTest
 
 		builder.with( 10 ).with( 10L );
 
-		final List< Number > collection = new LinkedList<>();
+		final List< Number > collection = new LinkedList< >();
 		final CollectionBuilder< List< Number >, Number > builder2 = builder.copy( collection );
 		builder2.with( 10.01F ).with( 10.01D );
 
@@ -166,7 +158,6 @@ public class CollectionBuilderTest
 		assertThat( list, hasSize( 0 ) );
 	}
 
-	@SuppressWarnings( "unchecked" )
 	@Test
 	public void testBuildWith()
 	{
@@ -174,7 +165,7 @@ public class CollectionBuilderTest
 
 		builder.with( 10 ).with( 10L ).with( 10.01F ).with( 10.01D );
 
-		final List< Number > list = builder.build( new LinkedList<>() );
+		final List< Number > list = builder.build( new LinkedList< >() );
 		assertThat( list, is( instanceOf( LinkedList.class ) ) );
 		assertThat( list, hasSize( 4 ) );
 		assertThat( list, contains( 10, 10L, 10.01F, 10.01D ) );

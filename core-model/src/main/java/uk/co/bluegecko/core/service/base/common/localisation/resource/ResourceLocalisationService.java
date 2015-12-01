@@ -59,13 +59,13 @@ public class ResourceLocalisationService extends BaseLocalisationService
 			}
 			catch ( final MissingResourceException ex )
 			{
-				getLogger().info( Log.MISSING_KEY, getLocale( locale ), bundleName, messageKey );
+				getLogger().info( Log.MISSING_KEY, getLocale( locale ), bundleName, messageKey, ex.getMessage() );
 				return MISSING_KEY_INDICATOR + messageKey + MISSING_KEY_INDICATOR;
 			}
 		}
 		catch ( final MissingResourceException ex )
 		{
-			getLogger().info( Log.MISSING_BUNDLE, getLocale( locale ), bundleName );
+			getLogger().info( Log.MISSING_BUNDLE, getLocale( locale ), bundleName, ex.getMessage() );
 			return MISSING_BUNDLE_INDICATOR + messageKey + MISSING_BUNDLE_INDICATOR;
 		}
 	}
@@ -77,7 +77,7 @@ public class ResourceLocalisationService extends BaseLocalisationService
 	@Override
 	public Map< String, Object > getMessages( final Locale locale, final String bundleName )
 	{
-		final Map< String, Object > messages = new HashMap<>();
+		final Map< String, Object > messages = new HashMap< >();
 		try
 		{
 			final ResourceBundle bundle = getBundle( locale, bundleName );
@@ -89,7 +89,7 @@ public class ResourceLocalisationService extends BaseLocalisationService
 		}
 		catch ( final MissingResourceException ex )
 		{
-			getLogger().info( Log.MISSING_BUNDLE, getLocale( locale ), bundleName );
+			getLogger().info( Log.MISSING_BUNDLE, getLocale( locale ), bundleName, ex.getMessage() );
 		}
 
 		return messages;

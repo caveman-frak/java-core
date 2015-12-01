@@ -58,7 +58,6 @@ public final class MapBuilder< K, V > implements Builder< Map< K, V >, MapBuilde
 	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.builder.Builder#copy()
 	 */
-	@SuppressWarnings( "unchecked" )
 	@Override
 	public MapBuilder< K, V > copy()
 	{
@@ -66,7 +65,7 @@ public final class MapBuilder< K, V > implements Builder< Map< K, V >, MapBuilde
 		{
 			final Map< K, V > map = ConstructorUtils.invokeConstructor( this.map.getClass() );
 			map.putAll( this.map );
-			return new MapBuilder<>( map );
+			return new MapBuilder< >( map );
 		}
 		catch ( NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException ex )
 		{
@@ -97,7 +96,7 @@ public final class MapBuilder< K, V > implements Builder< Map< K, V >, MapBuilde
 	public MapBuilder< K, V > copy( final Map< K, V > map )
 	{
 		map.putAll( this.map );
-		return new MapBuilder<>( map );
+		return new MapBuilder< >( map );
 	}
 
 	/*
@@ -190,7 +189,7 @@ public final class MapBuilder< K, V > implements Builder< Map< K, V >, MapBuilde
 	 */
 	public static < K, V > MapBuilder< K, V > map()
 	{
-		return new MapBuilder<>( new HashMap<>() );
+		return new MapBuilder< >( new HashMap< >() );
 	}
 
 	/**
@@ -207,7 +206,7 @@ public final class MapBuilder< K, V > implements Builder< Map< K, V >, MapBuilde
 	 */
 	public static < K, V > MapBuilder< K, V > map( final Map< K, V > map )
 	{
-		return new MapBuilder<>( map );
+		return new MapBuilder< >( map );
 	}
 
 	/**

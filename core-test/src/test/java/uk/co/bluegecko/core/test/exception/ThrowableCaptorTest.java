@@ -48,12 +48,14 @@ public class ThrowableCaptorTest
 		final Foo foo = new Foo( false );
 		try
 		{
-			capture( ( ) -> foo.foo( false ) );
+			capture( () -> foo.foo( false ) );
 
 			throw new IllegalStateException( "should not be here" );
 		}
 		catch ( final AssertionError ex )
-		{}
+		{
+			assertThat( ex.getMessage(), is( "failed-to-catch-exception" ) );
+		}
 	}
 
 	@Test
@@ -67,7 +69,9 @@ public class ThrowableCaptorTest
 			throw new IllegalStateException( "should not be here" );
 		}
 		catch ( final AssertionError ex )
-		{}
+		{
+			assertThat( ex.getMessage(), is( "failed-to-catch-exception" ) );
+		}
 	}
 
 }

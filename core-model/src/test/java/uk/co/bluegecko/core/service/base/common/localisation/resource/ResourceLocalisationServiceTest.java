@@ -117,8 +117,8 @@ public class ResourceLocalisationServiceTest extends TestHarness
 
 		assertThat( localisationService.getMessage( null, BUNDLE_NAME, "not-exists" ), is( "**not-exists**" ) );
 
-		assertThat( testLogger.getLoggingEvents(),
-				hasItem( info( Log.MISSING_KEY, Locale.ROOT, BUNDLE_NAME, "not-exists" ) ) );
+		assertThat( testLogger.getLoggingEvents(), hasItem( info( Log.MISSING_KEY, Locale.ROOT, BUNDLE_NAME,
+				"not-exists", "Can't find resource for bundle java.util.PropertyResourceBundle, key not-exists" ) ) );
 	}
 
 	/**

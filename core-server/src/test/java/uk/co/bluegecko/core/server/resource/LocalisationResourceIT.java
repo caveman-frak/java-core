@@ -28,7 +28,6 @@ import uk.co.bluegecko.core.server.test.AbstractIntegrationTest;
 public class LocalisationResourceIT extends AbstractIntegrationTest
 {
 
-	@SuppressWarnings( "unchecked" )
 	@Test
 	public void fetchBundle() throws MalformedURLException, URISyntaxException
 	{

@@ -26,12 +26,11 @@ public class FilteredSinkTest
 	private Sink< String > sinkFoo;
 	private Sink< String > sink;
 
-	@SuppressWarnings( "unchecked" )
 	@Before
 	public final void setUp()
 	{
 		sinkFoo = mock( Sink.class );
-		sink = new FilteredSink<>( sinkFoo, s -> s.equalsIgnoreCase( ONE ) );
+		sink = new FilteredSink< >( sinkFoo, s -> s.equalsIgnoreCase( ONE ) );
 	}
 
 	@Test

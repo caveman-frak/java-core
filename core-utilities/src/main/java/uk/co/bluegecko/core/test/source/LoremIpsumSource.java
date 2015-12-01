@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * Generate characters using the text from Lorem Ipsum
@@ -23,9 +26,11 @@ import java.util.function.Predicate;
 public class LoremIpsumSource implements Source< Character >
 {
 
+	private static final Logger LOG = LoggerFactory.getLogger( LoremIpsumSource.class );
+
 	private static final Predicate< Character > paragraphBoundary = ( final Character ch ) -> ch == '\r' || ch == '\n';
-	private static final Predicate< Character > sentenceBoundary = ( final Character ch ) -> paragraphBoundary
-			.test( ch ) || ch == '.' || ch == '!' || ch == '?';
+	private static final Predicate< Character > sentenceBoundary = (
+			final Character ch ) -> paragraphBoundary.test( ch ) || ch == '.' || ch == '!' || ch == '?';
 	private static final Predicate< Character > wordBoundary = ( final Character ch ) -> ch == '\0'
 			|| Character.isWhitespace( ch );
 
@@ -92,6 +97,7 @@ public class LoremIpsumSource implements Source< Character >
 		}
 		catch ( final IOException ex )
 		{
+			LOG.error( "next", ex );
 			throw new IllegalStateException( ex );
 		}
 	}
@@ -111,6 +117,7 @@ public class LoremIpsumSource implements Source< Character >
 		}
 		catch ( final IOException ex )
 		{
+			LOG.error( "reset", ex );
 			throw new IllegalStateException( ex );
 		}
 	}
@@ -160,7 +167,7 @@ public class LoremIpsumSource implements Source< Character >
 	 */
 	public List< String > list( final int count, final int words )
 	{
-		final List< String > list = new ArrayList<>();
+		final List< String > list = new ArrayList< >();
 		for ( int i = 0; i < count; i++ )
 		{
 			list.add( words( words ) );
@@ -202,7 +209,9 @@ public class LoremIpsumSource implements Source< Character >
 				}
 			}
 			catch ( final IOException ex )
-			{}
+			{
+				LOG.error( "discard-trailing-delimiter", ex );
+			}
 		}
 	}
 

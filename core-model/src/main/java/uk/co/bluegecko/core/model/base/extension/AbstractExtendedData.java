@@ -23,12 +23,12 @@ import uk.co.bluegecko.core.model.extension.Extension;
  * @param <M>
  *            the model class
  */
-public abstract class AbstractExtendedData< K extends Serializable & Comparable< K >, M extends Model > extends
-		AbstractData< K > implements Extended< M >, Model
+public abstract class AbstractExtendedData< K extends Serializable & Comparable< K >, M extends Model >
+		extends AbstractData< K >implements Extended< M >
 {
 
 	private static final long serialVersionUID = -1264009544621267181L;
-	private final List< Extension< M >> extensions;
+	private final List< Extension< M > > extensions;
 
 	/**
 	 * Create an extended data entity, passing in the list of supported extensions.
@@ -38,7 +38,7 @@ public abstract class AbstractExtendedData< K extends Serializable & Comparable<
 	 * @param extensions
 	 *            list of extensions to add to the model
 	 */
-	public AbstractExtendedData( final K id, final List< Extension< M >> extensions )
+	public AbstractExtendedData( final K id, final List< Extension< M > > extensions )
 	{
 		super( id );
 
@@ -53,7 +53,7 @@ public abstract class AbstractExtendedData< K extends Serializable & Comparable<
 	 */
 	public AbstractExtendedData( final K id )
 	{
-		this( id, new ArrayList<>() );
+		this( id, new ArrayList< >() );
 	}
 
 	/*
@@ -61,7 +61,7 @@ public abstract class AbstractExtendedData< K extends Serializable & Comparable<
 	 * @see uk.co.bluegecko.core.model.extension.Extended#setExtensions(java.util.List)
 	 */
 	@Override
-	public void setExtensions( final List< Extension< M >> extensions )
+	public void setExtensions( final List< Extension< M > > extensions )
 	{
 		this.extensions.clear();
 		this.extensions.addAll( extensions );
@@ -72,7 +72,7 @@ public abstract class AbstractExtendedData< K extends Serializable & Comparable<
 	 * @see uk.co.bluegecko.core.model.extension.Extended#getExtensions()
 	 */
 	@Override
-	public List< Extension< M >> getExtensions()
+	public List< Extension< M > > getExtensions()
 	{
 		return Collections.unmodifiableList( extensions );
 	}
@@ -83,7 +83,7 @@ public abstract class AbstractExtendedData< K extends Serializable & Comparable<
 	 */
 	@SuppressWarnings( "unchecked" )
 	@Override
-	public < T extends Extension< M >> T getExtension( final Class< T > klass )
+	public < T extends Extension< M > > T getExtension( final Class< T > klass )
 	{
 		for ( final Extension< M > extension : extensions )
 		{

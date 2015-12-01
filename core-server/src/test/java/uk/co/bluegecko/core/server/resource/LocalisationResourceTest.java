@@ -51,11 +51,10 @@ public class LocalisationResourceTest extends AbstractWebTest
 		final HttpAuthenticationFeature authenticationFeature = HttpAuthenticationFeature.basic( TEST_USER,
 				TEST_PASSWORD );
 		final Configuration configuration = new ClientConfig().register( authenticationFeature );
-		target = ClientBuilder.newClient( configuration ).target(
-				new URL( "http", "localhost", getHttpPort(), BASE_PATH ).toURI() );
+		target = ClientBuilder.newClient( configuration )
+				.target( new URL( "http", "localhost", getHttpPort(), BASE_PATH ).toURI() );
 	}
 
-	@SuppressWarnings( "unchecked" )
 	@Test
 	public void fetchBundle()
 	{
@@ -70,7 +69,6 @@ public class LocalisationResourceTest extends AbstractWebTest
 		assertThat( ( Map< String, String > ) response.readEntity( Map.class ), hasEntry( "blue", "Blue" ) );
 	}
 
-	@SuppressWarnings( "unchecked" )
 	@Test
 	public void fetchBundleForQueryFR()
 	{

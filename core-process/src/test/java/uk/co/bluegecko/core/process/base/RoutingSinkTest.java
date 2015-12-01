@@ -31,13 +31,12 @@ public class RoutingSinkTest
 	private Sink< String > sink;
 	private Sink< String > sinkFoo, sinkBar;
 
-	@SuppressWarnings( "unchecked" )
 	@Before
 	public final void setUp()
 	{
 		sinkFoo = mock( Sink.class );
 		sinkBar = mock( Sink.class );
-		sink = new RoutingSink<>( s -> ( s.length() > 3 ? Route.BAR : Route.FOO ), Route.values(), sinkFoo, sinkBar );
+		sink = new RoutingSink< >( s -> ( s.length() > 3 ? Route.BAR : Route.FOO ), Route.values(), sinkFoo, sinkBar );
 	}
 
 	@Test

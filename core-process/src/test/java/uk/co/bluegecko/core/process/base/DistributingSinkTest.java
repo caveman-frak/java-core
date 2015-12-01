@@ -25,13 +25,12 @@ public class DistributingSinkTest
 	private Sink< String > sink;
 	private Sink< String > sinkFoo, sinkBar;
 
-	@SuppressWarnings( "unchecked" )
 	@Before
 	public final void setUp()
 	{
 		sinkFoo = mock( Sink.class );
 		sinkBar = mock( Sink.class );
-		sink = new DistributingSink<>( sinkFoo, sinkBar );
+		sink = new DistributingSink< >( sinkFoo, sinkBar );
 	}
 
 	@Test

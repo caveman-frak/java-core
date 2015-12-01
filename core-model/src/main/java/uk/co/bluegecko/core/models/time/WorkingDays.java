@@ -43,9 +43,9 @@ public class WorkingDays implements TemporalQuery< Boolean >
 	}
 
 	/**
-	 * Construct a new working day set as used in the Western world, of monday to friday.
+	 * Construct a new working day set as used in the Western world, of Monday to Friday.
 	 *
-	 * @return working day set of monday to friday
+	 * @return working day set of Monday to Friday
 	 */
 	public static WorkingDays western()
 	{
@@ -54,9 +54,9 @@ public class WorkingDays implements TemporalQuery< Boolean >
 	}
 
 	/**
-	 * Construct a new working day set as used in the Middle Eastern world, of sunday to thursday.
+	 * Construct a new working day set as used in the Middle Eastern world, of Sunday to Thursday.
 	 *
-	 * @return working day set of sunday to thursday
+	 * @return working day set of Sunday to Thursday
 	 */
 	public static WorkingDays middleEastern()
 	{
