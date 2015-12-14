@@ -73,7 +73,7 @@
 		</site>
 	</distributionManagement>
 	<repositories>
-<!-- 	
+		<!--
 		<repository>
 			<id>bintray-repo</id>
 			<name>Bin Tray Repository</name>
@@ -88,7 +88,7 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
- -->		
+		-->
 		<repository>
 			<id>oss-jfrog-artifactory-public</id>
 			<name>OSS JFrog Artifactory Public</name>
@@ -157,13 +157,14 @@
 		<github.global.server>github</github.global.server>
 		<site.url.root>scm:git:git@github.com:caveman-frak/java-core.git/gh_pages</site.url.root>
 		<!-- properties for versions of dependencies -->
-		<spring.version>2.0.0.BUILD-SNAPSHOT</spring.version>
+		<spring.version>2.0.1.BUILD-SNAPSHOT</spring.version>
 		<jersey.version>2.22.1</jersey.version>
 		<slf4j.version>1.7.13</slf4j.version>
 		<swagger.version>1.5.4</swagger.version>
 		<swagger-parser.version>1.0.13</swagger-parser.version>
 		<bouncy-castle.version>1.52</bouncy-castle.version>
 		<javax-el.version>2.2.6</javax-el.version>
+		<lomboc.version>1.16.6</lomboc.version>
 		<!-- properties for versions of web jars -->
 		<swagger-ui.version>2.1.3</swagger-ui.version>
 		<!-- properties for versions of plug-ins -->
@@ -176,7 +177,7 @@
 		<jar-plugin.version>2.6</jar-plugin.version>
 		<site-plugin.version>3.4</site-plugin.version>
 		<github-site-plugin.version>0.11</github-site-plugin.version>
-		<pittest-plugin.version>1.1.4</pittest-plugin.version>
+		<pittest-plugin.version>1.1.7</pittest-plugin.version>
 		<jacoco-plugin.version>0.7.5.201505241946</jacoco-plugin.version>
 		<failsafe-plugin.version>2.18.1</failsafe-plugin.version>
 		<build-helper-plugin.version>1.9.1</build-helper-plugin.version>
@@ -184,6 +185,7 @@
 		<springloaded-plugin.version>1.2.4.RELEASE</springloaded-plugin.version>
 		<git-commit-id-plugin.version>2.1.11</git-commit-id-plugin.version>
 		<jarsigner-plugin.version>1.4</jarsigner-plugin.version>
+		<lombok-plugin.version>1.16.6.1</lombok-plugin.version>
 		<!-- keystore properties and defaults -->
 		<keystore.location>src/keystore</keystore.location>
 		<keystore.directory>${project.basedir}/${keystore.location}</keystore.directory>
@@ -223,7 +225,7 @@
 				<groupId>org.jfrog.buildinfo</groupId>
 				<artifactId>artifactory-maven-plugin</artifactId>
 			</plugin>
-			<!-- 
+			<!--
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
@@ -232,10 +234,14 @@
 				<groupId>com.github.github</groupId>
 				<artifactId>site-maven-plugin</artifactId>
 			</plugin>
-			 -->
-			 <plugin>
+			-->
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jarsigner-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 		<pluginManagement>
@@ -565,6 +571,19 @@
 						</filters>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.projectlombok</groupId>
+					<artifactId>lombok-maven-plugin</artifactId>
+					<version>${lombok-plugin.version}</version>
+					<executions>
+						<execution>
+							<phase>generate-sources</phase>
+							<goals>
+								<goal>delombok</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
@@ -650,7 +669,12 @@
 				<artifactId>bcprov-jdk15on</artifactId>
 				<version>${bouncy-castle.version}</version>
 			</dependency>
-			<!-- Web Jars -->
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lomboc.version}</version>
+				<scope>provided</scope>
+			</dependency>
 			<dependency>
 				<groupId>org.webjars</groupId>
 				<artifactId>swagger-ui</artifactId>

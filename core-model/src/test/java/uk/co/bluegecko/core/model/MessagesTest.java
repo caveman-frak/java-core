@@ -34,6 +34,34 @@ public class MessagesTest extends TestHarness
 	}
 
 	@Test
+	public final void testSeverityEmpty()
+	{
+		assertThat( messages.getSeverity(), is( Severity.NONE ) );
+	}
+
+	@Test
+	public final void testSeverityError()
+	{
+		messages.addMessages( Severity.ERROR, KEY_1, MESSAGE_1 );
+		assertThat( messages.getSeverity(), is( Severity.ERROR ) );
+	}
+
+	@Test
+	public final void testSeverityWarning()
+	{
+		messages.addMessages( Severity.WARN, KEY_1, MESSAGE_1 );
+		assertThat( messages.getSeverity(), is( Severity.WARN ) );
+	}
+
+	@Test
+	public final void testSeverityErrorAndWarning()
+	{
+		messages.addMessages( Severity.ERROR, KEY_1, MESSAGE_1 );
+		messages.addMessages( Severity.WARN, KEY_2, MESSAGE_2 );
+		assertThat( messages.getSeverity(), is( Severity.ERROR ) );
+	}
+
+	@Test
 	public final void testHasSeverityEmpty()
 	{
 		assertThat( messages.hasMessages( Severity.ERROR ), is( false ) );
@@ -153,7 +181,7 @@ public class MessagesTest extends TestHarness
 	{
 		messages.addMessages( Severity.ERROR, KEY_1, MESSAGE_1 );
 		messages.addMessages( Severity.WARN, KEY_2, MESSAGE_2 );
-		assertThat( messages.toString(), is( "MessagesBase[\n\tWARN\tfoo2 : bar2\n\tERROR\tfoo1 : bar1\n]" ) );
+		assertThat( messages.toString(), is( "MessagesBase[\n\tERROR\tfoo1 : bar1\n\tWARN\tfoo2 : bar2\n]" ) );
 	}
 
 }

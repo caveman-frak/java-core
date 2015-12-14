@@ -28,14 +28,31 @@ public class MessagesBase implements Messages
 
 	private static final long serialVersionUID = -6477212798589984980L;
 
-	private final Map< Severity, Map< String, Set< String >> > messages;
+	private final Map< Severity, Map< String, Set< String > > > messages;
 
 	/**
 	 * Create a new messages object.
 	 */
 	public MessagesBase()
 	{
-		messages = new EnumMap<>( Severity.class );
+		messages = new EnumMap< >( Severity.class );
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see uk.co.bluegecko.core.model.Messages#getSeverity()
+	 */
+	@Override
+	public Severity getSeverity()
+	{
+		for ( final Severity severity : Severity.values() )
+		{
+			if ( hasMessages( severity ) )
+			{
+				return severity;
+			}
+		}
+		return Severity.NONE;
 	}
 
 	/*
@@ -43,18 +60,18 @@ public class MessagesBase implements Messages
 	 * @see uk.co.bluegecko.core.model.Messages#hasMessages(uk.co.bluegecko.core.model.Messages.Severity)
 	 */
 	@Override
-	public boolean hasMessages( Severity severity )
+	public boolean hasMessages( final Severity severity )
 	{
-		final Map< String, Set< String >> map = messages.get( severity );
+		final Map< String, Set< String > > map = messages.get( severity );
 		return map != null && !map.isEmpty();
 	}
 
 	@Override
-	public boolean hasMessages( Severity severity, String key )
+	public boolean hasMessages( final Severity severity, final String key )
 	{
 		if ( hasMessages( severity ) )
 		{
-			final Map< String, Set< String >> map = messages.get( severity );
+			final Map< String, Set< String > > map = messages.get( severity );
 			if ( map != null )
 			{
 				final Set< String > set = map.get( key );
@@ -69,11 +86,11 @@ public class MessagesBase implements Messages
 	 * @see uk.co.bluegecko.core.model.Messages#getKeys(uk.co.bluegecko.core.model.Messages.Severity)
 	 */
 	@Override
-	public Set< String > getKeys( Severity severity )
+	public Set< String > getKeys( final Severity severity )
 	{
 		if ( hasMessages( severity ) )
 		{
-			final Map< String, Set< String >> map = messages.get( severity );
+			final Map< String, Set< String > > map = messages.get( severity );
 			if ( map != null )
 			{
 				return Collections.unmodifiableSet( map.keySet() );
@@ -87,7 +104,7 @@ public class MessagesBase implements Messages
 	 * @see uk.co.bluegecko.core.model.Messages#getMessages(uk.co.bluegecko.core.model.Messages.Severity, java.lang.String)
 	 */
 	@Override
-	public Set< String > getMessages( Severity severity, String key )
+	public Set< String > getMessages( final Severity severity, final String key )
 	{
 		if ( hasMessages( severity, key ) )
 		{
@@ -105,16 +122,16 @@ public class MessagesBase implements Messages
 	 * @see uk.co.bluegecko.core.model.Messages#addMessage(uk.co.bluegecko.core.model.Messages.Severity, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public Set< String > addMessages( Severity severity, String key, String... text )
+	public Set< String > addMessages( final Severity severity, final String key, final String... text )
 	{
 		if ( !hasMessages( severity ) )
 		{
-			final Map< String, Set< String >> map = new HashMap<>();
+			final Map< String, Set< String > > map = new HashMap< >();
 			messages.put( severity, map );
 		}
 		if ( !hasMessages( severity, key ) )
 		{
-			final Set< String > set = new HashSet<>();
+			final Set< String > set = new HashSet< >();
 			messages.get( severity ).put( key, set );
 		}
 		final Set< String > set = messages.get( severity ).get( key );
@@ -138,7 +155,7 @@ public class MessagesBase implements Messages
 	 * @see uk.co.bluegecko.core.model.Messages#clear(uk.co.bluegecko.core.model.Messages.Severity)
 	 */
 	@Override
-	public void clear( Severity severity )
+	public void clear( final Severity severity )
 	{
 		if ( hasMessages( severity ) )
 		{
@@ -151,7 +168,7 @@ public class MessagesBase implements Messages
 	 * @see uk.co.bluegecko.core.model.Messages#clear(uk.co.bluegecko.core.model.Messages.Severity, java.lang.String)
 	 */
 	@Override
-	public void clear( Severity severity, String key )
+	public void clear( final Severity severity, final String key )
 	{
 		if ( hasMessages( severity, key ) )
 		{

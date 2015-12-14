@@ -4,8 +4,6 @@
 package uk.co.bluegecko.core.security.exception;
 
 
-import java.util.Locale;
-
 import uk.co.bluegecko.core.exceptions.BaseRuntimeException;
 
 
@@ -22,32 +20,27 @@ public class SecurityException extends BaseRuntimeException implements SecurityE
 	 *
 	 * @param cause
 	 *            the underlying cause of the security issue
-	 * @param locale
-	 *            the locale for the message
 	 * @param messageKey
 	 *            informational message about the security issue
 	 * @param args
 	 *            any additional message arguments
 	 */
-	public SecurityException( final Throwable cause, final Locale locale, final SecurityMessage messageKey,
-			final Object... args )
+	public SecurityException( final Throwable cause, final SecurityMessage messageKey, final Object... args )
 	{
-		super( cause, locale, messageKey, args );
+		super( cause, messageKey, args );
 	}
 
 	/**
 	 * Create a new generic Security Exception.
-	 * 
-	 * @param locale
-	 *            the locale for the message
+	 *
 	 * @param messageKey
 	 *            informational message about the security issue
 	 * @param args
 	 *            any additional message arguments
 	 */
-	public SecurityException( final Locale locale, final SecurityMessage messageKey, final Object... args )
+	public SecurityException( final SecurityMessage messageKey, final Object... args )
 	{
-		super( locale, messageKey, args );
+		super( messageKey, args );
 	}
 
 }

@@ -22,7 +22,7 @@ public class BulkConnectorTest extends TestHarness
 	@Before
 	public final void setUp()
 	{
-		connector = BulkConnector.bulk( localeService() );
+		connector = BulkConnector.bulk();
 		source = new WordSequenceSource();
 	}
 

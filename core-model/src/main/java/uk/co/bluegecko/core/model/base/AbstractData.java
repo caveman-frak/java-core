@@ -23,7 +23,7 @@ public class AbstractData< K extends Serializable & Comparable< K >> implements 
 
 	private static final long serialVersionUID = 2192649767237869981L;
 
-	private final K id;
+	private final K key;
 
 	/**
 	 * Default constructor.
@@ -35,7 +35,7 @@ public class AbstractData< K extends Serializable & Comparable< K >> implements 
 	{
 		super();
 
-		this.id = id;
+		this.key = id;
 	}
 
 	/*
@@ -45,7 +45,7 @@ public class AbstractData< K extends Serializable & Comparable< K >> implements 
 	@Override
 	public final K getKey()
 	{
-		return id;
+		return key;
 	}
 
 	/*

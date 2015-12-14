@@ -17,48 +17,85 @@ public abstract class BaseException extends Exception implements ExceptionLocale
 
 	private static final long serialVersionUID = -2796448640823556346L;
 
+	private final Enum< ? > messageKey;
+	private final Object[] args;
+
 	/**
 	 * Create a new exception, build the message string from the message key and args for the passed locale.
 	 *
 	 * @param cause
 	 *            the original cause of the exception
-	 * @param locale
-	 *            the locale for the message
 	 * @param messageKey
 	 *            the key for the localised message
 	 * @param args
 	 *            any message arguments
 	 */
-	protected BaseException( final Throwable cause, final Locale locale, final Enum< ? > messageKey,
-			final Object... args )
-	{
-		super( new MessageConveyor( locale ).getMessage( messageKey, args ), cause );
-	}
-
-	/**
-	 * Create a new exception, the message will be derived from the cause.
-	 *
-	 * @param cause
-	 *            the original cause of the exception
-	 */
-	protected BaseException( final Throwable cause )
+	protected BaseException( final Throwable cause, final Enum< ? > messageKey, final Object... args )
 	{
 		super( cause );
+
+		this.messageKey = messageKey;
+		this.args = args;
 	}
 
 	/**
 	 * Create a new exception, build the message string from the message key and args for the passed locale.
 	 *
-	 * @param locale
-	 *            the locale for the message
 	 * @param messageKey
 	 *            the key for the localised message
 	 * @param args
 	 *            any message arguments
 	 */
-	protected BaseException( final Locale locale, final Enum< ? > messageKey, final Object... args )
+	protected BaseException( final Enum< ? > messageKey, final Object... args )
 	{
-		super( new MessageConveyor( locale ).getMessage( messageKey, args ) );
+		super( messageKey.name() );
+
+		this.messageKey = messageKey;
+		this.args = args;
+	}
+
+	/**
+	 * Get the raw enumeration for the message key.
+	 *
+	 * @return the message key
+	 */
+	public Enum< ? > getMessageKey()
+	{
+		return messageKey;
+	}
+
+	/**
+	 * get the raw message arguments.
+	 *
+	 * @return message arguments
+	 */
+	public Object[] getArguments()
+	{
+		return args;
+	}
+
+	/**
+	 * Get the message as a localised string using the passed locale.
+	 *
+	 * @param locale
+	 *            locale to use
+	 * @return localised string
+	 */
+	public String getLocalizedMessage( final Locale locale )
+	{
+		// uses MessageFormat which does not understand java date time objects, so convert to dates
+		final Object[] arguments = ExceptionLocale.updateDateTimeToDate( args );
+		return new MessageConveyor( locale ).getMessage( messageKey, arguments );
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Throwable#getLocalizedMessage()
+	 */
+	@Override
+	public String getLocalizedMessage()
+	{
+		return getLocalizedMessage( LOCALE );
 	}
 
 }

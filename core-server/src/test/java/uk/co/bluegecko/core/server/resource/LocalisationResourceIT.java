@@ -39,7 +39,7 @@ public class LocalisationResourceIT extends AbstractIntegrationTest
 		assertThat( ( String ) response.getHeaders().getFirst( HttpHeaders.CONTENT_TYPE ),
 				startsWith( MediaType.APPLICATION_JSON ) );
 
-		assertThat( ( Map< String, String > ) response.readEntity( Map.class ), hasEntry( "blue", "Blue" ) );
+		assertThat( ( Map< ?, ? > ) response.readEntity( Map.class ), hasEntry( "blue", "Blue" ) );
 	}
 
 }

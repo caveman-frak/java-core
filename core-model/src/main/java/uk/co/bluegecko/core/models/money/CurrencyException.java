@@ -25,7 +25,7 @@ public class CurrencyException extends BaseRuntimeException
 	 */
 	public CurrencyException( final Money.Log messageKey, final Object... args )
 	{
-		super( LOCALE, messageKey, args );
+		super( messageKey, args );
 	}
 
 }

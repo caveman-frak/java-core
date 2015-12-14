@@ -4,9 +4,6 @@
 package uk.co.bluegecko.core.security.exception;
 
 
-import java.util.Locale;
-
-
 /**
  * Exception to indicate the action requires the user to have additional permissions.
  */
@@ -20,27 +17,23 @@ public class ForbiddenException extends SecurityException implements Authorisati
 	 *
 	 * @param cause
 	 *            the underlying cause of the security issue
-	 * @param locale
-	 *            the locale for the message
 	 * @param args
 	 *            any additional message arguments
 	 */
-	public ForbiddenException( final Throwable cause, final Locale locale, final Object... args )
+	public ForbiddenException( final Throwable cause, final Object... args )
 	{
-		super( cause, locale, SecurityMessage.UNAUTHORISED, args );
+		super( cause, SecurityMessage.UNAUTHORISED, args );
 	}
 
 	/**
 	 * Create a new Forbidden Security Exception.
 	 *
-	 * @param locale
-	 *            the locale for the message
 	 * @param args
 	 *            any additional message arguments
 	 */
-	public ForbiddenException( final Locale locale, final Object... args )
+	public ForbiddenException( final Object... args )
 	{
-		super( locale, SecurityMessage.UNAUTHORISED, args );
+		super( SecurityMessage.UNAUTHORISED, args );
 	}
 
 }

@@ -66,7 +66,7 @@ public class LocalisationResourceTest extends AbstractWebTest
 		assertThat( ( String ) response.getHeaders().getFirst( HttpHeaders.CONTENT_TYPE ),
 				startsWith( MediaType.APPLICATION_JSON ) );
 
-		assertThat( ( Map< String, String > ) response.readEntity( Map.class ), hasEntry( "blue", "Blue" ) );
+		assertThat( ( Map< ?, ? > ) response.readEntity( Map.class ), hasEntry( "blue", "Blue" ) );
 	}
 
 	@Test
@@ -76,7 +76,7 @@ public class LocalisationResourceTest extends AbstractWebTest
 				.queryParam( LOCALE, "fr" ).request( MediaType.APPLICATION_JSON_TYPE ).get();
 
 		assertThat( response.getStatus(), is( Status.OK.getStatusCode() ) );
-		assertThat( ( Map< String, String > ) response.readEntity( Map.class ), hasEntry( "blue", "Bleu" ) );
+		assertThat( ( Map< ?, ? > ) response.readEntity( Map.class ), hasEntry( "blue", "Bleu" ) );
 	}
 
 	@Test

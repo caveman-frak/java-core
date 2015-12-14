@@ -24,7 +24,7 @@ public class SimpleConnectorTest extends TestHarness
 	@Before
 	public final void setUp()
 	{
-		connector = SimpleConnector.concurrent( localeService() );
+		connector = SimpleConnector.concurrent();
 		source = new WordSequenceSource();
 	}
 
@@ -52,7 +52,7 @@ public class SimpleConnectorTest extends TestHarness
 		connector.push( source.next() );
 		assertThat( "before finish", connector.isReady(), is( true ) );
 		connector.finished();
-		final Throwable caught = capture( "push", ( ) -> connector.push( source.next() ) );
+		final Throwable caught = capture( "push", () -> connector.push( source.next() ) );
 
 		assertThat( "after finish - type", caught, is( instanceOf( ConnectorException.class ) ) );
 		assertThat( "after finish - text", caught.getLocalizedMessage(),

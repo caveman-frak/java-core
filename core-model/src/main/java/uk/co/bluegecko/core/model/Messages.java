@@ -7,6 +7,9 @@ package uk.co.bluegecko.core.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import ch.qos.cal10n.BaseName;
+import ch.qos.cal10n.LocaleData;
+
 
 /**
  * A wrapper for message text.
@@ -19,23 +22,25 @@ public interface Messages extends Serializable
 
 	/**
 	 * The severity of the message.
-	 *
 	 */
+	@BaseName( "uk.co.bluegecko.core.model.Messages$Severity" )
+	@LocaleData(
+		{ @ch.qos.cal10n.Locale( "en" ) })
 	public enum Severity
 	{
-		/**
-		 * An Information message.
-		 */
-		INFO,
-		/**
-		 * A Warning message.
-		 */
-		WARN,
-		/**
-		 * An Error message.
-		 */
-		ERROR
+		/** An Error message. */
+		ERROR, /** A Warning message. */
+		WARN, /** An Information message. */
+		INFO, /** No messages */
+		NONE
 	}
+
+	/**
+	 * Return highest level of severity.
+	 *
+	 * @return severity
+	 */
+	public Severity getSeverity();
 
 	/**
 	 * Determine if there are any messages of the passed severity.

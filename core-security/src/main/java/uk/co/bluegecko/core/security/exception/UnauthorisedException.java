@@ -4,9 +4,6 @@
 package uk.co.bluegecko.core.security.exception;
 
 
-import java.util.Locale;
-
-
 /**
  * Exception to indicate the action requires the user to be authorised.
  */
@@ -20,27 +17,23 @@ public class UnauthorisedException extends SecurityException implements Authenti
 	 *
 	 * @param cause
 	 *            the underlying cause of the security issue
-	 * @param locale
-	 *            the locale for the message
 	 * @param args
 	 *            any additional message arguments
 	 */
-	public UnauthorisedException( final Throwable cause, final Locale locale, final Object... args )
+	public UnauthorisedException( final Throwable cause, final Object... args )
 	{
-		super( cause, locale, SecurityMessage.UNAUTHORISED, args );
+		super( cause, SecurityMessage.UNAUTHORISED, args );
 	}
 
 	/**
 	 * Create a new Unauthorised Security Exception.
-	 * 
-	 * @param locale
-	 *            the locale for the message
+	 *
 	 * @param args
 	 *            any additional message arguments
 	 */
-	public UnauthorisedException( final Locale locale, final Object... args )
+	public UnauthorisedException( final Object... args )
 	{
-		super( locale, SecurityMessage.UNAUTHORISED, args );
+		super( SecurityMessage.UNAUTHORISED, args );
 	}
 
 }

@@ -11,7 +11,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import uk.co.bluegecko.core.process.base.ConnectorException.Message;
-import uk.co.bluegecko.core.service.common.LocaleService;
 
 
 /**
@@ -23,22 +22,18 @@ import uk.co.bluegecko.core.service.common.LocaleService;
 public class SimpleConnector< T > implements Connector< T >
 {
 
-	private final LocaleService localeService;
 	private final Queue< T > queue;
 	private final AtomicBoolean finished;
 
 	/**
 	 * @param queue
 	 *            queue to use for passing objects
-	 * @param localeService
-	 *            used to determine locale for exceptions and logs
 	 */
-	protected SimpleConnector( final Queue< T > queue, final LocaleService localeService )
+	protected SimpleConnector( final Queue< T > queue )
 	{
 		super();
 
 		this.queue = queue;
-		this.localeService = localeService;
 		finished = new AtomicBoolean( false );
 	}
 
@@ -55,7 +50,7 @@ public class SimpleConnector< T > implements Connector< T >
 		}
 		else
 		{
-			throw new ConnectorException( localeService.getSystemLocale(), Message.PUSH_ON_FINISH );
+			throw new ConnectorException( Message.PUSH_ON_FINISH );
 		}
 	}
 
@@ -115,14 +110,12 @@ public class SimpleConnector< T > implements Connector< T >
 	 *
 	 * @param <T>
 	 *            type of object to pass
-	 * @param localeService
-	 *            locale to use for logging and exception reporting
 	 *
 	 * @return a new simple connector using a concurrent queue
 	 */
-	public static final < T > Connector< T > concurrent( final LocaleService localeService )
+	public static final < T > Connector< T > concurrent()
 	{
-		return new SimpleConnector<>( new ConcurrentLinkedQueue<>(), localeService );
+		return new SimpleConnector< >( new ConcurrentLinkedQueue< >() );
 	}
 
 	/**
@@ -132,14 +125,12 @@ public class SimpleConnector< T > implements Connector< T >
 	 *            type of object to pass
 	 * @param capacity
 	 *            bounded capacity of the underlying queue
-	 * @param localeService
-	 *            locale to use for logging and exception reporting
 	 *
 	 * @return a new simple connector using a bounded blocking queue
 	 */
-	public static final < T > Connector< T > blocking( final int capacity, final LocaleService localeService )
+	public static final < T > Connector< T > blocking( final int capacity )
 	{
-		return new SimpleConnector<>( new ArrayBlockingQueue<>( capacity ), localeService );
+		return new SimpleConnector< >( new ArrayBlockingQueue< >( capacity ) );
 	}
 
 	/**
@@ -147,14 +138,12 @@ public class SimpleConnector< T > implements Connector< T >
 	 *
 	 * @param <T>
 	 *            type of object to pass
-	 * @param localeService
-	 *            locale to use for logging and exception reporting
 	 *
 	 * @return a new simple connector using an unbounded blocking queue
 	 */
-	public static final < T > Connector< T > blocking( final LocaleService localeService )
+	public static final < T > Connector< T > blocking()
 	{
-		return new SimpleConnector<>( new LinkedBlockingQueue<>(), localeService );
+		return new SimpleConnector< >( new LinkedBlockingQueue< >() );
 	}
 
 }

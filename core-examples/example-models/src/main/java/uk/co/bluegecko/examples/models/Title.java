@@ -15,7 +15,7 @@ public enum Title
 {
 
 	/**
-	 * Blank
+	 * Blank title
 	 */
 	NONE,
 	/**

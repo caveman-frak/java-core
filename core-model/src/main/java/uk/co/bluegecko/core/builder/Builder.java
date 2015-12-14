@@ -38,7 +38,7 @@ public interface Builder< T, B extends Builder< T, B > >
 
 	/**
 	 * Initialise the fields on the builder using the passed example.
-	 * 
+	 *
 	 * @param other
 	 *            the example to use for initialisation
 	 *

@@ -55,7 +55,7 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 	 *            to populate
 	 * @return the populated collection
 	 */
-	public < C1 extends Collection< T >> C1 build( final C1 collection )
+	public < C1 extends Collection< T > > C1 build( final C1 collection )
 	{
 		collection.addAll( this.collection );
 
@@ -74,7 +74,7 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 		{
 			final C collection = ( C ) ConstructorUtils.invokeConstructor( this.collection.getClass() );
 			collection.addAll( this.collection );
-			return new CollectionBuilder<>( collection );
+			return new CollectionBuilder< >( collection );
 		}
 		catch ( NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException ex )
 		{
@@ -104,10 +104,10 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 	 *            the internal collection
 	 * @return the new collection builder
 	 */
-	public < C1 extends Collection< T >> CollectionBuilder< C1, T > copy( final C1 collection )
+	public < C1 extends Collection< T > > CollectionBuilder< C1, T > copy( final C1 collection )
 	{
 		collection.addAll( this.collection );
-		return new CollectionBuilder<>( collection );
+		return new CollectionBuilder< >( collection );
 	}
 
 	/*
@@ -163,10 +163,7 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 	 */
 	public CollectionBuilder< C, T > with( final Collection< T > values )
 	{
-		for ( final T value : values )
-		{
-			collection.add( value );
-		}
+		collection.addAll( values );
 
 		return this;
 	}
@@ -185,7 +182,7 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 	 */
 	public static < C extends Collection< T >, T > CollectionBuilder< C, T > collection( final C collection )
 	{
-		return new CollectionBuilder<>( collection );
+		return new CollectionBuilder< >( collection );
 	}
 
 	/**
@@ -197,7 +194,7 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 	 */
 	public static < T > CollectionBuilder< List< T >, T > list()
 	{
-		return collection( new ArrayList<>() );
+		return collection( new ArrayList< >() );
 	}
 
 	/**
@@ -226,7 +223,7 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 	 */
 	public static < T > CollectionBuilder< Set< T >, T > set()
 	{
-		return collection( new HashSet<>() );
+		return collection( new HashSet< >() );
 	}
 
 	/**
@@ -255,7 +252,7 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 	 */
 	public static < T > CollectionBuilder< SortedSet< T >, T > sortedSet()
 	{
-		return collection( new TreeSet<>() );
+		return collection( new TreeSet< >() );
 	}
 
 	/**
@@ -267,7 +264,7 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 	 */
 	public static < T > CollectionBuilder< Queue< T >, T > queue()
 	{
-		return collection( new LinkedList<>() );
+		return collection( new LinkedList< >() );
 	}
 
 	/**
@@ -279,7 +276,7 @@ public final class CollectionBuilder< C extends Collection< T >, T > implements 
 	 */
 	public static < T > CollectionBuilder< Deque< T >, T > deque()
 	{
-		return collection( new LinkedList<>() );
+		return collection( new LinkedList< >() );
 	}
 
 }
