@@ -5,6 +5,7 @@ package uk.co.bluegecko.core.model;
 
 
 import java.io.Serializable;
+import java.util.EnumSet;
 import java.util.Set;
 
 import ch.qos.cal10n.BaseName;
@@ -36,6 +37,11 @@ public interface Messages extends Serializable
 	}
 
 	/**
+	 * Set of Severities that are not NONE.
+	 */
+	public static final Set< Severity > NOT_NONE = EnumSet.of( Severity.ERROR, Severity.WARN, Severity.INFO );
+
+	/**
 	 * Return highest level of severity.
 	 *
 	 * @return severity
@@ -50,6 +56,17 @@ public interface Messages extends Serializable
 	 * @return true if messages exist
 	 */
 	public boolean hasMessages( Severity severity );
+
+	/**
+	 * Determine if there are any messages of any of the passed severity.
+	 *
+	 * @param severities
+	 *            set of severity of message to check for
+	 * @return true if any messages exist
+	 * @throws IllegalArgumentException
+	 *             if the set contains severity NONE
+	 */
+	public boolean hasMessages( Set< Severity > severities );
 
 	/**
 	 * Determine if there are any messages of the passed severity and key.
@@ -80,7 +97,7 @@ public interface Messages extends Serializable
 	 *            the message key to get
 	 * @return set of messages
 	 */
-	public Set< String > getMessages( Severity severity, String key );
+	public Set< Message > getMessages( Severity severity, String key );
 
 	/**
 	 * Add new messages to the key.
@@ -93,7 +110,7 @@ public interface Messages extends Serializable
 	 *            the text messages
 	 * @return all text messages for this key
 	 */
-	public Set< String > addMessages( Severity severity, String key, String... messages );
+	public Set< Message > addMessages( Severity severity, String key, Message... messages );
 
 	/**
 	 * Clear all messages.

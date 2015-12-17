@@ -2,14 +2,16 @@ package uk.co.bluegecko.core.validation;
 
 
 import java.time.temporal.TemporalAccessor;
-import java.util.Locale;
 
 import org.apache.commons.lang3.StringUtils;
 
 import ch.qos.cal10n.BaseName;
 import ch.qos.cal10n.LocaleData;
+import uk.co.bluegecko.core.model.Message;
 import uk.co.bluegecko.core.model.Messages;
 import uk.co.bluegecko.core.model.Messages.Severity;
+import uk.co.bluegecko.core.model.base.BundleMessage;
+import uk.co.bluegecko.core.model.base.EnumMessage;
 
 
 /**
@@ -237,7 +239,7 @@ public abstract class AbstractValidator
 
 	/**
 	 * Validate a date field exceeds minimum value.
-	 * 
+	 *
 	 * @param <T>
 	 *            date/time value
 	 * @param messages
@@ -259,7 +261,7 @@ public abstract class AbstractValidator
 
 	/**
 	 * Validate a date field is between minimum and maximum values.
-	 * 
+	 *
 	 * @param <T>
 	 *            date/time value
 	 * @param messages
@@ -308,15 +310,16 @@ public abstract class AbstractValidator
 		}
 	}
 
-	protected abstract Locale getLocale();
-
 	protected abstract String getBundle();
 
-	protected abstract String getMessage( Locale locale, String bundle, Object key, Object... args );
-
-	protected String getMessage( final Object key, final Object... args )
+	protected Message getMessage( final String key, final Object... args )
 	{
-		return getMessage( getLocale(), getBundle(), key, args );
+		return new BundleMessage( getBundle(), key, args );
+	}
+
+	protected Message getMessage( final Enum< ? > key, final Object... args )
+	{
+		return new EnumMessage( key, args );
 	}
 
 }

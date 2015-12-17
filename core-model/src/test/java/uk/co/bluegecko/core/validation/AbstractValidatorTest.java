@@ -4,7 +4,6 @@ package uk.co.bluegecko.core.validation;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
-import static uk.co.bluegecko.core.debug.AsString.asString;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
@@ -13,7 +12,6 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
-import java.util.Locale;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,6 +19,7 @@ import org.junit.Test;
 import uk.co.bluegecko.core.model.Messages;
 import uk.co.bluegecko.core.model.Messages.Severity;
 import uk.co.bluegecko.core.model.base.MessagesBase;
+import uk.co.bluegecko.core.model.base.SimpleMessage;
 
 
 @SuppressWarnings( "javadoc" )
@@ -56,7 +55,8 @@ public class AbstractValidatorTest
 
 		assertThat( messages.hasMessages( Severity.WARN ), is( true ) );
 		assertThat( messages.hasMessages( Severity.WARN, FIELDNAME ), is( true ) );
-		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ), contains( "NOT_NULL[testField]" ) );
+		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ),
+				contains( new SimpleMessage( "NOT_NULL[testField]" ) ) );
 	}
 
 	@Test
@@ -76,7 +76,8 @@ public class AbstractValidatorTest
 
 		assertThat( messages.hasMessages( Severity.WARN ), is( true ) );
 		assertThat( messages.hasMessages( Severity.WARN, FIELDNAME ), is( true ) );
-		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ), contains( "LENGTH_MAX[testField,123456,5]" ) );
+		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ),
+				contains( new SimpleMessage( "LENGTH_MAX[testField,123456,5]" ) ) );
 	}
 
 	@Test
@@ -105,7 +106,8 @@ public class AbstractValidatorTest
 
 		assertThat( messages.hasMessages( Severity.WARN ), is( true ) );
 		assertThat( messages.hasMessages( Severity.WARN, FIELDNAME ), is( true ) );
-		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ), contains( "LENGTH_MIN[testField,1234,5]" ) );
+		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ),
+				contains( new SimpleMessage( "LENGTH_MIN[testField,1234,5]" ) ) );
 	}
 
 	@Test
@@ -144,7 +146,7 @@ public class AbstractValidatorTest
 		assertThat( messages.hasMessages( Severity.WARN ), is( true ) );
 		assertThat( messages.hasMessages( Severity.WARN, FIELDNAME ), is( true ) );
 		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ),
-				contains( "LENGTH_BETWEEN[testField,1234,5,10]" ) );
+				contains( new SimpleMessage( "LENGTH_BETWEEN[testField,1234,5,10]" ) ) );
 	}
 
 	@Test
@@ -156,7 +158,7 @@ public class AbstractValidatorTest
 		assertThat( messages.hasMessages( Severity.WARN ), is( true ) );
 		assertThat( messages.hasMessages( Severity.WARN, FIELDNAME ), is( true ) );
 		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ),
-				contains( "LENGTH_BETWEEN[testField,1234567890A,5,10]" ) );
+				contains( new SimpleMessage( "LENGTH_BETWEEN[testField,1234567890A,5,10]" ) ) );
 	}
 
 	@Test
@@ -186,7 +188,7 @@ public class AbstractValidatorTest
 		assertThat( messages.hasMessages( Severity.WARN ), is( true ) );
 		assertThat( messages.hasMessages( Severity.WARN, FIELDNAME ), is( true ) );
 		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ),
-				contains( "REGEX[testField,AB45DE,[A-Z]{2,4}\\d{3}[A-Z]{2,4}]" ) );
+				contains( new SimpleMessage( "REGEX[testField,AB45DE,[A-Z]{2,4}\\d{3}[A-Z]{2,4}]" ) ) );
 	}
 
 	@Test
@@ -215,7 +217,8 @@ public class AbstractValidatorTest
 
 		assertThat( messages.hasMessages( Severity.WARN ), is( true ) );
 		assertThat( messages.hasMessages( Severity.WARN, FIELDNAME ), is( true ) );
-		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ), contains( "NUMBER_MAX[testField,11,10]" ) );
+		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ),
+				contains( new SimpleMessage( "NUMBER_MAX[testField,11,10]" ) ) );
 	}
 
 	@Test
@@ -244,7 +247,8 @@ public class AbstractValidatorTest
 
 		assertThat( messages.hasMessages( Severity.WARN ), is( true ) );
 		assertThat( messages.hasMessages( Severity.WARN, FIELDNAME ), is( true ) );
-		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ), contains( "NUMBER_MIN[testField,4,5]" ) );
+		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ),
+				contains( new SimpleMessage( "NUMBER_MIN[testField,4,5]" ) ) );
 	}
 
 	@Test
@@ -283,7 +287,7 @@ public class AbstractValidatorTest
 		assertThat( messages.hasMessages( Severity.WARN ), is( true ) );
 		assertThat( messages.hasMessages( Severity.WARN, FIELDNAME ), is( true ) );
 		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ),
-				contains( "NUMBER_BETWEEN[testField,4.0,5.0,10.0]" ) );
+				contains( new SimpleMessage( "NUMBER_BETWEEN[testField,4.0,5.0,10.0]" ) ) );
 	}
 
 	@Test
@@ -295,7 +299,8 @@ public class AbstractValidatorTest
 
 		assertThat( messages.hasMessages( Severity.WARN ), is( true ) );
 		assertThat( messages.hasMessages( Severity.WARN, FIELDNAME ), is( true ) );
-		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ), contains( "NUMBER_BETWEEN[testField,11,5,10]" ) );
+		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ),
+				contains( new SimpleMessage( "NUMBER_BETWEEN[testField,11,5,10]" ) ) );
 	}
 
 	@Test
@@ -325,7 +330,7 @@ public class AbstractValidatorTest
 		assertThat( messages.hasMessages( Severity.WARN ), is( true ) );
 		assertThat( messages.hasMessages( Severity.WARN, FIELDNAME ), is( true ) );
 		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ),
-				contains( "DATE_MAX[testField,2010-09-02,2010-09-01]" ) );
+				contains( new SimpleMessage( "DATE_MAX[testField,2010-09-02,2010-09-01]" ) ) );
 	}
 
 	@Test
@@ -357,7 +362,7 @@ public class AbstractValidatorTest
 		assertThat( messages.hasMessages( Severity.WARN ), is( true ) );
 		assertThat( messages.hasMessages( Severity.WARN, FIELDNAME ), is( true ) );
 		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ),
-				contains( "DATE_MIN[testField,2010-09-01T11:59,2010-09-01T12:00]" ) );
+				contains( new SimpleMessage( "DATE_MIN[testField,2010-09-01T11:59,2010-09-01T12:00]" ) ) );
 	}
 
 	@Test
@@ -405,8 +410,8 @@ public class AbstractValidatorTest
 
 		assertThat( messages.hasMessages( Severity.WARN ), is( true ) );
 		assertThat( messages.hasMessages( Severity.WARN, FIELDNAME ), is( true ) );
-		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ),
-				contains( "DATE_BETWEEN[testField,2010-09-01T11:59Z,2010-09-01T12:00Z,2010-09-01T12:59Z]" ) );
+		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ), contains( new SimpleMessage(
+				"DATE_BETWEEN[testField,2010-09-01T11:59Z,2010-09-01T12:00Z,2010-09-01T12:59Z]" ) ) );
 	}
 
 	@Test
@@ -420,8 +425,8 @@ public class AbstractValidatorTest
 
 		assertThat( messages.hasMessages( Severity.WARN ), is( true ) );
 		assertThat( messages.hasMessages( Severity.WARN, FIELDNAME ), is( true ) );
-		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ),
-				contains( "DATE_BETWEEN[testField,2010-09-01T13:00Z,2010-09-01T12:00Z,2010-09-01T12:59Z]" ) );
+		assertThat( messages.getMessages( Severity.WARN, FIELDNAME ), contains( new SimpleMessage(
+				"DATE_BETWEEN[testField,2010-09-01T13:00Z,2010-09-01T12:00Z,2010-09-01T12:59Z]" ) ) );
 	}
 
 	@Test
@@ -444,21 +449,9 @@ public class AbstractValidatorTest
 		}
 
 		@Override
-		protected Locale getLocale()
-		{
-			return Locale.ENGLISH;
-		}
-
-		@Override
 		protected String getBundle()
 		{
 			return TestValidator.class.getName();
-		}
-
-		@Override
-		protected String getMessage( final Locale locale, final String bundle, final Object key, final Object... args )
-		{
-			return key + asString( args );
 		}
 
 	}

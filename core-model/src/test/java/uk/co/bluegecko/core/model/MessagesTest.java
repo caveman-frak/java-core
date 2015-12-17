@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import uk.co.bluegecko.core.model.Messages.Severity;
 import uk.co.bluegecko.core.model.base.MessagesBase;
+import uk.co.bluegecko.core.model.base.SimpleMessage;
 import uk.co.bluegecko.core.test.harness.TestHarness;
 
 
@@ -23,8 +24,8 @@ public class MessagesTest extends TestHarness
 
 	private static final String KEY_1 = "foo1";
 	private static final String KEY_2 = "foo2";
-	private static final String MESSAGE_1 = "bar1";
-	private static final String MESSAGE_2 = "bar2";
+	private static final Message MESSAGE_1 = new SimpleMessage( "bar1" );
+	private static final Message MESSAGE_2 = new SimpleMessage( "bar2" );
 	private Messages messages;
 
 	@Before
@@ -158,7 +159,6 @@ public class MessagesTest extends TestHarness
 	{
 		messages.addMessages( Severity.ERROR, KEY_1, MESSAGE_1 );
 		assertThat( messages.toString(), is( "MessagesBase[\n\tERROR\tfoo1 : bar1\n]" ) );
-		System.out.println( messages );
 	}
 
 	@Test

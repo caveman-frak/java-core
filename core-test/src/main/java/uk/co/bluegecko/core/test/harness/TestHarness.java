@@ -15,6 +15,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -33,6 +34,8 @@ import ch.qos.cal10n.verifier.MessageKeyVerifier;
 @TestExecutionListeners( listeners =
 	{ DependencyInjectionTestExecutionListener.class } )
 @ContextConfiguration( "classpath:test-context.xml" )
+@PropertySource( name = "unit-test", value =
+	{ "classpath:unit-test.properties" }, ignoreResourceNotFound = true )
 public class TestHarness implements ApplicationContextAware
 {
 
@@ -60,7 +63,7 @@ public class TestHarness implements ApplicationContextAware
 		return applicationContext;
 	}
 
-	protected void verifyLocalisation( final Class< ? extends Enum< ? >> klass )
+	protected void verifyLocalisation( final Class< ? extends Enum< ? > > klass )
 	{
 		final IMessageKeyVerifier verifier = new MessageKeyVerifier( klass );
 		final List< Cal10nError > errorList = verifier.verifyAllLocales();
@@ -69,6 +72,18 @@ public class TestHarness implements ApplicationContextAware
 			System.err.println( error );
 		}
 		assertThat( errorList, is( empty() ) );
+	}
+
+	protected void debug( final String... text )
+	{
+		if ( applicationContext.getEnvironment().getProperty( "unit-test.debug", Boolean.class, false ) )
+		{
+			for ( final String s : text )
+			{
+				System.out.print( s );
+			}
+			System.out.println();
+		}
 	}
 
 }
