@@ -319,7 +319,7 @@ public abstract class AbstractValidator
 
 	protected Message getMessage( final Enum< ? > key, final Object... args )
 	{
-		return new EnumMessage( key, args );
+		return new EnumMessage( getBundle(), key, args );
 	}
 
 }

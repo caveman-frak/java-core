@@ -9,7 +9,6 @@ import java.util.Collections;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringJoiner;
@@ -255,7 +254,7 @@ public class MessagesBase implements Messages
 		final StringJoiner joiner = new StringJoiner( "; " );
 		for ( final Message message : getMessages( severity, key ) )
 		{
-			joiner.add( message.getText( Locale.ROOT ) );
+			joiner.add( message.toString() );
 		}
 		return joiner.toString();
 	}

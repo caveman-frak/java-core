@@ -16,7 +16,7 @@ public interface LocalisationService
 {
 
 	/**
-	 * Return a localised message using resource bundle and message formatters
+	 * Return a localised message using resource bundle and message formatters.
 	 *
 	 * @param locale
 	 *            the locale for the bundle
@@ -29,6 +29,22 @@ public interface LocalisationService
 	 * @return the localised message
 	 */
 	public String getMessage( final Locale locale, final String bundleName, final String messageKey,
+			final Object... params );
+
+	/**
+	 * Return a localised message using resource bundle and message formatters, without markers.
+	 *
+	 * @param locale
+	 *            the locale for the bundle
+	 * @param bundleName
+	 *            the resource bundle name
+	 * @param messageKey
+	 *            the message key
+	 * @param params
+	 *            any message arguments
+	 * @return the localised message
+	 */
+	public String getRawMessage( final Locale locale, final String bundleName, final String messageKey,
 			final Object... params );
 
 	/**
@@ -45,7 +61,7 @@ public interface LocalisationService
 
 	/**
 	 * Return a localised message using the enum.
-	 * 
+	 *
 	 * @param locale
 	 *            the locale for the bundle
 	 * @param value

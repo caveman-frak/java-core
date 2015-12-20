@@ -3,14 +3,14 @@ package uk.co.bluegecko.core.model.base;
 
 import java.util.Locale;
 
+import uk.co.bluegecko.core.service.common.LocalisationService;
+
 
 /**
  * Message backed by a resource bundle.
  */
 public class BundleMessage extends LocalisedMessage< String >
 {
-
-	private final String bundleName;
 
 	/**
 	 * Construct a new message using a resource bundle, key and set of arguments.
@@ -24,14 +24,7 @@ public class BundleMessage extends LocalisedMessage< String >
 	 */
 	public BundleMessage( final String bundleName, final String key, final Object... args )
 	{
-		super( key, args );
-
-		this.bundleName = bundleName;
-	}
-
-	protected String getBundleName()
-	{
-		return bundleName;
+		super( bundleName, key, args );
 	}
 
 	/*
@@ -39,9 +32,17 @@ public class BundleMessage extends LocalisedMessage< String >
 	 * @see uk.co.bluegecko.core.model.Message#getText(java.util.Locale)
 	 */
 	@Override
-	public String getText( final Locale locale )
+	public String getText( final LocalisationService localisationService, final Locale locale )
 	{
-		return toString();
+		if ( localisationService != null )
+		{
+			return localisationService.getMessage( locale, getBundleName(), getKey(),
+					localisedArgs( localisationService, locale ) );
+		}
+		else
+		{
+			return toString();
+		}
 	}
 
 }

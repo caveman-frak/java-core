@@ -40,14 +40,8 @@ public class ResourceLocalisationService extends BaseLocalisationService
 		super( applicationContext, localeService );
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see uk.co.bluegecko.core.service.LocalisationService#getMessage(java.lang.String, java.lang.String,
-	 * java.lang.Object[])
-	 */
-	@Override
-	public String getMessage( final Locale locale, final String bundleName, final String messageKey,
-			final Object... params )
+	protected String getMessage( final Locale locale, final String bundleName, final String messageKey,
+			final boolean flagged, final Object... params )
 	{
 		try
 		{
@@ -60,14 +54,48 @@ public class ResourceLocalisationService extends BaseLocalisationService
 			catch ( final MissingResourceException ex )
 			{
 				getLogger().info( Log.MISSING_KEY, getLocale( locale ), bundleName, messageKey, ex.getMessage() );
-				return MISSING_KEY_INDICATOR + messageKey + MISSING_KEY_INDICATOR;
+
+				return flagged( flagged, messageKey, MISSING_KEY_INDICATOR );
 			}
 		}
 		catch ( final MissingResourceException ex )
 		{
 			getLogger().info( Log.MISSING_BUNDLE, getLocale( locale ), bundleName, ex.getMessage() );
-			return MISSING_BUNDLE_INDICATOR + messageKey + MISSING_BUNDLE_INDICATOR;
+			return flagged( flagged, messageKey, MISSING_BUNDLE_INDICATOR );
 		}
+	}
+
+	protected String flagged( final boolean flagged, final String messageKey, final String marker )
+	{
+		if ( flagged )
+		{
+			return marker + messageKey + marker;
+		}
+		return messageKey;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see uk.co.bluegecko.core.service.LocalisationService#getMessage(java.lang.String, java.lang.String,
+	 * java.lang.Object[])
+	 */
+	@Override
+	public String getMessage( final Locale locale, final String bundleName, final String messageKey,
+			final Object... params )
+	{
+		return getMessage( locale, bundleName, messageKey, true, params );
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see uk.co.bluegecko.core.service.LocalisationService#getRawMessage(java.lang.String, java.lang.String,
+	 * java.lang.Object[])
+	 */
+	@Override
+	public String getRawMessage( final Locale locale, final String bundleName, final String messageKey,
+			final Object... params )
+	{
+		return getMessage( locale, bundleName, messageKey, false, params );
 	}
 
 	/*

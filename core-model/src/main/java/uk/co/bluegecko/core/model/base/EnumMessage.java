@@ -3,12 +3,29 @@ package uk.co.bluegecko.core.model.base;
 
 import java.util.Locale;
 
+import uk.co.bluegecko.core.service.common.LocalisationService;
+
 
 /**
  * Message backed by enum key.
  */
 public class EnumMessage extends LocalisedMessage< Enum< ? > >
 {
+
+	/**
+	 * Construct a new message using an enum key and set of arguments.
+	 *
+	 * @param bundleName
+	 *            name of the resource bundle
+	 * @param key
+	 *            enum key for message
+	 * @param args
+	 *            message arguments
+	 */
+	public EnumMessage( final String bundleName, final Enum< ? > key, final Object... args )
+	{
+		super( bundleName, key, args );
+	}
 
 	/**
 	 * Construct a new message using an enum key and set of arguments.
@@ -20,7 +37,7 @@ public class EnumMessage extends LocalisedMessage< Enum< ? > >
 	 */
 	public EnumMessage( final Enum< ? > key, final Object... args )
 	{
-		super( key, args );
+		this( null, key, args );
 	}
 
 	/*
@@ -28,9 +45,16 @@ public class EnumMessage extends LocalisedMessage< Enum< ? > >
 	 * @see uk.co.bluegecko.core.model.Message#getText(java.util.Locale)
 	 */
 	@Override
-	public String getText( final Locale locale )
+	public String getText( final LocalisationService localisationService, final Locale locale )
 	{
-		return toString();
+		if ( localisationService != null )
+		{
+			return localisationService.getMessage( locale, getKey(), localisedArgs( localisationService, locale ) );
+		}
+		else
+		{
+			return toString();
+		}
 	}
 
 }

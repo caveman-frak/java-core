@@ -1,7 +1,12 @@
 package uk.co.bluegecko.core.model.base;
 
 
-import java.util.StringJoiner;
+import java.time.temporal.TemporalAccessor;
+import java.util.Arrays;
+import java.util.Locale;
+
+import uk.co.bluegecko.core.convert.Convert;
+import uk.co.bluegecko.core.service.common.LocalisationService;
 
 
 /**
@@ -13,11 +18,13 @@ import java.util.StringJoiner;
 public abstract class LocalisedMessage< T > extends MessageBase
 {
 
+	private final String bundleName;
 	private final T key;
 	private final Object[] args;
 
-	protected LocalisedMessage( final T key, final Object... args )
+	protected LocalisedMessage( final String bundleName, final T key, final Object... args )
 	{
+		this.bundleName = bundleName;
 		this.key = key;
 		this.args = args;
 	}
@@ -42,15 +49,38 @@ public abstract class LocalisedMessage< T > extends MessageBase
 		return args;
 	}
 
+	protected String getBundleName()
+	{
+		return bundleName;
+	}
+
 	@Override
 	public String toString()
 	{
-		final StringJoiner joiner = new StringJoiner( ",", "[", "]" );
-		for ( final Object arg : args )
+		return asText( key.toString(), args );
+	}
+
+	protected Object localisedArgs( final LocalisationService localisationService, final Locale locale )
+	{
+		final Object[] result = Arrays.copyOf( args, args.length );
+		for ( int i = 0; i < result.length; i++ )
 		{
-			joiner.add( arg.toString() );
+			final Object o = result[i];
+			if ( o instanceof TemporalAccessor )
+			{
+				result[i] = Convert.fromDateTime( ( TemporalAccessor ) o );
+			}
+			else if ( o instanceof String && bundleName != null )
+			{
+				result[i] = localisationService.getRawMessage( locale, getBundleName(), ( String ) o );
+			}
+			else
+			{
+				result[i] = o;
+			}
 		}
-		return key.toString() + joiner.toString();
+		return result;
+
 	}
 
 }

@@ -3,6 +3,8 @@ package uk.co.bluegecko.core.model.base;
 
 import java.util.Locale;
 
+import uk.co.bluegecko.core.service.common.LocalisationService;
+
 
 /**
  * Simple implementation of Message that contains fixed text.
@@ -15,18 +17,21 @@ public class SimpleMessage extends MessageBase
 	/**
 	 * Construct a simple message with fixed text.
 	 *
-	 * @param text
-	 *            the fixed text
+	 * @param key
+	 *            key for message
+	 * @param args
+	 *            message arguments
+	 *
 	 */
-	public SimpleMessage( final String text )
+	public SimpleMessage( final String key, final Object... args )
 	{
 		super();
 
-		this.text = text;
+		text = asText( key, args );
 	}
 
 	@Override
-	public String getText( final Locale locale )
+	public String getText( final LocalisationService localisationService, final Locale locale )
 	{
 		return text;
 	}
