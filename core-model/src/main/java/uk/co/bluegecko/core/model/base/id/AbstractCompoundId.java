@@ -37,7 +37,7 @@ public abstract class AbstractCompoundId< P extends Comparable< P >, S extends C
 	 * @see uk.co.bluegecko.core.model.id.CompoundId#getPrimary()
 	 */
 	@Override
-	public P getPrimary()
+	public P primary()
 	{
 		return primary;
 	}
@@ -47,7 +47,7 @@ public abstract class AbstractCompoundId< P extends Comparable< P >, S extends C
 	 * @see uk.co.bluegecko.core.model.id.CompoundId#getSecondary()
 	 */
 	@Override
-	public S getSecondary()
+	public S secondary()
 	{
 		return secondary;
 	}
@@ -59,8 +59,8 @@ public abstract class AbstractCompoundId< P extends Comparable< P >, S extends C
 	@Override
 	public final int compareTo( final CompoundId< P, S > that )
 	{
-		return new CompareToBuilder().append( getPrimary(), that.getPrimary() )
-				.append( getSecondary(), that.getSecondary() ).toComparison();
+		return new CompareToBuilder().append( primary(), that.primary() )
+				.append( secondary(), that.secondary() ).toComparison();
 	}
 
 	/*
@@ -84,8 +84,8 @@ public abstract class AbstractCompoundId< P extends Comparable< P >, S extends C
 		if ( builder.isResolved() )
 			return builder.isSame();
 		final AbstractCompoundId< ?, ? > that = builder.getRhs();
-		builder.append( getPrimary(), that.getPrimary() );
-		builder.append( getSecondary(), that.getSecondary() );
+		builder.append( primary(), that.primary() );
+		builder.append( secondary(), that.secondary() );
 		return builder.isEquals();
 	}
 
@@ -96,7 +96,7 @@ public abstract class AbstractCompoundId< P extends Comparable< P >, S extends C
 	@Override
 	public final String toString()
 	{
-		return new ToStringBuilder( this ).append( "primary", getPrimary() ).append( "secondary", getSecondary() )
+		return new ToStringBuilder( this ).append( "primary", primary() ).append( "secondary", secondary() )
 				.build();
 	}
 

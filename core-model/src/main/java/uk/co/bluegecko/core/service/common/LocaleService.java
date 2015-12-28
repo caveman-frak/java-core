@@ -18,13 +18,13 @@ public interface LocaleService
 	 *
 	 * @return the current system locale
 	 */
-	public Locale getSystemLocale();
+	public Locale system();
 
 	/**
 	 * Get the current user locale
 	 *
 	 * @return the current user locale
 	 */
-	public Locale getUserLocale();
+	public Locale user();
 
 }

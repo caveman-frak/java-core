@@ -12,17 +12,17 @@ package uk.co.bluegecko.core.model.id;
  * @param <S>
  *            the type of underlying secondary identifier
  */
-public interface CompoundId< P extends Comparable< P >, S extends Comparable< S > > extends Id< CompoundId< P, S >>
+public interface CompoundId< P extends Comparable< P >, S extends Comparable< S > > extends Identifier< CompoundId< P, S >>
 {
 
 	/**
 	 * @return the underlying primary identifier
 	 */
-	public P getPrimary();
+	public P primary();
 
 	/**
 	 * @return the underlying secondary identifier
 	 */
-	public S getSecondary();
+	public S secondary();
 
 }

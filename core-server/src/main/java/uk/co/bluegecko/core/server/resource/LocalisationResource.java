@@ -27,7 +27,7 @@ public abstract class LocalisationResource
 
 	public Response bundle( final HttpHeaders headers, final Locale locale, final String bundleName )
 	{
-		final Map< String, Object > messages = localisationService.getMessages( getLocale( headers, locale ),
+		final Map< String, Object > messages = localisationService.messages( getLocale( headers, locale ),
 				bundleName );
 		return messages.isEmpty() ? Response.noContent().build() : Response.ok( messages ).build();
 	}
@@ -35,7 +35,7 @@ public abstract class LocalisationResource
 	public Response message( final HttpHeaders headers, final Locale locale, final String bundleName,
 			final String messageKey, final List< String > parameters )
 	{
-		final String message = localisationService.getMessage( getLocale( headers, locale ), bundleName, messageKey,
+		final String message = localisationService.message( getLocale( headers, locale ), bundleName, messageKey,
 				parameters.toArray() );
 		return Response.ok( message, MediaType.TEXT_PLAIN ).build();
 	}

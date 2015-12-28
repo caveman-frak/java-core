@@ -9,7 +9,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.core.env.PropertySource;
 import org.springframework.stereotype.Service;
 
-import uk.co.bluegecko.core.model.Defaulted;
+import uk.co.bluegecko.core.model.key.Defaulted;
 import uk.co.bluegecko.core.service.common.settings.PropertyService;
 
 
@@ -40,12 +40,12 @@ public class SpringPropertyService implements PropertyService
 	 */
 	@SuppressWarnings( "unchecked" )
 	@Override
-	public < T extends Enum< ? > > String getProperty( final T key )
+	public < T extends Enum< ? > > String property( final T key )
 	{
 		final String value = environment.getProperty( key.name() );
 		if ( value == null && key instanceof Defaulted )
 		{
-			final Defaulted< String > defaultedKey = ( Defaulted< String > ) key;
+			final Defaulted< String > defaultedKey = (uk.co.bluegecko.core.model.key.Defaulted< String > ) key;
 			return defaultedKey.defaultValue();
 		}
 		return value;
@@ -56,9 +56,9 @@ public class SpringPropertyService implements PropertyService
 	 * @see uk.co.bluegecko.core.service.common.settings.PropertyService#getProperty(java.lang.Enum, java.lang.Object)
 	 */
 	@Override
-	public < T extends Enum< ? > > String getProperty( final T key, final String fallback )
+	public < T extends Enum< ? > > String property( final T key, final String fallback )
 	{
-		return hasProperty( key ) ? getProperty( key ) : fallback;
+		return has( key ) ? property( key ) : fallback;
 	}
 
 	/*
@@ -66,7 +66,7 @@ public class SpringPropertyService implements PropertyService
 	 * @see uk.co.bluegecko.core.service.common.settings.PropertyService#hasProperty(java.lang.Enum)
 	 */
 	@Override
-	public < T extends Enum< ? > > boolean hasProperty( final T key )
+	public < T extends Enum< ? > > boolean has( final T key )
 	{
 		return environment.containsProperty( key.name() );
 	}

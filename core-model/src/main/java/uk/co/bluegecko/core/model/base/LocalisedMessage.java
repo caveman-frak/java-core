@@ -72,7 +72,7 @@ public abstract class LocalisedMessage< T > extends MessageBase
 			}
 			else if ( o instanceof String && bundleName != null )
 			{
-				result[i] = localisationService.getRawMessage( locale, getBundleName(), ( String ) o );
+				result[i] = localisationService.rawMessage( locale, getBundleName(), ( String ) o );
 			}
 			else
 			{

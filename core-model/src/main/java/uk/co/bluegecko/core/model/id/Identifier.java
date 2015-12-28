@@ -13,7 +13,7 @@ import java.io.Serializable;
  * @param <T>
  *            type of Id
  */
-public interface Id< T > extends Serializable, Comparable< T >
+public interface Identifier< T > extends Serializable, Comparable< T >
 {
 	// marker interface
 }

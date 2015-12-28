@@ -36,7 +36,7 @@ public class PersonBase extends AbstractData< Long >implements Person
 	 * @see uk.co.bluegecko.core.model.Named#getName()
 	 */
 	@Override
-	public String getName()
+	public String name()
 	{
 		final StringBuilder buffer = new StringBuilder();
 		if ( title != null && title != Title.NONE )
@@ -95,7 +95,7 @@ public class PersonBase extends AbstractData< Long >implements Person
 	@Override
 	public String toString()
 	{
-		return new ToStringBuilder( this ).append( "key", getKey() ).append( "title", title )
+		return new ToStringBuilder( this ).append( "key", id() ).append( "title", title )
 				.append( "first name", firstName ).append( "last name", lastName )
 				.append( "date of birth", dateOfBirth ).build();
 	}

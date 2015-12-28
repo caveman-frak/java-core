@@ -13,6 +13,6 @@ public interface Named
 	 * 
 	 * @return the name
 	 */
-	public String getName();
+	public String name();
 
 }

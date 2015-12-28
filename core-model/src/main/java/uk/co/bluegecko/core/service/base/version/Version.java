@@ -16,20 +16,20 @@ public interface Version extends Comparable< Version >, Serializable
 	 * 
 	 * @return major version number
 	 */
-	public int getMajor();
+	public int major();
 
 	/**
 	 * Minor version number.
 	 * 
 	 * @return minor version number
 	 */
-	public int getMinor();
+	public int minor();
 
 	/**
 	 * Point version number.
 	 * 
 	 * @return point version number
 	 */
-	public int getPoint();
+	public int point();
 
 }

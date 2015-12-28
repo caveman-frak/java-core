@@ -22,6 +22,6 @@ public interface Message
 	 *            locale to use
 	 * @return localised message
 	 */
-	public String getText( LocalisationService localisationService, Locale locale );
+	public String text( LocalisationService localisationService, Locale locale );
 
 }

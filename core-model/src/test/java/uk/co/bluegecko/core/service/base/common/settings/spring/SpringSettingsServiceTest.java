@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
-import uk.co.bluegecko.core.model.TypedKey;
+import uk.co.bluegecko.core.model.key.TypedKey;
 import uk.co.bluegecko.core.service.common.settings.SettingsService;
 import uk.co.bluegecko.core.test.harness.TestHarness;
 
@@ -32,31 +32,31 @@ public class SpringSettingsServiceTest extends TestHarness
 	@Test
 	public final void testFooExists()
 	{
-		assertThat( settingsService.hasSetting( FOO ), is( true ) );
+		assertThat( settingsService.has( FOO ), is( true ) );
 	}
 
 	@Test
 	public final void testFooValue()
 	{
-		assertThat( settingsService.getSetting( FOO ), is( 1001L ) );
+		assertThat( settingsService.setting( FOO ), is( 1001L ) );
 	}
 
 	@Test
 	public final void testBarExists()
 	{
-		assertThat( settingsService.hasSetting( BAR ), is( false ) );
+		assertThat( settingsService.has( BAR ), is( false ) );
 	}
 
 	@Test
 	public final void testBarValue()
 	{
-		assertThat( settingsService.getSetting( BAR ), is( "Bar!" ) );
+		assertThat( settingsService.setting( BAR ), is( "Bar!" ) );
 	}
 
 	@Test
 	public final void testBarDefault()
 	{
-		assertThat( settingsService.getSetting( BAR, "GoodBye" ), is( "GoodBye" ) );
+		assertThat( settingsService.setting( BAR, "GoodBye" ), is( "GoodBye" ) );
 	}
 
 }

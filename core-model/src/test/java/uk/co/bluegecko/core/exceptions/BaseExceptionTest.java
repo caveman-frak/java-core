@@ -42,8 +42,8 @@ public class BaseExceptionTest extends TestHarness
 			assertThat( ex, is( instanceOf( TestExceptionOne.class ) ) );
 			assertThat( ex.getCause(), is( nullValue() ) );
 			assertThat( ex.getMessage(), is( "ONE" ) );
-			assertThat( ex.getMessageKey(), is( Message.ONE ) );
-			assertThat( ex.getArguments(), emptyArray() );
+			assertThat( ex.messageKey(), is( Message.ONE ) );
+			assertThat( ex.arguments(), emptyArray() );
 			assertThat( ex.getLocalizedMessage(), is( "One Exception" ) );
 		}
 	}
@@ -62,8 +62,8 @@ public class BaseExceptionTest extends TestHarness
 			assertThat( ex.getCause(), is( instanceOf( NullPointerException.class ) ) );
 			assertThat( ex.getCause().getMessage(), is( "Null Pointer" ) );
 			assertThat( ex.getMessage(), is( "java.lang.NullPointerException: Null Pointer" ) );
-			assertThat( ex.getMessageKey(), is( Message.THREE ) );
-			assertThat( ex.getArguments(), arrayContaining( LocalDateTime.of( 2000, Month.JANUARY, 1, 15, 30 ) ) );
+			assertThat( ex.messageKey(), is( Message.THREE ) );
+			assertThat( ex.arguments(), arrayContaining( LocalDateTime.of( 2000, Month.JANUARY, 1, 15, 30 ) ) );
 			assertThat( ex.getLocalizedMessage(), is( "Three Exception at 15:30" ) );
 		}
 	}

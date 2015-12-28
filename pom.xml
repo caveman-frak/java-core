@@ -145,10 +145,12 @@
 		<module>core-utilities</module>
 		<module>core-test</module>
 		<module>core-model</module>
+		<module>core-console</module>
 		<module>core-process</module>
 		<module>core-security</module>
-		<module>core-console</module>
+		<module>core-swing</module>
 		<module>core-server</module>
+		<module>core-servers</module>
 		<module>core-examples</module>
 	</modules>
 	<properties>

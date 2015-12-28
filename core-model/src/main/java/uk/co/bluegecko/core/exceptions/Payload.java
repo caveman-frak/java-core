@@ -19,6 +19,6 @@ public interface Payload< T >
 	 * 
 	 * @return the payload
 	 */
-	public T getPayload();
+	public T payload();
 
 }

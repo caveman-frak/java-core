@@ -82,7 +82,7 @@ public abstract class BaseLocalisationService extends AbstractService implements
 	 */
 	public Locale getUserLocale()
 	{
-		return getLocaleService().getUserLocale();
+		return getLocaleService().user();
 	}
 
 	/**
@@ -92,7 +92,7 @@ public abstract class BaseLocalisationService extends AbstractService implements
 	 */
 	public Locale getSystemLocale()
 	{
-		return getLocaleService().getSystemLocale();
+		return getLocaleService().system();
 	}
 
 	/*
@@ -100,7 +100,7 @@ public abstract class BaseLocalisationService extends AbstractService implements
 	 * @see uk.co.bluegecko.core.service.common.LocalisationService#getMessage(java.util.Locale, java.lang.Enum, java.lang.Object[])
 	 */
 	@Override
-	public String getMessage( final Locale locale, final Enum< ? > value, final Object... params )
+	public String message( final Locale locale, final Enum< ? > value, final Object... params )
 	{
 		final IMessageConveyor mc = new MessageConveyor( locale );
 		return mc.getMessage( value, params );

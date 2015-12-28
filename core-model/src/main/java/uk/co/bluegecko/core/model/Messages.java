@@ -46,7 +46,7 @@ public interface Messages extends Serializable
 	 *
 	 * @return severity
 	 */
-	public Severity getSeverity();
+	public Severity severity();
 
 	/**
 	 * Determine if there are any messages of the passed severity.
@@ -55,7 +55,16 @@ public interface Messages extends Serializable
 	 *            severity of message to check for
 	 * @return true if messages exist
 	 */
-	public boolean hasMessages( Severity severity );
+	public boolean has( Severity severity );
+
+	/**
+	 * Determine if there are any messages that exceed the passed severity.
+	 *
+	 * @param severity
+	 *            severity of message to check for
+	 * @return true if messages exist
+	 */
+	public boolean exceeds( Severity severity );
 
 	/**
 	 * Determine if there are any messages of any of the passed severity.
@@ -66,7 +75,7 @@ public interface Messages extends Serializable
 	 * @throws IllegalArgumentException
 	 *             if the set contains severity NONE
 	 */
-	public boolean hasMessages( Set< Severity > severities );
+	public boolean has( Set< Severity > severities );
 
 	/**
 	 * Determine if there are any messages of the passed severity and key.
@@ -77,7 +86,7 @@ public interface Messages extends Serializable
 	 *            the message key to get
 	 * @return true if messages exist
 	 */
-	public boolean hasMessages( Severity severity, String key );
+	public boolean has( Severity severity, String key );
 
 	/**
 	 * Get a list of keys for messages oif the passed severity.
@@ -86,7 +95,7 @@ public interface Messages extends Serializable
 	 *            severity of message to get keys for
 	 * @return set of message keys
 	 */
-	public Set< String > getKeys( Severity severity );
+	public Set< String > keys( Severity severity );
 
 	/**
 	 * Get all messages for a specific key
@@ -97,7 +106,7 @@ public interface Messages extends Serializable
 	 *            the message key to get
 	 * @return set of messages
 	 */
-	public Set< Message > getMessages( Severity severity, String key );
+	public Set< Message > messages( Severity severity, String key );
 
 	/**
 	 * Add new messages to the key.
@@ -110,7 +119,7 @@ public interface Messages extends Serializable
 	 *            the text messages
 	 * @return all text messages for this key
 	 */
-	public Set< Message > addMessages( Severity severity, String key, Message... messages );
+	public Set< Message > add( Severity severity, String key, Message... messages );
 
 	/**
 	 * Clear all messages.

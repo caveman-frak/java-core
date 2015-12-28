@@ -43,7 +43,7 @@ public class AbstractData< K extends Serializable & Comparable< K >> implements 
 	 * @see uk.co.bluegecko.core.model.Data#getId()
 	 */
 	@Override
-	public final K getKey()
+	public final K id()
 	{
 		return key;
 	}
@@ -55,7 +55,7 @@ public class AbstractData< K extends Serializable & Comparable< K >> implements 
 	@Override
 	public final int compareTo( final Data< K > that )
 	{
-		return getKey().compareTo( that.getKey() );
+		return id().compareTo( that.id() );
 	}
 
 	/*
@@ -65,7 +65,7 @@ public class AbstractData< K extends Serializable & Comparable< K >> implements 
 	@Override
 	public final int hashCode()
 	{
-		return getKey().hashCode();
+		return id().hashCode();
 	}
 
 	/*
@@ -80,7 +80,7 @@ public class AbstractData< K extends Serializable & Comparable< K >> implements 
 		{
 			return builder.isSame();
 		}
-		return getKey().equals( builder.getRhs().getKey() );
+		return id().equals( builder.getRhs().id() );
 	}
 
 }

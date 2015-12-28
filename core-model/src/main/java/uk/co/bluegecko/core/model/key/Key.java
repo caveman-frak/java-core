@@ -1,7 +1,7 @@
 /**
  * Copyright 2015, <a href="http://bluegecko.co.uk/java-core">Blue Gecko Limited</a>
  */
-package uk.co.bluegecko.core.model;
+package uk.co.bluegecko.core.model.key;
 
 
 import java.io.Serializable;
@@ -18,7 +18,7 @@ import uk.co.bluegecko.core.lang.ToStringBuilder;
  * @param <K>
  *            reference to self for comparable
  */
-public interface Key< K extends Key< K >> extends Serializable, Comparable< K >
+public interface Key< K extends Key< K > > extends Serializable, Comparable< K >
 {
 
 	/**
@@ -34,7 +34,7 @@ public interface Key< K extends Key< K >> extends Serializable, Comparable< K >
 	 * @param <K>
 	 *            reference to self for comparable
 	 */
-	public abstract class AbstractKeyBase< K extends AbstractKeyBase< K >> implements Key< K >
+	public abstract class AbstractKeyBase< K extends AbstractKeyBase< K > > implements Key< K >
 	{
 
 		private static final long serialVersionUID = -6992563050425551428L;
@@ -67,12 +67,12 @@ public interface Key< K extends Key< K >> extends Serializable, Comparable< K >
 		@Override
 		public boolean equals( final Object other )
 		{
-			final EqualsBuilder< Key< ? > > equalsBuilder = new EqualsBuilder<>( this, other );
+			final EqualsBuilder< Key< ? > > equalsBuilder = new EqualsBuilder< >( this, other );
 			if ( equalsBuilder.isResolved() )
 			{
 				return equalsBuilder.isSame();
 			}
-			final Key< ? > that = ( Key< ? > ) other;
+			final Key< ? > that = ( uk.co.bluegecko.core.model.key.Key< ? > ) other;
 			return equalsBuilder.append( name(), that.name() ).isEquals();
 		}
 

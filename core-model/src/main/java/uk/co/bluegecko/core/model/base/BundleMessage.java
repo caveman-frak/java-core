@@ -32,11 +32,11 @@ public class BundleMessage extends LocalisedMessage< String >
 	 * @see uk.co.bluegecko.core.model.Message#getText(java.util.Locale)
 	 */
 	@Override
-	public String getText( final LocalisationService localisationService, final Locale locale )
+	public String text( final LocalisationService localisationService, final Locale locale )
 	{
 		if ( localisationService != null )
 		{
-			return localisationService.getMessage( locale, getBundleName(), getKey(),
+			return localisationService.message( locale, getBundleName(), getKey(),
 					localisedArgs( localisationService, locale ) );
 		}
 		else

@@ -31,7 +31,7 @@ public class DefaultLocaleService implements LocaleService
 	 * @see uk.co.bluegecko.core.service.LocaleService#getSystemLocale()
 	 */
 	@Override
-	public Locale getSystemLocale()
+	public Locale system()
 	{
 		return Locale.ENGLISH;
 	}
@@ -41,7 +41,7 @@ public class DefaultLocaleService implements LocaleService
 	 * @see uk.co.bluegecko.core.service.LocaleService#getUserLocale()
 	 */
 	@Override
-	public Locale getUserLocale()
+	public Locale user()
 	{
 		return Locale.getDefault();
 	}

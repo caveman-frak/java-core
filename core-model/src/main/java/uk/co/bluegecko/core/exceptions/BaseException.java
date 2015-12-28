@@ -59,7 +59,7 @@ public abstract class BaseException extends Exception implements ExceptionLocale
 	 *
 	 * @return the message key
 	 */
-	public Enum< ? > getMessageKey()
+	public Enum< ? > messageKey()
 	{
 		return messageKey;
 	}
@@ -69,7 +69,7 @@ public abstract class BaseException extends Exception implements ExceptionLocale
 	 *
 	 * @return message arguments
 	 */
-	public Object[] getArguments()
+	public Object[] arguments()
 	{
 		return args;
 	}

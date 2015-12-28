@@ -32,7 +32,7 @@ public abstract class AbstractSimpleId< T extends Comparable< T > > implements S
 	 * @see uk.co.bluegecko.core.model.id.SimpleId#getValue()
 	 */
 	@Override
-	public final T getValue()
+	public final T value()
 	{
 		return value;
 	}
@@ -44,7 +44,7 @@ public abstract class AbstractSimpleId< T extends Comparable< T > > implements S
 	@Override
 	public final int compareTo( final SimpleId< T > that )
 	{
-		return new CompareToBuilder().append( getValue(), that.getValue() ).toComparison();
+		return new CompareToBuilder().append( value(), that.value() ).toComparison();
 	}
 
 	/*
@@ -68,7 +68,7 @@ public abstract class AbstractSimpleId< T extends Comparable< T > > implements S
 		if ( builder.isResolved() )
 			return builder.isSame();
 		final SimpleId< ? > that = builder.getRhs();
-		builder.append( getValue(), that.getValue() );
+		builder.append( value(), that.value() );
 		return builder.isEquals();
 	}
 
@@ -79,7 +79,7 @@ public abstract class AbstractSimpleId< T extends Comparable< T > > implements S
 	@Override
 	public final String toString()
 	{
-		return new ToStringBuilder( this ).append( "value", getValue() ).build();
+		return new ToStringBuilder( this ).append( "value", value() ).build();
 	}
 
 }

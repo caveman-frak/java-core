@@ -13,6 +13,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.StringJoiner;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import uk.co.bluegecko.core.model.Message;
@@ -45,11 +47,11 @@ public class MessagesBase implements Messages
 	 * @see uk.co.bluegecko.core.model.Messages#getSeverity()
 	 */
 	@Override
-	public Severity getSeverity()
+	public Severity severity()
 	{
 		for ( final Severity severity : Severity.values() )
 		{
-			if ( hasMessages( severity ) )
+			if ( has( severity ) )
 			{
 				return severity;
 			}
@@ -59,17 +61,33 @@ public class MessagesBase implements Messages
 
 	/*
 	 * (non-Javadoc)
+	 * @see uk.co.bluegecko.core.model.Messages#getSeverity()
+	 */
+	@Override
+	public boolean exceeds( final Severity exceeds )
+	{
+		for ( final Severity severity : NOT_NONE )
+		{
+			if ( severity.ordinal() < exceeds.ordinal() && has( severity ) )
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/*
+	 * (non-Javadoc)
 	 * @see uk.co.bluegecko.core.model.Messages#hasMessages(uk.co.bluegecko.core.model.Messages.Severity)
 	 */
 	@Override
-	public boolean hasMessages( final Severity severity )
+	public boolean has( final Severity severity )
 	{
 		if ( severity == Severity.NONE )
 		{
-			return !hasMessages( NOT_NONE );
+			return !has( NOT_NONE );
 		}
-		final Map< String, Set< Message > > map = messages.get( severity );
-		return map != null && !map.isEmpty();
+		return MapUtils.isNotEmpty( messages.get( severity ) );
 	}
 
 	/*
@@ -77,15 +95,14 @@ public class MessagesBase implements Messages
 	 * @see uk.co.bluegecko.core.model.Messages#hasMessages(uk.co.bluegecko.core.model.Messages.Severity, java.lang.String)
 	 */
 	@Override
-	public boolean hasMessages( final Severity severity, final String key )
+	public boolean has( final Severity severity, final String key )
 	{
-		if ( hasMessages( severity ) )
+		if ( has( severity ) )
 		{
 			final Map< String, Set< Message > > map = messages.get( severity );
-			if ( map != null )
+			if ( MapUtils.isNotEmpty( map ) )
 			{
-				final Set< Message > set = map.get( key );
-				return set != null && !set.isEmpty();
+				return CollectionUtils.isNotEmpty( map.get( key ) );
 			}
 		}
 		return false;
@@ -96,7 +113,7 @@ public class MessagesBase implements Messages
 	 * @see uk.co.bluegecko.core.model.Messages#hasMessages(java.util.Set)
 	 */
 	@Override
-	public boolean hasMessages( final Set< Severity > severities )
+	public boolean has( final Set< Severity > severities )
 	{
 		if ( severities.contains( Severity.NONE ) )
 		{
@@ -104,7 +121,7 @@ public class MessagesBase implements Messages
 		}
 		for ( final Severity severity : severities )
 		{
-			if ( hasMessages( severity ) )
+			if ( has( severity ) )
 			{
 				return true;
 			}
@@ -117,9 +134,9 @@ public class MessagesBase implements Messages
 	 * @see uk.co.bluegecko.core.model.Messages#getKeys(uk.co.bluegecko.core.model.Messages.Severity)
 	 */
 	@Override
-	public Set< String > getKeys( final Severity severity )
+	public Set< String > keys( final Severity severity )
 	{
-		if ( hasMessages( severity ) )
+		if ( has( severity ) )
 		{
 			final Map< String, Set< Message > > map = messages.get( severity );
 			if ( map != null )
@@ -135,9 +152,9 @@ public class MessagesBase implements Messages
 	 * @see uk.co.bluegecko.core.model.Messages#getMessages(uk.co.bluegecko.core.model.Messages.Severity, java.lang.String)
 	 */
 	@Override
-	public Set< Message > getMessages( final Severity severity, final String key )
+	public Set< Message > messages( final Severity severity, final String key )
 	{
-		if ( hasMessages( severity, key ) )
+		if ( has( severity, key ) )
 		{
 			final Set< Message > set = messages.get( severity ).get( key );
 			if ( set != null )
@@ -153,14 +170,14 @@ public class MessagesBase implements Messages
 	 * @see uk.co.bluegecko.core.model.Messages#addMessage(uk.co.bluegecko.core.model.Messages.Severity, java.lang.String, java.lang.String)
 	 */
 	@Override
-	public Set< Message > addMessages( final Severity severity, final String key, final Message... text )
+	public Set< Message > add( final Severity severity, final String key, final Message... text )
 	{
-		if ( !hasMessages( severity ) )
+		if ( !has( severity ) )
 		{
 			final Map< String, Set< Message > > map = new HashMap< >();
 			messages.put( severity, map );
 		}
-		if ( !hasMessages( severity, key ) )
+		if ( !has( severity, key ) )
 		{
 			final Set< Message > set = new HashSet< >();
 			messages.get( severity ).put( key, set );
@@ -188,7 +205,7 @@ public class MessagesBase implements Messages
 	@Override
 	public void clear( final Severity severity )
 	{
-		if ( hasMessages( severity ) )
+		if ( has( severity ) )
 		{
 			messages.get( severity ).clear();
 		}
@@ -201,7 +218,7 @@ public class MessagesBase implements Messages
 	@Override
 	public void clear( final Severity severity, final String key )
 	{
-		if ( hasMessages( severity, key ) )
+		if ( has( severity, key ) )
 		{
 			messages.get( severity ).get( key ).clear();
 		}
@@ -215,21 +232,21 @@ public class MessagesBase implements Messages
 		final ToStringStyle style = ToStringStyle.SHORT_PREFIX_STYLE;
 		style.appendStart( buffer, this );
 
-		addSeverities( buffer );
+		printSeverities( buffer );
 		buffer.append( "]" );
 		return buffer.toString();
 	}
 
-	private void addSeverities( final StringBuffer buffer )
+	private void printSeverities( final StringBuffer buffer )
 	{
 		boolean populated = false;
 		for ( final Severity severity : NOT_NONE )
 		{
-			if ( hasMessages( severity ) )
+			if ( has( severity ) )
 			{
 				populated = true;
 				buffer.append( "\n\t" ).append( severity.name() );
-				addKeys( buffer, severity, getKeys( severity ) );
+				printKeys( buffer, severity, keys( severity ) );
 			}
 		}
 		if ( populated )
@@ -238,21 +255,21 @@ public class MessagesBase implements Messages
 		}
 	}
 
-	private void addKeys( final StringBuffer buffer, final Severity severity, final Set< String > keys )
+	private void printKeys( final StringBuffer buffer, final Severity severity, final Set< String > keys )
 	{
 		final boolean multiLine = keys.size() > 1;
 
 		for ( final String key : keys )
 		{
 			buffer.append( multiLine ? "\n\t\t" : "\t" ).append( key ).append( " : " )
-					.append( addMessages( severity, key ) );
+					.append( printMessages( severity, key ) );
 		}
 	}
 
-	private String addMessages( final Severity severity, final String key )
+	private String printMessages( final Severity severity, final String key )
 	{
 		final StringJoiner joiner = new StringJoiner( "; " );
-		for ( final Message message : getMessages( severity, key ) )
+		for ( final Message message : messages( severity, key ) )
 		{
 			joiner.add( message.toString() );
 		}

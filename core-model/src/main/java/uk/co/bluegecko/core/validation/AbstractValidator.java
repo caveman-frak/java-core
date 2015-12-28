@@ -49,7 +49,7 @@ public abstract class AbstractValidator
 	{
 		if ( value == null )
 		{
-			messages.addMessages( severity, field, getMessage( Key.NOT_NULL, field ) );
+			messages.add( severity, field, getMessage( Key.NOT_NULL, field ) );
 		}
 	}
 
@@ -72,7 +72,7 @@ public abstract class AbstractValidator
 	{
 		if ( StringUtils.isNotEmpty( value ) && value.length() > max )
 		{
-			messages.addMessages( severity, field, getMessage( Key.LENGTH_MAX, field, value, max ) );
+			messages.add( severity, field, getMessage( Key.LENGTH_MAX, field, value, max ) );
 		}
 	}
 
@@ -95,7 +95,7 @@ public abstract class AbstractValidator
 	{
 		if ( StringUtils.isNotEmpty( value ) && value.length() < min )
 		{
-			messages.addMessages( severity, field, getMessage( Key.LENGTH_MIN, field, value, min ) );
+			messages.add( severity, field, getMessage( Key.LENGTH_MIN, field, value, min ) );
 		}
 	}
 
@@ -120,7 +120,7 @@ public abstract class AbstractValidator
 	{
 		if ( StringUtils.isNotEmpty( value ) && ( value.length() < min || value.length() > max ) )
 		{
-			messages.addMessages( severity, field, getMessage( Key.LENGTH_BETWEEN, field, value, min, max ) );
+			messages.add( severity, field, getMessage( Key.LENGTH_BETWEEN, field, value, min, max ) );
 		}
 	}
 
@@ -143,7 +143,7 @@ public abstract class AbstractValidator
 	{
 		if ( StringUtils.isNotEmpty( value ) && !value.matches( regex ) )
 		{
-			messages.addMessages( severity, field, getMessage( Key.REGEX, field, value, regex ) );
+			messages.add( severity, field, getMessage( Key.REGEX, field, value, regex ) );
 		}
 	}
 
@@ -288,7 +288,7 @@ public abstract class AbstractValidator
 	{
 		if ( value != null && value.compareTo( max ) > 0 )
 		{
-			messages.addMessages( severity, field, getMessage( key, field, value, max ) );
+			messages.add( severity, field, getMessage( key, field, value, max ) );
 		}
 	}
 
@@ -297,7 +297,7 @@ public abstract class AbstractValidator
 	{
 		if ( value != null && value.compareTo( min ) < 0 )
 		{
-			messages.addMessages( severity, field, getMessage( key, field, value, min ) );
+			messages.add( severity, field, getMessage( key, field, value, min ) );
 		}
 	}
 
@@ -306,7 +306,7 @@ public abstract class AbstractValidator
 	{
 		if ( value != null && ( value.compareTo( min ) < 0 || value.compareTo( max ) > 0 ) )
 		{
-			messages.addMessages( severity, field, getMessage( key, field, value, min, max ) );
+			messages.add( severity, field, getMessage( key, field, value, min, max ) );
 		}
 	}
 

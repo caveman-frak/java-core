@@ -10,12 +10,12 @@ package uk.co.bluegecko.core.model.id;
  * @param <T>
  *            the type of underlying identifier
  */
-public interface SimpleId< T extends Comparable< T > > extends Id< SimpleId< T >>
+public interface SimpleId< T extends Comparable< T > > extends Identifier< SimpleId< T >>
 {
 
 	/**
 	 * @return the underlying identifier
 	 */
-	public T getValue();
+	public T value();
 
 }

@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
-import uk.co.bluegecko.core.model.Defaulted;
-import uk.co.bluegecko.core.model.Key;
+import uk.co.bluegecko.core.model.key.Defaulted;
+import uk.co.bluegecko.core.model.key.Key;
 import uk.co.bluegecko.core.service.common.settings.PropertyService;
 import uk.co.bluegecko.core.test.harness.TestHarness;
 
@@ -53,43 +53,43 @@ public class SpringPropertyServiceTest extends TestHarness
 	@Test
 	public final void testFooExists()
 	{
-		assertThat( propertyService.hasProperty( TestSetting.FOO ), is( true ) );
+		assertThat( propertyService.has( TestSetting.FOO ), is( true ) );
 	}
 
 	@Test
 	public final void testFooValue()
 	{
-		assertThat( propertyService.getProperty( TestSetting.FOO ), is( "Hello Foo" ) );
+		assertThat( propertyService.property( TestSetting.FOO ), is( "Hello Foo" ) );
 	}
 
 	@Test
 	public final void testBarExists()
 	{
-		assertThat( propertyService.hasProperty( TestSetting.BAR ), is( false ) );
+		assertThat( propertyService.has( TestSetting.BAR ), is( false ) );
 	}
 
 	@Test
 	public final void testBarValue()
 	{
-		assertThat( propertyService.getProperty( TestSetting.BAR ), is( ( String ) null ) );
+		assertThat( propertyService.property( TestSetting.BAR ), is( ( String ) null ) );
 	}
 
 	@Test
 	public final void testBarDefault()
 	{
-		assertThat( propertyService.getProperty( TestSetting.BAR, "GoodBye" ), is( "GoodBye" ) );
+		assertThat( propertyService.property( TestSetting.BAR, "GoodBye" ), is( "GoodBye" ) );
 	}
 
 	@Test
 	public final void testFooValueDefaulted()
 	{
-		assertThat( propertyService.getProperty( TestSetting.FOO ), is( "Hello Foo" ) );
+		assertThat( propertyService.property( TestSetting.FOO ), is( "Hello Foo" ) );
 	}
 
 	@Test
 	public final void testBarValueDefaulted()
 	{
-		assertThat( propertyService.getProperty( TestDefaultedSetting.BAR ), is( "Bar" ) );
+		assertThat( propertyService.property( TestDefaultedSetting.BAR ), is( "Bar" ) );
 	}
 
 }

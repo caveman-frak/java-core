@@ -45,11 +45,11 @@ public class EnumMessage extends LocalisedMessage< Enum< ? > >
 	 * @see uk.co.bluegecko.core.model.Message#getText(java.util.Locale)
 	 */
 	@Override
-	public String getText( final LocalisationService localisationService, final Locale locale )
+	public String text( final LocalisationService localisationService, final Locale locale )
 	{
 		if ( localisationService != null )
 		{
-			return localisationService.getMessage( locale, getKey(), localisedArgs( localisationService, locale ) );
+			return localisationService.message( locale, getKey(), localisedArgs( localisationService, locale ) );
 		}
 		else
 		{

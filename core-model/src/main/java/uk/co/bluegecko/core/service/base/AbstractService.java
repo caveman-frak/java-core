@@ -38,7 +38,7 @@ public abstract class AbstractService implements Service
 	{
 		this.applicationContext = applicationContext;
 		this.localeService = localeService;
-		logger = buildLocLogger( localeService.getSystemLocale(), getLoggerName() );
+		logger = buildLocLogger( localeService.system(), getLoggerName() );
 	}
 
 	/**

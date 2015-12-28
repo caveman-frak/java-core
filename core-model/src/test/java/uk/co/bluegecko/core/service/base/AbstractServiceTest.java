@@ -47,7 +47,7 @@ public class AbstractServiceTest extends TestHarness
 	@Test
 	public void testGetLocaleService()
 	{
-		assertThat( getService().getLocaleService().getSystemLocale(), is( Locale.ENGLISH ) );
+		assertThat( getService().getLocaleService().system(), is( Locale.ENGLISH ) );
 	}
 
 	@Test

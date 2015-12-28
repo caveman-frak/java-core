@@ -43,6 +43,19 @@ public class PersonBuilder implements Builder< Person, PersonBuilder >
 	}
 
 	/**
+	 * Copy constructor.
+	 *
+	 * @param builder
+	 *            initial values for builder
+	 */
+	public PersonBuilder( final PersonBuilder builder )
+	{
+		this();
+
+		from( builder );
+	}
+
+	/**
 	 * Set the key for the person.
 	 *
 	 * @param key
@@ -137,13 +150,7 @@ public class PersonBuilder implements Builder< Person, PersonBuilder >
 	@Override
 	public PersonBuilder copy()
 	{
-		final PersonBuilder copy = new PersonBuilder();
-		copy.key = key;
-		copy.title = title;
-		copy.firstName = firstName;
-		copy.lastName = lastName;
-		copy.dateOfBirth = dateOfBirth;
-		return copy;
+		return new PersonBuilder( this );
 	}
 
 	/*
@@ -168,11 +175,26 @@ public class PersonBuilder implements Builder< Person, PersonBuilder >
 	@Override
 	public PersonBuilder from( final Person person )
 	{
-		key = person.getKey();
+		key = person.id();
 		title = person.getTitle();
 		firstName = person.getFirstName();
 		lastName = person.getLastName();
 		dateOfBirth = person.getDateOfBirth();
+		return this;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see uk.co.bluegecko.core.builder.Builder#from(java.lang.Object)
+	 */
+	@Override
+	public PersonBuilder from( final PersonBuilder builder )
+	{
+		builder.key = key;
+		builder.title = title;
+		builder.firstName = firstName;
+		builder.lastName = lastName;
+		builder.dateOfBirth = dateOfBirth;
 		return this;
 	}
 

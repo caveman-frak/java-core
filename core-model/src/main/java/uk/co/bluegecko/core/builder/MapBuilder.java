@@ -6,6 +6,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.TreeMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.lang3.reflect.ConstructorUtils;
 
@@ -78,10 +80,23 @@ public final class MapBuilder< K, V > implements Builder< Map< K, V >, MapBuilde
 	 * @see uk.co.bluegecko.core.builder.Builder#from(java.lang.Object)
 	 */
 	@Override
-	public MapBuilder< K, V > from( final Map< K, V > other )
+	public MapBuilder< K, V > from( final Map< K, V > example )
 	{
 		map.clear();
-		map.putAll( this.map );
+		map.putAll( example );
+
+		return this;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see uk.co.bluegecko.core.builder.Builder#from(java.lang.Object)
+	 */
+	@Override
+	public MapBuilder< K, V > from( final MapBuilder< K, V > builder )
+	{
+		map.clear();
+		map.putAll( builder.map );
 
 		return this;
 	}
@@ -190,6 +205,34 @@ public final class MapBuilder< K, V > implements Builder< Map< K, V >, MapBuilde
 	public static < K, V > MapBuilder< K, V > map()
 	{
 		return new MapBuilder< >( new HashMap< >() );
+	}
+
+	/**
+	 * Create a new map builder using a sorted map class.
+	 *
+	 * @param <K>
+	 *            type of map key
+	 * @param <V>
+	 *            type of map value
+	 * @return a new map builder
+	 */
+	public static < K, V > MapBuilder< K, V > sortedMap()
+	{
+		return new MapBuilder< >( new TreeMap< >() );
+	}
+
+	/**
+	 * Create a new map builder using a concurrent map class.
+	 *
+	 * @param <K>
+	 *            type of map key
+	 * @param <V>
+	 *            type of map value
+	 * @return a new map builder
+	 */
+	public static < K, V > MapBuilder< K, V > concurrentMap()
+	{
+		return new MapBuilder< >( new ConcurrentHashMap< >() );
 	}
 
 	/**

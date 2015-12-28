@@ -37,7 +37,7 @@ public abstract class VersionBase implements Version
 	 * @see uk.co.bluegecko.spring.ioc.version.Version#getMajor()
 	 */
 	@Override
-	public int getMajor()
+	public int major()
 	{
 		return hasMajor() ? major : Integer.MAX_VALUE;
 	}
@@ -56,7 +56,7 @@ public abstract class VersionBase implements Version
 	 * @see uk.co.bluegecko.spring.ioc.version.Version#getMajor()
 	 */
 	@Override
-	public int getMinor()
+	public int minor()
 	{
 		return hasMinor() ? minor : Integer.MAX_VALUE;
 	}
@@ -75,7 +75,7 @@ public abstract class VersionBase implements Version
 	 * @see uk.co.bluegecko.spring.ioc.version.Version#getMajor()
 	 */
 	@Override
-	public int getPoint()
+	public int point()
 	{
 		return hasPoint() ? point : Integer.MAX_VALUE;
 	}
@@ -93,8 +93,8 @@ public abstract class VersionBase implements Version
 	@Override
 	public final int compareTo( final Version other )
 	{
-		return new CompareToBuilder().append( getMajor(), other.getMajor() ).append( getMinor(), other.getMinor() )
-				.append( getPoint(), other.getPoint() ).toComparison();
+		return new CompareToBuilder().append( major(), other.major() ).append( minor(), other.minor() )
+				.append( point(), other.point() ).toComparison();
 	}
 
 	@Override
@@ -116,8 +116,8 @@ public abstract class VersionBase implements Version
 		if ( !builder.isResolved() )
 		{
 			final VersionBase other = ( VersionBase ) obj;
-			builder.append( getMajor(), other.getMajor() ).append( getMinor(), other.getMinor() )
-					.append( getPoint(), other.getPoint() );
+			builder.append( major(), other.major() ).append( minor(), other.minor() )
+					.append( point(), other.point() );
 		}
 		return builder.isEquals();
 	}

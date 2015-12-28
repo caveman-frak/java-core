@@ -59,7 +59,7 @@ public abstract class BaseRuntimeException extends RuntimeException implements E
 	 *
 	 * @return the message key
 	 */
-	public Enum< ? > getMessageKey()
+	public Enum< ? > messageKey()
 	{
 		return messageKey;
 	}

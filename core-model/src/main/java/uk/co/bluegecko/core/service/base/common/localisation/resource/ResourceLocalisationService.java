@@ -80,7 +80,7 @@ public class ResourceLocalisationService extends BaseLocalisationService
 	 * java.lang.Object[])
 	 */
 	@Override
-	public String getMessage( final Locale locale, final String bundleName, final String messageKey,
+	public String message( final Locale locale, final String bundleName, final String messageKey,
 			final Object... params )
 	{
 		return getMessage( locale, bundleName, messageKey, true, params );
@@ -92,7 +92,7 @@ public class ResourceLocalisationService extends BaseLocalisationService
 	 * java.lang.Object[])
 	 */
 	@Override
-	public String getRawMessage( final Locale locale, final String bundleName, final String messageKey,
+	public String rawMessage( final Locale locale, final String bundleName, final String messageKey,
 			final Object... params )
 	{
 		return getMessage( locale, bundleName, messageKey, false, params );
@@ -103,7 +103,7 @@ public class ResourceLocalisationService extends BaseLocalisationService
 	 * @see uk.co.bluegecko.core.service.common.LocalisationService#getMessages(java.lang.String)
 	 */
 	@Override
-	public Map< String, Object > getMessages( final Locale locale, final String bundleName )
+	public Map< String, Object > messages( final Locale locale, final String bundleName )
 	{
 		final Map< String, Object > messages = new HashMap< >();
 		try

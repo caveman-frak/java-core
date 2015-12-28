@@ -31,7 +31,7 @@ public class SimpleMessage extends MessageBase
 	}
 
 	@Override
-	public String getText( final LocalisationService localisationService, final Locale locale )
+	public String text( final LocalisationService localisationService, final Locale locale )
 	{
 		return text;
 	}

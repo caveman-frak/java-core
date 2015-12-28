@@ -39,11 +39,21 @@ public interface Builder< T, B extends Builder< T, B > >
 	/**
 	 * Initialise the fields on the builder using the passed example.
 	 *
-	 * @param other
+	 * @param example
 	 *            the example to use for initialisation
 	 *
 	 * @return the builder
 	 */
-	public B from( final T other );
+	public B from( final T example );
+
+	/**
+	 * Initialise the fields on the builder using the passed builder.
+	 *
+	 * @param builder
+	 *            the builder to use for initialisation
+	 *
+	 * @return the builder
+	 */
+	public B from( final B builder );
 
 }
