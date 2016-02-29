@@ -14,7 +14,6 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.Arrays;
 
 import javax.ws.rs.core.HttpHeaders;
 
@@ -26,7 +25,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
-import uk.co.bluegecko.core.server.interceptor.AcceptHeaderHttpRequestInterceptor;
+import uk.co.bluegecko.core.server.model.Health;
 import uk.co.bluegecko.core.server.model.base.BaseHealth;
 import uk.co.bluegecko.core.server.test.AbstractWebTest;
 
@@ -48,9 +47,9 @@ public class HealthResourceTest extends AbstractWebTest
 	@Test
 	public void fetchHealthAsJson() throws RestClientException
 	{
-		restTemplate.setInterceptors( Arrays
-				.asList( new AcceptHeaderHttpRequestInterceptor( MediaType.APPLICATION_JSON ) ) );
-		final ResponseEntity< BaseHealth > entity = restTemplate.getForEntity( serverUrl, BaseHealth.class );
+		restTemplate.setMessageConverters( createJaxbMessageConverter() );
+		restTemplate.setInterceptors( createMediaTypeInterceptor( MediaType.APPLICATION_JSON ) );
+		final ResponseEntity< ? extends Health > entity = restTemplate.getForEntity( serverUrl, BaseHealth.class );
 
 		assertThat( entity.getStatusCode().is2xxSuccessful(), is( true ) );
 		assertThat( entity.getHeaders(), hasKey( HttpHeaders.CONTENT_TYPE ) );
@@ -61,9 +60,8 @@ public class HealthResourceTest extends AbstractWebTest
 	@Test
 	public void fetchHealthAsXml()
 	{
-		restTemplate.setInterceptors( Arrays
-				.asList( new AcceptHeaderHttpRequestInterceptor( MediaType.APPLICATION_XML ) ) );
-		final ResponseEntity< BaseHealth > entity = restTemplate.getForEntity( serverUrl, BaseHealth.class );
+		restTemplate.setInterceptors( createMediaTypeInterceptor( MediaType.APPLICATION_XML ) );
+		final ResponseEntity< ? extends Health > entity = restTemplate.getForEntity( serverUrl, BaseHealth.class );
 
 		assertThat( entity.getStatusCode().is2xxSuccessful(), is( true ) );
 		assertThat( entity.getHeaders(), hasKey( HttpHeaders.CONTENT_TYPE ) );
