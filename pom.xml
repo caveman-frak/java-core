@@ -1,12 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>uk.co.bluegecko</groupId>
 	<artifactId>core-build</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+
 	<name>Java Core</name>
 	<description>Core Java library for Blue Gecko projects</description>
+
 	<url>https://github.com/caveman-frak/java-core/</url>
 	<inceptionYear>1999</inceptionYear>
 	<licenses>
@@ -160,15 +164,15 @@
 		<site.url.root>scm:git:git@github.com:caveman-frak/java-core.git/gh_pages</site.url.root>
 		<!-- properties for versions of dependencies -->
 		<spring.version>2.1.0.BUILD-SNAPSHOT</spring.version>
-		<jersey.version>2.22.1</jersey.version>
-		<slf4j.version>1.7.13</slf4j.version>
-		<swagger.version>1.5.4</swagger.version>
+		<jersey.version>2.22.2</jersey.version>
+		<slf4j.version>1.7.18</slf4j.version>
+		<swagger.version>1.5.7</swagger.version>
 		<swagger-parser.version>1.0.13</swagger-parser.version>
-		<bouncy-castle.version>1.52</bouncy-castle.version>
-		<javax-el.version>2.2.6</javax-el.version>
+		<bouncy-castle.version>1.54</bouncy-castle.version>
+		<javax-el.version>2.2.5</javax-el.version>
 		<lomboc.version>1.16.6</lomboc.version>
 		<!-- properties for versions of web jars -->
-		<swagger-ui.version>2.1.3</swagger-ui.version>
+		<swagger-ui.version>2.1.4</swagger-ui.version>
 		<!-- properties for versions of plug-ins -->
 		<compiler-plugin.version>3.1</compiler-plugin.version>
 		<source-plugin.version>2.0.4</source-plugin.version>
@@ -183,7 +187,7 @@
 		<jacoco-plugin.version>0.7.5.201505241946</jacoco-plugin.version>
 		<failsafe-plugin.version>2.18.1</failsafe-plugin.version>
 		<build-helper-plugin.version>1.9.1</build-helper-plugin.version>
-		<spring-boot-plugin.version>1.3.0.BUILD-SNAPSHOT</spring-boot-plugin.version>
+		<spring-boot-plugin.version>1.4.0.BUILD-SNAPSHOT</spring-boot-plugin.version>
 		<springloaded-plugin.version>1.2.4.RELEASE</springloaded-plugin.version>
 		<git-commit-id-plugin.version>2.1.11</git-commit-id-plugin.version>
 		<jarsigner-plugin.version>1.4</jarsigner-plugin.version>

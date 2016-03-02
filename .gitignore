@@ -17,5 +17,4 @@ dependency-reduced-pom.xml
 *.log
 vagrant/software/*.tar
 logs
-*/src/main/resources/rebel*.xml
-
+rebel*.xml

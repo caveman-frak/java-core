@@ -14,6 +14,7 @@ import javax.swing.table.TableColumnModel;
  * Implementation of a table header supporting column definitions and sorting headers.
  *
  * @param <T>
+ *            type of table data
  */
 public class TableHeader< T > extends JTableHeader
 {
@@ -24,7 +25,7 @@ public class TableHeader< T > extends JTableHeader
 
 	/**
 	 * Create a table header.
-	 * 
+	 *
 	 * @param columnModel
 	 *            the column model
 	 * @param rowSorter
