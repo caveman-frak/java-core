@@ -3,15 +3,13 @@
 	<Appenders>
 		<Console name="Console" target="SYSTEM_OUT">
 			<PatternLayout>
-				<Pattern>%highlight{%d{HH:mm:ss} [%t] %-5level (%X{X-Trace}-%X{X-UserName}) %logger{2.} - %msg %n%rEx{short}}</Pattern>
+				<Pattern>%highlight{%d{HH:mm:ss} [%t] %-5level (%X{X-Trace}/%X{X-TraceCount}-%X{X-UserName}) %logger{2.} - %msg %n%rEx{5}}</Pattern>
 			</PatternLayout>
 		</Console>
-		<RollingFile name="RollingFile" 
-				fileName="logs/application.log"
-				filePattern="logs/application-%i.log.gz" 
-				ignoreExceptions="false">
+		<RollingFile name="RollingFile" fileName="logs/application.log"
+			filePattern="logs/application-%i.log.gz" ignoreExceptions="false">
 			<PatternLayout>
-				<Pattern>%d{dd MMM HH:mm:ss} [%t] %-5level (%X{X-Trace}-%X{X-UserName}) %logger{4.} - %msg %n%rEx{full}</Pattern>
+				<Pattern>%d{dd MMM HH:mm:ss} [%t] %-5level (%X{X-Trace}/%X{X-TraceCount}-%X{X-UserName}) %logger{4.} - %msg %n%rEx{full}</Pattern>
 			</PatternLayout>
 			<Policies>
 				<OnStartupTriggeringPolicy />
@@ -19,11 +17,10 @@
 			</Policies>
 			<DefaultRolloverStrategy max="5" />
 		</RollingFile>
-		<Syslog name="PaperTrail" 
-			host="logs3.papertrailapp.com" port="17764" protocol="UDP" 
-			includeMDC="false" mdcPrefix="mdc:" mdcId="mdc"
-			facility="USER" format="RFC5424" 
-			messageId="development" id="BlueGecko" appName="java-server" />
+		<Syslog name="PaperTrail" host="logs3.papertrailapp.com" port="17764"
+			protocol="UDP" includeMDC="false" mdcPrefix="mdc:" mdcId="mdc"
+			facility="USER" format="RFC5424" messageId="development" id="BlueGecko"
+			appName="java-server" />
 		<Failover name="Failover" primary="RollingFile">
 			<Failovers>
 				<AppenderRef ref="Console" />
@@ -34,11 +31,16 @@
 		<Logger name="org.springframework" level="INFO" additivity="true">
 			<AppenderRef ref="Console" />
 		</Logger>
+		<Logger name="org.glassfish.jersey.tracing" level="ALL"
+			additivity="false">
+			<AppenderRef ref="Console" />
+		</Logger>
 		<Logger name="uk.co.bluegecko" level="INFO" additivity="true">
 			<AppenderRef ref="Console" />
 			<AppenderRef ref="PaperTrail" />
 		</Logger>
-		<Logger name="uk.co.bluegecko.core.aspect" level="DEBUG" additivity="false">
+		<Logger name="uk.co.bluegecko.core.aspect" level="DEBUG"
+			additivity="false">
 			<AppenderRef ref="Failover" />
 			<AppenderRef ref="Console" />
 		</Logger>

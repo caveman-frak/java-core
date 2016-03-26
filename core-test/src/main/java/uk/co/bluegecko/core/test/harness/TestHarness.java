@@ -8,6 +8,13 @@ import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
+import java.time.Clock;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Month;
+import java.time.ZoneOffset;
 import java.util.List;
 
 import org.junit.runner.RunWith;
@@ -39,6 +46,10 @@ import ch.qos.cal10n.verifier.MessageKeyVerifier;
 public class TestHarness implements ApplicationContextAware
 {
 
+	protected static final int YEAR = 2010;
+	protected static final Month MONTH = Month.JUNE;
+	protected static final int DAY = 14;
+
 	private ApplicationContext applicationContext;
 
 	/**
@@ -61,6 +72,31 @@ public class TestHarness implements ApplicationContextAware
 	protected ApplicationContext getApplicationContext()
 	{
 		return applicationContext;
+	}
+
+	protected Instant getInstant()
+	{
+		return LocalDateTime.of( getDate(), getTime() ).toInstant( getTimeZone() );
+	}
+
+	protected LocalTime getTime()
+	{
+		return LocalTime.NOON;
+	}
+
+	protected LocalDate getDate()
+	{
+		return LocalDate.of( YEAR, MONTH, DAY );
+	}
+
+	protected ZoneOffset getTimeZone()
+	{
+		return ZoneOffset.UTC;
+	}
+
+	protected Clock getFixedClock()
+	{
+		return Clock.fixed( getInstant(), getTimeZone() );
 	}
 
 	protected void verifyLocalisation( final Class< ? extends Enum< ? > > klass )

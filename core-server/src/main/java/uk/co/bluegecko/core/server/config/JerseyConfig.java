@@ -3,9 +3,6 @@ package uk.co.bluegecko.core.server.config;
 
 import static uk.co.bluegecko.core.server.config.ServerConstants.BASE_PATH;
 import static uk.co.bluegecko.core.server.config.ServerConstants.PORT;
-import io.swagger.jaxrs.config.BeanConfig;
-import io.swagger.jaxrs.listing.ApiListingResource;
-import io.swagger.jaxrs.listing.SwaggerSerializers;
 
 import javax.ws.rs.ApplicationPath;
 
@@ -16,6 +13,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 
+import io.swagger.jaxrs.config.BeanConfig;
+import io.swagger.jaxrs.listing.ApiListingResource;
+import io.swagger.jaxrs.listing.SwaggerSerializers;
+
 
 @SuppressWarnings( "javadoc" )
 @Configuration
@@ -24,11 +25,26 @@ import org.springframework.core.env.Environment;
 public class JerseyConfig extends ResourceConfig implements EnvironmentAware
 {
 
+	private static final String TRACING_TYPE = "jersey.config.server.tracing.type";
+	private static final String TRACING_THRESHOLD = "jersey.config.server.tracing.threshold";
+
+	protected enum TracingType
+	{
+		OFF, ON_DEMAND, ALL
+	}
+
+	protected enum TracingThreshold
+	{
+		SUMMARY, TRACE, VERBOSE
+	}
+
 	public JerseyConfig()
 	{
 		// register packages
 		packages( "uk.co.bluegecko.core.server" );
 		register( DeclarativeLinkingFeature.class );
+		property( TRACING_TYPE, TracingType.ON_DEMAND.name() );
+		property( TRACING_THRESHOLD, TracingThreshold.TRACE.name() );
 	}
 
 	@Override
