@@ -1,13 +1,7 @@
 package uk.co.bluegecko.core.server.tracker;
 
 
-import java.util.Locale;
-
 import javax.ws.rs.ext.Provider;
-
-import org.slf4j.cal10n.LocLoggerFactory;
-
-import ch.qos.cal10n.MessageConveyor;
 
 
 /**
@@ -19,11 +13,17 @@ public final class TrackerExceptionMapper extends AbstractExceptionMapper< Throw
 
 	/**
 	 * No -arg constructor.
+	 *
+	 * Ensure exception logging is turned on.
 	 */
 	public TrackerExceptionMapper()
 	{
-		super( new LocLoggerFactory( new MessageConveyor( Locale.ENGLISH ) )
-				.getLocLogger( TrackerExceptionMapper.class ) );
+		this( true );
+	}
+
+	protected TrackerExceptionMapper( final boolean logException )
+	{
+		super( TrackerExceptionMapper.class, logException );
 	}
 
 }

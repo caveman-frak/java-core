@@ -30,7 +30,7 @@ public class TrackerExceptionMapperTest
 	@Before
 	public void setUp() throws Exception
 	{
-		mapper = new TrackerExceptionMapper();
+		mapper = new TrackerExceptionMapper( false );
 
 		MDC.put( TrackerToken.TOKEN, "test" );
 		MDC.put( TrackerToken.COUNTER, "123" );

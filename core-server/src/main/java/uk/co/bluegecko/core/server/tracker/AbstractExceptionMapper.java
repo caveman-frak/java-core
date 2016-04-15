@@ -1,6 +1,8 @@
 package uk.co.bluegecko.core.server.tracker;
 
 
+import java.util.Locale;
+
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -8,7 +10,9 @@ import javax.ws.rs.ext.ExceptionMapper;
 
 import org.slf4j.MDC;
 import org.slf4j.cal10n.LocLogger;
+import org.slf4j.cal10n.LocLoggerFactory;
 
+import ch.qos.cal10n.MessageConveyor;
 import uk.co.bluegecko.core.exceptions.ClientError;
 import uk.co.bluegecko.core.exceptions.Payload;
 import uk.co.bluegecko.core.exceptions.ServerError;
@@ -26,18 +30,38 @@ public abstract class AbstractExceptionMapper< E extends Throwable > implements 
 {
 
 	private final LocLogger logger;
+	private final boolean logException;
 
 	/**
-	 * Default constructor, takes logger argument.
+	 * Default constructor, takes logger argument and flag to log exception. The exception logging flag is intended for
+	 * use in tests to reduce excess log noise.
 	 *
 	 * @param logger
 	 *            logger to use
+	 * @param logException
+	 *            should the exception be logged
 	 */
-	protected AbstractExceptionMapper( final LocLogger logger )
+	protected AbstractExceptionMapper( final LocLogger logger, final boolean logException )
 	{
 		super();
 
 		this.logger = logger;
+		this.logException = logException;
+	}
+
+	/**
+	 * Default constructor, takes logger target argument and flag to log exception. The exception logging flag is
+	 * intended for use in tests to reduce excess log noise.
+	 *
+	 * @param klass
+	 *            class to use for logger target
+	 * @param logException
+	 *            should the exception be logged
+	 */
+	protected AbstractExceptionMapper( final Class< ? extends AbstractExceptionMapper< ? > > klass,
+			final boolean logException )
+	{
+		this( new LocLoggerFactory( new MessageConveyor( Locale.ENGLISH ) ).getLocLogger( klass ), logException );
 	}
 
 	@Override
@@ -49,7 +73,10 @@ public abstract class AbstractExceptionMapper< E extends Throwable > implements 
 		if ( logger.isInfoEnabled() )
 		{
 			logger.info( Log.ERROR, exception.getClass().getSimpleName(), status, entity );
-			logger.info( "exception", exception );
+			if ( logException )
+			{
+				logger.info( "exception", exception );
+			}
 		}
 
 		return Response.status( status ).entity( entity ).type( getMediaType( entity ) ).build();

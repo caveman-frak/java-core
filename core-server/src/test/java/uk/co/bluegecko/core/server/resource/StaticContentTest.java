@@ -9,12 +9,12 @@ import java.net.URL;
 import org.junit.Test;
 import org.springframework.test.web.servlet.htmlunit.MockMvcWebClientBuilder;
 
-import uk.co.bluegecko.core.server.test.AbstractWebTest;
-
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.DomText;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.html.HtmlParagraph;
+
+import uk.co.bluegecko.core.server.test.AbstractWebTest;
 
 
 @SuppressWarnings( "javadoc" )
@@ -30,8 +30,8 @@ public class StaticContentTest extends AbstractWebTest
 
 			assertThat( page.getTitleText(), is( "Index Page" ) );
 			assertThat( page.getElementById( "title" ).getTextContent(), is( "Index Page" ) );
-			final HtmlParagraph para = ( HtmlParagraph ) page.getElementByName( "caption" );
-			assertThat( para.getTextContent(), is( "Hello World!" ) );
+			assertThat( ( ( HtmlParagraph ) page.getElementByName( "caption" ) ).getTextContent(),
+					is( "Hello World!" ) );
 		}
 	}
 
@@ -43,9 +43,9 @@ public class StaticContentTest extends AbstractWebTest
 			final HtmlPage page = webClient.getPage( new URL( "http", "localhost", getHttpPort(), "/test.html" ) );
 
 			assertThat( page.getTitleText(), is( "Test Page" ) );
-			assertThat(
-					page.getBody().getElementsByTagName( "div" ).get( 0 ).getChildNodes().get( 0 ).getTextContent(),
-					is( "Test Page" ) );
+
+			assertThat( page.getBody().getElementsByTagName( "div" ).get( 0 ).getElementsByTagName( "h1" ).get( 0 )
+					.getTextContent(), is( "Test Page" ) );
 			assertThat( ( ( DomText ) page.getBody().getFirstByXPath( "div[1]/p[1]/text()" ) ).getTextContent(),
 					is( "Hello World!" ) );
 		}
