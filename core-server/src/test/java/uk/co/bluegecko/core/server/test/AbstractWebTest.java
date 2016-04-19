@@ -7,8 +7,9 @@ import java.util.List;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.boot.context.web.LocalServerPort;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.MediaType;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -31,16 +32,14 @@ import uk.co.bluegecko.core.server.test.interceptor.AcceptHeaderHttpRequestInter
 
 @SuppressWarnings( "javadoc" )
 @RunWith( SpringJUnit4ClassRunner.class )
-@SpringApplicationConfiguration( classes = ApplicationConfig.class )
-@WebIntegrationTest( randomPort = true, value =
-	{ "server.port=0", "management.port=0", "shell.ssh.port=0", "shell.telnet.port=0" } )
+@SpringBootTest( classes = ApplicationConfig.class, webEnvironment = WebEnvironment.RANDOM_PORT )
 public abstract class AbstractWebTest implements ServerPorts
 {
 
 	@Autowired
 	private WebApplicationContext context;
 
-	@Value( "${local.server.port}" )
+	@LocalServerPort
 	private int httpPort;
 	@Value( "${local.management.port:-1}" )
 	private int jmxPort;
