@@ -208,7 +208,7 @@
 		<!-- run time arguments -->
 		<agent.loadtimeweaver>${settings.localRepository}/org/springframework/spring-instrument/${spring-framework.version}/spring-instrument-${spring-framework.version}.jar</agent.loadtimeweaver>
 		<java.version>1.8</java.version>
-		<argLine>-Xmx1024m -javaagent:${agent.loadtimeweaver}</argLine>
+		<argLine>-Xmx1024m</argLine>
 		<!-- property defaults for running and debugging -->
 		<jrebel-agent.cmd-args></jrebel-agent.cmd-args>
 		<spring-boot.debug-port>5005</spring-boot.debug-port>
@@ -219,7 +219,7 @@
 			-Drebel.remoting_plugin=true</spring-boot.jvm-jrebel-arg>
 		<spring-boot.jvm-args>${spring-boot.jvm-debug-args}</spring-boot.jvm-args>
 		<!-- code coverage -->
-		<coverage.skip>false</coverage.skip>
+		<coverage.skip>true</coverage.skip>
 		<coverage-pitest.skip>${coverage.skip}</coverage-pitest.skip>
 		<coverage-jacoco.skip>${coverage.skip}</coverage-jacoco.skip>
 		<jacoco.fail-coverage>true</jacoco.fail-coverage>
