@@ -78,20 +78,20 @@
 	</distributionManagement>
 	<repositories>
 		<!--
-		<repository>
+			<repository>
 			<id>bintray-repo</id>
 			<name>Bin Tray Repository</name>
 			<url>https://api.bintray.com/maven/caveman-frak/maven-repo/java-core/</url>
 			<layout>default</layout>
 			<releases>
-				<enabled>true</enabled>
-				<updatePolicy>daily</updatePolicy>
-				<checksumPolicy>fail</checksumPolicy>
+			<enabled>true</enabled>
+			<updatePolicy>daily</updatePolicy>
+			<checksumPolicy>fail</checksumPolicy>
 			</releases>
 			<snapshots>
-				<enabled>true</enabled>
+			<enabled>true</enabled>
 			</snapshots>
-		</repository>
+			</repository>
 		-->
 		<repository>
 			<id>oss-jfrog-artifactory-public</id>
@@ -152,7 +152,9 @@
 		<module>core-console</module>
 		<module>core-process</module>
 		<module>core-security</module>
-		<module>core-swing</module>
+		<!--
+			<module>core-swing</module>
+		-->
 		<module>core-server</module>
 		<module>core-servers</module>
 		<module>core-examples</module>
@@ -163,8 +165,10 @@
 		<github.global.server>github</github.global.server>
 		<site.url.root>scm:git:git@github.com:caveman-frak/java-core.git/gh_pages</site.url.root>
 		<!-- properties for versions of dependencies -->
+		<spring-boot.version>1.4.0.BUILD-SNAPSHOT</spring-boot.version>
 		<spring.version>2.1.0.BUILD-SNAPSHOT</spring.version>
-		<jersey.version>2.22.2</jersey.version>
+		<spring-framework.version>4.3.0.BUILD-SNAPSHOT</spring-framework.version>
+		<jersey.version>2.23</jersey.version>
 		<slf4j.version>1.7.18</slf4j.version>
 		<swagger.version>1.5.8</swagger.version>
 		<swagger-parser.version>1.0.18</swagger-parser.version>
@@ -183,8 +187,8 @@
 		<jar-plugin.version>2.6</jar-plugin.version>
 		<site-plugin.version>3.4</site-plugin.version>
 		<github-site-plugin.version>0.11</github-site-plugin.version>
-		<pittest-plugin.version>1.1.7</pittest-plugin.version>
-		<jacoco-plugin.version>0.7.5.201505241946</jacoco-plugin.version>
+		<pittest-plugin.version>1.1.10</pittest-plugin.version>
+		<jacoco-plugin.version>0.7.6.201602180812</jacoco-plugin.version>
 		<failsafe-plugin.version>2.18.1</failsafe-plugin.version>
 		<build-helper-plugin.version>1.9.1</build-helper-plugin.version>
 		<spring-boot-plugin.version>1.4.0.BUILD-SNAPSHOT</spring-boot-plugin.version>
@@ -201,6 +205,10 @@
 		<jarsigner.storepass>password</jarsigner.storepass>
 		<jarsigner.trustpass>password</jarsigner.trustpass>
 		<jarsigner.keypass>password</jarsigner.keypass>
+		<!-- run time arguments -->
+		<agent.loadtimeweaver>${settings.localRepository}/org/springframework/spring-instrument/${spring-framework.version}/spring-instrument-${spring-framework.version}.jar</agent.loadtimeweaver>
+		<java.version>1.8</java.version>
+		<argLine>-Xmx1024m -javaagent:${agent.loadtimeweaver}</argLine>
 		<!-- property defaults for running and debugging -->
 		<jrebel-agent.cmd-args></jrebel-agent.cmd-args>
 		<spring-boot.debug-port>5005</spring-boot.debug-port>
@@ -210,6 +218,18 @@
 			${jrebel-agent.cmd-args}
 			-Drebel.remoting_plugin=true</spring-boot.jvm-jrebel-arg>
 		<spring-boot.jvm-args>${spring-boot.jvm-debug-args}</spring-boot.jvm-args>
+		<!-- code coverage -->
+		<coverage.skip>false</coverage.skip>
+		<coverage-pitest.skip>${coverage.skip}</coverage-pitest.skip>
+		<coverage-jacoco.skip>${coverage.skip}</coverage-jacoco.skip>
+		<jacoco.fail-coverage>true</jacoco.fail-coverage>
+		<coverage.threshold>0.01</coverage.threshold>
+		<coverage-instruction.threshold>${coverage.threshold}</coverage-instruction.threshold>
+		<coverage-class.threshold>${coverage.threshold}</coverage-class.threshold>
+		<coverage-method.threshold>${coverage.threshold}</coverage-method.threshold>
+		<coverage-branch.threshold>${coverage.threshold}</coverage-branch.threshold>
+		<coverage-complexity.threshold>${coverage.threshold}</coverage-complexity.threshold>
+		<coverage-line.threshold>${coverage.threshold}</coverage-line.threshold>
 	</properties>
 	<build>
 		<resources>
@@ -219,6 +239,10 @@
 			</resource>
 		</resources>
 		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>properties-maven-plugin</artifactId>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
@@ -232,14 +256,14 @@
 				<artifactId>artifactory-maven-plugin</artifactId>
 			</plugin>
 			<!--
-			<plugin>
+				<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
-			</plugin>
-			<plugin>
+				</plugin>
+				<plugin>
 				<groupId>com.github.github</groupId>
 				<artifactId>site-maven-plugin</artifactId>
-			</plugin>
+				</plugin>
 			-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -249,6 +273,14 @@
 				<groupId>org.projectlombok</groupId>
 				<artifactId>lombok-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.pitest</groupId>
+				<artifactId>pitest-maven</artifactId>
+			</plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>
@@ -257,12 +289,31 @@
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>${compiler-plugin.version}</version>
 					<configuration>
-						<source>1.8</source>
-						<target>1.8</target>
+						<source>${java.version}</source>
+						<target>${java.version}</target>
 						<compilerArguments>
 							<Xlint />
 						</compilerArguments>
 					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>properties-maven-plugin</artifactId>
+					<version>1.0.0</version>
+					<executions>
+						<execution>
+							<phase>initialize</phase>
+							<goals>
+								<goal>read-project-properties</goal>
+							</goals>
+							<configuration>
+								<quiet>true</quiet>
+								<files>
+									<file>maven-project.properties</file>
+								</files>
+							</configuration>
+						</execution>
+					</executions>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -410,16 +461,108 @@
 							<param>uk.co.bluegecko.core*</param>
 						</targetClasses>
 						<targetTests>
-							<param>uk.co.bluegecko.core*</param>
+							<param>uk.co.bluegecko.core*Test</param>
 						</targetTests>
 						<failWhenNoMutations>false</failWhenNoMutations>
-						<timestampedReports>false</timestampedReports>
+						<timestampedReports>true</timestampedReports>
+						<withHistory>true</withHistory>
+						<skip>${coverage-pitest.skip}</skip>
 					</configuration>
+					<executions>
+						<execution>
+							<id>default-mutationCoverage</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>mutationCoverage</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 				<plugin>
 					<groupId>org.jacoco</groupId>
 					<artifactId>jacoco-maven-plugin</artifactId>
 					<version>${jacoco-plugin.version}</version>
+					<configuration>
+						<excludes>
+							<exclude>**/*Test.*</exclude>
+							<exclude>**/*Mock.*</exclude>
+							<exclude>**/Mock*.*</exclude>
+							<exclude>**/*Application.*</exclude>
+							<exclude>**/test/**</exclude>
+						</excludes>
+						<skip>${coverage-jacoco.skip}</skip>
+					</configuration>
+					<executions>
+						<execution>
+							<id>jacoco-agent</id>
+							<goals>
+								<goal>prepare-agent</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>jacoco-agent-integration</id>
+							<goals>
+								<goal>prepare-agent-integration</goal>
+							</goals>
+							<configuration>
+								<propertyName>failsafeArgLine</propertyName>
+							</configuration>
+						</execution>
+						<execution>
+							<id>jacoco-site</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>report</goal>
+								<goal>report-integration</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>default-check</id>
+							<goals>
+								<goal>check</goal>
+							</goals>
+							<configuration>
+								<haltOnFailure>${jacoco.fail-coverage}</haltOnFailure>
+								<rules>
+									<rule>
+										<element>CLASS</element>
+										<limits>
+											<limit>
+												<counter>INSTRUCTION</counter>
+												<value>COVEREDRATIO</value>
+												<minimum>${coverage-instruction.threshold}</minimum>
+											</limit>
+											<limit>
+												<counter>CLASS</counter>
+												<value>COVEREDRATIO</value>
+												<minimum>${coverage-class.threshold}</minimum>
+											</limit>
+											<limit>
+												<counter>METHOD</counter>
+												<value>COVEREDRATIO</value>
+												<minimum>${coverage-method.threshold}</minimum>
+											</limit>
+											<limit>
+												<counter>BRANCH</counter>
+												<value>COVEREDRATIO</value>
+												<minimum>${coverage-branch.threshold}</minimum>
+											</limit>
+											<limit>
+												<counter>COMPLEXITY</counter>
+												<value>COVEREDRATIO</value>
+												<minimum>${coverage-complexity.threshold}</minimum>
+											</limit>
+											<limit>
+												<counter>LINE</counter>
+												<value>COVEREDRATIO</value>
+												<minimum>${coverage-line.threshold}</minimum>
+											</limit>
+										</limits>
+									</rule>
+								</rules>
+							</configuration>
+						</execution>
+					</executions>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -597,7 +740,7 @@
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
-			<!-- spring managed import -->
+			<!-- spring & jersey managed import -->
 			<dependency>
 				<groupId>io.spring.platform</groupId>
 				<artifactId>platform-bom</artifactId>
@@ -676,12 +819,6 @@
 				<version>${bouncy-castle.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.projectlombok</groupId>
-				<artifactId>lombok</artifactId>
-				<version>${lomboc.version}</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
 				<groupId>org.webjars</groupId>
 				<artifactId>swagger-ui</artifactId>
 				<version>${swagger-ui.version}</version>
@@ -722,6 +859,30 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
 				<version>2.7</version>
+			</plugin>
+			<plugin>
+				<groupId>org.pitest</groupId>
+				<artifactId>pitest-maven</artifactId>
+				<version>${pittest-plugin.version}</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>report</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco-plugin.version}</version>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>report</report>
+						</reports>
+					</reportSet>
+				</reportSets>
 			</plugin>
 		</plugins>
 	</reporting>

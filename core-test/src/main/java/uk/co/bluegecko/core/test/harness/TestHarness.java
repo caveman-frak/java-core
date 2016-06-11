@@ -17,7 +17,8 @@ import java.time.Month;
 import java.time.ZoneOffset;
 import java.util.List;
 
-import org.junit.runner.RunWith;
+import org.junit.ClassRule;
+import org.junit.Rule;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -25,7 +26,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.rules.SpringClassRule;
+import org.springframework.test.context.junit4.rules.SpringMethodRule;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import ch.qos.cal10n.verifier.Cal10nError;
@@ -37,18 +39,25 @@ import ch.qos.cal10n.verifier.MessageKeyVerifier;
  * Base Test class
  */
 @Configuration
-@RunWith( SpringJUnit4ClassRunner.class )
 @TestExecutionListeners( listeners =
 	{ DependencyInjectionTestExecutionListener.class } )
-@ContextConfiguration( "classpath:test-context.xml" )
-@PropertySource( name = "unit-test", value =
-	{ "classpath:unit-test.properties" }, ignoreResourceNotFound = true )
-public class TestHarness implements ApplicationContextAware
+@ContextConfiguration( inheritInitializers = true, inheritLocations = true, locations =
+	{ "classpath:test-context.xml" } )
+@PropertySource( name = "unit-test", ignoreResourceNotFound = true, encoding = "UTF-8", value =
+	{ "classpath:unit-test.properties" } )
+@SuppressWarnings( "javadoc" )
+public abstract class TestHarness implements ApplicationContextAware
 {
 
-	protected static final int YEAR = 2010;
-	protected static final Month MONTH = Month.JUNE;
-	protected static final int DAY = 14;
+	public static final int YEAR = 2010;
+	public static final Month MONTH = Month.JUNE;
+	public static final int DAY = 14;
+
+	@ClassRule
+	public static final SpringClassRule SPRING_CLASS_RULE = new SpringClassRule();
+
+	@Rule
+	public final SpringMethodRule springMethodRule = new SpringMethodRule();
 
 	private ApplicationContext applicationContext;
 
@@ -74,27 +83,27 @@ public class TestHarness implements ApplicationContextAware
 		return applicationContext;
 	}
 
-	protected Instant getInstant()
+	public static Instant getInstant()
 	{
 		return LocalDateTime.of( getDate(), getTime() ).toInstant( getTimeZone() );
 	}
 
-	protected LocalTime getTime()
+	public static LocalTime getTime()
 	{
 		return LocalTime.NOON;
 	}
 
-	protected LocalDate getDate()
+	public static LocalDate getDate()
 	{
 		return LocalDate.of( YEAR, MONTH, DAY );
 	}
 
-	protected ZoneOffset getTimeZone()
+	public static ZoneOffset getTimeZone()
 	{
 		return ZoneOffset.UTC;
 	}
 
-	protected Clock getFixedClock()
+	public static Clock getFixedClock()
 	{
 		return Clock.fixed( getInstant(), getTimeZone() );
 	}
@@ -112,7 +121,7 @@ public class TestHarness implements ApplicationContextAware
 
 	protected void debug( final String... text )
 	{
-		if ( applicationContext.getEnvironment().getProperty( "unit-test.debug", Boolean.class, false ) )
+		if ( isDebugEnabled() )
 		{
 			for ( final String s : text )
 			{
@@ -120,6 +129,11 @@ public class TestHarness implements ApplicationContextAware
 			}
 			System.out.println();
 		}
+	}
+
+	protected Boolean isDebugEnabled()
+	{
+		return applicationContext.getEnvironment().getProperty( "unit-test.debug", Boolean.class, false );
 	}
 
 }

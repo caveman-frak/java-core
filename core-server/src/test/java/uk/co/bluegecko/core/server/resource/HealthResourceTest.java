@@ -34,22 +34,24 @@ import uk.co.bluegecko.core.server.test.AbstractWebTest;
 public class HealthResourceTest extends AbstractWebTest
 {
 
-	private final RestTemplate restTemplate = new TestRestTemplate( TEST_USER, TEST_PASSWORD );
+	private TestRestTemplate testRestTemplate;
 
 	private URI serverUrl;
 
 	@Before
 	public void setUp() throws MalformedURLException, URISyntaxException
 	{
+		testRestTemplate = new TestRestTemplate( TEST_USER, TEST_PASSWORD );
 		serverUrl = new URL( "http", "localhost", getHttpPort(), BASE_PATH + PATH + INFO ).toURI();
 	}
 
 	@Test
 	public void fetchHealthAsJson() throws RestClientException
 	{
+		final RestTemplate restTemplate = testRestTemplate.getRestTemplate();
 		restTemplate.setMessageConverters( createJaxbMessageConverter() );
 		restTemplate.setInterceptors( createMediaTypeInterceptor( MediaType.APPLICATION_JSON ) );
-		final ResponseEntity< ? extends Health > entity = restTemplate.getForEntity( serverUrl, BaseHealth.class );
+		final ResponseEntity< ? extends Health > entity = testRestTemplate.getForEntity( serverUrl, BaseHealth.class );
 
 		assertThat( entity.getStatusCode().is2xxSuccessful(), is( true ) );
 		assertThat( entity.getHeaders(), hasKey( HttpHeaders.CONTENT_TYPE ) );
@@ -60,8 +62,9 @@ public class HealthResourceTest extends AbstractWebTest
 	@Test
 	public void fetchHealthAsXml()
 	{
+		final RestTemplate restTemplate = testRestTemplate.getRestTemplate();
 		restTemplate.setInterceptors( createMediaTypeInterceptor( MediaType.APPLICATION_XML ) );
-		final ResponseEntity< ? extends Health > entity = restTemplate.getForEntity( serverUrl, BaseHealth.class );
+		final ResponseEntity< ? extends Health > entity = testRestTemplate.getForEntity( serverUrl, BaseHealth.class );
 
 		assertThat( entity.getStatusCode().is2xxSuccessful(), is( true ) );
 		assertThat( entity.getHeaders(), hasKey( HttpHeaders.CONTENT_TYPE ) );

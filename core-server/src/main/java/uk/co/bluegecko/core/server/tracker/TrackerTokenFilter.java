@@ -11,7 +11,6 @@ import java.util.Arrays;
 import java.util.Base64;
 import java.util.Locale;
 
-import javax.servlet.annotation.WebFilter;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.container.ContainerResponseContext;
@@ -32,7 +31,6 @@ import ch.qos.cal10n.MessageConveyor;
  *
  */
 @Provider
-@WebFilter
 public class TrackerTokenFilter implements ContainerRequestFilter, ContainerResponseFilter, TrackerToken
 {
 

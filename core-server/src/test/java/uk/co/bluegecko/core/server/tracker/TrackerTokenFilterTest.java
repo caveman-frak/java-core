@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.security.Principal;
+import java.time.Clock;
+import java.time.Instant;
 
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
@@ -28,7 +30,7 @@ import uk.co.bluegecko.core.test.harness.TestHarness;
 
 
 @SuppressWarnings( "javadoc" )
-public class TrackerTokenFilterTest extends TestHarness
+public class TrackerTokenFilterTest
 {
 
 	private TrackerTokenFilter filter;
@@ -102,6 +104,16 @@ public class TrackerTokenFilterTest extends TestHarness
 	{
 		final long time = filter.decodeCounter( "ASk2VJYA" );
 		assertThat( time, is( getInstant().toEpochMilli() ) );
+	}
+
+	private Clock getFixedClock()
+	{
+		return TestHarness.getFixedClock();
+	}
+
+	private Instant getInstant()
+	{
+		return TestHarness.getInstant();
 	}
 
 	private UriInfo setUpUriInfo()
