@@ -24,10 +24,9 @@ public abstract class AbstractValidator
 	/**
 	 * Standard validations.
 	 */
-	@SuppressWarnings( "javadoc" )
 	@BaseName( "uk.co.bluegecko.core.validation.AbstractValidator$Key" )
 	@LocaleData(
-		{ @ch.qos.cal10n.Locale( "en" ) })
+		{ @ch.qos.cal10n.Locale( "en" ) } )
 	public enum Key
 	{
 		NOT_NULL, LENGTH_MAX, LENGTH_MIN, LENGTH_BETWEEN, REGEX, NUMBER_MAX, NUMBER_MIN, NUMBER_BETWEEN, DATE_MAX, DATE_MIN, DATE_BETWEEN;

@@ -21,7 +21,6 @@ import uk.co.bluegecko.core.models.money.exchange.CurrencyExchangeRate;
 import uk.co.bluegecko.core.models.money.exchange.ExchangeRate;
 
 
-@SuppressWarnings( "javadoc" )
 public class SimpleTriangulatedExchangeRateTest
 {
 
@@ -46,8 +45,8 @@ public class SimpleTriangulatedExchangeRateTest
 		when( currencyExchangeRate.getBaseCurrency() ).thenReturn( usd );
 		when( currencyExchangeRate.getExchangeRate( gbp ) ).thenReturn( usd2gbp );
 		when( currencyExchangeRate.getExchangeRate( jpy ) ).thenReturn( usd2jpy );
-		when( currencyExchangeRate.getExchangeRate( cad ) ).thenThrow(
-				new CurrencyException( Log.UNRECOGNISED_CURRENCY, cad ) );
+		when( currencyExchangeRate.getExchangeRate( cad ) )
+				.thenThrow( new CurrencyException( Log.UNRECOGNISED_CURRENCY, cad ) );
 	}
 
 	@Test
@@ -85,7 +84,7 @@ public class SimpleTriangulatedExchangeRateTest
 	@Test
 	public void testGetExchangeRateGBP2CAD()
 	{
-		capture( ( ) -> triangulatedExchangeRate.getExchangeRate( gbp, cad ) );
+		capture( () -> triangulatedExchangeRate.getExchangeRate( gbp, cad ) );
 
 		assertThat( caught(), is( instanceOf( CurrencyException.class ) ) );
 	}

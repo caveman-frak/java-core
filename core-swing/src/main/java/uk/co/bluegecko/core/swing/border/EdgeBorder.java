@@ -23,7 +23,6 @@ public class EdgeBorder extends AbstractBorder
 
 	private static final long serialVersionUID = 5802681543832507236L;
 
-	@SuppressWarnings( "javadoc" )
 	public enum EdgeStyle
 	{
 		NONE( 0 ), LOWERED( 2 ), RAISED( 2 ), LINE( 1 );
@@ -247,7 +246,8 @@ public class EdgeBorder extends AbstractBorder
 	 */
 	public Color getHighlightColor( final Component c )
 	{
-		return getHighlightColor() != null ? getHighlightColor() : c.getBackground().brighter();
+		return getHighlightColor() != null ? getHighlightColor() : c.getBackground()
+				.brighter();
 	}
 
 	/**
@@ -269,7 +269,8 @@ public class EdgeBorder extends AbstractBorder
 	 */
 	public Color getShadowColor( final Component c )
 	{
-		return getShadowColor() != null ? getShadowColor() : c.getBackground().darker();
+		return getShadowColor() != null ? getShadowColor() : c.getBackground()
+				.darker();
 	}
 
 	/**
@@ -304,7 +305,6 @@ public class EdgeBorder extends AbstractBorder
 		return color;
 	}
 
-	@SuppressWarnings( "javadoc" )
 	public final static class Demo
 	{
 
@@ -326,7 +326,8 @@ public class EdgeBorder extends AbstractBorder
 			}
 			( ( javax.swing.JComponent ) frame.getContentPane() )
 					.setBorder( javax.swing.BorderFactory.createEmptyBorder( 10, 10, 10, 10 ) );
-			frame.getContentPane().setLayout( new java.awt.GridLayout( 0, 1, 10, 10 ) );
+			frame.getContentPane()
+					.setLayout( new java.awt.GridLayout( 0, 1, 10, 10 ) );
 
 			JPanel panel = new TitledPanel( "Full Borders" );
 			panel.setLayout( new java.awt.GridLayout( 0, 4, 10, 10 ) );
@@ -350,7 +351,8 @@ public class EdgeBorder extends AbstractBorder
 			label.setBorder(
 					new EdgeBorder( Color.RED, EdgeStyle.NONE, EdgeStyle.NONE, EdgeStyle.RAISED, EdgeStyle.NONE ) );
 			panel.add( label );
-			frame.getContentPane().add( panel );
+			frame.getContentPane()
+					.add( panel );
 
 			panel = new TitledPanel( "Raised Borders" );
 			panel.setLayout( new java.awt.GridLayout( 0, 4, 10, 10 ) );
@@ -378,7 +380,8 @@ public class EdgeBorder extends AbstractBorder
 			label = new Label( "TR Borders" );
 			label.setBorder( new EdgeBorder( EdgeStyle.RAISED, EdgeStyle.NONE, EdgeStyle.NONE, EdgeStyle.RAISED ) );
 			panel.add( label );
-			frame.getContentPane().add( panel );
+			frame.getContentPane()
+					.add( panel );
 
 			panel = new TitledPanel( "Lowered Borders" );
 			panel.setLayout( new java.awt.GridLayout( 0, 4, 10, 10 ) );
@@ -406,7 +409,8 @@ public class EdgeBorder extends AbstractBorder
 			label = new Label( "TR Borders" );
 			label.setBorder( new EdgeBorder( EdgeStyle.LOWERED, EdgeStyle.NONE, EdgeStyle.NONE, EdgeStyle.LOWERED ) );
 			panel.add( label );
-			frame.getContentPane().add( panel );
+			frame.getContentPane()
+					.add( panel );
 
 			panel = new TitledPanel( "Line Borders" );
 			panel.setLayout( new java.awt.GridLayout( 0, 4, 10, 10 ) );
@@ -434,7 +438,8 @@ public class EdgeBorder extends AbstractBorder
 			label = new Label( "TR Borders" );
 			label.setBorder( new EdgeBorder( EdgeStyle.LINE, EdgeStyle.NONE, EdgeStyle.NONE, EdgeStyle.LINE ) );
 			panel.add( label );
-			frame.getContentPane().add( panel );
+			frame.getContentPane()
+					.add( panel );
 
 			frame.pack();
 			frame.setVisible( true );

@@ -7,7 +7,6 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 
-@SuppressWarnings( "javadoc" )
 @SpringBootApplication
 public class ApplicationConfig extends SpringBootServletInitializer
 {
@@ -20,7 +19,8 @@ public class ApplicationConfig extends SpringBootServletInitializer
 	@Override
 	protected SpringApplicationBuilder configure( final SpringApplicationBuilder builder )
 	{
-		return builder.sources( ApplicationConfig.class ).properties( "spring.jersey.type:filter" );
+		return builder.sources( ApplicationConfig.class )
+				.properties( "spring.jersey.type:filter" );
 	}
 
 }

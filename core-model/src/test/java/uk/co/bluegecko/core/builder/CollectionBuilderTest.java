@@ -21,7 +21,6 @@ import java.util.SortedSet;
 import org.junit.Test;
 
 
-@SuppressWarnings( "javadoc" )
 public class CollectionBuilderTest
 {
 
@@ -30,7 +29,10 @@ public class CollectionBuilderTest
 	{
 		final CollectionBuilder< List< Number >, Number > builder = CollectionBuilder.list();
 
-		builder.with( 10 ).with( 10L ).with( 10.01F ).with( 10.01D );
+		builder.with( 10 )
+				.with( 10L )
+				.with( 10.01F )
+				.with( 10.01D );
 
 		final List< Number > list = builder.build();
 		assertThat( list, hasSize( 4 ) );
@@ -67,7 +69,10 @@ public class CollectionBuilderTest
 	{
 		final CollectionBuilder< Set< Number >, Number > builder = CollectionBuilder.set();
 
-		builder.with( 10 ).with( 10L ).with( 10.01F ).with( 10.01D );
+		builder.with( 10 )
+				.with( 10L )
+				.with( 10.01F )
+				.with( 10.01D );
 
 		final Set< Number > list = builder.build();
 		assertThat( list, hasSize( 4 ) );
@@ -79,7 +84,10 @@ public class CollectionBuilderTest
 	{
 		final CollectionBuilder< SortedSet< Number >, Number > builder = CollectionBuilder.sortedSet();
 
-		builder.with( 10 ).with( 11 ).with( 12 ).with( 13 );
+		builder.with( 10 )
+				.with( 11 )
+				.with( 12 )
+				.with( 13 );
 
 		final SortedSet< Number > list = builder.build();
 		assertThat( list, hasSize( 4 ) );
@@ -91,7 +99,10 @@ public class CollectionBuilderTest
 	{
 		final CollectionBuilder< Queue< Number >, Number > builder = CollectionBuilder.queue();
 
-		builder.with( 10 ).with( 10L ).with( 10.01F ).with( 10.01D );
+		builder.with( 10 )
+				.with( 10L )
+				.with( 10.01F )
+				.with( 10.01D );
 
 		final Queue< Number > list = builder.build();
 		assertThat( list, hasSize( 4 ) );
@@ -103,7 +114,10 @@ public class CollectionBuilderTest
 	{
 		final CollectionBuilder< Deque< Number >, Number > builder = CollectionBuilder.deque();
 
-		builder.with( 10 ).with( 10L ).with( 10.01F ).with( 10.01D );
+		builder.with( 10 )
+				.with( 10L )
+				.with( 10.01F )
+				.with( 10.01D );
 
 		final Deque< Number > list = builder.build();
 		assertThat( list, hasSize( 4 ) );
@@ -113,13 +127,15 @@ public class CollectionBuilderTest
 	@Test
 	public void testCopy()
 	{
-		final List< Number > collection = new LinkedList< >();
+		final List< Number > collection = new LinkedList<>();
 		final CollectionBuilder< List< Number >, Number > builder = CollectionBuilder.collection( collection );
 
-		builder.with( 10 ).with( 10L );
+		builder.with( 10 )
+				.with( 10L );
 
 		final CollectionBuilder< List< Number >, Number > builder2 = builder.copy();
-		builder2.with( 10.01F ).with( 10.01D );
+		builder2.with( 10.01F )
+				.with( 10.01D );
 
 		final List< Number > list = builder2.build();
 		assertThat( builder.build(), is( not( sameInstance( list ) ) ) );
@@ -133,11 +149,13 @@ public class CollectionBuilderTest
 	{
 		final CollectionBuilder< List< Number >, Number > builder = CollectionBuilder.list();
 
-		builder.with( 10 ).with( 10L );
+		builder.with( 10 )
+				.with( 10L );
 
-		final List< Number > collection = new LinkedList< >();
+		final List< Number > collection = new LinkedList<>();
 		final CollectionBuilder< List< Number >, Number > builder2 = builder.copy( collection );
-		builder2.with( 10.01F ).with( 10.01D );
+		builder2.with( 10.01F )
+				.with( 10.01D );
 
 		final List< Number > list = builder2.build();
 		assertThat( list, is( sameInstance( list ) ) );
@@ -151,7 +169,10 @@ public class CollectionBuilderTest
 	{
 		final CollectionBuilder< List< Number >, Number > builder = CollectionBuilder.list();
 
-		builder.with( 10 ).with( 10L ).with( 10.01F ).with( 10.01D );
+		builder.with( 10 )
+				.with( 10L )
+				.with( 10.01F )
+				.with( 10.01D );
 		builder.reset();
 
 		final List< Number > list = builder.build();
@@ -163,9 +184,12 @@ public class CollectionBuilderTest
 	{
 		final CollectionBuilder< List< Number >, Number > builder = CollectionBuilder.list();
 
-		builder.with( 10 ).with( 10L ).with( 10.01F ).with( 10.01D );
+		builder.with( 10 )
+				.with( 10L )
+				.with( 10.01F )
+				.with( 10.01D );
 
-		final List< Number > list = builder.build( new LinkedList< >() );
+		final List< Number > list = builder.build( new LinkedList<>() );
 		assertThat( list, is( instanceOf( LinkedList.class ) ) );
 		assertThat( list, hasSize( 4 ) );
 		assertThat( list, contains( 10, 10L, 10.01F, 10.01D ) );

@@ -20,7 +20,6 @@ import uk.co.bluegecko.core.exceptions.TestExceptionOne.Message;
 import uk.co.bluegecko.core.test.harness.TestHarness;
 
 
-@SuppressWarnings( "javadoc" )
 public class BaseExceptionTest extends TestHarness
 {
 
@@ -60,7 +59,8 @@ public class BaseExceptionTest extends TestHarness
 		{
 			assertThat( ex, is( instanceOf( TestExceptionOne.class ) ) );
 			assertThat( ex.getCause(), is( instanceOf( NullPointerException.class ) ) );
-			assertThat( ex.getCause().getMessage(), is( "Null Pointer" ) );
+			assertThat( ex.getCause()
+					.getMessage(), is( "Null Pointer" ) );
 			assertThat( ex.getMessage(), is( "java.lang.NullPointerException: Null Pointer" ) );
 			assertThat( ex.messageKey(), is( Message.THREE ) );
 			assertThat( ex.arguments(), arrayContaining( LocalDateTime.of( 2000, Month.JANUARY, 1, 15, 30 ) ) );

@@ -18,7 +18,6 @@ import uk.co.bluegecko.core.model.base.SimpleMessage;
 import uk.co.bluegecko.core.test.harness.TestHarness;
 
 
-@SuppressWarnings( "javadoc" )
 public class MessagesTest extends TestHarness
 {
 

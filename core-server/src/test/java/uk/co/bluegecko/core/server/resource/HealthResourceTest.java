@@ -30,7 +30,6 @@ import uk.co.bluegecko.core.server.model.base.BaseHealth;
 import uk.co.bluegecko.core.server.test.AbstractWebTest;
 
 
-@SuppressWarnings( "javadoc" )
 public class HealthResourceTest extends AbstractWebTest
 {
 
@@ -53,10 +52,14 @@ public class HealthResourceTest extends AbstractWebTest
 		restTemplate.setInterceptors( createMediaTypeInterceptor( MediaType.APPLICATION_JSON ) );
 		final ResponseEntity< ? extends Health > entity = testRestTemplate.getForEntity( serverUrl, BaseHealth.class );
 
-		assertThat( entity.getStatusCode().is2xxSuccessful(), is( true ) );
+		assertThat( entity.getStatusCode()
+				.is2xxSuccessful(), is( true ) );
 		assertThat( entity.getHeaders(), hasKey( HttpHeaders.CONTENT_TYPE ) );
-		assertThat( entity.getHeaders().getContentType().includes( MediaType.APPLICATION_JSON ), is( true ) );
-		assertThat( entity.getBody().getStatus(), is( "Jersey: Up and Running!" ) );
+		assertThat( entity.getHeaders()
+				.getContentType()
+				.includes( MediaType.APPLICATION_JSON ), is( true ) );
+		assertThat( entity.getBody()
+				.getStatus(), is( "Jersey: Up and Running!" ) );
 	}
 
 	@Test
@@ -66,10 +69,14 @@ public class HealthResourceTest extends AbstractWebTest
 		restTemplate.setInterceptors( createMediaTypeInterceptor( MediaType.APPLICATION_XML ) );
 		final ResponseEntity< ? extends Health > entity = testRestTemplate.getForEntity( serverUrl, BaseHealth.class );
 
-		assertThat( entity.getStatusCode().is2xxSuccessful(), is( true ) );
+		assertThat( entity.getStatusCode()
+				.is2xxSuccessful(), is( true ) );
 		assertThat( entity.getHeaders(), hasKey( HttpHeaders.CONTENT_TYPE ) );
-		assertThat( entity.getHeaders().getContentType().includes( MediaType.APPLICATION_XML ), is( true ) );
-		assertThat( entity.getBody().getStatus(), is( "Jersey: Up and Running!" ) );
+		assertThat( entity.getHeaders()
+				.getContentType()
+				.includes( MediaType.APPLICATION_XML ), is( true ) );
+		assertThat( entity.getBody()
+				.getStatus(), is( "Jersey: Up and Running!" ) );
 	}
 
 }

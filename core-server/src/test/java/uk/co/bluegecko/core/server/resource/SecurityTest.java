@@ -23,7 +23,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import uk.co.bluegecko.core.server.test.AbstractWebTest;
 
 
-@SuppressWarnings( "javadoc" )
 public class SecurityTest extends AbstractWebTest
 {
 
@@ -34,38 +33,47 @@ public class SecurityTest extends AbstractWebTest
 	public void setUp()
 	{
 		path = BASE_PATH + PATH + GC;
-		mvc = MockMvcBuilders.webAppContextSetup( getContext() ).apply( springSecurity() ).build();
+		mvc = MockMvcBuilders.webAppContextSetup( getContext() )
+				.apply( springSecurity() )
+				.build();
 	}
 
 	@Test
 	public void testLogin() throws Exception
 	{
-		mvc.perform( post( path ).with( httpBasic( TEST_USER, TEST_PASSWORD ) ).with( csrf() ) )
-				.andExpect( authenticated().withRoles( USER ).withUsername( TEST_USER ) );
+		mvc.perform( post( path ).with( httpBasic( TEST_USER, TEST_PASSWORD ) )
+				.with( csrf() ) )
+				.andExpect( authenticated().withRoles( USER )
+						.withUsername( TEST_USER ) );
 	}
 
 	@Test
 	public void testLoginWithoutCredentials() throws Exception
 	{
-		mvc.perform( post( path ).with( csrf() ) ).andExpect( unauthenticated() );
+		mvc.perform( post( path ).with( csrf() ) )
+				.andExpect( unauthenticated() );
 	}
 
 	@Test
 	public void testLoginWithInvalidCredentials() throws Exception
 	{
-		mvc.perform( post( path ).with( httpBasic( TEST_USER, "" ) ).with( csrf() ) ).andExpect( unauthenticated() );
+		mvc.perform( post( path ).with( httpBasic( TEST_USER, "" ) )
+				.with( csrf() ) )
+				.andExpect( unauthenticated() );
 	}
 
 	@Test
 	public void testLoginWithoutCsrf() throws Exception
 	{
-		mvc.perform( post( path ).with( httpBasic( TEST_USER, TEST_PASSWORD ) ) ).andExpect( unauthenticated() );
+		mvc.perform( post( path ).with( httpBasic( TEST_USER, TEST_PASSWORD ) ) )
+				.andExpect( unauthenticated() );
 	}
 
 	@Test
 	public void testLogout() throws Exception
 	{
-		mvc.perform( post( path ).with( httpBasic( TEST_USER, TEST_PASSWORD ) ).with( csrf() ) );
+		mvc.perform( post( path ).with( httpBasic( TEST_USER, TEST_PASSWORD ) )
+				.with( csrf() ) );
 		mvc.perform( logout() );
 	}
 

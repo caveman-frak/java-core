@@ -17,7 +17,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import uk.co.bluegecko.core.server.config.ServerConstants.Roles;
 
 
-@SuppressWarnings( "javadoc" )
 @Configuration
 @EnableWebSecurity
 @Order( Ordered.LOWEST_PRECEDENCE - 6 )
@@ -27,15 +26,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 	@Override
 	protected void configure( final HttpSecurity http ) throws Exception
 	{
-		http.authorizeRequests().antMatchers( "/*.*", "/images/**", "/css/**", "/js/**", BASE_PATH + "/swagger.json" )
-				.permitAll().antMatchers( BASE_PATH + "/**" ).hasRole( Roles.USER ).anyRequest().authenticated();
-		http.httpBasic().realmName( TEST_REALM );
+		http.authorizeRequests()
+				.antMatchers( "/*.*", "/images/**", "/css/**", "/js/**", BASE_PATH + "/swagger.json" )
+				.permitAll()
+				.antMatchers( BASE_PATH + "/**" )
+				.hasRole( Roles.USER )
+				.anyRequest()
+				.authenticated();
+		http.httpBasic()
+				.realmName( TEST_REALM );
 	}
 
 	@Override
 	protected void configure( final AuthenticationManagerBuilder authenticationManagerBuilder ) throws Exception
 	{
-		authenticationManagerBuilder.inMemoryAuthentication().withUser( TEST_USER ).password( TEST_PASSWORD )
+		authenticationManagerBuilder.inMemoryAuthentication()
+				.withUser( TEST_USER )
+				.password( TEST_PASSWORD )
 				.roles( Roles.USER );
 	}
 

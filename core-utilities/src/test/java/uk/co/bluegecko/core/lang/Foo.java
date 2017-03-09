@@ -4,7 +4,6 @@
 package uk.co.bluegecko.core.lang;
 
 
-@SuppressWarnings( "javadoc" )
 public class Foo implements Comparable< Foo >
 {
 

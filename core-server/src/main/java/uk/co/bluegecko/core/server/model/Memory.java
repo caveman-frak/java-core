@@ -1,7 +1,6 @@
 package uk.co.bluegecko.core.server.model;
 
 
-@SuppressWarnings( "javadoc" )
 public interface Memory
 {
 

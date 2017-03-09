@@ -17,7 +17,6 @@ import uk.co.bluegecko.core.service.common.settings.SettingsService;
 import uk.co.bluegecko.core.test.harness.TestHarness;
 
 
-@SuppressWarnings( "javadoc" )
 @Configuration
 @PropertySource( "classpath:test.properties" )
 public class SpringSettingsServiceTest extends TestHarness

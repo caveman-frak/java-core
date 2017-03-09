@@ -8,7 +8,6 @@ import java.awt.Dimension;
 import org.junit.Test;
 
 
-@SuppressWarnings( "javadoc" )
 public class SpacerTest
 {
 
@@ -37,14 +36,16 @@ public class SpacerTest
 	public final void testScaleUp()
 	{
 		spacer = new Spacer( size );
-		assertEquals( new Dimension( 150, 30 ), spacer.scale( 1.5f ).getPreferredSize() );
+		assertEquals( new Dimension( 150, 30 ), spacer.scale( 1.5f )
+				.getPreferredSize() );
 	}
 
 	@Test
 	public final void testScaleDown()
 	{
 		spacer = new Spacer( size );
-		assertEquals( new Dimension( 50, 10 ), spacer.scale( 0.5f ).getPreferredSize() );
+		assertEquals( new Dimension( 50, 10 ), spacer.scale( 0.5f )
+				.getPreferredSize() );
 	}
 
 }

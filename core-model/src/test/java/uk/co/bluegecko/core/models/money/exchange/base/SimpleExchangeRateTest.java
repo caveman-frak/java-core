@@ -14,7 +14,6 @@ import uk.co.bluegecko.core.models.money.Money;
 import uk.co.bluegecko.core.models.money.exchange.ExchangeRate;
 
 
-@SuppressWarnings( "javadoc" )
 public class SimpleExchangeRateTest
 {
 

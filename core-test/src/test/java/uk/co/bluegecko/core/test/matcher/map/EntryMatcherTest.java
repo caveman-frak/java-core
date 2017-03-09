@@ -20,7 +20,6 @@ import org.junit.Test;
 import uk.co.bluegecko.core.helper.Utility;
 
 
-@SuppressWarnings( "javadoc" )
 public class EntryMatcherTest
 {
 

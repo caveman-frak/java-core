@@ -4,7 +4,6 @@ package uk.co.bluegecko.core.swing.layout;
 /**
  * Scaling direction for components.
  */
-@SuppressWarnings( "javadoc" )
 public enum Direction
 {
 	HORIZONTAL( true, false ), VERTICAL( false, true ), BOTH( true, true );

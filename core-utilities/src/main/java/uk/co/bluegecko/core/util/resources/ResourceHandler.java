@@ -20,7 +20,6 @@ import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
 
-@SuppressWarnings( "javadoc" )
 public class ResourceHandler implements PropertyChangeListener
 {
 
@@ -236,7 +235,8 @@ public class ResourceHandler implements PropertyChangeListener
 		URL url = null;
 		if ( text != null )
 		{
-			url = getClass().getClassLoader().getResource( text );
+			url = getClass().getClassLoader()
+					.getResource( text );
 			if ( url == null )
 			{
 				url = ClassLoader.getSystemResource( text );

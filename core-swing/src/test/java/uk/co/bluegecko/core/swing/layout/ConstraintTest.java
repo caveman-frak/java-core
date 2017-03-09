@@ -16,7 +16,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-@SuppressWarnings( "javadoc" )
 public class ConstraintTest
 {
 
@@ -57,8 +56,10 @@ public class ConstraintTest
 		final Constraint constraint = new Constraint( insets, alignment, horizontal, vertical );
 		assertEquals( insets, constraint.getInsets() );
 		assertEquals( alignment, constraint.getAlignment() );
-		assertEquals( horizontal, constraint.getHorizontal().getFactor(), 0.001 );
-		assertEquals( vertical, constraint.getVertical().getFactor(), 0.001 );
+		assertEquals( horizontal, constraint.getHorizontal()
+				.getFactor(), 0.001 );
+		assertEquals( vertical, constraint.getVertical()
+				.getFactor(), 0.001 );
 	}
 
 	@Test

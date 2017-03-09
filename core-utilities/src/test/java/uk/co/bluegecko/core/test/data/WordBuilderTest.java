@@ -7,7 +7,6 @@ import static org.junit.Assert.assertThat;
 import org.junit.Test;
 
 
-@SuppressWarnings( "javadoc" )
 public class WordBuilderTest
 {
 
@@ -58,11 +57,10 @@ public class WordBuilderTest
 		assertThat( "40101", WordBuilder.intToWords( 40101 ), is( "Forty Thousand One Hundred and One" ) );
 		assertThat( "101000", WordBuilder.intToWords( 101000 ), is( "One Hundred and One Thousand" ) );
 		assertThat( "40000001", WordBuilder.intToWords( 40000001 ), is( "Forty Million and One" ) );
-		assertThat( "40101000", WordBuilder.intToWords( 40101000 ), is( "Forty Million One Hundred and One Thousand" ) );
-		assertThat(
-				"MAX",
-				WordBuilder.intToWords( Integer.MAX_VALUE ),
-				is( "Two Billion One Hundred and Forty Seven Million Four Hundred and Eighty Three Thousand Six Hundred and Forty Seven" ) );
+		assertThat( "40101000", WordBuilder.intToWords( 40101000 ),
+				is( "Forty Million One Hundred and One Thousand" ) );
+		assertThat( "MAX", WordBuilder.intToWords( Integer.MAX_VALUE ), is(
+				"Two Billion One Hundred and Forty Seven Million Four Hundred and Eighty Three Thousand Six Hundred and Forty Seven" ) );
 	}
 
 }

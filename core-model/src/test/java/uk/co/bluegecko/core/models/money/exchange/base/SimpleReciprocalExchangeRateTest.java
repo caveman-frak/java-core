@@ -14,7 +14,6 @@ import uk.co.bluegecko.core.models.money.exchange.ExchangeRate;
 import uk.co.bluegecko.core.models.money.exchange.ReciprocalExchangeRate;
 
 
-@SuppressWarnings( "javadoc" )
 public class SimpleReciprocalExchangeRateTest
 {
 

@@ -11,7 +11,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 
 
-@SuppressWarnings( "javadoc" )
 public class ApiOriginFilter implements javax.servlet.Filter
 {
 

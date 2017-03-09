@@ -17,7 +17,6 @@ import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 
 
-@SuppressWarnings( "javadoc" )
 public abstract class AbstractIntegrationTest implements ServerPorts
 {
 
@@ -39,8 +38,8 @@ public abstract class AbstractIntegrationTest implements ServerPorts
 				TEST_PASSWORD );
 		final Configuration configuration = new ClientConfig().register( authenticationFeature );
 
-		final WebTarget target = ClientBuilder.newClient( configuration ).target(
-				new URL( "http", "localhost", getHttpPort(), BASE_PATH ).toURI() );
+		final WebTarget target = ClientBuilder.newClient( configuration )
+				.target( new URL( "http", "localhost", getHttpPort(), BASE_PATH ).toURI() );
 		return target;
 	}
 

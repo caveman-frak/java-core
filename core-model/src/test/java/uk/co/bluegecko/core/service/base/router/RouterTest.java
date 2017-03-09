@@ -12,12 +12,9 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import uk.co.bluegecko.core.service.base.router.NotRoutableException;
-import uk.co.bluegecko.core.service.base.router.Router;
 import uk.co.bluegecko.core.test.harness.TestHarness;
 
 
-@SuppressWarnings( "javadoc" )
 public class RouterTest extends TestHarness
 {
 
@@ -41,7 +38,8 @@ public class RouterTest extends TestHarness
 	@Test
 	public final void testInvokeCountFoo1()
 	{
-		assertThat( fooRouter.proxy().count( RouteFoo1.PATH, TEST ), is( 4 ) );
+		assertThat( fooRouter.proxy()
+				.count( RouteFoo1.PATH, TEST ), is( 4 ) );
 	}
 
 	/**
@@ -50,7 +48,8 @@ public class RouterTest extends TestHarness
 	@Test
 	public final void testInvokeCountFoo2()
 	{
-		assertThat( fooRouter.proxy().count( RouteFoo2.PATH, TEST ), is( 4 ) );
+		assertThat( fooRouter.proxy()
+				.count( RouteFoo2.PATH, TEST ), is( 4 ) );
 	}
 
 	/**
@@ -59,7 +58,8 @@ public class RouterTest extends TestHarness
 	@Test( expected = NotRoutableException.class )
 	public final void testInvokeCountFoo3()
 	{
-		fooRouter.proxy().count( "foo3", TEST );
+		fooRouter.proxy()
+				.count( "foo3", TEST );
 		fail( "testInvokeCountFoo3()" );
 	}
 
@@ -69,7 +69,8 @@ public class RouterTest extends TestHarness
 	@Test( expected = NotRoutableException.class )
 	public final void testInvokeBar()
 	{
-		fooRouter.proxy().bar();
+		fooRouter.proxy()
+				.bar();
 		fail( "testInvokeBar()" );
 	}
 

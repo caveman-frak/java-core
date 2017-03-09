@@ -19,7 +19,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-@SuppressWarnings( "javadoc" )
 public class ResourceHandlerTest
 {
 
@@ -137,7 +136,8 @@ public class ResourceHandlerTest
 	public final void testUrl()
 	{
 		final URL result = handler.getURL( "test@icon" );
-		assertThat( result, is( getClass().getClassLoader().getResource( "test-image.png" ) ) );
+		assertThat( result, is( getClass().getClassLoader()
+				.getResource( "test-image.png" ) ) );
 	}
 
 	@SuppressWarnings( "boxing" )
@@ -145,7 +145,8 @@ public class ResourceHandlerTest
 	public final void testIcon()
 	{
 		final ImageIcon result = handler.getIcon( "test@icon" );
-		final ImageIcon icon = new ImageIcon( getClass().getClassLoader().getResource( "test-image.png" ) );
+		final ImageIcon icon = new ImageIcon( getClass().getClassLoader()
+				.getResource( "test-image.png" ) );
 		assertThat( result.getIconHeight(), is( 16 ) );
 		assertThat( result.getIconWidth(), is( 16 ) );
 		assertThat( result.getDescription(), endsWith( "/test-image.png" ) );
@@ -156,8 +157,8 @@ public class ResourceHandlerTest
 	public final void testImage()
 	{
 		final Image result = handler.getImage( "test@icon" );
-		assertThat( result,
-				is( new ImageIcon( getClass().getClassLoader().getResource( "test-image.png" ) ).getImage() ) );
+		assertThat( result, is( new ImageIcon( getClass().getClassLoader()
+				.getResource( "test-image.png" ) ).getImage() ) );
 	}
 
 	@Test

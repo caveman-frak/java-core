@@ -5,13 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
-import uk.co.bluegecko.core.service.common.LocaleService;
 import ch.qos.cal10n.BaseName;
 import ch.qos.cal10n.Locale;
 import ch.qos.cal10n.LocaleData;
+import uk.co.bluegecko.core.service.common.LocaleService;
 
 
-@SuppressWarnings( "javadoc" )
 @Service
 public class FooServiceImpl extends AbstractService implements FooService
 {

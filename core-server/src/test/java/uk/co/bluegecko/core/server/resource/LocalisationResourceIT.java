@@ -24,20 +24,21 @@ import org.junit.Test;
 import uk.co.bluegecko.core.server.test.AbstractIntegrationTest;
 
 
-@SuppressWarnings( "javadoc" )
 public class LocalisationResourceIT extends AbstractIntegrationTest
 {
 
 	@Test
 	public void fetchBundle() throws MalformedURLException, URISyntaxException
 	{
-		final Response response = getTarget().path( PATH + BUNDLE ).resolveTemplate( BUNDLE_NAME, "i18n.common" )
-				.request( MediaType.APPLICATION_JSON_TYPE ).get();
+		final Response response = getTarget().path( PATH + BUNDLE )
+				.resolveTemplate( BUNDLE_NAME, "i18n.common" )
+				.request( MediaType.APPLICATION_JSON_TYPE )
+				.get();
 
 		assertThat( response.getStatus(), is( Status.OK.getStatusCode() ) );
 		assertThat( response.getHeaders(), hasKey( HttpHeaders.CONTENT_TYPE ) );
-		assertThat( ( String ) response.getHeaders().getFirst( HttpHeaders.CONTENT_TYPE ),
-				startsWith( MediaType.APPLICATION_JSON ) );
+		assertThat( ( String ) response.getHeaders()
+				.getFirst( HttpHeaders.CONTENT_TYPE ), startsWith( MediaType.APPLICATION_JSON ) );
 
 		assertThat( ( Map< ?, ? > ) response.readEntity( Map.class ), hasEntry( "blue", "Blue" ) );
 	}

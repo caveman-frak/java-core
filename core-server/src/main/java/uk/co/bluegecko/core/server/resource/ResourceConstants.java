@@ -1,7 +1,6 @@
 package uk.co.bluegecko.core.server.resource;
 
 
-@SuppressWarnings( "javadoc" )
 public interface ResourceConstants
 {
 

@@ -19,7 +19,6 @@ import java.util.Map;
 import org.junit.Test;
 
 
-@SuppressWarnings( "javadoc" )
 public class SafeTest
 {
 
@@ -119,7 +118,7 @@ public class SafeTest
 	{
 		Collection< String > collection = null;
 		assertEquals( "null", 0, Safe.length( collection ) );
-		collection = new ArrayList< >();
+		collection = new ArrayList<>();
 		assertEquals( "empty", 0, Safe.length( collection ) );
 		collection.add( "ONE" );
 		assertEquals( "populated", 1, Safe.length( collection ) );
@@ -130,7 +129,7 @@ public class SafeTest
 	{
 		Map< String, String > map = null;
 		assertEquals( "null", 0, Safe.length( map ) );
-		map = new HashMap< >();
+		map = new HashMap<>();
 		assertEquals( "empty", 0, Safe.length( map ) );
 		map.put( "ONE", "ONE" );
 		assertEquals( "populated", 1, Safe.length( map ) );
@@ -160,7 +159,7 @@ public class SafeTest
 	{
 		Collection< String > collection = null;
 		assertTrue( "null", Safe.isEmpty( collection ) );
-		collection = new ArrayList< >();
+		collection = new ArrayList<>();
 		assertTrue( "empty", Safe.isEmpty( collection ) );
 		collection.add( "ONE" );
 		assertFalse( "populated", Safe.isEmpty( collection ) );
@@ -171,7 +170,7 @@ public class SafeTest
 	{
 		Map< String, String > map = null;
 		assertTrue( "null", Safe.isEmpty( map ) );
-		map = new HashMap< >();
+		map = new HashMap<>();
 		assertTrue( "empty", Safe.isEmpty( map ) );
 		map.put( "ONE", "ONE" );
 		assertFalse( "populated", Safe.isEmpty( map ) );
@@ -201,7 +200,7 @@ public class SafeTest
 	{
 		Collection< String > collection = null;
 		assertFalse( "null", Safe.isBlank( collection ) );
-		collection = new ArrayList< >();
+		collection = new ArrayList<>();
 		assertTrue( "empty", Safe.isBlank( collection ) );
 		collection.add( "ONE" );
 		assertFalse( "populated", Safe.isBlank( collection ) );
@@ -212,7 +211,7 @@ public class SafeTest
 	{
 		Map< String, String > map = null;
 		assertFalse( "null", Safe.isBlank( map ) );
-		map = new HashMap< >();
+		map = new HashMap<>();
 		assertTrue( "empty", Safe.isBlank( map ) );
 		map.put( "ONE", "ONE" );
 		assertFalse( "populated", Safe.isBlank( map ) );

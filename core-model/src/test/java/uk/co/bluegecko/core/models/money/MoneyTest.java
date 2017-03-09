@@ -14,7 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-@SuppressWarnings( "javadoc" )
 public class MoneyTest
 {
 
@@ -39,7 +38,8 @@ public class MoneyTest
 	{
 		assertThat( gbp10.currency(), is( gbp ) );
 		assertThat( gbp10.amount(), is( new BigDecimal( "10.00" ) ) );
-		assertThat( gbp10.amount().scale(), is( 2 ) );
+		assertThat( gbp10.amount()
+				.scale(), is( 2 ) );
 	}
 
 	@Test
@@ -47,7 +47,8 @@ public class MoneyTest
 	{
 		assertThat( jpy10.currency(), is( jpy ) );
 		assertThat( jpy10.amount(), is( new BigDecimal( "10" ) ) );
-		assertThat( jpy10.amount().scale(), is( 0 ) );
+		assertThat( jpy10.amount()
+				.scale(), is( 0 ) );
 	}
 
 	@Test
@@ -71,7 +72,7 @@ public class MoneyTest
 	@Test
 	public void testAddGBPAndJPY()
 	{
-		capture( ( ) -> gbp20.add( jpy10 ) );
+		capture( () -> gbp20.add( jpy10 ) );
 		assertThat( caught(), is( instanceOf( CurrencyException.class ) ) );
 	}
 
@@ -96,7 +97,7 @@ public class MoneyTest
 	@Test
 	public void testSubtractGBPAndJPY()
 	{
-		capture( ( ) -> gbp20.subtract( jpy10 ) );
+		capture( () -> gbp20.subtract( jpy10 ) );
 		assertThat( caught(), is( instanceOf( CurrencyException.class ) ) );
 	}
 

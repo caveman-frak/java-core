@@ -18,7 +18,6 @@ import java.time.temporal.TemporalQuery;
 import org.junit.Test;
 
 
-@SuppressWarnings( "javadoc" )
 public class DayOfMonthTest implements TemporalTestBase
 {
 

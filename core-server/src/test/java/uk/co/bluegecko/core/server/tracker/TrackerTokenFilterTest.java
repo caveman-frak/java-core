@@ -29,7 +29,6 @@ import org.slf4j.MDC;
 import uk.co.bluegecko.core.test.harness.TestHarness;
 
 
-@SuppressWarnings( "javadoc" )
 public class TrackerTokenFilterTest
 {
 
@@ -51,7 +50,7 @@ public class TrackerTokenFilterTest
 		final UriInfo uriInfo = setUpUriInfo();
 		when( requestContext.getUriInfo() ).thenReturn( uriInfo );
 
-		headers = new MultivaluedHashMap< >();
+		headers = new MultivaluedHashMap<>();
 		when( responseContext.getHeaders() ).thenReturn( headers );
 
 		MDC.clear();

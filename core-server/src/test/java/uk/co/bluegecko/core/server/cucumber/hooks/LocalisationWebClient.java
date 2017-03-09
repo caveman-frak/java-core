@@ -21,7 +21,6 @@ import org.springframework.context.annotation.Scope;
 import uk.co.bluegecko.core.test.cucumber.Cucumber;
 
 
-@SuppressWarnings( "javadoc" )
 @Cucumber
 @Scope( "cucumber-glue" )
 public class LocalisationWebClient extends WebClient
@@ -31,8 +30,12 @@ public class LocalisationWebClient extends WebClient
 
 	public String request( final Locale locale, final String key ) throws MalformedURLException, URISyntaxException
 	{
-		final Response response = getTarget().path( PATH + MESSAGE ).resolveTemplate( BUNDLE_NAME, BUNDLE_UNDER_TEST )
-				.resolveTemplate( MESSAGE_KEY, key ).request( MediaType.TEXT_PLAIN ).acceptLanguage( locale ).get();
+		final Response response = getTarget().path( PATH + MESSAGE )
+				.resolveTemplate( BUNDLE_NAME, BUNDLE_UNDER_TEST )
+				.resolveTemplate( MESSAGE_KEY, key )
+				.request( MediaType.TEXT_PLAIN )
+				.acceptLanguage( locale )
+				.get();
 
 		assertThat( response.getStatus(), is( Status.OK.getStatusCode() ) );
 

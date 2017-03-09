@@ -1,7 +1,6 @@
 package uk.co.bluegecko.examples.jpa.entity;
 
 
-@SuppressWarnings( "javadoc" )
 public interface Person
 {
 

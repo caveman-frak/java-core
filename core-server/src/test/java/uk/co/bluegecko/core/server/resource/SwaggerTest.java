@@ -9,8 +9,6 @@ import static uk.co.bluegecko.core.server.config.ServerConstants.BASE_PATH;
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Health.GC;
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Health.INFO;
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Health.PATH;
-import io.swagger.models.Swagger;
-import io.swagger.parser.Swagger20Parser;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -28,10 +26,11 @@ import javax.ws.rs.core.Response.Status;
 import org.junit.Before;
 import org.junit.Test;
 
+import io.swagger.models.Swagger;
+import io.swagger.parser.Swagger20Parser;
 import uk.co.bluegecko.core.server.test.AbstractWebTest;
 
 
-@SuppressWarnings( "javadoc" )
 public class SwaggerTest extends AbstractWebTest
 {
 
@@ -40,19 +39,21 @@ public class SwaggerTest extends AbstractWebTest
 	@Before
 	public void setUp() throws MalformedURLException, URISyntaxException
 	{
-		target = ClientBuilder.newClient().target( new URL( "http", "localhost", getHttpPort(), BASE_PATH ).toURI() );
+		target = ClientBuilder.newClient()
+				.target( new URL( "http", "localhost", getHttpPort(), BASE_PATH ).toURI() );
 	}
 
 	@Test
 	public void fetchSwaggerAsJson() throws IOException
 	{
-		final Invocation.Builder builder = target.path( "swagger.json" ).request( MediaType.APPLICATION_JSON_TYPE );
+		final Invocation.Builder builder = target.path( "swagger.json" )
+				.request( MediaType.APPLICATION_JSON_TYPE );
 		final Response response = builder.get();
 
 		assertThat( response.getStatus(), is( Status.OK.getStatusCode() ) );
 		assertThat( response.getHeaders(), hasKey( HttpHeaders.CONTENT_TYPE ) );
-		assertThat( ( String ) response.getHeaders().getFirst( HttpHeaders.CONTENT_TYPE ),
-				startsWith( MediaType.APPLICATION_JSON ) );
+		assertThat( ( String ) response.getHeaders()
+				.getFirst( HttpHeaders.CONTENT_TYPE ), startsWith( MediaType.APPLICATION_JSON ) );
 
 		final String entity = response.readEntity( String.class );
 

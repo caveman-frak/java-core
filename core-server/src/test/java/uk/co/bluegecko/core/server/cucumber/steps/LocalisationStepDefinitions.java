@@ -8,14 +8,13 @@ import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import uk.co.bluegecko.core.server.cucumber.hooks.LocalisationWebClient;
-import uk.co.bluegecko.core.test.cucumber.Cucumber;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import uk.co.bluegecko.core.server.cucumber.hooks.LocalisationWebClient;
+import uk.co.bluegecko.core.test.cucumber.Cucumber;
 
 
-@SuppressWarnings( "javadoc" )
 @Cucumber
 public class LocalisationStepDefinitions
 {

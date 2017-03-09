@@ -14,7 +14,6 @@ import uk.co.bluegecko.core.test.source.Source;
 import uk.co.bluegecko.core.test.source.WordSequenceSource;
 
 
-@SuppressWarnings( "javadoc" )
 public class SimpleConnectorTest extends TestHarness
 {
 

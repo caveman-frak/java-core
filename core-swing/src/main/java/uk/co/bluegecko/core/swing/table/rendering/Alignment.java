@@ -13,7 +13,6 @@ import javax.swing.SwingConstants;
 /**
  * Define alignment of components
  */
-@SuppressWarnings( "javadoc" )
 public enum Alignment
 {
 
@@ -29,7 +28,7 @@ public enum Alignment
 
 	/**
 	 * Apply the alignment to a component
-	 * 
+	 *
 	 * @param c
 	 *            the component
 	 */

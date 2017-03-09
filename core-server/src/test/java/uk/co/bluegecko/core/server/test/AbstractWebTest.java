@@ -30,7 +30,6 @@ import uk.co.bluegecko.core.ApplicationConfig;
 import uk.co.bluegecko.core.server.test.interceptor.AcceptHeaderHttpRequestInterceptor;
 
 
-@SuppressWarnings( "javadoc" )
 @RunWith( SpringJUnit4ClassRunner.class )
 @SpringBootTest( classes = ApplicationConfig.class, webEnvironment = WebEnvironment.RANDOM_PORT )
 public abstract class AbstractWebTest implements ServerPorts
@@ -70,10 +69,12 @@ public abstract class AbstractWebTest implements ServerPorts
 				jacksonIntrospector );
 
 		final Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
-		builder.featuresToEnable( MapperFeature.DEFAULT_VIEW_INCLUSION ).annotationIntrospector( introspectorPair );
+		builder.featuresToEnable( MapperFeature.DEFAULT_VIEW_INCLUSION )
+				.annotationIntrospector( introspectorPair );
 
 		return Arrays.asList( new MappingJackson2HttpMessageConverter( builder.build() ),
-				new MappingJackson2XmlHttpMessageConverter( builder.createXmlMapper( true ).build() ) );
+				new MappingJackson2XmlHttpMessageConverter( builder.createXmlMapper( true )
+						.build() ) );
 	}
 
 	protected List< ClientHttpRequestInterceptor > createMediaTypeInterceptor( final MediaType mediaType )

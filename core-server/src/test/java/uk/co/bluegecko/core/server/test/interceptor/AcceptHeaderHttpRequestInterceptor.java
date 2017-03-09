@@ -7,7 +7,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.client.support.HttpRequestWrapper;
 
 
-@SuppressWarnings( "javadoc" )
 public final class AcceptHeaderHttpRequestInterceptor extends AbstractHeaderHttpRequestInterceptor< MediaType >
 {
 
@@ -24,7 +23,8 @@ public final class AcceptHeaderHttpRequestInterceptor extends AbstractHeaderHttp
 	@Override
 	protected void setHeader( final HttpRequestWrapper requestWrapper )
 	{
-		requestWrapper.getHeaders().setAccept( Arrays.asList( getHeaderValue() ) );
+		requestWrapper.getHeaders()
+				.setAccept( Arrays.asList( getHeaderValue() ) );
 	}
 
 }

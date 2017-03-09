@@ -4,14 +4,13 @@
 package examples.antlr4.game;
 
 
-@SuppressWarnings( "javadoc" )
 public class Application
 {
 
 	public static void main( final String[] args ) throws Exception
 	{
-		final Game game = new GameFactory().createGame( Application.class
-				.getResourceAsStream( "/antlr4/game/example.field" ) );
+		final Game game = new GameFactory()
+				.createGame( Application.class.getResourceAsStream( "/antlr4/game/example.field" ) );
 
 		game.play();
 	}

@@ -1,7 +1,6 @@
 package uk.co.bluegecko.core.test.exception;
 
 
-@SuppressWarnings( "javadoc" )
 public final class Foo
 {
 

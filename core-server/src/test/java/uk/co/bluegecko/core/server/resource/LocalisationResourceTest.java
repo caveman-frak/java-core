@@ -39,7 +39,6 @@ import org.junit.Test;
 import uk.co.bluegecko.core.server.test.AbstractWebTest;
 
 
-@SuppressWarnings( "javadoc" )
 public class LocalisationResourceTest extends AbstractWebTest
 {
 
@@ -58,13 +57,15 @@ public class LocalisationResourceTest extends AbstractWebTest
 	@Test
 	public void fetchBundle()
 	{
-		final Response response = target.path( PATH + BUNDLE ).resolveTemplate( BUNDLE_NAME, "i18n.test" )
-				.request( MediaType.APPLICATION_JSON_TYPE ).get();
+		final Response response = target.path( PATH + BUNDLE )
+				.resolveTemplate( BUNDLE_NAME, "i18n.test" )
+				.request( MediaType.APPLICATION_JSON_TYPE )
+				.get();
 
 		assertThat( response.getStatus(), is( Status.OK.getStatusCode() ) );
 		assertThat( response.getHeaders(), hasKey( HttpHeaders.CONTENT_TYPE ) );
-		assertThat( ( String ) response.getHeaders().getFirst( HttpHeaders.CONTENT_TYPE ),
-				startsWith( MediaType.APPLICATION_JSON ) );
+		assertThat( ( String ) response.getHeaders()
+				.getFirst( HttpHeaders.CONTENT_TYPE ), startsWith( MediaType.APPLICATION_JSON ) );
 
 		assertThat( ( Map< ?, ? > ) response.readEntity( Map.class ), hasEntry( "blue", "Blue" ) );
 	}
@@ -72,8 +73,11 @@ public class LocalisationResourceTest extends AbstractWebTest
 	@Test
 	public void fetchBundleForQueryFR()
 	{
-		final Response response = target.path( PATH + BUNDLE ).resolveTemplate( BUNDLE_NAME, "i18n.test" )
-				.queryParam( LOCALE, "fr" ).request( MediaType.APPLICATION_JSON_TYPE ).get();
+		final Response response = target.path( PATH + BUNDLE )
+				.resolveTemplate( BUNDLE_NAME, "i18n.test" )
+				.queryParam( LOCALE, "fr" )
+				.request( MediaType.APPLICATION_JSON_TYPE )
+				.get();
 
 		assertThat( response.getStatus(), is( Status.OK.getStatusCode() ) );
 		assertThat( ( Map< ?, ? > ) response.readEntity( Map.class ), hasEntry( "blue", "Bleu" ) );
@@ -82,8 +86,10 @@ public class LocalisationResourceTest extends AbstractWebTest
 	@Test
 	public void fetchBundleMissing()
 	{
-		final Response response = target.path( PATH + BUNDLE ).resolveTemplate( BUNDLE_NAME, "XXXX" )
-				.request( MediaType.APPLICATION_JSON_TYPE ).get();
+		final Response response = target.path( PATH + BUNDLE )
+				.resolveTemplate( BUNDLE_NAME, "XXXX" )
+				.request( MediaType.APPLICATION_JSON_TYPE )
+				.get();
 
 		assertThat( response.getStatus(), is( Status.NO_CONTENT.getStatusCode() ) );
 	}
@@ -91,13 +97,16 @@ public class LocalisationResourceTest extends AbstractWebTest
 	@Test
 	public void fetchMessage()
 	{
-		final Response response = target.path( PATH + MESSAGE ).resolveTemplate( BUNDLE_NAME, "i18n.test" )
-				.resolveTemplate( MESSAGE_KEY, "blue" ).request( MediaType.TEXT_PLAIN ).get();
+		final Response response = target.path( PATH + MESSAGE )
+				.resolveTemplate( BUNDLE_NAME, "i18n.test" )
+				.resolveTemplate( MESSAGE_KEY, "blue" )
+				.request( MediaType.TEXT_PLAIN )
+				.get();
 
 		assertThat( response.getStatus(), is( Status.OK.getStatusCode() ) );
 		assertThat( response.getHeaders(), hasKey( HttpHeaders.CONTENT_TYPE ) );
-		assertThat( ( String ) response.getHeaders().getFirst( HttpHeaders.CONTENT_TYPE ),
-				startsWith( MediaType.TEXT_PLAIN ) );
+		assertThat( ( String ) response.getHeaders()
+				.getFirst( HttpHeaders.CONTENT_TYPE ), startsWith( MediaType.TEXT_PLAIN ) );
 
 		assertThat( response.readEntity( String.class ), is( "Blue" ) );
 	}
@@ -105,8 +114,11 @@ public class LocalisationResourceTest extends AbstractWebTest
 	@Test
 	public void fetchMessageForHeaderFR()
 	{
-		final Response response = target.path( PATH + MESSAGE ).resolveTemplate( BUNDLE_NAME, "i18n.test" )
-				.resolveTemplate( MESSAGE_KEY, "blue" ).request( MediaType.TEXT_PLAIN ).acceptLanguage( Locale.FRENCH )
+		final Response response = target.path( PATH + MESSAGE )
+				.resolveTemplate( BUNDLE_NAME, "i18n.test" )
+				.resolveTemplate( MESSAGE_KEY, "blue" )
+				.request( MediaType.TEXT_PLAIN )
+				.acceptLanguage( Locale.FRENCH )
 				.get();
 
 		assertThat( response.getStatus(), is( Status.OK.getStatusCode() ) );
@@ -116,8 +128,11 @@ public class LocalisationResourceTest extends AbstractWebTest
 	@Test
 	public void fetchMessageMissing()
 	{
-		final Response response = target.path( PATH + MESSAGE ).resolveTemplate( BUNDLE_NAME, "i18n.test" )
-				.resolveTemplate( MESSAGE_KEY, "XXXX" ).request( MediaType.TEXT_PLAIN ).get();
+		final Response response = target.path( PATH + MESSAGE )
+				.resolveTemplate( BUNDLE_NAME, "i18n.test" )
+				.resolveTemplate( MESSAGE_KEY, "XXXX" )
+				.request( MediaType.TEXT_PLAIN )
+				.get();
 
 		assertThat( response.getStatus(), is( Status.OK.getStatusCode() ) );
 		assertThat( response.readEntity( String.class ), is( "**XXXX**" ) );
@@ -126,9 +141,12 @@ public class LocalisationResourceTest extends AbstractWebTest
 	@Test
 	public void fetchMessageWithParams()
 	{
-		final Response response = target.path( PATH + MESSAGE ).resolveTemplate( BUNDLE_NAME, "i18n.test" )
-				.resolveTemplate( MESSAGE_KEY, "greeting" ).queryParam( PARAMETERS, "Bob", "Tom" )
-				.request( MediaType.TEXT_PLAIN ).get();
+		final Response response = target.path( PATH + MESSAGE )
+				.resolveTemplate( BUNDLE_NAME, "i18n.test" )
+				.resolveTemplate( MESSAGE_KEY, "greeting" )
+				.queryParam( PARAMETERS, "Bob", "Tom" )
+				.request( MediaType.TEXT_PLAIN )
+				.get();
 
 		assertThat( response.getStatus(), is( Status.OK.getStatusCode() ) );
 		assertThat( response.readEntity( String.class ), is( "Hello Bob and Tom!" ) );

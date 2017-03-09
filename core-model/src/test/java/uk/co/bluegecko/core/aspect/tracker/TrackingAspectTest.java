@@ -18,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 
+import com.google.common.collect.ImmutableList;
+
 import uk.co.bluegecko.core.aspect.Foo;
 import uk.co.bluegecko.core.config.TestContextLoader;
 import uk.co.bluegecko.core.test.harness.TestHarness;
@@ -26,10 +28,7 @@ import uk.org.lidalia.slf4jtest.LoggingEvent;
 import uk.org.lidalia.slf4jtest.TestLogger;
 import uk.org.lidalia.slf4jtest.TestLoggerFactory;
 
-import com.google.common.collect.ImmutableList;
 
-
-@SuppressWarnings( "javadoc" )
 @ContextConfiguration( inheritLocations = true, loader = TestContextLoader.class )
 public class TrackingAspectTest extends TestHarness
 {
@@ -88,7 +87,7 @@ public class TrackingAspectTest extends TestHarness
 	@Test
 	public void testDirty()
 	{
-		capture( ( ) -> foo.bar( true ) );
+		capture( () -> foo.bar( true ) );
 		assertThat( caught(), is( instanceOf( IllegalStateException.class ) ) );
 
 		final ImmutableList< LoggingEvent > events = testLogger.getLoggingEvents();

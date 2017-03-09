@@ -8,13 +8,13 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Currency;
 
+import ch.qos.cal10n.BaseName;
+import ch.qos.cal10n.LocaleData;
 import uk.co.bluegecko.core.lang.CompareToBuilder;
 import uk.co.bluegecko.core.lang.EqualsBuilder;
 import uk.co.bluegecko.core.lang.HashCodeBuilder;
 import uk.co.bluegecko.core.lang.ToStringBuilder;
 import uk.co.bluegecko.core.models.quantity.Quantity;
-import ch.qos.cal10n.BaseName;
-import ch.qos.cal10n.LocaleData;
 
 
 /**
@@ -23,7 +23,6 @@ import ch.qos.cal10n.LocaleData;
 public class Money implements Quantity< BigDecimal, Currency >, Comparable< Money >
 {
 
-	@SuppressWarnings( "javadoc" )
 	@BaseName( "uk.co.bluegecko.core.models.money.Money$Log" )
 	@LocaleData(
 		{ @ch.qos.cal10n.Locale( "en" ) } )
@@ -167,7 +166,9 @@ public class Money implements Quantity< BigDecimal, Currency >, Comparable< Mone
 	@Override
 	public int compareTo( final Money that )
 	{
-		return new CompareToBuilder().append( amount, that.amount ).append( currency, that.currency ).toComparison();
+		return new CompareToBuilder().append( amount, that.amount )
+				.append( currency, that.currency )
+				.toComparison();
 	}
 
 	/*
@@ -177,7 +178,9 @@ public class Money implements Quantity< BigDecimal, Currency >, Comparable< Mone
 	@Override
 	public int hashCode()
 	{
-		return new HashCodeBuilder().append( amount ).append( currency ).toHashCode();
+		return new HashCodeBuilder().append( amount )
+				.append( currency )
+				.toHashCode();
 	}
 
 	/*
@@ -193,7 +196,9 @@ public class Money implements Quantity< BigDecimal, Currency >, Comparable< Mone
 			return builder.isSame();
 		}
 		final Money that = builder.getRhs();
-		return builder.append( amount, that.amount ).append( currency, that.currency ).isEquals();
+		return builder.append( amount, that.amount )
+				.append( currency, that.currency )
+				.isEquals();
 	}
 
 	/*
@@ -203,7 +208,9 @@ public class Money implements Quantity< BigDecimal, Currency >, Comparable< Mone
 	@Override
 	public String toString()
 	{
-		return new ToStringBuilder( this ).append( "amount", amount ).append( "ccy", currency ).toString();
+		return new ToStringBuilder( this ).append( "amount", amount )
+				.append( "ccy", currency )
+				.toString();
 	}
 
 }

@@ -22,7 +22,6 @@ import uk.co.bluegecko.core.model.base.MessagesBase;
 import uk.co.bluegecko.core.model.base.SimpleMessage;
 
 
-@SuppressWarnings( "javadoc" )
 public class AbstractValidatorTest
 {
 

@@ -8,7 +8,6 @@ import java.awt.Dimension;
 import org.junit.Test;
 
 
-@SuppressWarnings( "javadoc" )
 public class MathsTest
 {
 

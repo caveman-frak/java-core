@@ -4,7 +4,6 @@ package uk.co.bluegecko.core.server.model;
 import java.lang.management.MemoryUsage;
 
 
-@SuppressWarnings( "javadoc" )
 public interface Health
 {
 

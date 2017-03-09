@@ -18,7 +18,6 @@ import io.swagger.jaxrs.listing.ApiListingResource;
 import io.swagger.jaxrs.listing.SwaggerSerializers;
 
 
-@SuppressWarnings( "javadoc" )
 @Configuration
 @ApplicationPath( BASE_PATH )
 @PropertySource( name = "applicationProperties", value = "application.properties", ignoreResourceNotFound = true )

@@ -16,15 +16,14 @@ import org.junit.Test;
 import org.slf4j.cal10n.LocLogger;
 import org.slf4j.cal10n.LocLoggerFactory;
 
-import uk.org.lidalia.slf4jtest.LoggingEvent;
-import uk.org.lidalia.slf4jtest.TestLogger;
-import uk.org.lidalia.slf4jtest.TestLoggerFactory;
 import ch.qos.cal10n.BaseName;
 import ch.qos.cal10n.LocaleData;
 import ch.qos.cal10n.MessageConveyor;
+import uk.org.lidalia.slf4jtest.LoggingEvent;
+import uk.org.lidalia.slf4jtest.TestLogger;
+import uk.org.lidalia.slf4jtest.TestLoggerFactory;
 
 
-@SuppressWarnings( "javadoc" )
 public class LoggingMatcherTest
 {
 

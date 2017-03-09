@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import uk.co.bluegecko.core.aspect.Foo;
 
 
-@SuppressWarnings( "javadoc" )
 @Component( "profile" )
 public class FooBase implements Foo
 {

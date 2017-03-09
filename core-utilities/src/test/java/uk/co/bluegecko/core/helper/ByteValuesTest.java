@@ -9,7 +9,6 @@ import static uk.co.bluegecko.core.helper.ByteValues.scale;
 import org.junit.Test;
 
 
-@SuppressWarnings( "javadoc" )
 public class ByteValuesTest
 {
 

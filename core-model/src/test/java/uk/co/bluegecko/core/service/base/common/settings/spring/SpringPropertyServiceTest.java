@@ -18,7 +18,6 @@ import uk.co.bluegecko.core.service.common.settings.PropertyService;
 import uk.co.bluegecko.core.test.harness.TestHarness;
 
 
-@SuppressWarnings( "javadoc" )
 @Configuration
 @PropertySource( "classpath:test.properties" )
 public class SpringPropertyServiceTest extends TestHarness

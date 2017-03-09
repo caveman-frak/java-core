@@ -13,7 +13,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-@SuppressWarnings( "javadoc" )
 public class RenderingHintTest
 {
 
@@ -67,7 +66,7 @@ public class RenderingHintTest
 	public final void testGetValueDerived()
 	{
 		final Font value = Font.decode( "Monospaced-14" );
-		final FontHint fontHint = new FontHint( HintWeight.MAX_WEIGHT)
+		final FontHint fontHint = new FontHint( HintWeight.MAX_WEIGHT )
 		{
 
 			private static final long serialVersionUID = 1L;
@@ -86,70 +85,80 @@ public class RenderingHintTest
 	public final void testFontHintSize()
 	{
 		final Font value = Font.decode( "Monospaced-14" );
-		assertEquals( value, FontHint.size( HintWeight.MAX_WEIGHT, 14 ).getValue( font ) );
+		assertEquals( value, FontHint.size( HintWeight.MAX_WEIGHT, 14 )
+				.getValue( font ) );
 	}
 
 	@Test
 	public final void testFontHintLarger()
 	{
 		final Font value = Font.decode( "Monospaced-14" );
-		assertEquals( value, FontHint.larger( HintWeight.MAX_WEIGHT, 2 ).getValue( font ) );
+		assertEquals( value, FontHint.larger( HintWeight.MAX_WEIGHT, 2 )
+				.getValue( font ) );
 	}
 
 	@Test
 	public final void testFontHintSmaller()
 	{
 		final Font value = Font.decode( "Monospaced-10" );
-		assertEquals( value, FontHint.smaller( HintWeight.MAX_WEIGHT, 2 ).getValue( font ) );
+		assertEquals( value, FontHint.smaller( HintWeight.MAX_WEIGHT, 2 )
+				.getValue( font ) );
 	}
 
 	@Test
 	public final void testFontHintScaled()
 	{
 		final Font value = Font.decode( "Monospaced-6" );
-		assertEquals( value, FontHint.scaled( HintWeight.MAX_WEIGHT, 0.5f ).getValue( font ) );
+		assertEquals( value, FontHint.scaled( HintWeight.MAX_WEIGHT, 0.5f )
+				.getValue( font ) );
 	}
 
 	@Test
 	public final void testFontHintStyle()
 	{
 		final Font value = Font.decode( "Monospaced-BOLD-12" );
-		assertEquals( value, FontHint.style( HintWeight.MAX_WEIGHT, Font.BOLD ).getValue( font ) );
+		assertEquals( value, FontHint.style( HintWeight.MAX_WEIGHT, Font.BOLD )
+				.getValue( font ) );
 	}
 
 	@Test
 	public final void testFontHintStyleAndSize()
 	{
 		final Font value = Font.decode( "Monospaced-BOLD-14" );
-		assertEquals( value, FontHint.style( HintWeight.MAX_WEIGHT, Font.BOLD, 14 ).getValue( font ) );
+		assertEquals( value, FontHint.style( HintWeight.MAX_WEIGHT, Font.BOLD, 14 )
+				.getValue( font ) );
 	}
 
 	@Test
 	public final void testForegroundHintDarker()
 	{
 		final Color value = new Color( 0x595959 );
-		assertEquals( value, ForegroundHint.darker( HintWeight.MAX_WEIGHT ).getValue( color ) );
+		assertEquals( value, ForegroundHint.darker( HintWeight.MAX_WEIGHT )
+				.getValue( color ) );
 	}
 
 	@Test
 	public final void testForegroundHintBrighter()
 	{
 		final Color value = new Color( 0xB6B6B6 );
-		assertEquals( value, ForegroundHint.brighter( HintWeight.MAX_WEIGHT ).getValue( color ) );
+		assertEquals( value, ForegroundHint.brighter( HintWeight.MAX_WEIGHT )
+				.getValue( color ) );
 	}
 
 	@Test
 	public final void testBackgroundHintDarker()
 	{
 		final Color value = new Color( 0x595959 );
-		assertEquals( value, BackgroundHint.darker( HintWeight.MAX_WEIGHT ).getValue( color ) );
+		assertEquals( value, BackgroundHint.darker( HintWeight.MAX_WEIGHT )
+				.getValue( color ) );
 	}
 
 	@Test
 	public final void testBackgroundHintBrighter()
 	{
 		final Color value = new Color( 0xB6B6B6 );
-		assertEquals( value, BackgroundHint.brighter( HintWeight.MAX_WEIGHT ).getValue( color ) );
+		assertEquals( value, BackgroundHint.brighter( HintWeight.MAX_WEIGHT )
+				.getValue( color ) );
 	}
 
 }

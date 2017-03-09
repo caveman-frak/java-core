@@ -18,7 +18,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-@SuppressWarnings( "javadoc" )
 public class VersionedTest
 {
 
@@ -45,10 +44,8 @@ public class VersionedTest
 	{
 		final Versioned< Service > versioned = new Versioned<>( set );
 		final SortedSet< Version > set = versioned.getVersions();
-		assertThat(
-				set,
-				contains( ( Version ) new FullVersion( 1, 0, 0 ), new FullVersion( 1, 0, 1 ),
-						new FullVersion( 1, 2, 4 ), new FullVersion( 2, 0, 0 ) ) );
+		assertThat( set, contains( ( Version ) new FullVersion( 1, 0, 0 ), new FullVersion( 1, 0, 1 ),
+				new FullVersion( 1, 2, 4 ), new FullVersion( 2, 0, 0 ) ) );
 	}
 
 	@Test

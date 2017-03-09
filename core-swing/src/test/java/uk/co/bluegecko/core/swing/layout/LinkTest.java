@@ -8,7 +8,6 @@ import java.awt.Component;
 import org.junit.Test;
 
 
-@SuppressWarnings( "javadoc" )
 public class LinkTest
 {
 

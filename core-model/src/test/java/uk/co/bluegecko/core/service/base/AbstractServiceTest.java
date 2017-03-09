@@ -19,7 +19,6 @@ import uk.org.lidalia.slf4jtest.TestLogger;
 import uk.org.lidalia.slf4jtest.TestLoggerFactory;
 
 
-@SuppressWarnings( "javadoc" )
 public class AbstractServiceTest extends TestHarness
 {
 
@@ -47,7 +46,8 @@ public class AbstractServiceTest extends TestHarness
 	@Test
 	public void testGetLocaleService()
 	{
-		assertThat( getService().getLocaleService().system(), is( Locale.ENGLISH ) );
+		assertThat( getService().getLocaleService()
+				.system(), is( Locale.ENGLISH ) );
 	}
 
 	@Test

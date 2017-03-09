@@ -17,7 +17,6 @@ import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.client.authentication.HttpAuthenticationFeature;
 
 
-@SuppressWarnings( "javadoc" )
 public abstract class WebClient
 {
 
@@ -28,8 +27,8 @@ public abstract class WebClient
 		final Configuration configuration = new ClientConfig().register( authenticationFeature );
 		final Integer port = Integer.valueOf( System.getProperty( "test.http.port" ) );
 
-		final WebTarget target = ClientBuilder.newClient( configuration ).target(
-				new URL( "http", "localhost", port, BASE_PATH ).toURI() );
+		final WebTarget target = ClientBuilder.newClient( configuration )
+				.target( new URL( "http", "localhost", port, BASE_PATH ).toURI() );
 		return target;
 	}
 

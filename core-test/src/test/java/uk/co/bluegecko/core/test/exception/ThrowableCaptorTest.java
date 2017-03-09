@@ -12,7 +12,6 @@ import static uk.co.bluegecko.core.test.exception.ThrowableCaptor.caught;
 import org.junit.Test;
 
 
-@SuppressWarnings( "javadoc" )
 public class ThrowableCaptorTest
 {
 

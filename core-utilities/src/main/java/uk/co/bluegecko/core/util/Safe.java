@@ -10,7 +10,6 @@ import java.util.Comparator;
 import java.util.Map;
 
 
-@SuppressWarnings( "javadoc" )
 public final class Safe
 {
 

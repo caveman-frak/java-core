@@ -1,7 +1,6 @@
 package uk.co.bluegecko.core.aspect;
 
 
-@SuppressWarnings( "javadoc" )
 public interface Foo
 {
 

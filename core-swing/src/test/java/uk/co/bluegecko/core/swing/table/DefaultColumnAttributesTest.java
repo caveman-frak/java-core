@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-@SuppressWarnings( "javadoc" )
 public class DefaultColumnAttributesTest
 {
 
@@ -77,7 +76,7 @@ public class DefaultColumnAttributesTest
 	private final DefaultColumnAttributes< String > createAttribute( final int minWidth, final int preferredWidth,
 			final int maxWidth )
 	{
-		return new DefaultColumnAttributes< >( definition, "ONE", null, null, null, minWidth, preferredWidth, maxWidth,
+		return new DefaultColumnAttributes<>( definition, "ONE", null, null, null, minWidth, preferredWidth, maxWidth,
 				true, false );
 	}
 

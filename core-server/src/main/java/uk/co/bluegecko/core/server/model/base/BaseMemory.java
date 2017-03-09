@@ -13,7 +13,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import uk.co.bluegecko.core.server.model.Memory;
 
 
-@SuppressWarnings( "javadoc" )
 @XmlRootElement
 @XmlAccessorType( XmlAccessType.FIELD )
 public final class BaseMemory implements Memory

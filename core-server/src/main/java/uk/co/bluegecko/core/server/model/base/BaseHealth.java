@@ -11,7 +11,6 @@ import uk.co.bluegecko.core.server.model.Health;
 import uk.co.bluegecko.core.server.model.Memory;
 
 
-@SuppressWarnings( "javadoc" )
 @XmlRootElement
 @XmlAccessorType( XmlAccessType.FIELD )
 public class BaseHealth implements Health

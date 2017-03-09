@@ -21,7 +21,6 @@ import examples.antlr.field.lexer.FieldLexer;
 import examples.antlr.field.lexer.FieldParser;
 
 
-@SuppressWarnings( "javadoc" )
 public class GameFactory
 {
 

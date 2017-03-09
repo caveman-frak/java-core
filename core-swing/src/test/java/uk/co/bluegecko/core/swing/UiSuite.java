@@ -13,7 +13,6 @@ import uk.co.bluegecko.core.swing.layout.LayoutSuite;
 import uk.co.bluegecko.core.swing.table.TableSuite;
 
 
-@SuppressWarnings( "javadoc" )
 @RunWith( Suite.class )
 @Suite.SuiteClasses(
 	{ ComponentsSuite.class, LayoutSuite.class, TableSuite.class } )

@@ -19,7 +19,6 @@ import uk.co.bluegecko.core.service.base.AbstractService;
 import uk.co.bluegecko.core.service.common.LocaleService;
 
 
-@SuppressWarnings( "javadoc" )
 @Service
 @Lazy
 public class HealthServiceBase extends AbstractService implements HealthService
@@ -52,7 +51,8 @@ public class HealthServiceBase extends AbstractService implements HealthService
 
 	private String getSystemLoadAverage()
 	{
-		return NumberFormat.getPercentInstance().format( operatingSystemMXBean.getSystemLoadAverage() / 100 );
+		return NumberFormat.getPercentInstance()
+				.format( operatingSystemMXBean.getSystemLoadAverage() / 100 );
 	}
 
 	private String getArchitectureDetails()

@@ -28,7 +28,6 @@ import uk.co.bluegecko.core.server.resource.HealthResource;
 import uk.co.bluegecko.core.server.service.HealthService;
 
 
-@SuppressWarnings( "javadoc" )
 @Singleton
 @Api( tags = TAG )
 @Path( PATH )
@@ -47,7 +46,7 @@ public class SwaggerHealthResource extends HealthResource
 			response = BaseHealth.class )
 	@ApiResponses(
 		{ @ApiResponse( code = 200, message = "System Health", response = BaseHealth.class ),
-				@ApiResponse( code = 500, message = "Internal Error" ) })
+				@ApiResponse( code = 500, message = "Internal Error" ) } )
 	@GET
 	@Path( INFO )
 	@Produces(
@@ -61,7 +60,7 @@ public class SwaggerHealthResource extends HealthResource
 	@ApiOperation( nickname = "gc", value = "Trigger garbage collection", tags = TAG,
 			notes = "Triggers garbage collection on the server" )
 	@ApiResponses(
-		{ @ApiResponse( code = 204, message = "GC invoked" ), @ApiResponse( code = 500, message = "Internal Error" ) })
+		{ @ApiResponse( code = 204, message = "GC invoked" ), @ApiResponse( code = 500, message = "Internal Error" ) } )
 	@POST
 	@Path( GC )
 	public void garbageCollect()
@@ -74,12 +73,12 @@ public class SwaggerHealthResource extends HealthResource
 	@ApiResponses(
 		{ @ApiResponse( code = 200, message = "System Health", response = BaseHealth.class ),
 				@ApiResponse( code = 400, message = "Bad Request" ),
-				@ApiResponse( code = 500, message = "Internal Error" ) })
+				@ApiResponse( code = 500, message = "Internal Error" ) } )
 	@GET
 	@Path( "/exec/{status}" )
 	@Produces(
 		{ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML } )
-	public Response health( @PathParam( "status" ) final int status)
+	public Response health( @PathParam( "status" ) final int status )
 	{
 		throw new FakeException( Status.fromStatusCode( status ) );
 	}

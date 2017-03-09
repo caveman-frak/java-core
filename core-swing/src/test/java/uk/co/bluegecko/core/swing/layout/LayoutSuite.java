@@ -9,7 +9,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 
-@SuppressWarnings( "javadoc" )
 @RunWith( Suite.class )
 @Suite.SuiteClasses(
 	{ AlignmentTest.class, ConstraintTest.class, ScaleTest.class, LinkTest.class, SizeTest.class, SpacerTest.class,

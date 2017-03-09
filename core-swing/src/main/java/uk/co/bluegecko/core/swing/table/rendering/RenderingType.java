@@ -7,7 +7,6 @@ package uk.co.bluegecko.core.swing.table.rendering;
 /**
  * Type of rendering hint.
  */
-@SuppressWarnings( "javadoc" )
 public enum RenderingType
 {
 	BACKGROUND, FOREGROUND, FONT, BORDER, HEIGHT, ALIGNMENT

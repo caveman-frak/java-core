@@ -17,7 +17,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-@SuppressWarnings( "javadoc" )
 public class BankHolidayTest implements TemporalTestBase
 {
 
@@ -34,20 +33,20 @@ public class BankHolidayTest implements TemporalTestBase
 	@Test
 	public final void testHolidayInWeek()
 	{
-		assertThat( christmasDay.adjustInto( YEAR_START ).get( ChronoField.DAY_OF_WEEK ),
-				is( DayOfWeek.TUESDAY.getValue() ) );
-		assertThat( christmasHoliday.adjustInto( YEAR_START ).get( ChronoField.DAY_OF_WEEK ),
-				is( DayOfWeek.TUESDAY.getValue() ) );
+		assertThat( christmasDay.adjustInto( YEAR_START )
+				.get( ChronoField.DAY_OF_WEEK ), is( DayOfWeek.TUESDAY.getValue() ) );
+		assertThat( christmasHoliday.adjustInto( YEAR_START )
+				.get( ChronoField.DAY_OF_WEEK ), is( DayOfWeek.TUESDAY.getValue() ) );
 	}
 
 	@Test
 	public final void testHolidayInWeekend()
 	{
 		final LocalDate yearStart2010 = YEAR_START.minusYears( 2 );
-		assertThat( christmasDay.adjustInto( yearStart2010 ).get( ChronoField.DAY_OF_WEEK ),
-				is( DayOfWeek.SATURDAY.getValue() ) );
-		assertThat( christmasHoliday.adjustInto( yearStart2010 ).get( ChronoField.DAY_OF_WEEK ),
-				is( DayOfWeek.MONDAY.getValue() ) );
+		assertThat( christmasDay.adjustInto( yearStart2010 )
+				.get( ChronoField.DAY_OF_WEEK ), is( DayOfWeek.SATURDAY.getValue() ) );
+		assertThat( christmasHoliday.adjustInto( yearStart2010 )
+				.get( ChronoField.DAY_OF_WEEK ), is( DayOfWeek.MONDAY.getValue() ) );
 	}
 
 }

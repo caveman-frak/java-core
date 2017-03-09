@@ -8,7 +8,6 @@ import ch.qos.cal10n.BaseName;
 import ch.qos.cal10n.LocaleData;
 
 
-@SuppressWarnings( "javadoc" )
 public class TestExceptionOne extends BaseException
 {
 
@@ -16,7 +15,7 @@ public class TestExceptionOne extends BaseException
 
 	@BaseName( "uk.co.bluegecko.core.exceptions.TestExceptionOne$Message" )
 	@LocaleData(
-		{ @ch.qos.cal10n.Locale( "en" ) })
+		{ @ch.qos.cal10n.Locale( "en" ) } )
 	public enum Message
 	{
 		ONE, TWO, THREE

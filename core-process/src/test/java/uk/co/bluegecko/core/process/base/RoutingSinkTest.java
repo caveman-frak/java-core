@@ -14,7 +14,6 @@ import org.mockito.InOrder;
 import uk.co.bluegecko.core.process.Sink;
 
 
-@SuppressWarnings( "javadoc" )
 public class RoutingSinkTest
 {
 
@@ -36,7 +35,7 @@ public class RoutingSinkTest
 	{
 		sinkFoo = mock( Sink.class );
 		sinkBar = mock( Sink.class );
-		sink = new RoutingSink< >( s -> ( s.length() > 3 ? Route.BAR : Route.FOO ), Route.values(), sinkFoo, sinkBar );
+		sink = new RoutingSink<>( s -> ( s.length() > 3 ? Route.BAR : Route.FOO ), Route.values(), sinkFoo, sinkBar );
 	}
 
 	@Test
@@ -75,10 +74,14 @@ public class RoutingSinkTest
 		sink.push( FOUR );
 
 		final InOrder order = inOrder( sinkFoo, sinkBar );
-		order.verify( sinkFoo ).push( ONE );
-		order.verify( sinkFoo ).push( TWO );
-		order.verify( sinkBar ).push( THREE );
-		order.verify( sinkBar ).push( FOUR );
+		order.verify( sinkFoo )
+				.push( ONE );
+		order.verify( sinkFoo )
+				.push( TWO );
+		order.verify( sinkBar )
+				.push( THREE );
+		order.verify( sinkBar )
+				.push( FOUR );
 		verifyNoMoreInteractions( sinkFoo, sinkBar );
 	}
 

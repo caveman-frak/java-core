@@ -12,7 +12,6 @@ import uk.co.bluegecko.core.swing.table.rendering.RenderingHelperTest;
 import uk.co.bluegecko.core.swing.table.rendering.RenderingHintTest;
 
 
-@SuppressWarnings( "javadoc" )
 @RunWith( Suite.class )
 @Suite.SuiteClasses(
 	{ DefaultColumnAttributesTest.class, RenderingHelperTest.class, RenderingHintTest.class } )

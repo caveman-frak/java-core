@@ -8,7 +8,6 @@ import uk.co.bluegecko.core.aspect.Foo;
 import uk.co.bluegecko.core.service.Service;
 
 
-@SuppressWarnings( "javadoc" )
 @Component( "is-service" )
 public class FooService implements Service, Foo
 {

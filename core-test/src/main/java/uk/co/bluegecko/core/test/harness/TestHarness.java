@@ -45,7 +45,6 @@ import ch.qos.cal10n.verifier.MessageKeyVerifier;
 	{ "classpath:test-context.xml" } )
 @PropertySource( name = "unit-test", ignoreResourceNotFound = true, encoding = "UTF-8", value =
 	{ "classpath:unit-test.properties" } )
-@SuppressWarnings( "javadoc" )
 public abstract class TestHarness implements ApplicationContextAware
 {
 
@@ -85,7 +84,8 @@ public abstract class TestHarness implements ApplicationContextAware
 
 	public static Instant getInstant()
 	{
-		return LocalDateTime.of( getDate(), getTime() ).toInstant( getTimeZone() );
+		return LocalDateTime.of( getDate(), getTime() )
+				.toInstant( getTimeZone() );
 	}
 
 	public static LocalTime getTime()
@@ -133,7 +133,8 @@ public abstract class TestHarness implements ApplicationContextAware
 
 	protected Boolean isDebugEnabled()
 	{
-		return applicationContext.getEnvironment().getProperty( "unit-test.debug", Boolean.class, false );
+		return applicationContext.getEnvironment()
+				.getProperty( "unit-test.debug", Boolean.class, false );
 	}
 
 }

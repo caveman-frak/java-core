@@ -14,7 +14,6 @@ import org.mockito.InOrder;
 import uk.co.bluegecko.core.process.Sink;
 
 
-@SuppressWarnings( "javadoc" )
 public class FilteredSinkTest
 {
 
@@ -30,7 +29,7 @@ public class FilteredSinkTest
 	public final void setUp()
 	{
 		sinkFoo = mock( Sink.class );
-		sink = new FilteredSink< >( sinkFoo, s -> s.equalsIgnoreCase( ONE ) );
+		sink = new FilteredSink<>( sinkFoo, s -> s.equalsIgnoreCase( ONE ) );
 	}
 
 	@Test
@@ -66,9 +65,12 @@ public class FilteredSinkTest
 		sink.push( TWO );
 
 		final InOrder order = inOrder( sinkFoo );
-		order.verify( sinkFoo ).push( ONE );
-		order.verify( sinkFoo ).push( ONE_LOWER );
-		order.verify( sinkFoo ).push( ONE_UPPER );
+		order.verify( sinkFoo )
+				.push( ONE );
+		order.verify( sinkFoo )
+				.push( ONE_LOWER );
+		order.verify( sinkFoo )
+				.push( ONE_UPPER );
 		verifyNoMoreInteractions( sinkFoo );
 	}
 

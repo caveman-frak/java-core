@@ -10,11 +10,7 @@ import org.jmock.integration.junit4.JMock;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import uk.co.bluegecko.core.swing.components.Sized;
-import uk.co.bluegecko.core.swing.components.SizedHelper;
 
-
-@SuppressWarnings( "javadoc" )
 @RunWith( JMock.class )
 public class SizedHelperTest
 {
@@ -33,7 +29,8 @@ public class SizedHelperTest
 
 			{
 				allowing( sized ).addComponentListener( with( any( ComponentListener.class ) ) );
-				atLeast( 1 ).of( sized ).getSize();
+				atLeast( 1 ).of( sized )
+						.getSize();
 				will( returnValue( initialSize ) );
 				allowing( sized ).getMinimumSize();
 				will( returnValue( null ) );
@@ -58,7 +55,8 @@ public class SizedHelperTest
 
 			{
 				allowing( sized ).addComponentListener( with( any( ComponentListener.class ) ) );
-				atLeast( 1 ).of( sized ).getSize();
+				atLeast( 1 ).of( sized )
+						.getSize();
 				will( returnValue( initialSize ) );
 				allowing( sized ).getMinimumSize();
 				will( returnValue( new Dimension( 90, 190 ) ) );
@@ -84,7 +82,8 @@ public class SizedHelperTest
 
 			{
 				allowing( sized ).addComponentListener( with( any( ComponentListener.class ) ) );
-				atLeast( 1 ).of( sized ).getSize();
+				atLeast( 1 ).of( sized )
+						.getSize();
 				will( returnValue( initialSize ) );
 				allowing( sized ).getMinimumSize();
 				will( returnValue( minimumSize ) );
@@ -109,7 +108,8 @@ public class SizedHelperTest
 
 			{
 				allowing( sized ).addComponentListener( with( any( ComponentListener.class ) ) );
-				atLeast( 1 ).of( sized ).getSize();
+				atLeast( 1 ).of( sized )
+						.getSize();
 				will( returnValue( initialSize ) );
 				allowing( sized ).getMinimumSize();
 				will( returnValue( null ) );
@@ -134,7 +134,8 @@ public class SizedHelperTest
 
 			{
 				allowing( sized ).addComponentListener( with( any( ComponentListener.class ) ) );
-				atLeast( 1 ).of( sized ).getSize();
+				atLeast( 1 ).of( sized )
+						.getSize();
 				will( returnValue( initialSize ) );
 				allowing( sized ).getMinimumSize();
 				will( returnValue( null ) );
@@ -159,7 +160,8 @@ public class SizedHelperTest
 
 			{
 				allowing( sized ).addComponentListener( with( any( ComponentListener.class ) ) );
-				atLeast( 1 ).of( sized ).getSize();
+				atLeast( 1 ).of( sized )
+						.getSize();
 				will( returnValue( initialSize ) );
 				allowing( sized ).getMinimumSize();
 				will( returnValue( SizedHelper.preferred() ) );
@@ -184,7 +186,8 @@ public class SizedHelperTest
 
 			{
 				allowing( sized ).addComponentListener( with( any( ComponentListener.class ) ) );
-				atLeast( 1 ).of( sized ).getSize();
+				atLeast( 1 ).of( sized )
+						.getSize();
 				will( returnValue( initialSize ) );
 				allowing( sized ).getMinimumSize();
 				will( returnValue( SizedHelper.widthPreferred() ) );
@@ -209,7 +212,8 @@ public class SizedHelperTest
 
 			{
 				allowing( sized ).addComponentListener( with( any( ComponentListener.class ) ) );
-				atLeast( 1 ).of( sized ).getSize();
+				atLeast( 1 ).of( sized )
+						.getSize();
 				will( returnValue( initialSize ) );
 				allowing( sized ).getMinimumSize();
 				will( returnValue( SizedHelper.heightPreferred() ) );

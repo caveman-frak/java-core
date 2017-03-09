@@ -20,7 +20,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-@SuppressWarnings( "javadoc" )
 public class LocalisationHelperTest
 {
 
@@ -91,8 +90,10 @@ public class LocalisationHelperTest
 	public final void testAccessorIcon()
 	{
 		final LocalisationHelper.Accessor< ImageIcon > result = LocalisationHelper.getIcon( handler );
-		final ImageIcon icon = new ImageIcon( getClass().getClassLoader().getResource( "test-image.png" ) );
-		assertThat( result.getLocalValue( "test@icon" ).getImage(), is( icon.getImage() ) );
+		final ImageIcon icon = new ImageIcon( getClass().getClassLoader()
+				.getResource( "test-image.png" ) );
+		assertThat( result.getLocalValue( "test@icon" )
+				.getImage(), is( icon.getImage() ) );
 	}
 
 	@Test
@@ -142,7 +143,8 @@ public class LocalisationHelperTest
 		assertThat( label.getName(), is( "label" ) );
 		assertThat( label.getText(), is( "Text for label" ) );
 		assertThat( label.getToolTipText(), is( "Tooltip for label" ) );
-		final ImageIcon icon = new ImageIcon( getClass().getClassLoader().getResource( "test-image.png" ) );
+		final ImageIcon icon = new ImageIcon( getClass().getClassLoader()
+				.getResource( "test-image.png" ) );
 		assertThat( ( ( ImageIcon ) label.getIcon() ).getImage(), is( icon.getImage() ) );
 		assertThat( label.getDisplayedMnemonic(), is( ( int ) 'a' ) );
 		assertThat( label.getDisplayedMnemonicIndex(), is( 1 ) );
@@ -166,7 +168,8 @@ public class LocalisationHelperTest
 		assertThat( ( String ) action.getValue( Action.NAME ), is( "Name for action" ) );
 		assertThat( ( String ) action.getValue( Action.SHORT_DESCRIPTION ), is( "ShortDescription for action" ) );
 		assertThat( ( String ) action.getValue( Action.LONG_DESCRIPTION ), is( "LongDescription for action" ) );
-		final ImageIcon icon = new ImageIcon( getClass().getClassLoader().getResource( "test-image.png" ) );
+		final ImageIcon icon = new ImageIcon( getClass().getClassLoader()
+				.getResource( "test-image.png" ) );
 		assertThat( ( ( ImageIcon ) action.getValue( Action.SMALL_ICON ) ).getImage(), is( icon.getImage() ) );
 		assertThat( ( ( ImageIcon ) action.getValue( Action.LARGE_ICON_KEY ) ).getImage(), is( icon.getImage() ) );
 		assertThat( ( Integer ) action.getValue( Action.MNEMONIC_KEY ), is( ( int ) 't' ) );

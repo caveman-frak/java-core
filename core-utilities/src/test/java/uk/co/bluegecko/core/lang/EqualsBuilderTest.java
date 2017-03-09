@@ -13,7 +13,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-@SuppressWarnings( "javadoc" )
 public class EqualsBuilderTest
 {
 
@@ -129,7 +128,9 @@ public class EqualsBuilderTest
 	{
 		final EqualsBuilder< Foo > builder = new EqualsBuilder<>( lhs, rhs );
 		if ( builder.isResolved() )
+		{
 			return builder.isSame();
+		}
 		final Foo that = builder.getRhs();
 		builder.append( lhs.getId(), that.getId() );
 		builder.append( lhs.getText(), that.getText() );

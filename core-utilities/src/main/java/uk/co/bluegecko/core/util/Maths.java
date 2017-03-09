@@ -7,7 +7,6 @@ package uk.co.bluegecko.core.util;
 import java.awt.Dimension;
 
 
-@SuppressWarnings( "javadoc" )
 public final class Maths
 {
 

@@ -9,10 +9,6 @@ import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.ME
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.PARAMETERS;
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.PATH;
 import static uk.co.bluegecko.core.server.resource.ResourceConstants.Location.TAG;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 
 import java.util.List;
 import java.util.Locale;
@@ -31,11 +27,14 @@ import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import uk.co.bluegecko.core.server.resource.LocalisationResource;
 import uk.co.bluegecko.core.service.common.LocalisationService;
 
 
-@SuppressWarnings( "javadoc" )
 @Singleton
 @Api( tags = TAG )
 @Path( PATH )

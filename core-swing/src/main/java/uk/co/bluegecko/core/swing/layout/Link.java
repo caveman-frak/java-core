@@ -41,7 +41,7 @@ public class Link extends Container
 
 	/**
 	 * The base component.
-	 * 
+	 *
 	 * @return base component
 	 */
 	public Component getComponent()
@@ -99,7 +99,7 @@ public class Link extends Container
 
 	/**
 	 * Create a link in one direction between the passed components.
-	 * 
+	 *
 	 * @param direction
 	 *            direction of link
 	 * @param components
@@ -108,7 +108,7 @@ public class Link extends Container
 	 */
 	public static Link[] create( final Direction direction, final Component... components )
 	{
-		final Set< Component > linkedComponents = new HashSet< >();
+		final Set< Component > linkedComponents = new HashSet<>();
 		final Link[] links = new Link[components.length];
 
 		int index = 0;
@@ -121,7 +121,6 @@ public class Link extends Container
 		return links;
 	}
 
-	@SuppressWarnings( "javadoc" )
 	public static final class Manager
 	{
 
@@ -132,7 +131,7 @@ public class Link extends Container
 		{
 			super();
 
-			components = new HashSet< >();
+			components = new HashSet<>();
 			this.direction = direction;
 		}
 

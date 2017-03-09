@@ -10,7 +10,6 @@ import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.http.client.support.HttpRequestWrapper;
 
 
-@SuppressWarnings( "javadoc" )
 public abstract class AbstractHeaderHttpRequestInterceptor< T > implements ClientHttpRequestInterceptor
 {
 

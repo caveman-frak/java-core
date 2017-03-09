@@ -7,7 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.KeyStroke;
 
 
-@SuppressWarnings( "javadoc" )
 public class LocalisationHelper
 {
 

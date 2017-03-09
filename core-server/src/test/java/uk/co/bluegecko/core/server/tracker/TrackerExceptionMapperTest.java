@@ -21,7 +21,6 @@ import uk.co.bluegecko.core.exceptions.ServerError;
 import uk.co.bluegecko.core.server.exceptions.WebErrorStatus;
 
 
-@SuppressWarnings( "javadoc" )
 public class TrackerExceptionMapperTest
 {
 

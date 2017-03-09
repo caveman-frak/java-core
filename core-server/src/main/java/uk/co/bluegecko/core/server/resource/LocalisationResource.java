@@ -13,7 +13,6 @@ import javax.ws.rs.ext.Provider;
 import uk.co.bluegecko.core.service.common.LocalisationService;
 
 
-@SuppressWarnings( "javadoc" )
 @Provider
 public abstract class LocalisationResource
 {
@@ -27,9 +26,11 @@ public abstract class LocalisationResource
 
 	public Response bundle( final HttpHeaders headers, final Locale locale, final String bundleName )
 	{
-		final Map< String, Object > messages = localisationService.messages( getLocale( headers, locale ),
-				bundleName );
-		return messages.isEmpty() ? Response.noContent().build() : Response.ok( messages ).build();
+		final Map< String, Object > messages = localisationService.messages( getLocale( headers, locale ), bundleName );
+		return messages.isEmpty() ? Response.noContent()
+				.build()
+				: Response.ok( messages )
+						.build();
 	}
 
 	public Response message( final HttpHeaders headers, final Locale locale, final String bundleName,
@@ -37,7 +38,8 @@ public abstract class LocalisationResource
 	{
 		final String message = localisationService.message( getLocale( headers, locale ), bundleName, messageKey,
 				parameters.toArray() );
-		return Response.ok( message, MediaType.TEXT_PLAIN ).build();
+		return Response.ok( message, MediaType.TEXT_PLAIN )
+				.build();
 	}
 
 	protected Locale getLocale( final HttpHeaders headers, final Locale locale )
@@ -49,7 +51,8 @@ public abstract class LocalisationResource
 
 		final List< Locale > acceptableLanguages = headers.getAcceptableLanguages();
 		final Locale firstLocale = acceptableLanguages.get( 0 );
-		if ( !firstLocale.getLanguage().equals( "*" ) )
+		if ( !firstLocale.getLanguage()
+				.equals( "*" ) )
 		{
 			return firstLocale;
 		}

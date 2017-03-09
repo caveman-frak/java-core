@@ -11,7 +11,6 @@ import uk.co.bluegecko.core.aspect.profile.Profiled;
 import uk.co.bluegecko.core.server.service.HealthService;
 
 
-@SuppressWarnings( "javadoc" )
 @Provider
 public abstract class HealthResource
 {
@@ -30,7 +29,8 @@ public abstract class HealthResource
 	{
 		logger.info( "getting health..." );
 
-		return Response.ok( healthService.getSystemHealth() ).build();
+		return Response.ok( healthService.getSystemHealth() )
+				.build();
 	}
 
 	public void garbageCollect()
